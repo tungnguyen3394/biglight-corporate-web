@@ -37,6 +37,14 @@
   document.querySelectorAll('#mnav a').forEach(function(a){
     a.addEventListener('click',function(){if(mnav)mnav.classList.remove('open');});
   });
+  // accordion: bấm mục lớn để sổ danh sách con
+  document.querySelectorAll('#mnav .macc-h').forEach(function(b){
+    b.addEventListener('click',function(){
+      var item=b.parentElement, wasOpen=item.classList.contains('open');
+      document.querySelectorAll('#mnav .macc.open').forEach(function(o){o.classList.remove('open');});
+      if(!wasOpen)item.classList.add('open');
+    });
+  });
 
   var form=document.getElementById('contactForm');
   if(form){

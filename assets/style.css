@@ -636,3 +636,108 @@
 .sec h1,.recruit-hero h1{font-size:clamp(26px,4vw,38px)}
 .sec-head h1{font-size:32px;color:var(--navy);font-weight:700;margin-top:8px;letter-spacing:1px;position:relative;display:inline-block;padding-bottom:16px}
 .strength .sec-head h1,.mv .sec-head h1{color:#fff}
+
+/* ===== MOBILE DRAWER – ACCORDION ===== */
+#mnav{padding:76px 22px 40px}
+#mnav .mclose{font-size:34px}
+#mnav .macc{border-bottom:1px solid #ffffff1f}
+#mnav .macc-h{width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:0;color:#fff;font-size:17px;font-weight:600;padding:17px 4px;cursor:pointer;font-family:inherit;letter-spacing:.5px}
+#mnav .macc-ar{color:var(--gold);transition:transform .3s;font-size:15px}
+#mnav .macc.open .macc-ar{transform:rotate(180deg)}
+#mnav .macc-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+#mnav .macc.open .macc-body{max-height:460px}
+#mnav .macc-body a{display:block;color:#cfe0f7;font-size:15px;padding:12px 0 12px 18px;border-bottom:0}
+#mnav .macc-body a:active{color:var(--gold)}
+#mnav .macc-link{display:flex;align-items:center;color:#fff;font-size:17px;font-weight:600;padding:17px 4px;border-bottom:1px solid #ffffff1f;letter-spacing:.5px}
+#mnav .macc-cta{display:block;text-align:center;background:var(--gold);color:#3d2b00;font-weight:700;padding:15px;border-radius:10px;margin-top:24px;font-size:16px;letter-spacing:1px}
+
+/* ===== TABLET (iPad) ===== */
+@media(max-width:1024px) and (min-width:861px){
+  .wrap{padding:0 28px}
+  .grid4{grid-template-columns:repeat(2,1fr)}
+  .str-grid,.grid3{grid-template-columns:repeat(2,1fr)}
+  .mv-firstgrid{grid-template-columns:repeat(3,1fr)}
+  .culture{grid-template-columns:repeat(3,1fr)}
+}
+
+/* ===== PHONE ===== */
+@media(max-width:560px){
+  .wrap{padding:0 18px}
+  .sec{padding:48px 0}
+  .sec-head{margin-bottom:32px}
+  .sec-head h2,.sec-head h1{font-size:24px}
+  .sec-head p{font-size:13.5px}
+  .hero{min-height:auto;height:88vh}
+  .hero h1,.hero-h1{font-size:27px;line-height:1.4;letter-spacing:1px}
+  .hero .btns{flex-direction:column;gap:10px}
+  .hero .btns a{width:100%}
+  .btn-gold,.btn-ghost,.btn-outline{width:100%;text-align:center}
+  .cta-row{flex-direction:column;gap:10px}
+  .cta-row a{width:100%;text-align:center}
+  .culture{grid-template-columns:1fr}
+  .mv-firstgrid{grid-template-columns:repeat(2,1fr)}
+  .mv-card{padding:28px 22px}
+  .mv-card h3{font-size:21px}
+  .stat-grid{grid-template-columns:repeat(2,1fr);row-gap:24px}
+  .snum2{font-size:34px}
+  .cta-sec h2,.solution h2,.cta-sec .btns a{font-size:auto}
+  .cta-sec h2{font-size:24px}
+  .solution h2{font-size:23px}
+  .solution .inner{padding:60px 0}
+  .ctbl .row{grid-template-columns:1fr}
+  .ctbl .k{padding:12px 18px 4px}.ctbl .v{padding:4px 18px 14px}
+  .rrow{grid-template-columns:1fr}
+  .kc-head,.kc-body{padding:20px 20px}
+  .kc-head h3{font-size:17px}
+  .cform{padding:22px 18px}
+  .crumb{padding:84px 18px 0}
+  .fab{right:14px;bottom:16px;gap:8px}
+  .fab-cta{padding:11px 16px;font-size:13px}
+  .fab-top{width:40px;height:40px}
+  .tg-head h3{font-size:21px}
+  .tg-merit{padding:26px 20px}
+  .voice .vtext .vlead{font-size:15px}
+  .vhead h4{font-size:20px}
+  .dlbox,.ppbox{max-width:100%}
+}
+
+/* ===== 登録支援機関 (特定技能 page) ===== */
+.rso{background:var(--bg)}
+.rso-intro{max-width:820px;margin:0 auto;text-align:center}
+.rso-intro p{font-size:14.5px;color:#3a4658;line-height:1.95;margin-bottom:14px}
+.rso-intro b{color:var(--navy)}
+.rso-diagram{max-width:430px;margin:48px auto 4px;display:flex;flex-direction:column;align-items:center}
+.rso-node{width:100%;border-radius:14px;padding:18px 22px;text-align:center;background:#fff;border:1px solid var(--line);box-shadow:0 6px 18px rgba(11,61,145,.06)}
+.rso-node .rso-tag{display:block;font-size:11.5px;color:var(--muted);margin-bottom:4px;letter-spacing:.5px}
+.rso-node strong{font-size:18px;color:var(--navy)}
+.rso-node.n2{border-color:rgba(30,111,214,.5);background:linear-gradient(135deg,#0a2f72,#1e6fd6)}
+.rso-node.n2 .rso-tag{color:#bcd0f0}.rso-node.n2 strong{color:#fff}
+.rso-node.n3{border-color:rgba(245,166,35,.6)}.rso-node.n3 strong{color:#b9740a}
+.rso-arrow{display:flex;flex-direction:column;align-items:center;padding:9px 0;gap:3px}
+.rso-arrow i{color:var(--gold);font-size:22px;font-style:normal;line-height:1}
+.rso-arrow span{background:#eef2fb;border-radius:20px;padding:3px 14px;font-weight:600;color:var(--navy);font-size:11.5px}
+.rso-h3{text-align:center;font-size:22px;color:var(--navy);font-weight:700;margin:56px 0 26px}
+.rso-merit{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;padding:22px 24px;transition:.25s}
+.rso-merit:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(11,61,145,.1)}
+.rso-merit h4{font-size:16px;color:var(--navy);margin-bottom:8px}
+.rso-merit p{font-size:13.5px;color:var(--muted);line-height:1.85}
+.rso-check{max-width:860px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.rso-check span{background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px 14px 13px 40px;position:relative;font-size:13.5px;color:#3a4658}
+.rso-check span::before{content:"\2714";position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#fff;background:var(--gold);width:19px;height:19px;border-radius:50%;font-size:10px;display:flex;align-items:center;justify-content:center}
+.rso-closing{text-align:center;font-size:16px;color:var(--navy);font-weight:600;line-height:1.95;margin-top:48px}
+@media(max-width:860px){.rso-check{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.rso-check{grid-template-columns:1fr}.rso-h3{font-size:19px}.rso-diagram{max-width:100%}}
+
+/* ===== 特定技能採用の流れ (8 steps) ===== */
+.tkflow{max-width:760px;margin:0 auto;position:relative}
+.tkstep{position:relative;display:flex;gap:22px;padding-bottom:24px}
+.tkstep:last-child{padding-bottom:0}
+.tkstep::before{content:"";position:absolute;left:25px;top:54px;bottom:-2px;width:2px;background:#dbe4f0}
+.tkstep:last-child::before{display:none}
+.tknum{flex:none;width:52px;height:52px;border-radius:50%;background:linear-gradient(150deg,var(--navy),var(--blue));color:#fff;font-size:20px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(11,61,145,.25);position:relative;z-index:1}
+.tkstep:last-child .tknum{background:linear-gradient(150deg,#f7b733,var(--gold));color:#3d2b00}
+.tkbody{flex:1;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 22px;box-shadow:0 4px 14px rgba(11,61,145,.05);transition:.25s}
+.tkstep:hover .tkbody{transform:translateX(5px);box-shadow:0 12px 28px rgba(11,61,145,.12);border-color:rgba(245,166,35,.5)}
+.tkbody h4{font-size:16px;color:var(--navy);margin-bottom:3px}
+.tkbody p{font-size:13px;color:var(--muted);line-height:1.7}
+@media(max-width:560px){.tknum{width:44px;height:44px;font-size:17px}.tkstep::before{left:21px}.tkbody{padding:12px 16px}}

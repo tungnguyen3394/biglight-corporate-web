@@ -36,6 +36,11 @@ ex 1526 1587 modal-privacy.html
 ex 1711 1736 modal-download.html
 ex 1535 1583 privacy-body.html
 
+# bỏ ghi chú "số liệu mẫu" ở phần 数字で見るBIGLIGHT
+sed -i '/数値はサンプルです/d' "$P/stats.html"
+# bỏ khối メリット trùng lặp ở phần 特定技能制度 (giữ khối 委託 ở dưới)
+sed -i '/<div class="tg-merit reveal">/,/<\/div>/d' "$P/tg-tokutei.html"
+
 # ---------- 2) Khung dùng chung ----------
 {
   cat "$P/preloader.html"
@@ -84,26 +89,38 @@ ex 1535 1583 privacy-body.html
 
 <div id="mnav">
   <div class="mclose" onclick="document.getElementById('mnav').classList.remove('open')">&times;</div>
-  <h6>会社情報</h6>
-  <a href="/about/#mv">理念（Mission / Vision）</a>
-  <a href="/about/#message">代表メッセージ</a>
-  <a href="/#strength">選ばれる理由</a>
-  <a href="/about/#history">沿革</a>
-  <a href="/about/#company">会社概要</a>
-  <h6>サービス</h6>
-  <a href="/service/tokutei-ginou/">特定技能 採用サービス</a>
-  <a href="/service/jinzai-shoukai/">技人国 人材紹介</a>
-  <a href="/service/teichaku/">定着・生活支援</a>
-  <a href="/flow/">導入の流れ</a>
-  <a href="/case/">導入事例</a>
-  <a href="/faq/">よくある質問</a>
-  <a href="/news/">お知らせ</a>
-  <h6>採用情報</h6>
-  <a href="/recruit/">採用トップ</a>
-  <a href="/recruit/#culture">会社文化</a>
-  <a href="/recruit/#senpai">先輩の声</a>
-  <h6>お問い合わせ</h6>
-  <a href="/contact/">無料相談</a>
+  <div class="macc">
+    <button type="button" class="macc-h">会社情報 <span class="macc-ar">&#9662;</span></button>
+    <div class="macc-body">
+      <a href="/about/#mv">理念（Mission / Vision）</a>
+      <a href="/about/#message">代表メッセージ</a>
+      <a href="/#strength">選ばれる理由</a>
+      <a href="/about/#history">沿革</a>
+      <a href="/about/#company">会社概要</a>
+    </div>
+  </div>
+  <div class="macc">
+    <button type="button" class="macc-h">サービス <span class="macc-ar">&#9662;</span></button>
+    <div class="macc-body">
+      <a href="/service/tokutei-ginou/">特定技能 採用サービス</a>
+      <a href="/service/jinzai-shoukai/">技人国 人材紹介</a>
+      <a href="/service/teichaku/">定着・生活支援</a>
+      <a href="/flow/">導入の流れ</a>
+      <a href="/case/">導入事例</a>
+    </div>
+  </div>
+  <a class="macc-link" href="/case/">導入事例</a>
+  <a class="macc-link" href="/faq/">よくある質問</a>
+  <a class="macc-link" href="/news/">お知らせ</a>
+  <div class="macc">
+    <button type="button" class="macc-h">採用情報 <span class="macc-ar">&#9662;</span></button>
+    <div class="macc-body">
+      <a href="/recruit/">採用トップ</a>
+      <a href="/recruit/#culture">会社文化</a>
+      <a href="/recruit/#senpai">先輩の声</a>
+    </div>
+  </div>
+  <a class="macc-cta" href="/contact/">無料相談</a>
 </div>
 EOF
 } > "$P/topmatter.html"
@@ -177,7 +194,24 @@ intro(){ # $1 out, $2 en, $3 title, $4 lead
 </div></section>
 EOF
 }
-intro intro-tokutei.html "Service" "特定技能 採用サービス" "製造・建設・介護・外食など人手不足の現場へ。即戦力となる特定技能外国人材を、募集から採用・入社・定着までワンストップでご支援します。"
+cat > "$P/intro-tokutei.html" <<'EOF'
+<section class="sec"><div class="wrap">
+  <div class="sec-head reveal"><div class="en">Service</div><h2>特定技能 採用サービス</h2><p>製造・建設・介護・外食など人手不足の現場へ。即戦力となる特定技能外国人材を、募集から採用・入社・定着までワンストップでご支援します。</p></div>
+  <div class="tg-pathlabel">主な対応分野</div>
+  <div class="tg-jobs">
+    <span class="tg-job">製造業</span>
+    <span class="tg-job">建設</span>
+    <span class="tg-job">介護</span>
+    <span class="tg-job">外食業</span>
+    <span class="tg-job">飲食料品製造</span>
+    <span class="tg-job">農業</span>
+    <span class="tg-job">宿泊</span>
+    <span class="tg-job">自動車整備</span>
+    <span class="tg-job">ビルクリーニング</span>
+    <span class="tg-job">工業包装</span>
+  </div>
+</div></section>
+EOF
 intro intro-jinzai.html  "Service" "技人国 人材紹介サービス" "技術・人文知識・国際業務（技人国）など、専門・高度人材をご紹介。高精度マッチングで企業様に最適な人材をお繋ぎします。"
 intro intro-teichaku.html "Service" "定着・生活支援" "採用して終わりではありません。在留資格手続き、寮・生活サポート、入社後フォローまで、長く活躍できる環境づくりをご支援します。"
 
@@ -187,6 +221,84 @@ cat > "$P/intro-404.html" <<'EOF'
   <div class="wrap">
     <div class="sec-head reveal"><div class="en">404 Not Found</div><h2>ページが見つかりません</h2><p>お探しのページは移動または削除された可能性があります。</p></div>
     <div class="cta-row reveal"><a class="btn-gold" href="/">トップへ戻る</a><a class="btn-outline" href="/contact/">お問い合わせ</a></div>
+  </div>
+</section>
+EOF
+
+# 登録支援機関 section cho trang 特定技能
+cat > "$P/tokutei-rso.html" <<'EOF'
+<section class="sec rso">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="en">Registered Support Organization</div><h2>登録支援機関とは？</h2></div>
+    <div class="rso-intro reveal">
+      <p>特定技能外国人を受け入れる企業（特定技能所属機関）は、外国人材が安心して日本で働き、生活できるよう、法律で定められた支援を実施する必要があります。</p>
+      <p>しかし、住居の確保、行政手続き、日本語学習支援、生活相談などを企業がすべて対応することは容易ではありません。そこで、企業に代わって支援業務を実施するのが<b>「登録支援機関」</b>です。</p>
+      <p>BIGLIGHT株式会社は<b>出入国在留管理庁に登録された登録支援機関</b>として、外国人材の採用から入社後の定着まで一貫してサポートいたします。</p>
+    </div>
+
+    <div class="rso-diagram reveal">
+      <div class="rso-node n1"><span class="rso-tag">特定技能所属機関</span><strong>受入れ企業</strong></div>
+      <div class="rso-arrow"><span>雇用契約</span><i>&#8595;</i></div>
+      <div class="rso-node n2"><span class="rso-tag">特定技能外国人</span><strong>働く外国人材</strong></div>
+      <div class="rso-arrow"><i>&#8593;</i><span>支援業務</span></div>
+      <div class="rso-node n3"><span class="rso-tag">登録支援機関</span><strong>BIGLIGHT株式会社</strong></div>
+    </div>
+
+    <h3 class="rso-h3 reveal">登録支援機関の主な役割</h3>
+    <div class="grid4">
+      <div class="solcard reveal"><div class="sn">01</div><div class="si">&#9992;</div><h3>入国前・入社前サポート</h3>
+        <ul class="mlist"><li>事前ガイダンス</li><li>住居確保支援</li><li>ライフライン契約支援</li><li>入国準備サポート</li></ul></div>
+      <div class="solcard reveal"><div class="sn">02</div><div class="si">&#127968;</div><h3>入社後の生活支援</h3>
+        <ul class="mlist"><li>生活オリエンテーション</li><li>行政手続き同行</li><li>銀行口座開設支援</li><li>携帯電話契約支援</li></ul></div>
+      <div class="solcard reveal"><div class="sn">03</div><div class="si">&#128172;</div><h3>定期面談・相談対応</h3>
+        <ul class="mlist"><li>定期面談の実施</li><li>職場・生活相談</li><li>トラブル対応</li><li>企業との連携</li></ul></div>
+      <div class="solcard reveal"><div class="sn">04</div><div class="si">&#128218;</div><h3>日本語学習支援</h3>
+        <ul class="mlist"><li>日本語学習機会の提供</li><li>生活情報の提供</li><li>地域社会への適応支援</li></ul></div>
+    </div>
+
+    <h3 class="rso-h3 reveal">登録支援機関へ委託するメリット</h3>
+    <div class="grid2">
+      <div class="rso-merit reveal"><h4>企業の負担を大幅に軽減</h4><p>外国人材受入れに必要な支援業務を専門家へ委託することで、企業様は本業に集中することができます。</p></div>
+      <div class="rso-merit reveal"><h4>法令遵守の徹底</h4><p>出入国在留管理庁が定める支援基準に基づき、適切な支援を実施いたします。</p></div>
+      <div class="rso-merit reveal"><h4>定着率向上</h4><p>外国人材が安心して生活できる環境を整えることで、離職リスクを低減し、長期的な定着につなげます。</p></div>
+      <div class="rso-merit reveal"><h4>トラブルの未然防止</h4><p>定期的なフォローと相談対応により、職場や生活上の問題を早期に把握し、迅速に対応します。</p></div>
+    </div>
+  </div>
+</section>
+EOF
+
+# BIGLIGHTの解決策: 特定技能採用の流れ (8 bước) + サポート内容 + câu kết
+cat > "$P/tokutei-solution.html" <<'EOF'
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="en">Our Solution</div><h2>BIGLIGHTの解決策</h2><p>お問い合わせから入社後のフォローまで、特定技能採用をワンストップでご支援します。</p></div>
+    <div class="tkflow reveal">
+      <div class="tkstep"><div class="tknum">1</div><div class="tkbody"><h4>求人票ヒアリング</h4><p>必要な人材像・業務内容・条件を丁寧にヒアリングします。</p></div></div>
+      <div class="tkstep"><div class="tknum">2</div><div class="tkbody"><h4>人材探し</h4><p>条件に合う特定技能人材を、自社の母集団から選定します。</p></div></div>
+      <div class="tkstep"><div class="tknum">3</div><div class="tkbody"><h4>支援機関にて面談</h4><p>当社で候補者と事前面談を行い、適性・人柄を確認します。</p></div></div>
+      <div class="tkstep"><div class="tknum">4</div><div class="tkbody"><h4>面接</h4><p>企業様と候補者の面接を実施。通訳・日程調整もサポートします。</p></div></div>
+      <div class="tkstep"><div class="tknum">5</div><div class="tkbody"><h4>内定</h4><p>双方合意のうえ内定。雇用条件・入社時期を確定します。</p></div></div>
+      <div class="tkstep"><div class="tknum">6</div><div class="tkbody"><h4>在留資格変更手続き</h4><p>在留資格の申請・変更手続きを専門スタッフが代行します。</p></div></div>
+      <div class="tkstep"><div class="tknum">7</div><div class="tkbody"><h4>入社</h4><p>住居・生活の受け入れ準備を整え、入社・就業を開始します。</p></div></div>
+      <div class="tkstep"><div class="tknum">8</div><div class="tkbody"><h4>入社後定期訪問</h4><p>定期訪問・面談で就労と生活をフォローし、長期定着を支えます。</p></div></div>
+    </div>
+
+    <h3 class="rso-h3 reveal">BIGLIGHTのサポート内容</h3>
+    <div class="rso-check reveal">
+      <span>特定技能人材の募集・選考</span>
+      <span>面接調整・通訳対応</span>
+      <span>在留資格関連サポート</span>
+      <span>住居確保支援</span>
+      <span>空港送迎</span>
+      <span>生活オリエンテーション</span>
+      <span>定期面談</span>
+      <span>行政手続き同行</span>
+      <span>日本語学習支援</span>
+      <span>24時間相談対応</span>
+      <span>転職・退職時サポート</span>
+    </div>
+
+    <p class="rso-closing reveal">外国人材の採用から定着まで、BIGLIGHTが責任を持ってサポートいたします。<br>まずはお気軽にご相談ください。</p>
   </div>
 </section>
 EOF
@@ -286,7 +398,7 @@ build service/tokutei-ginou/index.html \
   "特定技能 採用サービス｜BIGLIGHT株式会社" \
   "特定技能外国人材の採用をワンストップで。制度の仕組み（育成就労→特定技能1号→2号）、企業様のメリット、対応分野までBIGLIGHTがご支援します。" \
   "/service/tokutei-ginou/" \
-  intro-tokutei.html w-tokutei.html cta.html
+  intro-tokutei.html w-tokutei.html tokutei-rso.html tokutei-solution.html cta.html
 
 # SERVICE: 技人国
 crumb "技人国 人材紹介" "/service/jinzai-shoukai/"
