@@ -379,14 +379,13 @@ cat > "$P/tokutei-solution.html" <<'EOF'
     <div class="sec-head reveal"><div class="en">Our Solution</div><h2>BIGLIGHTの解決策</h2><p>お問い合わせから入社後のフォローまで、特定技能採用をワンストップでご支援します。</p></div>
     <h3 class="rso-h3 reveal">特定技能採用の流れ</h3>
     <div class="tkflow reveal">
-      <div class="tkstep"><div class="tknum">1</div><div class="tkbody"><h4>求人票ヒアリング</h4><p>必要な人材像・業務内容・条件を丁寧にヒアリングします。</p></div></div>
-      <div class="tkstep"><div class="tknum">2</div><div class="tkbody"><h4>人材探し</h4><p>条件に合う特定技能人材を、自社の母集団から選定します。</p></div></div>
-      <div class="tkstep"><div class="tknum">3</div><div class="tkbody"><h4>支援機関にて面談</h4><p>当社で候補者と事前面談を行い、適性・人柄を確認します。</p></div></div>
+      <div class="tkstep"><div class="tknum">1</div><div class="tkbody"><h4>お問い合わせ</h4><p>まずはお気軽にご相談ください。採用のお悩みを伺います。</p></div></div>
+      <div class="tkstep"><div class="tknum">2</div><div class="tkbody"><h4>ヒアリング</h4><p>必要な人材像・業務内容・条件を丁寧にヒアリングします。</p></div></div>
+      <div class="tkstep"><div class="tknum">3</div><div class="tkbody"><h4>候補者のご紹介</h4><p>経験・日本語力・専門性を考慮した最適な人材をご提案します。</p></div></div>
       <div class="tkstep"><div class="tknum">4</div><div class="tkbody"><h4>面接</h4><p>企業様と候補者の面接を実施。通訳・日程調整もサポートします。</p></div></div>
       <div class="tkstep"><div class="tknum">5</div><div class="tkbody"><h4>内定</h4><p>双方合意のうえ内定。雇用条件・入社時期を確定します。</p></div></div>
-      <div class="tkstep"><div class="tknum">6</div><div class="tkbody"><h4>在留資格変更手続き</h4><p>在留資格の申請・変更手続きを専門スタッフが代行します。</p></div></div>
-      <div class="tkstep"><div class="tknum">7</div><div class="tkbody"><h4>入社</h4><p>住居・生活の受け入れ準備を整え、入社・就業を開始します。</p></div></div>
-      <div class="tkstep"><div class="tknum">8</div><div class="tkbody"><h4>入社後定期訪問</h4><p>定期訪問・面談で就労と生活をフォローし、長期定着を支えます。</p></div></div>
+      <div class="tkstep"><div class="tknum">6</div><div class="tkbody"><h4>在留資格手続き</h4><p>在留資格の申請・変更手続きを専門スタッフが代行します。</p></div></div>
+      <div class="tkstep"><div class="tknum">7</div><div class="tkbody"><h4>入社・定着支援</h4><p>入社後も定期訪問・面談でフォローし、長期定着を支えます。</p></div></div>
     </div>
 
     <div class="reveal" style="text-align:center;margin-top:26px"><a class="btn-outline" href="/flow/">サービス共通のご利用の流れ &rsaquo;</a></div>
