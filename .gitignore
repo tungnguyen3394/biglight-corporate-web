@@ -9,3 +9,13 @@ Desktop.ini
 .idea/
 *.swp
 *~
+
+# Logs
+*.log
+
+# Node (phòng khi sau này dùng)
+node_modules/
+.env
+.env.*
+!.env.example
+dist
