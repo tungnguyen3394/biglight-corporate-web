@@ -431,7 +431,7 @@ EOF
 } > "$P/privacy-page.html"
 
 # ---------- 3) Hàm dựng trang ----------
-emit_head(){ cat <<EOF
+emit_head(){ local OG_T="${OGTITLE:-$1}" OG_D="${OGDESC:-$2}"; cat <<EOF
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -443,12 +443,20 @@ emit_head(){ cat <<EOF
 <link rel="canonical" href="https://biglight.jp$3">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BIGLIGHT株式会社">
-<meta property="og:title" content="$1">
-<meta property="og:description" content="$2">
-<meta property="og:url" content="https://biglight.jp$3">
-<meta property="og:image" content="https://biglight.jp/assets/hero-fallback.jpg">
 <meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="$OG_T">
+<meta property="og:description" content="$OG_D">
+<meta property="og:url" content="https://biglight.jp$3">
+<meta property="og:image" content="https://biglight.jp/assets/og-image.jpg">
+<meta property="og:image:secure_url" content="https://biglight.jp/assets/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="BIGLIGHT株式会社 - 特定技能・技人国人材紹介・登録支援機関">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="$OG_T">
+<meta name="twitter:description" content="$OG_D">
+<meta name="twitter:image" content="https://biglight.jp/assets/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&display=swap" rel="stylesheet">
@@ -456,7 +464,7 @@ emit_head(){ cat <<EOF
 EOF
 }
 
-JSONLD=""; CRUMB=""
+JSONLD=""; CRUMB=""; OGTITLE=""; OGDESC=""
 crumb(){ # $1 name, $2 path
   CRUMB='<nav class="crumb" aria-label="パンくずリスト"><a href="/">ホーム</a> ＞ <span>'"$1"'</span></nav>'
   JSONLD='<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://biglight.jp/"},{"@type":"ListItem","position":2,"name":"'"$1"'","item":"https://biglight.jp'"$2"'"}]}</script>'
@@ -548,11 +556,14 @@ nn nn-news.html \
 # HOME (Organization + WebSite JSON-LD)
 JSONLD='<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"BIGLIGHT株式会社","alternateName":"ビッグライト","url":"https://biglight.jp/","logo":"https://biglight.jp/assets/logo.png","email":"admin@biglight.jp","telephone":"+81-52-908-7944","address":{"@type":"PostalAddress","postalCode":"462-0007","addressRegion":"愛知県","addressLocality":"名古屋市北区","streetAddress":"如意一丁目112 A","addressCountry":"JP"},"areaServed":"JP","description":"特定技能・技人国の外国人材を、採用から定着までワンストップでご支援する登録支援機関。"}</script>'
 CRUMB=""
+OGTITLE='BIGLIGHT株式会社｜特定技能・技人国人材紹介・登録支援機関'
+OGDESC='ベトナム・インドネシア人材を中心に、特定技能・技人国人材のご紹介から定着支援までワンストップでサポート。外国人採用のパートナーとして企業様の人材課題を解決します。'
 build index.html \
   "BIGLIGHT株式会社｜特定技能・技人国の外国人材紹介・定着支援【名古屋】" \
   "BIGLIGHT株式会社は、特定技能・技人国の外国人材を、採用から定着までワンストップでご紹介。完全成功報酬・最長1年保証、登録支援機関として名古屋・東海エリアの企業様を伴走支援します。" \
   "/" \
   hero.html issues.html solband.html home-service.html strength.html stats.html news.html cta.html nn-home.html
+OGTITLE=""; OGDESC=""
 
 # ABOUT
 crumb "会社概要" "/about/"

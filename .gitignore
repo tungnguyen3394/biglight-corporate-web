@@ -23,3 +23,7 @@ dist
 # Build artifacts / dev
 _partials/
 _preview-server.js
+
+og-demo.html
+og-render.html
+shot-og.js
