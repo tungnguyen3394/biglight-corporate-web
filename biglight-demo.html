@@ -624,6 +624,16 @@
   .dlbody .dlsubmit{width:100%;padding:13px;border:none;border-radius:8px;background:linear-gradient(90deg,#f5a623,#ffb943);color:#071e46;font-weight:700;font-size:15px;font-family:inherit;cursor:pointer;letter-spacing:1px;box-shadow:0 8px 22px rgba(245,166,35,.4);transition:transform .15s}
   .dlbody .dlsubmit:hover{transform:translateY(-2px)}
   .dlclose{position:absolute;top:14px;right:16px;color:#fff;background:rgba(255,255,255,.15);border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:18px;line-height:1}
+  /* PRIVACY MODAL */
+  .ppbox{max-width:760px}
+  .ppbody{max-height:70vh;overflow-y:auto}
+  .ppbody p{font-size:13.5px;color:#1f2a3d;line-height:1.85;margin:0 0 4px}
+  .ppbody p:first-child{margin-top:0}
+  .ppbody h4{color:#071e46;font-size:15px;margin:18px 0 6px}
+  .ppbody .plist{margin:8px 0 10px 20px}
+  .ppbody .plist li{font-size:13.5px;color:#1f2a3d;margin:4px 0}
+  .ppbody .prev{margin-top:18px;color:#7a8398;font-size:12.5px}
+  .fcheck a{color:#1e6fd6;text-decoration:underline;cursor:pointer}
   .dldone{text-align:center;padding:34px 26px 30px}
   .dldone .ic{width:58px;height:58px;border-radius:50%;background:#e8f6ee;color:#1f9d57;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 16px}
   .dldone h3{font-size:18px;color:#071e46;margin-bottom:8px}
@@ -1505,7 +1515,7 @@
       <div class="frow" data-f data-email><label>メールアドレス<span class="req">必須</span></label><input type="email" name="email" placeholder="example@company.co.jp"><div class="err">正しいメールアドレスをご入力ください。</div></div>
       <div class="frow"><label>電話番号</label><input type="tel" name="tel" placeholder="052-908-7944"></div>
       <div class="frow" data-f><label>お問い合わせ内容<span class="req">必須</span></label><textarea name="msg" placeholder="ご相談内容をご記入ください。"></textarea><div class="err">お問い合わせ内容をご入力ください。</div></div>
-      <label class="fcheck"><input type="checkbox" id="agree"><span><a href="#privacy">プライバシーポリシー</a>に同意の上、送信します。</span></label>
+      <label class="fcheck"><input type="checkbox" id="agree"><span><a href="#" class="js-pp">プライバシーポリシー</a>に同意の上、送信します。</span></label>
       <div id="agreeErr" style="display:none;margin:-12px 0 16px"><div class="err" style="display:block">プライバシーポリシーへの同意が必要です。</div></div>
       <button type="submit" class="fsubmit">送信する</button>
     </form>
@@ -1513,11 +1523,15 @@
   </div>
 </section>
 
-<!-- PRIVACY -->
-<section class="sec privacy" id="privacy">
-  <div class="wrap">
-    <div class="sec-head reveal"><div class="en">Privacy Policy</div><h2>プライバシーポリシー</h2></div>
-    <div class="pbox reveal">
+<!-- PRIVACY MODAL -->
+<div class="dlmask" id="ppMask">
+  <div class="dlbox ppbox">
+    <div class="dlhead">
+      <div class="bar"></div>
+      <button class="dlclose" id="ppClose" aria-label="閉じる">&times;</button>
+      <h3>プライバシーポリシー</h3>
+    </div>
+    <div class="dlbody ppbody">
       <p>BIGLIGHT株式会社（以下「当社」）は、当社が取り扱う個人情報の保護を社会的責務と認識し、個人情報の保護に関する法律（個人情報保護法）およびその他の関係法令を遵守するとともに、以下の方針に基づき、個人情報を適切に取得・利用・管理いたします。</p>
 
       <h4>1. 個人情報の定義</h4>
@@ -1569,7 +1583,7 @@
       <p class="prev">制定日：2021年8月12日</p>
     </div>
   </div>
-</section>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -1591,7 +1605,7 @@
         <li><a href="#news">お知らせ</a></li>
         <li><a href="#recruit">採用情報</a></li>
         <li><a href="#contact">お問い合わせ</a></li>
-        <li><a href="#privacy">プライバシーポリシー</a></li>
+        <li><a href="#" class="js-pp">プライバシーポリシー</a></li>
       </ul></div>
       <div><h5>アクセス</h5>
         <div class="fmap"><iframe src="https://www.google.com/maps?q=%E6%84%9B%E7%9F%A5%E7%9C%8C%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA%E5%A6%82%E6%84%8F%E4%B8%80%E4%B8%81%E7%9B%AE112&hl=ja&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="BIGLIGHT株式会社 地図"></iframe></div>
@@ -1720,5 +1734,19 @@
     </div>
   </div>
 </div>
+
+<script>
+  (function(){
+    var m=document.getElementById('ppMask');
+    if(!m)return;
+    function open(e){if(e)e.preventDefault();m.classList.add('open');document.body.style.overflow='hidden';}
+    function close(){m.classList.remove('open');document.body.style.overflow='';}
+    document.querySelectorAll('.js-pp').forEach(function(a){a.addEventListener('click',open);});
+    var c=document.getElementById('ppClose');
+    if(c)c.addEventListener('click',close);
+    m.addEventListener('click',function(e){if(e.target===m)close();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('open'))close();});
+  })();
+</script>
 </body>
 </html>
