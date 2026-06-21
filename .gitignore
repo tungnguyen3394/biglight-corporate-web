@@ -20,6 +20,9 @@ node_modules/
 !.env.example
 dist
 
+# /news/ do admin (admin.biglight.jp) sinh động — không theo dõi trong repo web
+/news/
+
 # Build artifacts / dev
 _partials/
 _preview-server.js

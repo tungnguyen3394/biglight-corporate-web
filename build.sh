@@ -59,7 +59,7 @@ cat > "$P/contact.html" <<'EOF'
 </section>
 EOF
 ex 1526 1587 modal-privacy.html
-ex 1711 1736 modal-download.html
+ex 1711 1747 modal-download.html
 ex 1535 1583 privacy-body.html
 
 # bỏ ghi chú "số liệu mẫu" ở phần 数字で見るBIGLIGHT
@@ -631,13 +631,7 @@ build faq/index.html \
   "/faq/" \
   faq.html cta.html nn-faq.html
 
-# NEWS
-crumb "お知らせ" "/news/"
-build news/index.html \
-  "お知らせ・HR Magazine｜BIGLIGHT株式会社" \
-  "BIGLIGHTからのお知らせや、外国人材採用に役立つ情報（HR Magazine）をお届けします。" \
-  "/news/" \
-  news.html cta.html nn-news.html
+# NEWS — /news/ は admin（admin.biglight.jp）が動的生成するため、ここでは生成しない
 
 # CONTACT
 crumb "お問い合わせ" "/contact/"

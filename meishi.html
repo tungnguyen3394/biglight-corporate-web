@@ -8,26 +8,21 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --navy:#0b3d91; --navy-d:#072a66; --blue:#1e6fd6; --gold:#f5a623; --gold-l:#ffd86b;
-  --ink:#1f2a3a; --muted:#64748b; --line:rgba(0,0,0,.10);
-}
+:root{--navy:#0b3d91;--navy-d:#072a66;--blue:#1e6fd6;--gold:#f5a623;--gold-l:#ffd86b;--ink:#1f2a3a;--muted:#64748b;--line:rgba(0,0,0,.10);}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#5a6473;font-family:"Noto Sans JP",sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;padding:14mm 0}
 .en{font-family:"Montserrat",sans-serif}
 .stage{display:flex;flex-direction:column;align-items:center;gap:12mm}
 .lbl{color:#dfe5ee;font-family:"Montserrat";font-size:9pt;letter-spacing:.28em;text-transform:uppercase;text-align:center;margin-bottom:-6mm}
-
-/* ===== CARD BASE 91x55mm ===== */
 .card{width:91mm;height:55mm;background:#fff;position:relative;overflow:hidden;border-radius:2mm;box-shadow:0 8px 28px rgba(0,0,0,.35)}
-
-/* sunburst mark helper */
-.mark{display:block}
+.chip{background:#fff;border-radius:2mm;padding:1.8mm 2.2mm;display:inline-block;line-height:0;box-shadow:0 2px 7px rgba(0,0,0,.2)}
+.chip img{display:block}
 
 /* ============ FRONT ============ */
 .f-side{position:absolute;top:0;left:0;width:27mm;height:100%;background:linear-gradient(160deg,#0b3d91,#072a66 70%,#03204f);color:#fff;padding:5mm 4mm;display:flex;flex-direction:column;justify-content:space-between}
 .f-side::after{content:"";position:absolute;top:0;right:0;width:1.4mm;height:100%;background:var(--gold)}
-.f-side .mk{width:11mm;height:11mm}
+.f-side .chip{align-self:flex-start}
+.f-side .chip img{width:11mm;height:auto}
 .f-co{font-weight:700;font-size:8.5pt;letter-spacing:.04em;line-height:1.35}
 .f-co small{display:block;font-family:"Montserrat";font-size:5.4pt;letter-spacing:.22em;color:var(--gold-l);font-weight:600;margin-top:1mm}
 .f-tag{font-size:5.6pt;color:#b9cbe8;line-height:1.5;margin-top:1mm}
@@ -46,14 +41,11 @@ body{background:#5a6473;font-family:"Noto Sans JP",sans-serif;color:var(--ink);-
 .b-glow.b{width:50mm;height:50mm;background:rgba(30,111,214,.30);bottom:-20mm;left:-16mm}
 .b-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:9mm 9mm;opacity:.6}
 .b-in{position:relative;z-index:2}
-.b-mk{width:15mm;height:15mm;margin:0 auto 3mm}
-.b-co{font-family:"Montserrat";font-weight:800;font-size:13pt;letter-spacing:.28em;padding-left:.28em}
-.b-co2{font-size:7.5pt;font-weight:700;letter-spacing:.1em;margin-top:1mm;color:#e6edf9}
+.b .chip img{width:24mm;height:auto}
 .b-line{width:16mm;height:.7mm;background:var(--gold);margin:3mm auto}
 .b-jp{font-size:8pt;font-weight:700;color:#fff;letter-spacing:.04em}
 .b-en{font-family:"Montserrat";font-size:5.8pt;letter-spacing:.24em;color:var(--gold-l);margin-top:1.5mm;font-weight:600;text-transform:uppercase}
 
-/* print: one card per A4 page, centered */
 @media print{
   body{background:#fff;padding:0}
   .lbl{display:none}
@@ -67,10 +59,9 @@ body{background:#5a6473;font-family:"Noto Sans JP",sans-serif;color:var(--ink);-
 <div class="stage">
 
   <div class="lbl">表面 ／ Front</div>
-  <!-- ===== FRONT ===== -->
   <div class="card">
     <div class="f-side">
-      <svg class="mk mk-front" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g transform="translate(50 50)" fill="#f5a623"><circle r="17"/><g><rect x="-2" y="-44" width="4" height="15" rx="2"/><g transform="rotate(45)"><rect x="-2" y="-44" width="4" height="15" rx="2"/></g><g transform="rotate(90)"><rect x="-2" y="-44" width="4" height="15" rx="2"/></g><g transform="rotate(135)"><rect x="-2" y="-44" width="4" height="15" rx="2"/></g><g transform="rotate(180)"><rect x="-2" y="-44" width="4" height="15" rx="2"/></g><g transform="rotate(225)"><rect x="-2" y="-44" width="4" height="15" rx="2"/></g><g transform="rotate(270)"><rect x="-2" y="-44" width="4" height="15" rx="2"/></g><g transform="rotate(315)"><rect x="-2" y="-44" width="4" height="15" rx="2"/></g></g></g></svg>
+      <div class="chip"><img src="assets/logo-mark.png" alt="BIGLIGHT"></div>
       <div>
         <div class="f-co">BIGLIGHT<br>株式会社<small>BIGLIGHT CO., LTD.</small></div>
         <div class="f-tag">日本の成長を、<br>もっとグローバルに。</div>
@@ -92,15 +83,12 @@ body{background:#5a6473;font-family:"Noto Sans JP",sans-serif;color:var(--ink);-
   </div>
 
   <div class="lbl">裏面 ／ Back</div>
-  <!-- ===== BACK ===== -->
   <div class="card b">
     <div class="b-glow a"></div>
     <div class="b-glow b"></div>
     <div class="b-grid"></div>
     <div class="b-in">
-      <svg class="mk b-mk" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g transform="translate(50 50)" fill="#f5a623"><circle r="17"/><g><rect x="-2" y="-44" width="4" height="15" rx="2"/><g transform="rotate(45)"><rect x="-2" y="-44" width="4" height="15" rx="2"/></g><g transform="rotate(90)"><rect x="-2" y="-44" width="4" height="15" rx="2"/></g><g transform="rotate(135)"><rect x="-2" y="-44" width="4" height="15" rx="2"/></g><g transform="rotate(180)"><rect x="-2" y="-44" width="4" height="15" rx="2"/></g><g transform="rotate(225)"><rect x="-2" y="-44" width="4" height="15" rx="2"/></g><g transform="rotate(270)"><rect x="-2" y="-44" width="4" height="15" rx="2"/></g><g transform="rotate(315)"><rect x="-2" y="-44" width="4" height="15" rx="2"/></g></g></g></svg>
-      <div class="b-co">BIGLIGHT</div>
-      <div class="b-co2">BIGLIGHT株式会社</div>
+      <div class="chip"><img src="assets/logo-color.png" alt="BIGLIGHT株式会社"></div>
       <div class="b-line"></div>
       <div class="b-jp">日本の成長を、もっとグローバルに。</div>
       <div class="b-en">Powering Japan&rsquo;s Growth, Globally.</div>

@@ -388,6 +388,17 @@
       <div class="frow" data-f><label>会社名<span class="req">必須</span></label><input type="text" name="company" placeholder="株式会社〇〇"><div class="err">会社名をご入力ください。</div></div>
       <div class="frow" data-f><label>ご担当者名<span class="req">必須</span></label><input type="text" name="name" placeholder="山田 太郎"><div class="err">お名前をご入力ください。</div></div>
       <div class="frow" data-f data-email><label>メールアドレス<span class="req">必須</span></label><input type="email" name="email" placeholder="example@company.co.jp"><div class="err">正しいメールアドレスをご入力ください。</div></div>
+      <div class="frow"><label>ご関心のある内容<span class="dlhint">（複数選択可）</span></label>
+        <div class="dlchecks">
+          <label><input type="checkbox" name="interest" value="外国人材の採用を検討している">外国人材の採用を検討している</label>
+          <label><input type="checkbox" name="interest" value="特定技能について知りたい">特定技能について知りたい</label>
+          <label><input type="checkbox" name="interest" value="技人国（エンジニア・専門職）について">技人国（エンジニア・専門職）について</label>
+          <label><input type="checkbox" name="interest" value="定着・生活支援について">定着・生活支援について</label>
+          <label><input type="checkbox" name="interest" value="まずは資料を見たい（情報収集）">まずは資料を見たい（情報収集）</label>
+          <label><input type="checkbox" name="interest" value="その他">その他</label>
+        </div>
+      </div>
+      <div class="frow"><label>備考<span class="dlhint">（任意）</span></label><textarea name="note" rows="2" placeholder="ご質問・ご要望などございましたらご記入ください。"></textarea></div>
       <p class="note">ご入力いただいた情報は、資料送付および当社サービスのご案内にのみ使用いたします。</p>
       <button type="submit" class="dlsubmit">資料をダウンロード</button>
     </form>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIGLIGHT株式会社｜名刺 3案 BUSINESS CARD OPTIONS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b3d91;--navy-d:#072a66;--blue:#1e6fd6;--gold:#f5a623;--gold-l:#ffd86b;--ink:#1f2a3a;--muted:#64748b;--line:rgba(0,0,0,.10);}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#5a6473;font-family:"Noto Sans JP",sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;padding:14mm 0}
+.en{font-family:"Montserrat",sans-serif}
+img{display:block}
+.wrap{display:flex;flex-direction:column;align-items:center;gap:5mm}
+.opt-h{color:#fff;font-family:"Montserrat";font-size:11pt;font-weight:700;letter-spacing:.16em;text-align:center;margin-top:8mm}
+.opt-h span{color:var(--gold-l)}
+.opt-s{color:#cfd6e2;font-size:8.5pt;text-align:center;margin-bottom:2mm}
+.pair{display:flex;gap:8mm;flex-wrap:wrap;justify-content:center}
+.lbl{color:#c8d0dc;font-family:"Montserrat";font-size:7pt;letter-spacing:.24em;text-transform:uppercase;text-align:center;margin-bottom:1.5mm}
+.cell{display:flex;flex-direction:column;align-items:center}
+.card{width:91mm;height:55mm;background:#fff;position:relative;overflow:hidden;border-radius:2mm;box-shadow:0 8px 26px rgba(0,0,0,.32)}
+.chip{background:#fff;border-radius:1.6mm;padding:1.4mm 1.7mm;display:inline-block;line-height:0;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.chip img{display:block}
+.A .top .chip img{width:8mm;height:auto}
+.C .hd .chip img{width:8mm;height:auto}
+.back-navy .chip{margin:0 auto;padding:2mm 2.4mm}
+.back-navy .chip img{width:24mm;height:auto}
+.b-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:9mm 9mm;opacity:.55}
+.glow{position:absolute;border-radius:50%;filter:blur(32px)}
+
+/* ===================== OPTION A — TOP BAND ===================== */
+.A .top{position:absolute;top:0;left:0;right:0;height:17mm;background:linear-gradient(110deg,#0b3d91,#1e6fd6);display:flex;align-items:center;gap:3mm;padding:0 6mm;color:#fff}
+.A .top::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1.2mm;background:var(--gold)}
+.A .top .mk{width:9mm;height:auto;flex:none}
+.A .top .co{font-weight:700;font-size:9pt;letter-spacing:.03em;line-height:1.2}
+.A .top .co small{display:block;font-family:"Montserrat";font-size:5.2pt;letter-spacing:.2em;color:var(--gold-l);font-weight:600;margin-top:.6mm}
+.A .top .tag{margin-left:auto;font-family:"Montserrat";font-size:5pt;letter-spacing:.14em;color:#dbe7fb;text-align:right;text-transform:uppercase}
+.A .body{position:absolute;top:17mm;left:0;right:0;bottom:0;padding:4.5mm 6mm;display:flex;flex-direction:column}
+.A .ttl{font-size:6.6pt;color:var(--muted);letter-spacing:.06em}
+.A .nm{font-size:15pt;font-weight:900;color:var(--ink);margin-top:.6mm;line-height:1}
+.A .fu{font-size:6.2pt;color:var(--muted);letter-spacing:.12em;margin-top:1.2mm}
+.A .ct{margin-top:auto;font-size:6.2pt;color:#3a4658;line-height:1.7}
+.A .ct .k{display:inline-block;width:8.5mm;font-family:"Montserrat";font-weight:700;color:var(--navy);font-size:5.2pt;letter-spacing:.03em}
+
+/* ===================== OPTION B — MINIMAL LIGHT ===================== */
+.B{background:#fbfcfe}
+.B::before{content:"";position:absolute;top:0;left:0;width:2mm;height:100%;background:linear-gradient(var(--gold),#e8941a)}
+.B .wmk{position:absolute;right:-6mm;bottom:-8mm;width:40mm;height:auto;opacity:.07}
+.B .hd{position:absolute;top:5.5mm;left:8mm;display:flex;align-items:center;gap:2.5mm}
+.B .hd .mk{width:8mm;height:auto}
+.B .hd .co{font-weight:700;font-size:8pt;color:var(--navy);letter-spacing:.03em}
+.B .hd .co small{display:block;font-family:"Montserrat";font-size:5pt;letter-spacing:.2em;color:var(--gold);font-weight:600;margin-top:.4mm}
+.B .mid{position:absolute;left:8mm;top:21mm}
+.B .ttl{font-size:6.4pt;color:var(--muted);letter-spacing:.06em}
+.B .nm{font-size:16pt;font-weight:900;color:var(--navy);margin-top:.6mm;line-height:1}
+.B .fu{font-size:6.2pt;color:var(--muted);letter-spacing:.12em;margin-top:1.2mm}
+.B .ct{position:absolute;left:8mm;right:6mm;bottom:5mm;font-size:6.1pt;color:#3a4658;line-height:1.7;border-top:.4mm solid var(--line);padding-top:2mm}
+.B .ct .k{display:inline-block;width:8.5mm;font-family:"Montserrat";font-weight:700;color:var(--navy);font-size:5.2pt}
+
+/* ===================== OPTION C — EXECUTIVE DARK ===================== */
+.C{background:linear-gradient(150deg,#0b3d91,#072a66 62%,#03204f);color:#fff}
+.C .gl1{width:44mm;height:44mm;background:rgba(245,166,35,.20);top:-16mm;right:-12mm}
+.C .gl2{width:44mm;height:44mm;background:rgba(30,111,214,.30);bottom:-18mm;left:-14mm}
+.C .in{position:absolute;inset:0;padding:6mm;display:flex;flex-direction:column}
+.C .hd{display:flex;align-items:center;gap:3mm}
+.C .hd .mk{width:9mm;height:auto}
+.C .hd .co{font-family:"Montserrat";font-weight:800;font-size:9pt;letter-spacing:.18em}
+.C .hd .co small{display:block;font-family:"Noto Sans JP";font-size:5.4pt;letter-spacing:.08em;color:#cfe0f7;font-weight:500;margin-top:.5mm}
+.C .nmw{margin-top:auto}
+.C .ttl{font-size:6.4pt;color:var(--gold-l);letter-spacing:.1em;font-family:"Montserrat";font-weight:600;text-transform:uppercase}
+.C .nm{font-size:16pt;font-weight:900;color:#fff;margin-top:1mm;line-height:1}
+.C .fu{font-size:6.2pt;color:#aebfe0;letter-spacing:.12em;margin-top:1.2mm}
+.C .rule{width:14mm;height:.6mm;background:var(--gold);margin:2.5mm 0}
+.C .ct{font-size:6pt;color:#dbe5f6;line-height:1.7}
+.C .ct .k{display:inline-block;width:8.5mm;font-family:"Montserrat";font-weight:700;color:var(--gold-l);font-size:5.2pt}
+
+/* ===================== BACKS ===================== */
+.back-navy{background:linear-gradient(150deg,#0b3d91,#072a66 60%,#03204f);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center}
+.back-navy .gl{width:46mm;height:46mm;background:rgba(245,166,35,.18);top:-16mm;right:-12mm}
+.back-navy .in{position:relative;z-index:2}
+.back-navy .blogo{width:24mm;height:auto;margin:0 auto}
+.back-navy .line{width:15mm;height:.6mm;background:var(--gold);margin:2.6mm auto}
+.back-navy .jp{font-size:7.6pt;font-weight:700}
+.back-navy .e{font-family:"Montserrat";font-size:5.4pt;letter-spacing:.22em;color:var(--gold-l);margin-top:1.2mm;font-weight:600;text-transform:uppercase}
+
+.back-light{background:#fbfcfe;display:flex;align-items:center;justify-content:center;text-align:center}
+.back-light::before{content:"";position:absolute;top:0;left:0;width:100%;height:2mm;background:linear-gradient(90deg,var(--navy),var(--blue))}
+.back-light::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:2mm;background:var(--gold)}
+.back-light .blogo{width:24mm;height:auto;margin:0 auto}
+.back-light .jp{font-size:7.4pt;font-weight:700;color:var(--navy);margin-top:2.4mm}
+.back-light .e{font-family:"Montserrat";font-size:5.4pt;letter-spacing:.2em;color:var(--gold);margin-top:1mm;font-weight:600;text-transform:uppercase}
+
+@media print{
+  body{background:#fff;padding:0}
+  .opt-h,.opt-s,.lbl{display:none}
+  .wrap{gap:0}
+  .pair{gap:0}
+  .card{box-shadow:none;border-radius:0;page-break-after:always;break-after:page;margin:8mm auto}
+}
+@page{size:A4;margin:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- =========================== OPTION A =========================== -->
+<div class="opt-h">案 A <span>｜</span> モダン・トップバンド</div>
+<div class="opt-s">上部の青グラデーション帯＋ゴールドライン。明快で誠実な印象。</div>
+<div class="pair">
+  <div class="cell"><div class="lbl">Front</div>
+    <div class="card A">
+      <div class="top">
+        <div class="chip"><img src="assets/logo-mark.png" alt="BIGLIGHT"></div>
+        <div class="co">BIGLIGHT株式会社<small>BIGLIGHT CO., LTD.</small></div>
+        <div class="tag">Powering Japan&rsquo;s<br>Growth, Globally.</div>
+      </div>
+      <div class="body">
+        <div class="ttl">代表取締役 ／ CEO</div>
+        <div class="nm">Nguyen Thanh Tung</div>
+        <div class="fu">グエン・タン・トゥン</div>
+        <div class="ct">
+          <div><span class="k">ADDRESS</span>〒462-0007　愛知県名古屋市北区如意一丁目112 A</div>
+          <div><span class="k">TEL/FAX</span>052-908-7944 ／ 052-908-7267</div>
+          <div><span class="k">MOBILE</span>000-0000-0000　<span class="k">WEB</span>biglight.jp</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cell"><div class="lbl">Back</div>
+    <div class="card back-navy">
+      <div class="glow gl"></div><div class="b-grid"></div>
+      <div class="in">
+        <div class="chip"><img src="assets/logo-color.png" alt="BIGLIGHT株式会社"></div>
+        <div class="line"></div>
+        <div class="jp">日本の成長を、もっとグローバルに。</div>
+        <div class="e">Powering Japan&rsquo;s Growth, Globally.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================== OPTION B =========================== -->
+<div class="opt-h">案 B <span>｜</span> ミニマル・ライト</div>
+<div class="opt-s">白基調＋左ゴールドライン。余白を活かした上品でクリーンな印象。</div>
+<div class="pair">
+  <div class="cell"><div class="lbl">Front</div>
+    <div class="card B">
+      <img class="wmk" src="assets/logo-mark.png" alt="">
+      <div class="hd">
+        <img class="mk" src="assets/logo-mark.png" alt="BIGLIGHT">
+        <div class="co">BIGLIGHT株式会社<small>BIGLIGHT CO., LTD.</small></div>
+      </div>
+      <div class="mid">
+        <div class="ttl">代表取締役 ／ CEO</div>
+        <div class="nm">Nguyen Thanh Tung</div>
+        <div class="fu">グエン・タン・トゥン</div>
+      </div>
+      <div class="ct">
+        <div><span class="k">ADDRESS</span>〒462-0007　愛知県名古屋市北区如意一丁目112 A</div>
+        <div><span class="k">TEL/FAX</span>052-908-7944 ／ 052-908-7267　<span class="k">MOBILE</span>000-0000-0000</div>
+        <div><span class="k">WEB</span>https://biglight.jp　<span class="k">MAIL</span>name@biglight.jp</div>
+      </div>
+    </div>
+  </div>
+  <div class="cell"><div class="lbl">Back</div>
+    <div class="card back-light">
+      <div class="in">
+        <img class="blogo" src="assets/logo-color.png" alt="BIGLIGHT株式会社">
+        <div class="jp">日本の成長を、もっとグローバルに。</div>
+        <div class="e">Powering Japan&rsquo;s Growth, Globally.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================== OPTION C =========================== -->
+<div class="opt-h">案 C <span>｜</span> エグゼクティブ・ダーク</div>
+<div class="opt-s">全面ネイビーの高級感。経営層・対外向けに映える重厚なデザイン。</div>
+<div class="pair">
+  <div class="cell"><div class="lbl">Front</div>
+    <div class="card C">
+      <div class="glow gl1"></div><div class="glow gl2"></div><div class="b-grid"></div>
+      <div class="in">
+        <div class="hd">
+          <div class="chip"><img src="assets/logo-mark.png" alt="BIGLIGHT"></div>
+          <div class="co">BIGLIGHT<small>BIGLIGHT株式会社</small></div>
+        </div>
+        <div class="nmw">
+          <div class="ttl">代表取締役 ／ CEO</div>
+          <div class="nm">Nguyen Thanh Tung</div>
+          <div class="fu">グエン・タン・トゥン</div>
+          <div class="rule"></div>
+          <div class="ct">
+            <div><span class="k">ADDRESS</span>〒462-0007　愛知県名古屋市北区如意一丁目112 A</div>
+            <div><span class="k">TEL/FAX</span>052-908-7944 ／ 052-908-7267　<span class="k">MOBILE</span>000-0000-0000</div>
+            <div><span class="k">WEB</span>biglight.jp　<span class="k">MAIL</span>name@biglight.jp</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cell"><div class="lbl">Back</div>
+    <div class="card back-navy">
+      <div class="glow gl"></div><div class="b-grid"></div>
+      <div class="in">
+        <div class="chip"><img src="assets/logo-color.png" alt="BIGLIGHT株式会社"></div>
+        <div class="line"></div>
+        <div class="jp">夢を導き、笑顔をつなぐ。</div>
+        <div class="e">Guiding Dreams, Connecting Smiles.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

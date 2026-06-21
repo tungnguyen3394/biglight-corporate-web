@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIGLIGHT株式会社｜名刺 PREMIUM（印刷データ）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b3d91;--navy-d:#072a66;--blue:#1e6fd6;--gold:#d8a32a;--gold-b:#f5c04e;--ink:#1b2433;--muted:#6b7892;--line:rgba(0,0,0,.10);}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#525b6a;font-family:"Noto Sans JP",sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;padding:12mm 0}
+.en{font-family:"Montserrat",sans-serif}
+img{display:block}
+.stage{display:flex;flex-direction:column;align-items:center;gap:8mm}
+.cap{color:#e3e8f0;font-family:"Montserrat";font-size:8pt;letter-spacing:.26em;text-transform:uppercase;text-align:center}
+
+/* ===== print mount with bleed + crop marks ===== */
+.mount{position:relative;width:109mm;height:73mm}
+.board{position:absolute;top:6mm;left:6mm;width:97mm;height:61mm;overflow:hidden;box-shadow:0 10px 34px rgba(0,0,0,.38)}
+.cm{position:absolute;background:#2b2b2b}
+.cm.h{height:.25mm;width:4mm}
+.cm.v{width:.25mm;height:4mm}
+/* corners: trim box at 9..100 (x) and 9..64 (y) within mount */
+.tl-h{top:9mm;left:1mm}.tl-v{left:9mm;top:1mm}
+.tr-h{top:9mm;left:104mm}.tr-v{left:100mm;top:1mm}
+.bl-h{top:64mm;left:1mm}.bl-v{left:9mm;top:68mm}
+.br-h{top:64mm;left:104mm}.br-v{left:100mm;top:68mm}
+
+/* ===== shared art ===== */
+.ico{width:3.2mm;height:3.2mm;flex:none;stroke-width:1.7;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+
+/* ===================== FRONT ===================== */
+.front{background:#ffffff}
+.f-logo{position:absolute;top:9mm;left:10mm;height:12mm;width:auto}
+.f-co{position:absolute;top:9.6mm;left:26mm}
+.f-co .jp{font-weight:700;font-size:8.4pt;color:var(--navy);letter-spacing:.04em}
+.f-co .en{font-family:"Montserrat";font-size:5.2pt;letter-spacing:.26em;color:var(--gold);font-weight:600;margin-top:1.1mm}
+.f-hair-top{position:absolute;top:24mm;left:10mm;width:77mm;height:.2mm;background:linear-gradient(90deg,var(--line),rgba(0,0,0,0))}
+.f-title{position:absolute;top:27mm;left:10mm;font-family:"Montserrat";font-size:6.2pt;letter-spacing:.22em;color:var(--gold);font-weight:700;text-transform:uppercase}
+.f-name{position:absolute;top:30mm;left:9.6mm;font-size:18pt;font-weight:900;color:var(--ink);letter-spacing:.02em;line-height:1}
+.f-furi{position:absolute;top:39mm;left:10mm;font-size:6.4pt;color:var(--muted);letter-spacing:.18em}
+.f-gold{position:absolute;top:42.5mm;left:10mm;width:15mm;height:.5mm;background:linear-gradient(90deg,var(--gold-b),var(--gold))}
+
+/* navy contact band (bleeds to bottom) */
+.f-band{position:absolute;left:0;right:0;bottom:0;height:16mm;background:linear-gradient(120deg,#0b3d91,#0a347c 60%,#072a66);color:#fff;padding:3.4mm 10mm 0}
+.f-band::before{content:"";position:absolute;top:0;left:0;right:0;height:.6mm;background:linear-gradient(90deg,var(--gold),var(--gold-b),var(--gold))}
+.f-band::after{content:"";position:absolute;top:.6mm;left:0;right:0;height:.2mm;background:rgba(255,255,255,.14)}
+.f-row{display:flex;align-items:center;gap:2.2mm;font-size:6pt;color:#eaf0fb;line-height:1.2;margin-bottom:1.5mm}
+.f-row .ico{color:var(--gold-b)}
+.f-row .sp{width:3.5mm}
+.f-row b{font-weight:500;color:#fff;letter-spacing:.02em;font-family:"Montserrat"}
+
+/* ===================== BACK ===================== */
+.back{background:radial-gradient(120% 90% at 75% 12%,#13499f 0%,#0b3d91 38%,#072a66 78%,#051f4d 100%);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center}
+.bk-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:8mm 8mm}
+.bk-glow{position:absolute;border-radius:50%;filter:blur(30px)}
+.bk-glow.a{width:46mm;height:46mm;background:rgba(245,192,78,.20);top:-14mm;right:-8mm}
+.bk-glow.b{width:46mm;height:46mm;background:rgba(30,111,214,.28);bottom:-16mm;left:-10mm}
+.bk-corner{position:absolute;width:11mm;height:11mm;border:.4mm solid rgba(245,192,78,.5)}
+.bk-corner.tl{top:7mm;left:7mm;border-right:none;border-bottom:none}
+.bk-corner.br{bottom:7mm;right:7mm;border-left:none;border-top:none}
+.bk-in{position:relative;z-index:2}
+.bk-chip{background:#fff;border-radius:2.2mm;padding:2.6mm 3mm;display:inline-block;line-height:0;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.bk-chip img{width:26mm;height:auto}
+.bk-line{width:17mm;height:.5mm;background:linear-gradient(90deg,rgba(216,163,42,0),var(--gold-b),rgba(216,163,42,0));margin:3.4mm auto 3mm}
+.bk-jp{font-size:8.4pt;font-weight:700;letter-spacing:.06em}
+.bk-en{font-family:"Montserrat";font-size:5.6pt;letter-spacing:.26em;color:var(--gold-b);margin-top:1.8mm;font-weight:600;text-transform:uppercase}
+
+@media print{
+  body{background:#fff;padding:0}
+  .cap{display:none}
+  .stage{gap:0}
+  .mount{page-break-after:always;break-after:page;margin:0 auto}
+  .board{box-shadow:none}
+}
+@page{size:A4;margin:0}
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <div class="cap">表面 ／ Front ・ 91×55mm ＋ 塗り足し3mm</div>
+  <div class="mount">
+    <span class="cm h tl-h"></span><span class="cm v tl-v"></span>
+    <span class="cm h tr-h"></span><span class="cm v tr-v"></span>
+    <span class="cm h bl-h"></span><span class="cm v bl-v"></span>
+    <span class="cm h br-h"></span><span class="cm v br-v"></span>
+    <div class="board front">
+      <img class="f-logo" src="assets/logo-color.png" alt="BIGLIGHT">
+      <div class="f-co"><div class="jp">BIGLIGHT株式会社</div><div class="en">BIGLIGHT CO., LTD.</div></div>
+      <div class="f-hair-top"></div>
+      <div class="f-title">代表取締役 ／ CEO</div>
+      <div class="f-name">Nguyen Thanh Tung</div>
+      <div class="f-furi">グエン・タン・トゥン</div>
+      <div class="f-gold"></div>
+
+      <div class="f-band">
+        <div class="f-row">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <span>〒462-0007　愛知県名古屋市北区如意一丁目112 A</span>
+        </div>
+        <div class="f-row">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M5 4h3.2l1.8 4.5L7.8 10a12 12 0 0 0 6.2 6.2l1.5-2.2 4.5 1.8V20a1 1 0 0 1-1 1A16 16 0 0 1 4 6a1 1 0 0 1 1-2z"/></svg>
+          <b>052-908-7944</b><span style="opacity:.6">（FAX 7267）</span>
+          <span class="sp"></span>
+          <svg class="ico" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+          <b>000-0000-0000</b>
+        </div>
+        <div class="f-row">
+          <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg>
+          <b>name@biglight.jp</b>
+          <span class="sp"></span>
+          <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/></svg>
+          <b>https://biglight.jp</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cap">裏面 ／ Back</div>
+  <div class="mount">
+    <span class="cm h tl-h"></span><span class="cm v tl-v"></span>
+    <span class="cm h tr-h"></span><span class="cm v tr-v"></span>
+    <span class="cm h bl-h"></span><span class="cm v bl-v"></span>
+    <span class="cm h br-h"></span><span class="cm v br-v"></span>
+    <div class="board back">
+      <div class="bk-grid"></div>
+      <div class="bk-glow a"></div><div class="bk-glow b"></div>
+      <div class="bk-corner tl"></div><div class="bk-corner br"></div>
+      <div class="bk-in">
+        <div class="bk-chip"><img src="assets/logo-color.png" alt="BIGLIGHT株式会社"></div>
+        <div class="bk-line"></div>
+        <div class="bk-jp">日本の成長を、もっとグローバルに。</div>
+        <div class="bk-en">Powering Japan&rsquo;s Growth, Globally.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

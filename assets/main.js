@@ -126,8 +126,10 @@
           r.classList.toggle('invalid',bad);if(bad)ok=false;
         });
         if(!ok)return;
-        var fd={}; f.querySelectorAll('input').forEach(function(i){ if(i.name) fd[i.name]=i.value.trim(); });
-        fetch('https://admin.biglight.jp/api/download',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({company:fd.company||'',name:fd.name||'',email:fd.email||''})}).catch(function(){});
+        var fd={}; f.querySelectorAll('input[type=text],input[type=email]').forEach(function(i){ if(i.name) fd[i.name]=i.value.trim(); });
+        var interest=[]; f.querySelectorAll('input[name="interest"]:checked').forEach(function(c){ interest.push(c.value); });
+        var noteEl=f.querySelector('[name="note"]'); var note=noteEl?noteEl.value.trim():'';
+        fetch('https://admin.biglight.jp/api/download',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({company:fd.company||'',name:fd.name||'',email:fd.email||'',interest:interest,note:note})}).catch(function(){});
         var a=document.createElement('a');a.href=PDF;a.download='BIGLIGHT_会社案内.pdf';
         document.body.appendChild(a);a.click();a.remove();
         box.style.display='none';done.style.display='block';f.reset();
