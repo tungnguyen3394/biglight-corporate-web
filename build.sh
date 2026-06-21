@@ -8,7 +8,7 @@ mkdir -p "$P" service/tokutei-ginou service/jinzai-shoukai service/teichaku flow
 
 # ---------- 1) Tách fragment từ file gốc ----------
 ex(){ sed -n "$1,$2p" "$SRC" > "$P/$3"; }
-ex 646 659  preloader.html
+ex 646 660  preloader.html
 ex 728 754  hero.html
 ex 756 835  mv.html
 ex 837 863  message.html
@@ -34,7 +34,7 @@ ex 1487 1506 company.html
 ex 1509 1524 contact.html
 ex 1526 1587 modal-privacy.html
 ex 1711 1736 modal-download.html
-ex 1535 1585 privacy-body.html
+ex 1535 1583 privacy-body.html
 
 # ---------- 2) Khung dùng chung ----------
 {
