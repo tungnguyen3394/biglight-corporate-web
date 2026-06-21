@@ -126,6 +126,8 @@
           r.classList.toggle('invalid',bad);if(bad)ok=false;
         });
         if(!ok)return;
+        var fd={}; f.querySelectorAll('input').forEach(function(i){ if(i.name) fd[i.name]=i.value.trim(); });
+        fetch('https://admin.biglight.jp/api/download',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({company:fd.company||'',name:fd.name||'',email:fd.email||''})}).catch(function(){});
         var a=document.createElement('a');a.href=PDF;a.download='BIGLIGHT_会社案内.pdf';
         document.body.appendChild(a);a.click();a.remove();
         box.style.display='none';done.style.display='block';f.reset();
