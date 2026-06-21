@@ -31,7 +31,32 @@ ex 1364 1403 recruit-detail.html
 ex 1405 1455 senpai.html
 ex 1458 1484 history.html
 ex 1487 1506 company.html
-ex 1509 1524 contact.html
+cat > "$P/contact.html" <<'EOF'
+<section class="sec contact" id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="en">Contact</div><h2>お問い合わせ</h2><p>採用のご相談・資料請求など、お気軽にどうぞ。最短即日でご返信します。</p></div>
+    <form class="cform reveal" id="contactForm" novalidate>
+      <div class="frow"><label>会社名</label><input type="text" name="company" placeholder="株式会社〇〇"></div>
+      <div class="frow" data-f><label>ご担当者名<span class="req">必須</span></label><input type="text" name="name" placeholder="山田 太郎"><div class="err">お名前をご入力ください。</div></div>
+      <div class="frow" data-f data-email><label>メールアドレス<span class="req">必須</span></label><input type="email" name="email" placeholder="example@company.co.jp"><div class="err">正しいメールアドレスをご入力ください。</div></div>
+      <div class="frow" data-f><label>電話番号<span class="req">必須</span></label><input type="tel" name="tel" placeholder="052-908-7944"><div class="err">電話番号をご入力ください。</div></div>
+      <div class="frow" data-f><label>お問い合わせ内容<span class="req">必須</span></label><textarea name="msg" placeholder="ご相談内容をご記入ください。"></textarea><div class="err">お問い合わせ内容をご入力ください。</div></div>
+      <label class="fcheck"><input type="checkbox" id="agree"><span><a href="#" class="js-pp">プライバシーポリシー</a>に同意の上、確認画面へ進みます。</span></label>
+      <div id="agreeErr" style="display:none;margin:-12px 0 16px"><div class="err" style="display:block">プライバシーポリシーへの同意が必要です。</div></div>
+      <button type="submit" class="fsubmit">入力内容を確認する</button>
+    </form>
+    <div class="cform reveal" id="contactConfirm" style="display:none">
+      <p class="confnote">以下の内容でよろしければ「送信する」を押してください。</p>
+      <div class="conftbl" id="confTbl"></div>
+      <div class="confbtns">
+        <button type="button" class="btn-outline" id="confBack">&lsaquo; 修正する</button>
+        <button type="button" class="fsubmit" id="confSend">送信する</button>
+      </div>
+    </div>
+    <div class="fdone" id="formDone">送信ありがとうございます。<br>担当者より折り返しご連絡いたします。</div>
+  </div>
+</section>
+EOF
 ex 1526 1587 modal-privacy.html
 ex 1711 1736 modal-download.html
 ex 1535 1583 privacy-body.html
@@ -212,7 +237,87 @@ cat > "$P/intro-tokutei.html" <<'EOF'
   </div>
 </div></section>
 EOF
-intro intro-jinzai.html  "Service" "技人国 人材紹介サービス" "技術・人文知識・国際業務（技人国）など、専門・高度人材をご紹介。高精度マッチングで企業様に最適な人材をお繋ぎします。"
+cat > "$P/jinzai-body.html" <<'EOF'
+<section class="sec"><div class="wrap">
+  <div class="sec-head reveal"><div class="en">Service</div><h2>技人国 人材紹介サービス</h2><p>専門知識と国際感覚を持つ、優秀な外国人材をご紹介します。</p></div>
+  <div class="rso-intro reveal">
+    <p>BIGLIGHTでは、技術・人文知識・国際業務（技人国）の在留資格を持つ外国人材をご紹介しております。</p>
+    <p>エンジニア、機械設計、生産技術、品質管理、営業、貿易事務、通訳・翻訳など、専門知識や高度なスキルを必要とする職種に対応可能です。</p>
+    <p>企業様の採用ニーズを丁寧にヒアリングし、経験・日本語力・専門性を考慮した最適な人材をご提案いたします。</p>
+  </div>
+</div></section>
+
+<section class="sec rso"><div class="wrap">
+  <div class="sec-head reveal"><div class="en">About</div><h2>技術・人文知識・国際業務（技人国）とは？</h2></div>
+  <div class="rso-intro reveal">
+    <p>「技術・人文知識・国際業務」は、大学卒業者や専門知識を有する外国人材が日本で働くための在留資格です。</p>
+    <p>単純作業ではなく、専門知識や語学力を活かした業務に従事することが認められています。</p>
+    <p>近年では、深刻な人材不足を背景に、多くの企業が技人国人材を採用し、企業成長の原動力として活躍しています。</p>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="sec-head reveal"><div class="en">Job Categories</div><h2>技人国人材が従事できる主な職種</h2></div>
+  <div class="grid4">
+    <div class="scard reveal"><h3>IT・システム分野</h3><ul class="slist"><li>システムエンジニア</li><li>プログラマー</li><li>インフラエンジニア</li><li>Webエンジニア</li><li>AI・データ関連職</li></ul></div>
+    <div class="scard reveal"><h3>製造・技術分野</h3><ul class="slist"><li>機械設計</li><li>CADオペレーター</li><li>生産技術</li><li>品質管理</li><li>技術開発</li><li>設備保全</li></ul></div>
+    <div class="scard reveal"><h3>事務・営業分野</h3><ul class="slist"><li>貿易事務</li><li>海外営業</li><li>営業企画</li><li>マーケティング</li><li>購買業務</li></ul></div>
+    <div class="scard reveal"><h3>語学・国際業務分野</h3><ul class="slist"><li>通訳</li><li>翻訳</li><li>海外顧客対応</li><li>海外拠点サポート</li></ul></div>
+  </div>
+</div></section>
+
+<section class="sec rso"><div class="wrap">
+  <div class="sec-head reveal"><div class="en">Comparison</div><h2>特定技能との違い</h2></div>
+  <div class="cmpwrap reveal">
+    <table class="cmptbl">
+      <thead><tr><th>項目</th><th class="col-hl">技人国</th><th>特定技能</th></tr></thead>
+      <tbody>
+        <tr><th>学歴</th><td class="hl">原則大学卒業</td><td>不要</td></tr>
+        <tr><th>業務内容</th><td class="hl">専門職</td><td>現場業務中心</td></tr>
+        <tr><th>家族帯同</th><td class="hl">可能</td><td>原則不可</td></tr>
+        <tr><th>在留期間更新</th><td class="hl">可能</td><td>制限あり</td></tr>
+        <tr><th>キャリア形成</th><td class="hl">高い</td><td>現場中心</td></tr>
+        <tr><th>管理職候補</th><td class="hl">可能</td><td>限定的</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="text-align:center;color:var(--muted);font-size:13.5px;margin-top:18px">企業様の将来を担う中核人材を採用したい場合、技人国人材は非常に有効な選択肢となります。</p>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="sec-head reveal"><div class="en">Our Talent</div><h2>BIGLIGHTがご紹介できる人材</h2></div>
+  <div class="grid4">
+    <div class="scard reveal"><h3>日本語力</h3><ul class="slist"><li>N2以上中心</li><li>ビジネス会話対応可能</li><li>社内コミュニケーション可能</li></ul></div>
+    <div class="scard reveal"><h3>学歴</h3><ul class="slist"><li>大学卒業</li><li>専門学校卒業</li><li>技術系学部出身</li></ul></div>
+    <div class="scard reveal"><h3>実務経験</h3><ul class="slist"><li>製造業</li><li>IT業界</li><li>建設関連</li><li>営業職</li><li>事務職</li></ul></div>
+    <div class="scard reveal"><h3>国籍</h3><ul class="slist"><li>ベトナム</li><li>インドネシア</li><li>その他アジア諸国</li></ul></div>
+  </div>
+</div></section>
+
+<section class="sec rso"><div class="wrap">
+  <div class="sec-head reveal"><div class="en">Merit</div><h2>技人国人材を採用するメリット</h2></div>
+  <div class="grid2">
+    <div class="rso-merit reveal"><h4>若手人材を確保できる</h4><p>将来の幹部候補として育成可能です。</p></div>
+    <div class="rso-merit reveal"><h4>専門知識を活かせる</h4><p>即戦力として現場で活躍できます。</p></div>
+    <div class="rso-merit reveal"><h4>長期雇用が可能</h4><p>安定した雇用関係を構築できます。</p></div>
+    <div class="rso-merit reveal"><h4>海外展開にも活用できる</h4><p>語学力と国際感覚を活かし、企業のグローバル化を支援します。</p></div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="sec-head reveal"><div class="en">Flow</div><h2>採用の流れ</h2><p>お問い合わせから入社後の定着支援まで、7つのステップでご案内します。</p></div>
+  <div class="tkflow reveal">
+    <div class="tkstep"><div class="tknum">1</div><div class="tkbody"><h4>お問い合わせ</h4><p>まずはお気軽にご相談ください。採用のお悩みを伺います。</p></div></div>
+    <div class="tkstep"><div class="tknum">2</div><div class="tkbody"><h4>ヒアリング</h4><p>必要な人材像・業務内容・条件を丁寧にヒアリングします。</p></div></div>
+    <div class="tkstep"><div class="tknum">3</div><div class="tkbody"><h4>候補者のご紹介</h4><p>経験・日本語力・専門性を考慮した最適な人材をご提案します。</p></div></div>
+    <div class="tkstep"><div class="tknum">4</div><div class="tkbody"><h4>面接</h4><p>企業様と候補者の面接を実施。通訳・日程調整もサポートします。</p></div></div>
+    <div class="tkstep"><div class="tknum">5</div><div class="tkbody"><h4>内定</h4><p>双方合意のうえ内定。雇用条件・入社時期を確定します。</p></div></div>
+    <div class="tkstep"><div class="tknum">6</div><div class="tkbody"><h4>在留資格手続き</h4><p>在留資格の申請・変更手続きを専門スタッフが代行します。</p></div></div>
+    <div class="tkstep"><div class="tknum">7</div><div class="tkbody"><h4>入社・定着支援</h4><p>入社後も定期訪問・面談でフォローし、長期定着を支えます。</p></div></div>
+  </div>
+  <div class="reveal" style="text-align:center;margin-top:26px"><a class="btn-outline" href="/flow/">サービス共通のご利用の流れ &rsaquo;</a></div>
+</div></section>
+EOF
 intro intro-teichaku.html "Service" "定着・生活支援" "採用して終わりではありません。在留資格手続き、寮・生活サポート、入社後フォローまで、長く活躍できる環境づくりをご支援します。"
 
 # 404
@@ -272,6 +377,7 @@ cat > "$P/tokutei-solution.html" <<'EOF'
 <section class="sec">
   <div class="wrap">
     <div class="sec-head reveal"><div class="en">Our Solution</div><h2>BIGLIGHTの解決策</h2><p>お問い合わせから入社後のフォローまで、特定技能採用をワンストップでご支援します。</p></div>
+    <h3 class="rso-h3 reveal">特定技能採用の流れ</h3>
     <div class="tkflow reveal">
       <div class="tkstep"><div class="tknum">1</div><div class="tkbody"><h4>求人票ヒアリング</h4><p>必要な人材像・業務内容・条件を丁寧にヒアリングします。</p></div></div>
       <div class="tkstep"><div class="tknum">2</div><div class="tkbody"><h4>人材探し</h4><p>条件に合う特定技能人材を、自社の母集団から選定します。</p></div></div>
@@ -282,6 +388,8 @@ cat > "$P/tokutei-solution.html" <<'EOF'
       <div class="tkstep"><div class="tknum">7</div><div class="tkbody"><h4>入社</h4><p>住居・生活の受け入れ準備を整え、入社・就業を開始します。</p></div></div>
       <div class="tkstep"><div class="tknum">8</div><div class="tkbody"><h4>入社後定期訪問</h4><p>定期訪問・面談で就労と生活をフォローし、長期定着を支えます。</p></div></div>
     </div>
+
+    <div class="reveal" style="text-align:center;margin-top:26px"><a class="btn-outline" href="/flow/">サービス共通のご利用の流れ &rsaquo;</a></div>
 
     <h3 class="rso-h3 reveal">BIGLIGHTのサポート内容</h3>
     <div class="rso-check reveal">
@@ -299,6 +407,16 @@ cat > "$P/tokutei-solution.html" <<'EOF'
     </div>
 
     <p class="rso-closing reveal">外国人材の採用から定着まで、BIGLIGHTが責任を持ってサポートいたします。<br>まずはお気軽にご相談ください。</p>
+  </div>
+</section>
+EOF
+
+# link chéo ở trang /flow/ sang flow chi tiết của từng dịch vụ
+cat > "$P/flow-link.html" <<'EOF'
+<section class="sec" style="background:var(--bg);padding-top:0">
+  <div class="wrap" style="text-align:center">
+    <p style="color:var(--muted);font-size:14px;margin-bottom:16px">サービスごとの詳しい採用の流れもご覧いただけます。</p>
+    <a class="btn-outline" href="/service/tokutei-ginou/">特定技能採用の流れ &rsaquo;</a>
   </div>
 </section>
 EOF
@@ -374,6 +492,59 @@ build(){
   fi
 }
 
+# ----- Next navigation: gợi ý trang tiếp theo (UX + internal linking) -----
+nn(){ local out="$1"; shift
+  { echo '<section class="sec nextnav"><div class="wrap">'
+    echo '  <div class="sec-head reveal"><div class="en">Next Step</div><h2>次に見る</h2></div>'
+    echo '  <div class="nn-grid">'
+    while [ "$#" -ge 3 ]; do
+      printf '    <a class="nn-card reveal" href="%s"><span class="nn-title">%s</span><span class="nn-desc">%s</span><span class="nn-go">詳しく見る &rsaquo;</span></a>\n' "$1" "$2" "$3"; shift 3
+    done
+    echo '  </div>'
+    echo '</div></section>'
+  } > "$P/$out"
+}
+nn nn-home.html \
+  /service/tokutei-ginou/ "特定技能 採用サービス" "即戦力の特定技能人材を採用" \
+  /case/ "導入事例" "採用成功の事例を見る" \
+  /about/ "会社概要" "BIGLIGHTについて知る"
+nn nn-tokutei.html \
+  /service/jinzai-shoukai/ "技人国 人材紹介" "専門・高度人材をご紹介" \
+  /service/teichaku/ "定着・生活支援" "入社後の定着をサポート" \
+  /case/ "導入事例" "採用成功の事例を見る"
+nn nn-jinzai.html \
+  /service/tokutei-ginou/ "特定技能 採用サービス" "即戦力の特定技能人材を採用" \
+  /service/teichaku/ "定着・生活支援" "入社後の定着をサポート" \
+  /flow/ "導入の流れ" "ご相談から入社までの流れ"
+nn nn-teichaku.html \
+  /service/tokutei-ginou/ "特定技能 採用サービス" "即戦力の特定技能人材を採用" \
+  /service/jinzai-shoukai/ "技人国 人材紹介" "専門・高度人材をご紹介" \
+  /case/ "導入事例" "採用成功の事例を見る"
+nn nn-flow.html \
+  /case/ "導入事例" "採用成功の事例を見る" \
+  /service/tokutei-ginou/ "特定技能 採用サービス" "即戦力の特定技能人材を採用" \
+  /faq/ "よくあるご質問" "採用前の疑問を解決"
+nn nn-case.html \
+  /flow/ "導入の流れ" "ご相談から入社までの流れ" \
+  /service/tokutei-ginou/ "特定技能 採用サービス" "即戦力の特定技能人材を採用" \
+  /contact/ "お問い合わせ" "無料でご相談ください"
+nn nn-about.html \
+  /service/tokutei-ginou/ "特定技能 採用サービス" "即戦力の特定技能人材を採用" \
+  /case/ "導入事例" "採用成功の事例を見る" \
+  /recruit/ "採用情報" "一緒に働く仲間を募集"
+nn nn-recruit.html \
+  /about/ "会社概要" "BIGLIGHTについて知る" \
+  /news/ "お知らせ" "最新情報・HR Magazine" \
+  /contact/ "お問い合わせ" "無料でご相談ください"
+nn nn-faq.html \
+  /service/tokutei-ginou/ "特定技能 採用サービス" "即戦力の特定技能人材を採用" \
+  /flow/ "導入の流れ" "ご相談から入社までの流れ" \
+  /contact/ "お問い合わせ" "無料でご相談ください"
+nn nn-news.html \
+  /service/tokutei-ginou/ "特定技能 採用サービス" "即戦力の特定技能人材を採用" \
+  /about/ "会社概要" "BIGLIGHTについて知る" \
+  /case/ "導入事例" "採用成功の事例を見る"
+
 # ---------- 4) Tạo các trang ----------
 # HOME (Organization + WebSite JSON-LD)
 JSONLD='<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"BIGLIGHT株式会社","alternateName":"ビッグライト","url":"https://biglight.jp/","logo":"https://biglight.jp/assets/logo.png","email":"admin@biglight.jp","telephone":"+81-52-908-7944","address":{"@type":"PostalAddress","postalCode":"462-0007","addressRegion":"愛知県","addressLocality":"名古屋市北区","streetAddress":"如意一丁目112 A","addressCountry":"JP"},"areaServed":"JP","description":"特定技能・技人国の外国人材を、採用から定着までワンストップでご支援する登録支援機関。"}</script>'
@@ -382,7 +553,7 @@ build index.html \
   "BIGLIGHT株式会社｜特定技能・技人国の外国人材紹介・定着支援【名古屋】" \
   "BIGLIGHT株式会社は、特定技能・技人国の外国人材を、採用から定着までワンストップでご紹介。完全成功報酬・最長1年保証、登録支援機関として名古屋・東海エリアの企業様を伴走支援します。" \
   "/" \
-  hero.html issues.html solband.html home-service.html strength.html stats.html news.html cta.html
+  hero.html issues.html solband.html home-service.html strength.html stats.html news.html cta.html nn-home.html
 
 # ABOUT
 crumb "会社概要" "/about/"
@@ -390,7 +561,7 @@ build about/index.html \
   "会社概要・代表メッセージ・沿革｜BIGLIGHT株式会社" \
   "BIGLIGHT株式会社の理念・代表メッセージ・沿革・会社概要をご紹介します。外国人材と企業をつなぐ架け橋として、採用から定着まで伴走します。" \
   "/about/" \
-  mv.html message.html history.html company.html
+  mv.html message.html history.html company.html nn-about.html
 
 # SERVICE: 特定技能
 crumb "特定技能 採用サービス" "/service/tokutei-ginou/"
@@ -398,7 +569,7 @@ build service/tokutei-ginou/index.html \
   "特定技能 採用サービス｜BIGLIGHT株式会社" \
   "特定技能外国人材の採用をワンストップで。制度の仕組み（育成就労→特定技能1号→2号）、企業様のメリット、対応分野までBIGLIGHTがご支援します。" \
   "/service/tokutei-ginou/" \
-  intro-tokutei.html w-tokutei.html tokutei-rso.html tokutei-solution.html cta.html
+  intro-tokutei.html w-tokutei.html tokutei-rso.html tokutei-solution.html cta.html nn-tokutei.html
 
 # SERVICE: 技人国
 crumb "技人国 人材紹介" "/service/jinzai-shoukai/"
@@ -406,7 +577,7 @@ build service/jinzai-shoukai/index.html \
   "技人国 人材紹介サービス｜BIGLIGHT株式会社" \
   "技術・人文知識・国際業務（技人国）の高度・専門人材をご紹介。エンジニア・設計・品質管理・通訳など、高精度マッチングで最適な人材をお繋ぎします。" \
   "/service/jinzai-shoukai/" \
-  intro-jinzai.html w-jinzai.html cta.html
+  jinzai-body.html cta.html nn-jinzai.html
 
 # SERVICE: 定着支援
 crumb "定着・生活支援" "/service/teichaku/"
@@ -414,7 +585,7 @@ build service/teichaku/index.html \
   "定着・生活支援｜BIGLIGHT株式会社" \
   "在留資格手続き、寮・生活サポート、入社後フォローまで。外国人材が長く活躍できる定着支援で、企業様の「続かない」を解決します。" \
   "/service/teichaku/" \
-  intro-teichaku.html soldetail.html cta.html
+  intro-teichaku.html soldetail.html cta.html nn-teichaku.html
 
 # FLOW
 crumb "導入の流れ" "/flow/"
@@ -422,7 +593,7 @@ build flow/index.html \
   "ご利用の流れ｜BIGLIGHT株式会社" \
   "ご相談から入社後の定着支援まで、5つのステップでわかりやすくご案内します。外国人材採用の流れはBIGLIGHTにお任せください。" \
   "/flow/" \
-  flow.html cta.html
+  flow.html flow-link.html cta.html nn-flow.html
 
 # CASE
 crumb "導入事例" "/case/"
@@ -430,7 +601,7 @@ build case/index.html \
   "導入事例｜BIGLIGHT株式会社" \
   "製造業・建設業など、BIGLIGHTがご支援した外国人材採用の導入事例をご紹介。人手不足の解消や売上成長につながった企業様の声を掲載しています。" \
   "/case/" \
-  case.html cta.html
+  case.html cta.html nn-case.html
 
 # RECRUIT
 crumb "採用情報" "/recruit/"
@@ -438,7 +609,7 @@ build recruit/index.html \
   "採用情報・先輩の声｜BIGLIGHT株式会社" \
   "BIGLIGHTで一緒に働く仲間を募集しています。会社文化、募集要項、先輩社員インタビューを掲載。若く国際的なチームで成長できる環境です。" \
   "/recruit/" \
-  recruit-hero.html culture.html recruit-detail.html senpai.html
+  recruit-hero.html culture.html recruit-detail.html senpai.html nn-recruit.html
 
 # FAQ (FAQPage JSON-LD)
 crumb "よくある質問" "/faq/"
@@ -447,7 +618,7 @@ build faq/index.html \
   "よくあるご質問｜BIGLIGHT株式会社" \
   "特定技能・外国人材採用に関するよくあるご質問にお答えします。採用期間、日本語能力、対応業種、生活サポート、転職の可否などを掲載。" \
   "/faq/" \
-  faq.html cta.html
+  faq.html cta.html nn-faq.html
 
 # NEWS
 crumb "お知らせ" "/news/"
@@ -455,7 +626,7 @@ build news/index.html \
   "お知らせ・HR Magazine｜BIGLIGHT株式会社" \
   "BIGLIGHTからのお知らせや、外国人材採用に役立つ情報（HR Magazine）をお届けします。" \
   "/news/" \
-  news.html cta.html
+  news.html cta.html nn-news.html
 
 # CONTACT
 crumb "お問い合わせ" "/contact/"

@@ -119,15 +119,23 @@
   <div class="wrap">
     <div class="sec-head reveal"><div class="en">Contact</div><h1>お問い合わせ</h1><p>採用のご相談・資料請求など、お気軽にどうぞ。最短即日でご返信します。</p></div>
     <form class="cform reveal" id="contactForm" novalidate>
-      <div class="frow" data-f><label>会社名<span class="req">必須</span></label><input type="text" name="company" placeholder="株式会社〇〇"><div class="err">会社名をご入力ください。</div></div>
+      <div class="frow"><label>会社名</label><input type="text" name="company" placeholder="株式会社〇〇"></div>
       <div class="frow" data-f><label>ご担当者名<span class="req">必須</span></label><input type="text" name="name" placeholder="山田 太郎"><div class="err">お名前をご入力ください。</div></div>
       <div class="frow" data-f data-email><label>メールアドレス<span class="req">必須</span></label><input type="email" name="email" placeholder="example@company.co.jp"><div class="err">正しいメールアドレスをご入力ください。</div></div>
-      <div class="frow"><label>電話番号</label><input type="tel" name="tel" placeholder="052-908-7944"></div>
+      <div class="frow" data-f><label>電話番号<span class="req">必須</span></label><input type="tel" name="tel" placeholder="052-908-7944"><div class="err">電話番号をご入力ください。</div></div>
       <div class="frow" data-f><label>お問い合わせ内容<span class="req">必須</span></label><textarea name="msg" placeholder="ご相談内容をご記入ください。"></textarea><div class="err">お問い合わせ内容をご入力ください。</div></div>
-      <label class="fcheck"><input type="checkbox" id="agree"><span><a href="#" class="js-pp">プライバシーポリシー</a>に同意の上、送信します。</span></label>
+      <label class="fcheck"><input type="checkbox" id="agree"><span><a href="#" class="js-pp">プライバシーポリシー</a>に同意の上、確認画面へ進みます。</span></label>
       <div id="agreeErr" style="display:none;margin:-12px 0 16px"><div class="err" style="display:block">プライバシーポリシーへの同意が必要です。</div></div>
-      <button type="submit" class="fsubmit">送信する</button>
+      <button type="submit" class="fsubmit">入力内容を確認する</button>
     </form>
+    <div class="cform reveal" id="contactConfirm" style="display:none">
+      <p class="confnote">以下の内容でよろしければ「送信する」を押してください。</p>
+      <div class="conftbl" id="confTbl"></div>
+      <div class="confbtns">
+        <button type="button" class="btn-outline" id="confBack">&lsaquo; 修正する</button>
+        <button type="button" class="fsubmit" id="confSend">送信する</button>
+      </div>
+    </div>
     <div class="fdone" id="formDone">送信ありがとうございます。<br>担当者より折り返しご連絡いたします。</div>
   </div>
 </section>

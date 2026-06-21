@@ -50,8 +50,14 @@
   header{position:fixed;top:0;left:0;width:100%;z-index:50;transition:.3s;padding:14px 0}
   header.scrolled{background:#fff;box-shadow:0 1px 14px rgba(0,0,0,.07);padding:8px 0}
   .nav{display:flex;align-items:center;justify-content:space-between}
-  .logo img{height:46px}
-  header:not(.scrolled) .logo{background:#ffffffee;padding:5px 12px;border-radius:10px}
+  .logo img{height:46px;transition:filter .3s}
+  /* Trang có hero tối (chủ / tuyển dụng): logo trắng monochrome khi chưa cuộn */
+  body:has(.hero) header:not(.scrolled) .logo img,
+  body:has(.recruit-hero) header:not(.scrolled) .logo img{filter:brightness(0) invert(1)}
+  /* Trang không có hero tối: header luôn nền trắng (logo màu + menu hiện rõ) */
+  body:not(:has(.hero)):not(:has(.recruit-hero)) header{background:#fff;box-shadow:0 1px 14px rgba(0,0,0,.07);padding:8px 0}
+  body:not(:has(.hero)):not(:has(.recruit-hero)) .menu{color:var(--ink)}
+  body:not(:has(.hero)):not(:has(.recruit-hero)) .burger{color:var(--navy)}
   .menu{display:flex;align-items:center;gap:6px;font-size:14px;color:#fff;font-weight:500}
   header.scrolled .menu{color:var(--ink)}
   .menu .item{position:relative}
@@ -741,3 +747,34 @@
 .tkbody h4{font-size:16px;color:var(--navy);margin-bottom:3px}
 .tkbody p{font-size:13px;color:var(--muted);line-height:1.7}
 @media(max-width:560px){.tknum{width:44px;height:44px;font-size:17px}.tkstep::before{left:21px}.tkbody{padding:12px 16px}}
+
+/* ===== 比較表 (技人国 vs 特定技能) ===== */
+.cmpwrap{max-width:720px;margin:0 auto;overflow-x:auto}
+.cmptbl{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;min-width:460px}
+.cmptbl th,.cmptbl td{padding:14px 18px;font-size:14px;border-bottom:1px solid var(--line);text-align:center}
+.cmptbl thead th{background:var(--navy);color:#fff;font-weight:700}
+.cmptbl thead th.col-hl{background:var(--blue)}
+.cmptbl tbody th{background:#f1f5fb;color:var(--navy);font-weight:600;text-align:left;white-space:nowrap}
+.cmptbl td.hl{color:var(--blue);font-weight:700;background:#f5f9ff}
+.cmptbl tr:last-child th,.cmptbl tr:last-child td{border-bottom:0}
+
+/* ===== NEXT NAV (gợi ý trang tiếp theo) ===== */
+.nextnav{background:var(--bg)}
+.nn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.nn-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;transition:.25s}
+.nn-card:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(11,61,145,.1);border-color:rgba(245,166,35,.5)}
+.nn-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.nn-desc{font-size:13px;color:var(--muted);line-height:1.7;flex:1}
+.nn-go{margin-top:14px;font-size:13px;font-weight:600;color:var(--blue)}
+@media(max-width:860px){.nn-grid{grid-template-columns:1fr}}
+
+/* ===== CONTACT CONFIRM (xác nhận trước khi gửi) ===== */
+.confnote{font-size:14px;color:var(--navy);font-weight:600;margin-bottom:18px;text-align:center}
+.conftbl{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;margin-bottom:24px}
+.confrow{display:grid;grid-template-columns:170px 1fr;border-bottom:1px solid var(--line)}
+.confrow:last-child{border-bottom:0}
+.confk{background:#f1f5fb;color:var(--navy);font-weight:600;font-size:13.5px;padding:14px 18px}
+.confv{font-size:14px;color:#3a4658;padding:14px 18px;word-break:break-word}
+.confbtns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.confbtns .btn-outline,.confbtns .fsubmit{width:auto;min-width:170px}
+@media(max-width:560px){.confrow{grid-template-columns:1fr}.confk{padding:11px 16px 4px}.confv{padding:4px 16px 12px}.confbtns .btn-outline,.confbtns .fsubmit{width:100%}}

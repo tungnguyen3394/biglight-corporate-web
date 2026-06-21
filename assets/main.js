@@ -48,8 +48,12 @@
 
   var form=document.getElementById('contactForm');
   if(form){
-    form.addEventListener('submit',function(e){
-      e.preventDefault();var ok=true;
+    var confirmBox=document.getElementById('contactConfirm');
+    var confTbl=document.getElementById('confTbl');
+    var done=document.getElementById('formDone');
+    function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+    function validate(){
+      var ok=true;
       form.querySelectorAll('[data-f]').forEach(function(r){
         var inp=r.querySelector('input,textarea');var v=inp.value.trim();var bad=!v;
         if(!bad&&r.hasAttribute('data-email')){bad=!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
@@ -57,7 +61,33 @@
       });
       var agree=document.getElementById('agree'),ae=document.getElementById('agreeErr');
       if(agree&&!agree.checked){if(ae)ae.style.display='block';ok=false;}else if(ae){ae.style.display='none';}
-      if(ok){form.style.display='none';var d=document.getElementById('formDone');if(d){d.style.display='block';d.scrollIntoView({behavior:'smooth',block:'center'});}}
+      return ok;
+    }
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      if(!validate())return;
+      var rows='';
+      form.querySelectorAll('.frow').forEach(function(r){
+        var lab=r.querySelector('label'),inp=r.querySelector('input,textarea');
+        if(!lab||!inp)return;
+        var name=lab.textContent.replace('必須','').trim();
+        var val=inp.value.trim();
+        if(!val)val='—';
+        rows+='<div class="confrow"><div class="confk">'+esc(name)+'</div><div class="confv">'+esc(val).replace(/\n/g,'<br>')+'</div></div>';
+      });
+      if(confTbl)confTbl.innerHTML=rows;
+      form.style.display='none';
+      if(confirmBox){confirmBox.style.display='block';confirmBox.scrollIntoView({behavior:'smooth',block:'start'});}
+    });
+    var cb=document.getElementById('confBack');
+    if(cb)cb.addEventListener('click',function(){
+      if(confirmBox)confirmBox.style.display='none';
+      form.style.display='block';form.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+    var cs=document.getElementById('confSend');
+    if(cs)cs.addEventListener('click',function(){
+      if(confirmBox)confirmBox.style.display='none';
+      if(done){done.style.display='block';done.scrollIntoView({behavior:'smooth',block:'center'});}
     });
     form.querySelectorAll('[data-f] input,[data-f] textarea').forEach(function(i){
       i.addEventListener('input',function(){i.closest('.frow').classList.remove('invalid');});
