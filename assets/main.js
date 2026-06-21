@@ -86,8 +86,19 @@
     });
     var cs=document.getElementById('confSend');
     if(cs)cs.addEventListener('click',function(){
-      if(confirmBox)confirmBox.style.display='none';
-      if(done){done.style.display='block';done.scrollIntoView({behavior:'smooth',block:'center'});}
+      var old=cs.textContent; cs.disabled=true; cs.textContent='送信中…';
+      var fd={}; form.querySelectorAll('input,textarea').forEach(function(i){ if(i.name) fd[i.name]=i.value.trim(); });
+      var payload={company:fd.company||'',name:fd.name||'',email:fd.email||'',tel:fd.tel||'',message:fd.msg||'',website:fd.website||''};
+      fetch('https://admin.biglight.jp/api/inquiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+        .then(function(r){ if(!r.ok) throw new Error('failed'); return r.json(); })
+        .then(function(){
+          if(confirmBox)confirmBox.style.display='none';
+          if(done){done.style.display='block';done.scrollIntoView({behavior:'smooth',block:'center'});}
+        })
+        .catch(function(){
+          cs.disabled=false; cs.textContent=old;
+          alert('送信に失敗しました。お手数ですが、お電話（052-908-7944）でもご連絡ください。');
+        });
     });
     form.querySelectorAll('[data-f] input,[data-f] textarea').forEach(function(i){
       i.addEventListener('input',function(){i.closest('.frow').classList.remove('invalid');});

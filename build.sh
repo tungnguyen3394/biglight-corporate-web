@@ -36,6 +36,7 @@ cat > "$P/contact.html" <<'EOF'
   <div class="wrap">
     <div class="sec-head reveal"><div class="en">Contact</div><h2>お問い合わせ</h2><p>採用のご相談・資料請求など、お気軽にどうぞ。最短即日でご返信します。</p></div>
     <form class="cform reveal" id="contactForm" novalidate>
+      <div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
       <div class="frow"><label>会社名</label><input type="text" name="company" placeholder="株式会社〇〇"></div>
       <div class="frow" data-f><label>ご担当者名<span class="req">必須</span></label><input type="text" name="name" placeholder="山田 太郎"><div class="err">お名前をご入力ください。</div></div>
       <div class="frow" data-f data-email><label>メールアドレス<span class="req">必須</span></label><input type="email" name="email" placeholder="example@company.co.jp"><div class="err">正しいメールアドレスをご入力ください。</div></div>
