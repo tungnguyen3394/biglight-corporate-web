@@ -22,6 +22,8 @@ dist
 
 # /news/ do admin (admin.biglight.jp) sinh động — không theo dõi trong repo web
 /news/
+# ảnh upload từ admin (アイキャッチ)
+/assets/uploads/
 
 # Build artifacts / dev
 _partials/
