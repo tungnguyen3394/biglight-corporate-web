@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<title>BIGLIGHT株式会社 | 外国人材紹介・特定技能・定着支援</title>
+<meta name="description" content="BIGLIGHT株式会社は、特定技能・技人国の外国人材を、最短・安心・ワンストップでご紹介。登録支援機関として採用から定着まで伴走します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0b3d91; --navy-d:#072a66; --blue:#1e6fd6; --gold:#f5a623;
+    --ink:#1f2a3a; --muted:#64748b; --line:rgba(0,0,0,.08); --bg:#f4f6f9;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:"Helvetica Neue","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;color:var(--ink);line-height:1.8;background:#fff;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+  section[id]{scroll-margin-top:78px}
+  /* PRELOADER */
+  #preloader{position:fixed;inset:0;z-index:9999;background:#0b3d91;display:flex;align-items:center;justify-content:center;transition:opacity .8s ease,visibility .8s}
+  #preloader.done{opacity:0;visibility:hidden}
+  .pl-inner{text-align:center}
+  .pl-mark{width:88px;height:88px;margin:0 auto 16px}
+  .pl-name{color:#fff;font-size:24px;font-weight:700;letter-spacing:6px;opacity:0;animation:plName 1.1s .3s forwards}
+  @keyframes plName{to{opacity:1;letter-spacing:9px}}
+  .pl-bar{width:150px;height:3px;background:rgba(255,255,255,.18);border-radius:3px;margin:20px auto 0;overflow:hidden}
+  .pl-bar i{display:block;height:100%;width:0;background:var(--gold);animation:plBar 1.7s ease forwards}
+  @keyframes plBar{to{width:100%}}
+  /* heading underline */
+  .sec-head h2{position:relative;display:inline-block;padding-bottom:16px}
+  .sec-head h2::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:0;height:3px;background:var(--gold);border-radius:3px;transition:width .8s .25s cubic-bezier(.2,.7,.2,1)}
+  .sec-head.in h2::after{width:50px}
+  /* hero cinematic */
+  .hero-vignette{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 48%,rgba(7,30,70,.55))}
+  .hero-particles{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+  .btn-gold{display:inline-block;background:var(--gold);color:#3d2b00;font-weight:600;padding:14px 32px;border-radius:8px;font-size:15px;transition:.2s}
+  .btn-gold:hover{filter:brightness(.95);transform:translateY(-1px)}
+  .btn-ghost{display:inline-block;border:1px solid #ffffffaa;color:#fff;padding:14px 30px;border-radius:8px;font-size:15px;transition:.2s}
+  .btn-ghost:hover{background:#ffffff1a}
+  .sec{padding:88px 0}
+  .fullpage{min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+  .btn-outline{display:inline-block;border:1.5px solid var(--navy);color:var(--navy);padding:13px 30px;border-radius:8px;font-size:15px;font-weight:600;transition:.2s}
+  .btn-outline:hover{background:var(--navy);color:#fff;transform:translateY(-1px)}
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:46px}
+  .reveal{opacity:0;transform:translateY(26px);transition:.7s cubic-bezier(.2,.6,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  /* MV: hiện lần lượt, bay lên rõ hơn */
+  .reveal-lift{opacity:0;transform:translateY(52px) scale(.96);transition:opacity .9s cubic-bezier(.2,.75,.2,1),transform .9s cubic-bezier(.2,.75,.2,1)}
+  .reveal-lift.in{opacity:1;transform:none}
+  .d1{transition-delay:.05s}.d2{transition-delay:.2s}.d3{transition-delay:.35s}.d4{transition-delay:.5s}.d5{transition-delay:.65s}
+  .sec-head{text-align:center;margin-bottom:50px}
+  .sec-head .en{font-size:13px;letter-spacing:3px;color:var(--gold);font-weight:600;text-transform:uppercase}
+  .sec-head h2{font-size:32px;color:var(--navy);font-weight:700;margin-top:8px;letter-spacing:1px}
+  .sec-head p{color:var(--muted);font-size:15px;margin-top:12px}
+
+  /* HEADER */
+  header{position:fixed;top:0;left:0;width:100%;z-index:50;transition:.3s;padding:14px 0}
+  header.scrolled{background:#fff;box-shadow:0 1px 14px rgba(0,0,0,.07);padding:8px 0}
+  .nav{display:flex;align-items:center;justify-content:space-between}
+  .logo img{height:46px}
+  header:not(.scrolled) .logo{background:#ffffffee;padding:5px 12px;border-radius:10px}
+  .menu{display:flex;align-items:center;gap:6px;font-size:14px;color:#fff;font-weight:500}
+  header.scrolled .menu{color:var(--ink)}
+  .menu .item{position:relative}
+  .menu .item>a{display:flex;align-items:center;gap:5px;padding:10px 14px;border-radius:8px;transition:.2s;cursor:pointer}
+  .menu .item>a .caret{font-size:10px;opacity:.8;transition:.2s}
+  .menu .item:hover>a{color:var(--gold)}
+  .menu .item:hover>a .caret{transform:rotate(180deg)}
+  .dropdown{position:absolute;top:100%;left:0;min-width:230px;background:#fff;border-radius:12px;box-shadow:0 16px 40px rgba(7,30,70,.18);padding:8px;opacity:0;visibility:hidden;transform:translateY(8px);transition:.22s;border:1px solid var(--line)}
+  .menu .item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(4px)}
+  .dropdown a{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;font-size:13.5px;color:var(--ink);font-weight:500}
+  .dropdown a small{color:var(--muted);font-weight:400;font-size:11px}
+  .dropdown a:hover{background:#f1f5fb;color:var(--navy)}
+  .dropdown a .di{color:var(--blue);font-size:15px;width:18px;text-align:center}
+  .menu .cta{background:var(--gold);color:#3d2b00;padding:10px 20px;border-radius:8px;font-weight:600;margin-left:8px}
+  .menu .cta:hover{color:#3d2b00;filter:brightness(.96)}
+  .burger{display:none;font-size:26px;color:#fff;cursor:pointer}
+  header.scrolled .burger{color:var(--navy)}
+  /* mobile drawer */
+  #mnav{display:none;position:fixed;inset:0;z-index:60;background:rgba(7,30,70,.97);padding:80px 28px;overflow-y:auto}
+  #mnav.open{display:block}
+  #mnav .mclose{position:absolute;top:22px;right:26px;font-size:30px;color:#fff;cursor:pointer}
+  #mnav h6{color:var(--gold);font-size:12px;letter-spacing:2px;margin:22px 0 8px;font-weight:600}
+  #mnav a{display:block;color:#fff;font-size:16px;padding:9px 0;border-bottom:1px solid #ffffff15}
+
+  /* HERO */
+  .hero{position:relative;height:100vh;min-height:620px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#071e46}
+  .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:heroZoom 22s ease-in-out infinite alternate;opacity:0;transition:opacity 1.1s ease}
+  .hero video.show{opacity:1}
+  @keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.12)}}
+  .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,30,70,.62),rgba(7,30,70,.42),rgba(7,30,70,.6))}
+  .hero .content{position:relative;z-index:2;color:#fff;padding:0 20px}
+  .hero h1{font-size:clamp(30px,5vw,56px);font-weight:700;line-height:1.42;letter-spacing:3px;margin-bottom:14px;text-shadow:0 2px 20px rgba(0,0,0,.3)}
+  .hero-en{font-size:clamp(13px,1.7vw,19px);letter-spacing:3px;font-weight:500;margin-bottom:30px;background:linear-gradient(90deg,#ffe7a8,#f5a623,#ffe7a8);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .hero .lead{font-size:clamp(14px,2vw,17px);color:#e7eefb;letter-spacing:1px;margin-bottom:36px;text-shadow:0 1px 12px rgba(0,0,0,.3)}
+  .hero .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  @keyframes heroUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+  @keyframes shine{to{background-position:200% center}}
+  @keyframes heroLine{from{width:0;opacity:0}to{width:72px;opacity:1}}
+  .hero-line{height:3px;width:72px;margin:18px auto 22px;border-radius:3px;background:linear-gradient(90deg,#f5a623,#ffe7a8);box-shadow:0 0 12px rgba(245,166,35,.55);animation:heroLine .9s 1.05s both}
+  .hero-h1{animation:heroUp 1s .15s both}
+  .hero-en{animation:heroUp 1s .45s both, shine 4.5s linear 1.4s infinite}
+  .hero .lead{animation:heroUp 1s .65s both}
+  .hero-btns{animation:heroUp 1s .85s both}
+  .scrolldown{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:#ffffffcc;font-size:12px;letter-spacing:2px;z-index:2}
+  .scrolldown span{display:block;font-size:22px;animation:bob 1.8s infinite;margin-top:2px}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+  .trustbar{background:#fff;text-align:center;padding:15px;font-size:12.5px;color:#7b8aa0;letter-spacing:.5px;border-bottom:1px solid var(--line)}
+  .trustbar b{color:var(--navy);font-weight:600}
+
+  /* MISSION / VISION */
+  .mv{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+  .mv .sun{position:absolute;right:-120px;top:-120px;width:420px;height:420px;background:radial-gradient(circle,#f5a62326,transparent 68%);border-radius:50%}
+  .mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;position:relative;z-index:2}
+  .mv-card{border:1px solid #ffffff22;border-radius:16px;padding:40px 36px;background:#ffffff08}
+  .mv-card .tag{font-size:13px;letter-spacing:4px;color:var(--gold);font-weight:600}
+  .mv-card h3{font-size:26px;font-weight:700;margin:14px 0 14px;line-height:1.5}
+  .mv-card p{font-size:14px;color:#cfe0f7;line-height:1.9}
+  .mv .credo{text-align:center;margin-top:46px;position:relative;z-index:2;font-size:15px;color:#dbe6f7;letter-spacing:1px}
+  .mv-value{margin-top:54px;position:relative;z-index:2}
+  .mv-value .vh{text-align:center;font-size:14px;letter-spacing:3px;color:var(--gold);font-weight:700;margin-bottom:8px}
+  .mv-value .vhsub{text-align:center;font-size:12.5px;color:#aec6ee;margin-bottom:24px}
+  .mv-firstgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .fitem{border:1px solid #ffffff22;border-radius:14px;padding:24px 14px;background:#ffffff08;text-align:center;transition:.25s}
+  .fitem:hover{background:#ffffff16;transform:translateY(-5px);border-color:rgba(245,166,35,.45)}
+  .fitem .fl{font-size:34px;font-weight:800;color:var(--gold);line-height:1}
+  .fitem h5{font-size:13.5px;color:#fff;margin:9px 0 5px;font-weight:700}
+  .fitem p{font-size:11.5px;color:#cfe0f7;line-height:1.65}
+  .mv-illus{max-width:560px;margin:0 auto 42px;position:relative;z-index:2}
+  .mv-illus svg{width:100%;height:auto;display:block}
+
+  /* MESSAGE */
+  .message{background:#fff}
+  .msg-grid{display:grid;grid-template-columns:0.8fr 1.4fr;gap:48px;align-items:start}
+  .msg-left h2{font-size:30px;color:var(--navy);font-weight:700;margin:8px 0 24px;letter-spacing:1px}
+  .ceo-photo{width:100%;max-width:280px;border-radius:14px;margin-bottom:18px;aspect-ratio:5/6;object-fit:cover}
+  .msg-left .rep{border-left:3px solid var(--gold);padding-left:16px}
+  .msg-left .rep-name{font-size:13px;color:var(--muted)}
+  .msg-left .rep-name2{font-size:20px;color:var(--navy);font-weight:700;margin-top:2px}
+  .msg-right p{font-size:15px;color:#3a4658;line-height:2;margin-bottom:18px}
+  .msg-right b{color:var(--navy)}
+  .sign-block{margin-top:30px;padding-top:22px;border-top:1px solid var(--line);text-align:right}
+  .sign-role{font-size:13px;color:var(--muted);letter-spacing:1px;margin-bottom:2px}
+  .signature{font-family:'Great Vibes','Parisienne',cursive;font-size:22px;color:#111;line-height:1.1;display:inline-block;position:relative}
+  .signature::after{content:"";display:block;height:1.5px;width:78%;margin:4px 0 0 auto;background:linear-gradient(90deg,transparent,var(--gold))}
+
+  /* HISTORY — minimal premium (vertical) */
+  .history{background:#fff}
+  .tlv{max-width:660px;margin:30px auto 0;position:relative}
+  .tv{display:grid;grid-template-columns:92px 1fr;column-gap:36px;position:relative;padding-bottom:40px}
+  .tv:last-child{padding-bottom:0}
+  .tv::before{content:"";position:absolute;left:111px;top:7px;bottom:-7px;width:1px;background:#dde2ec}
+  .tv:last-child::before{display:none}
+  .tv::after{content:"";position:absolute;left:106px;top:6px;width:11px;height:11px;border-radius:50%;background:#fff;border:1.5px solid var(--gold);z-index:2;transition:.3s}
+  .tv:hover::after{background:var(--gold);transform:scale(1.25)}
+  .tv-year{text-align:right;font-size:27px;font-weight:300;color:var(--navy);line-height:1.05}
+  .tv-year span{display:block;font-size:13px;color:var(--muted);margin-top:5px;font-weight:400}
+  .tv-main{padding-top:1px}
+  .tv-main h4{font-size:16px;color:var(--navy);font-weight:500;margin-bottom:3px}
+  .tv-main p{font-size:13px;color:var(--muted);letter-spacing:.2px}
+  .tv.cur .tv-year{color:var(--blue)}
+  .tv.cur::after{background:var(--blue);border-color:var(--blue);box-shadow:0 0 0 0 rgba(30,111,214,.45);animation:tlping 2.4s ease-out infinite}
+  @keyframes tlping{0%{box-shadow:0 0 0 0 rgba(30,111,214,.45)}100%{box-shadow:0 0 0 12px rgba(30,111,214,0)}}
+
+  /* COMPANY */
+  .company{background:var(--bg)}
+  .ctbl{max-width:760px;margin:0 auto;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+  .ctbl .row{display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--line)}
+  .ctbl .row:last-child{border-bottom:0}
+  .ctbl .k{background:#f1f5fb;color:var(--navy);font-weight:600;font-size:14px;padding:16px 22px}
+  .ctbl .v{font-size:14px;color:#3a4658;padding:16px 22px}
+
+  /* PROBLEM */
+  .problem{background:var(--bg)}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .pcard{background:#fff;border-radius:14px;padding:32px 18px;text-align:center;border:1px solid var(--line);transition:.25s}
+  .pcard:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(11,61,145,.08)}
+  .pcard .ic{width:58px;height:58px;border-radius:50%;background:#eaf1fb;color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 16px}
+  .pcard h3{font-size:16px;color:var(--navy);margin-bottom:6px}
+  .pcard p{font-size:13px;color:var(--muted)}
+
+  /* SOLUTION (video band) */
+  .solution{position:relative;overflow:hidden;background:#071e46}
+  .solution video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32}
+  .solution .ov{position:absolute;inset:0;background:linear-gradient(120deg,rgba(11,61,145,.88),rgba(30,111,214,.6))}
+  .solution .inner{position:relative;z-index:2;color:#fff;text-align:center;padding:90px 0}
+  .solution h2{font-size:30px;font-weight:700;margin-bottom:16px;letter-spacing:1px}
+  .solution p{font-size:15px;color:#e7eefb;max-width:680px;margin:0 auto;line-height:1.9}
+
+  /* SERVICES */
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .svc2{grid-template-columns:repeat(2,1fr);max-width:780px;margin:0 auto}
+  .media{background:var(--bg)}
+  .mcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:32px 28px;position:relative;overflow:hidden;transition:.25s}
+  .mcard:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(11,61,145,.1)}
+  .mcard::before{content:"";position:absolute;left:0;top:0;width:100%;height:4px;background:linear-gradient(90deg,var(--gold),var(--blue))}
+  .mtag{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--navy);background:#eef2fb;border-radius:30px;padding:6px 16px;margin-bottom:16px}
+  .mcard h3{font-size:19px;color:var(--navy);margin-bottom:10px;font-weight:600}
+  .mcard p{font-size:14px;color:var(--muted);line-height:1.9}
+  .mlink{display:inline-block;margin-top:16px;font-size:14px;font-weight:600;color:var(--blue)}
+  .mlink:hover{color:var(--navy)}
+  .mlist{list-style:none;margin-top:14px}
+  .mlist li{font-size:13px;color:#3a4658;padding:5px 0 5px 20px;position:relative}
+  .mlist li::before{content:"\2714";position:absolute;left:0;color:var(--gold);font-size:11px}
+
+  /* ISSUE cta */
+  .issue-cta{text-align:center;margin-top:44px;font-size:19px;color:var(--navy)}
+  .issue-cta b{color:var(--navy)}
+  .issue-cta::before{content:"\2193";display:block;font-size:28px;color:var(--gold);margin-bottom:12px;animation:bob 1.8s infinite}
+  .pcard p{min-height:0}
+
+  /* SOLUTION detail */
+  .solution-detail{background:#fff}
+  .solcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 22px;position:relative;transition:.25s;border-top:4px solid var(--blue)}
+  .solcard:hover{transform:translateY(-5px);box-shadow:0 14px 32px rgba(11,61,145,.1)}
+  .solcard .sn{font-size:13px;font-weight:700;color:var(--gold);letter-spacing:1px}
+  .solcard .si{font-size:30px;margin:6px 0 10px;color:var(--navy)}
+  .solcard h3{font-size:17px;color:var(--navy);margin-bottom:8px}
+  .solcard p{font-size:13.5px;color:var(--muted);line-height:1.85}
+  .solcard .stag{display:inline-block;margin-top:12px;font-size:11px;color:#9a5b00;background:#fdeccb;border-radius:20px;padding:3px 12px}
+
+  /* SERVICES extras */
+  .svc-target{font-size:12.5px;color:var(--navy);background:#eef2fb;border-radius:8px;padding:9px 12px;margin-top:14px;line-height:1.6}
+  .svc-support{max-width:820px;margin:30px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .sup{background:#f6f8fc;border:1px solid var(--line);border-radius:12px;padding:20px;text-align:center}
+  .sup .si{font-size:26px;color:var(--blue)}
+  .sup h4{font-size:14px;color:var(--navy);margin:8px 0 4px}
+  .sup p{font-size:12px;color:var(--muted)}
+  .svc-supnote{text-align:center;font-size:12.5px;color:var(--muted);margin-top:16px}
+
+  /* STRENGTH sublist + badges */
+  .str-card .sub{list-style:none;margin-top:14px;border-top:1px solid rgba(255,255,255,.14);padding-top:12px;position:relative;z-index:2}
+  .str-card .sub li{font-size:12.5px;color:#cfe0f7;padding:4px 0 4px 18px;position:relative}
+  .str-card .sub li::before{content:"\2714";position:absolute;left:0;color:var(--gold);font-size:10px}
+  .str-badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px;position:relative;z-index:3}
+  .str-badge{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:30px;padding:9px 18px;font-size:12.5px;color:#e7eefb}
+  .str-badge b{color:var(--gold)}
+  .scard{border:1px solid var(--line);border-radius:14px;padding:30px 26px;border-top:4px solid var(--gold);transition:.25s}
+  .scard:hover{transform:translateY(-5px);box-shadow:0 14px 32px rgba(11,61,145,.1)}
+  .scard{position:relative}
+  .snum{position:absolute;top:18px;right:22px;font-size:34px;font-weight:700;color:#eef2f8;letter-spacing:1px}
+  .scard .ic{font-size:34px;color:var(--navy);margin-bottom:14px}
+  .scard h3{font-size:19px;color:var(--navy);margin-bottom:8px}
+  .scard p{font-size:14px;color:var(--muted);min-height:66px}
+  .slist{list-style:none;margin-top:14px;border-top:1px solid var(--line);padding-top:14px}
+  .slist li{font-size:13px;color:#3a4658;padding:6px 0 6px 22px;position:relative}
+  .slist li::before{content:"\2714";position:absolute;left:0;color:var(--gold);font-size:12px}
+
+  /* STRENGTH */
+  .strength{position:relative;overflow:hidden;color:#fff;background:linear-gradient(150deg,#0a2f72 0%,#0b3d91 55%,#11479f 100%)}
+  .strength::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:26px 26px;opacity:.55;z-index:1}
+  .strength .sec-head{position:relative;z-index:3}
+  .strength .sec-head h2{color:#fff}
+  .str-bg{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+  .str-glow{position:absolute;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,.20),transparent 70%)}
+  .str-glow.g1{top:-160px;right:-120px}
+  .str-glow.g2{bottom:-180px;left:-140px;background:radial-gradient(circle,rgba(30,111,214,.45),transparent 70%)}
+  .str-burst{position:absolute;top:-90px;right:-60px;width:300px;height:300px;opacity:.16}
+  .str-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative;z-index:3}
+  .str-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:34px 28px;position:relative;overflow:hidden;transition:.3s}
+  .str-card:hover{transform:translateY(-6px);background:rgba(255,255,255,.1);border-color:rgba(245,166,35,.55);box-shadow:0 18px 42px rgba(0,0,0,.28)}
+  .str-no{position:absolute;top:20px;right:26px;font-size:42px;font-weight:700;color:rgba(255,255,255,.12);letter-spacing:1px}
+  .str-ico{width:78px;height:78px;border-radius:50%;background:rgba(245,166,35,.16);display:flex;align-items:center;justify-content:center;margin-bottom:20px;transition:.3s}
+  .str-card:hover .str-ico{background:rgba(245,166,35,.3);transform:scale(1.06)}
+  .str-ico svg{width:42px;height:42px}
+  .str-card h3{font-size:19px;color:#fff;margin-bottom:10px;font-weight:600;position:relative;z-index:2}
+  .str-card p{font-size:14px;color:#cfe0f7;line-height:1.9;position:relative;z-index:2}
+
+  /* STATS */
+  .stats{background:#fff}
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;text-align:center}
+  .stat{padding:8px 10px}
+  .stat:not(:last-child){border-right:1px solid var(--line)}
+  .snum2{font-size:46px;font-weight:700;color:var(--navy);line-height:1;letter-spacing:1px}
+  .snum2 .suf{color:var(--gold)}
+  .slab{font-size:13px;color:var(--muted);margin-top:10px;letter-spacing:.5px}
+  .stats .note{text-align:center;font-size:11px;color:#aab3c2;margin-top:26px}
+
+  /* SCROLL PROGRESS */
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--gold);z-index:70;transition:width .08s linear}
+
+  /* FLOATING BUTTONS */
+  .fab{position:fixed;right:20px;bottom:22px;z-index:55;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+  .fab-cta{background:var(--gold);color:#3d2b00;font-weight:600;font-size:14px;padding:13px 20px;border-radius:30px;box-shadow:0 8px 22px rgba(245,166,35,.4);transition:.25s}
+  .fab-cta:hover{transform:translateY(-2px)}
+  .fab-top{width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;border:0;font-size:20px;cursor:pointer;box-shadow:0 8px 22px rgba(11,61,145,.3);opacity:0;visibility:hidden;transform:translateY(8px);transition:.25s}
+  .fab-top.show{opacity:1;visibility:visible;transform:none}
+
+  /* FLOW */
+  .flow{background:var(--bg)}
+  /* FLOW – vertical timeline */
+  .steps{position:relative;max-width:680px;margin:0 auto;padding-left:8px}
+  .fline{position:absolute;top:18px;bottom:18px;left:35px;width:3px;background:#dbe4f0;border-radius:3px;overflow:hidden;z-index:0}
+  .fline i{position:absolute;left:0;top:-30%;width:100%;height:30%;background:linear-gradient(180deg,transparent,var(--gold),transparent);animation:flowline 3.4s linear infinite}
+  @keyframes flowline{to{top:130%}}
+  .step{position:relative;z-index:1;display:flex;align-items:flex-start;gap:24px;padding-bottom:26px}
+  .step:last-child{padding-bottom:0}
+  .step .dot{width:66px;height:66px;border-radius:50%;background:linear-gradient(150deg,var(--navy),var(--blue));display:flex;align-items:center;justify-content:center;flex:none;position:relative;box-shadow:0 8px 20px rgba(11,61,145,.28);transition:.3s}
+  .step .dot::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--blue);opacity:0;animation:pring 2.6s ease-out infinite}
+  .step:last-child .dot{background:linear-gradient(150deg,#f7b733,var(--gold))}
+  .step:last-child .dot::after{border-color:var(--gold)}
+  .step .dotnum{position:absolute;top:-8px;right:-8px;width:24px;height:24px;border-radius:50%;background:#fff;color:var(--navy);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  .step:last-child .dotnum{color:var(--gold)}
+  @keyframes pring{0%{transform:scale(1);opacity:.5}70%{opacity:0}100%{transform:scale(1.7);opacity:0}}
+  .steps .step:nth-child(2) .dot::after{animation-delay:0s}
+  .steps .step:nth-child(3) .dot::after{animation-delay:.5s}
+  .steps .step:nth-child(4) .dot::after{animation-delay:1s}
+  .steps .step:nth-child(5) .dot::after{animation-delay:1.5s}
+  .steps .step:nth-child(6) .dot::after{animation-delay:2s}
+  .scontent{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 24px;box-shadow:0 4px 14px rgba(11,61,145,.05);transition:.3s;position:relative}
+  .scontent::before{content:"";position:absolute;left:-9px;top:24px;width:16px;height:16px;background:#fff;border-left:1px solid var(--line);border-bottom:1px solid var(--line);transform:rotate(45deg)}
+  .step:hover .scontent{transform:translateX(6px);box-shadow:0 16px 34px rgba(11,61,145,.14);border-color:rgba(245,166,35,.5)}
+  .step:hover .dot{transform:scale(1.07)}
+  .fsvg{width:30px;height:30px}
+  .fstep{display:inline-block;font-size:11px;letter-spacing:1.5px;color:var(--gold);font-weight:700;margin-bottom:4px}
+  .step h3{font-size:18px;color:var(--navy);margin-bottom:4px}
+  .step p{font-size:13.5px;color:var(--muted);line-height:1.6}
+
+  /* CASE */
+  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .ccard{border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.25s}
+  .ccard:hover{box-shadow:0 14px 32px rgba(11,61,145,.1)}
+  .ccard .top{background:linear-gradient(120deg,var(--navy),var(--blue));color:#fff;padding:24px 26px}
+  .ccard .top .tag{font-size:12px;background:#ffffff22;display:inline-block;padding:3px 12px;border-radius:20px;margin-bottom:10px}
+  .ccard .top h3{font-size:18px}
+  .ccard .body{padding:24px 26px}
+  .ccard .body p{font-size:14px;color:var(--muted)}
+  .ccard .body .quote{color:var(--navy);font-weight:600;margin-top:12px;font-size:14px}
+
+  /* FAQ */
+  .faq{max-width:800px;margin:0 auto}
+  .qa{border:1px solid var(--line);border-radius:10px;margin-bottom:12px;overflow:hidden}
+  .qa summary{list-style:none;cursor:pointer;padding:18px 24px;font-size:15px;font-weight:600;color:var(--navy);display:flex;justify-content:space-between;align-items:center}
+  .qa summary::-webkit-details-marker{display:none}
+  .qa[open] summary{background:#f8fafc}
+  .qa .ans{padding:0 24px 18px;font-size:14px;color:var(--muted);line-height:1.85}
+  .qa .ans p{margin-bottom:10px}
+  .qa .ans p:last-child{margin-bottom:0}
+  .qa .plus{transition:.2s;color:var(--gold);font-size:20px}
+  .qa[open] .plus{transform:rotate(45deg)}
+  .faq-path{display:flex;flex-direction:column;align-items:center;gap:5px;margin:14px 0}
+  .faq-path .pl{font-size:12px;font-weight:700;letter-spacing:1px;color:var(--navy);margin-bottom:2px}
+  .faq-path b{background:#eef2fb;border:1px solid var(--line);border-radius:8px;padding:7px 18px;font-size:13px;color:var(--navy);font-weight:700}
+  .faq-path b.hl{background:rgba(245,166,35,.15);border-color:rgba(245,166,35,.5)}
+  .faq-path .ar{color:var(--gold);font-size:16px;line-height:1}
+
+  /* CTA */
+  .cta-sec{background:linear-gradient(120deg,#0b3d91,#1e6fd6);color:#fff;text-align:center}
+  .cta-sec h2{font-size:32px;font-weight:700;margin-bottom:12px;letter-spacing:1px}
+  .cta-sec p{color:#dbe6f7;margin-bottom:28px}
+  .cta-sec .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  /* RECRUIT */
+  .recruit-hero{position:relative;color:#fff;text-align:center;overflow:hidden;background:#071e46}
+  .rec-bg{position:absolute;inset:0;overflow:hidden}
+  .rec-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;animation:recFade 21s infinite}
+  .rec-slide:nth-child(1){background-image:url('assets/recruit-1.jpg');animation-delay:0s}
+  .rec-slide:nth-child(2){background-image:url('assets/recruit-2.jpg');animation-delay:7s}
+  .rec-slide:nth-child(3){background-image:url('assets/recruit-3.jpg');animation-delay:14s}
+  @keyframes recFade{0%{opacity:0;transform:scale(1.04)}3%{opacity:1}30%{opacity:1}35%{opacity:0}100%{opacity:0;transform:scale(1.12)}}
+  @keyframes recZoom{to{transform:scale(1.15)}}
+  .rec-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,30,70,.82),rgba(11,61,145,.72),rgba(7,30,70,.86))}
+  .rec-particles{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+  .recruit-hero .wrap{position:relative;z-index:2}
+  .recruit-hero .en{font-size:13px;letter-spacing:3px;color:var(--gold);font-weight:600}
+  .recruit-hero h2{font-size:clamp(28px,4.4vw,42px);font-weight:700;margin:12px 0 12px;letter-spacing:1px;line-height:1.45;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+  .rec-en{font-size:clamp(13px,1.7vw,18px);letter-spacing:2px;font-weight:500;margin-bottom:18px;background:linear-gradient(90deg,#ffe7a8,#f5a623,#ffe7a8);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:shine 4.5s linear infinite}
+  .rec-lead{color:#e7eefb;font-size:15px;line-height:1.95;text-shadow:0 1px 10px rgba(0,0,0,.3)}
+  .rec-points{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+  .rp{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:18px 26px;min-width:170px;transition:.25s}
+  .rp:hover{background:rgba(245,166,35,.16);border-color:rgba(245,166,35,.5);transform:translateY(-4px)}
+  .rp strong{display:block;font-size:18px;color:#fff;font-weight:600}
+  .rp span{font-size:12.5px;color:#cfe0f7}
+  .culture{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;text-align:center}
+  .vcard{border:1px solid var(--line);border-radius:14px;padding:28px 12px;transition:.25s}
+  .vcard:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(11,61,145,.08)}
+  .vicon{width:74px;height:74px;border-radius:50%;background:#eef2fb;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;transition:.3s}
+  .vcard:hover .vicon{background:#fff3da;transform:translateY(-3px) scale(1.06)}
+  .vsvg{width:38px;height:38px}
+  .ico-flick{transform-origin:center bottom;animation:flick 1.2s ease-in-out infinite}
+  .ico-beat{transform-origin:center;animation:beat 1s ease-in-out infinite}
+  @keyframes flick{0%,100%{transform:scale(1,1)}50%{transform:scale(1.07,0.93)}}
+  @keyframes beat{0%,100%{transform:scale(1)}28%{transform:scale(1.16)}45%{transform:scale(1)}}
+  .vcard .l{font-size:30px;font-weight:700;color:var(--gold);line-height:1}
+  .vcard h4{font-size:14px;color:var(--navy);margin:10px 0 4px}
+  .vcard p{font-size:11.5px;color:var(--muted);line-height:1.6}
+  /* 会社文化 – 3 values */
+  .cc{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:center;max-width:980px;margin:0 auto}
+  .ccard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:44px 30px 38px;transition:.3s;position:relative;overflow:hidden}
+  .ccard::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--navy),var(--blue),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+  .ccard:hover::before{transform:scaleX(1)}
+  .ccard:hover{transform:translateY(-7px);box-shadow:0 22px 46px rgba(11,61,145,.14);border-color:rgba(245,166,35,.5)}
+  .cc-icon{width:92px;height:92px;border-radius:50%;background:#eef2fb;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;transition:.3s}
+  .ccard:hover .cc-icon{background:#fff3da;transform:translateY(-3px) scale(1.06)}
+  .cc-icon svg{width:46px;height:46px}
+  .cc-eng{font-size:12px;letter-spacing:2.5px;color:var(--gold);font-weight:700;text-transform:uppercase}
+  .ccard h4{font-size:23px;color:var(--navy);font-weight:700;margin:4px 0 12px}
+  .ccard p{font-size:14px;color:#3a4658;line-height:1.85}
+  /* F.I.R.S.T. – hiện lần lượt */
+  .firstcard{opacity:0;transform:translateY(46px) scale(.82)}
+  .firstcard.in{animation:firstPop .75s cubic-bezier(.22,1.25,.36,1) forwards}
+  @keyframes firstPop{0%{opacity:0;transform:translateY(46px) scale(.82)}60%{opacity:1;transform:translateY(-7px) scale(1.05)}100%{opacity:1;transform:translateY(0) scale(1)}}
+  .firstcard.in .vicon{animation:firstIcon .6s ease both}
+  @keyframes firstIcon{0%{transform:rotate(-25deg) scale(.5)}70%{transform:rotate(8deg) scale(1.12)}100%{transform:rotate(0) scale(1)}}
+  .firstcard.in .l{animation:firstL .6s ease both}
+  @keyframes firstL{0%{letter-spacing:8px;opacity:0}100%{letter-spacing:0;opacity:1}}
+  /* SENPAI – essay / message style */
+  .senpai{display:flex;flex-direction:column;gap:56px;max-width:1000px;margin:0 auto}
+  .voice{display:flex;gap:46px;align-items:flex-start}
+  .voice:nth-child(even){flex-direction:row-reverse}
+  .vmedia{flex:0 0 34%;position:sticky;top:90px}
+  .vmedia img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:18px;box-shadow:0 18px 44px rgba(11,61,145,.2);display:block}
+  .vmedia::after{content:"";position:absolute;width:64%;height:64%;border:2px solid var(--gold);border-radius:18px;z-index:-1;bottom:-16px;right:-16px;opacity:.5}
+  .voice:nth-child(even) .vmedia::after{right:auto;left:-16px}
+  .vmedia .vyear{position:absolute;left:16px;bottom:16px;font-size:11px;font-weight:700;color:#3d2b00;background:var(--gold);padding:5px 13px;border-radius:20px;box-shadow:0 4px 12px rgba(0,0,0,.18)}
+  .vtext{flex:1;position:relative}
+  .vtext .qmark{font-family:Georgia,serif;font-size:80px;line-height:.5;color:var(--gold);opacity:.28;display:block;margin-bottom:6px}
+  .vhead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+  .vhead h4{font-size:23px;color:var(--navy);font-weight:700}
+  .vhead .vrole{font-size:13px;color:#fff;background:var(--blue);padding:4px 12px;border-radius:20px;font-weight:600}
+  .vtext p{font-size:14px;color:#3a4658;line-height:1.95;margin-bottom:12px}
+  .vtext p:last-child{margin-bottom:0}
+  .vtext .vlead{font-size:16px;color:var(--navy);font-weight:600;line-height:1.8;margin-bottom:18px}
+  .vsec{margin-top:18px}
+  .vsec h5{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px;padding-left:12px;position:relative}
+  .vsec h5::before{content:"";position:absolute;left:0;top:2px;width:4px;height:15px;background:var(--gold);border-radius:2px}
+
+  /* FOOTER */
+  footer{background:var(--navy-d);color:#9db8e0;padding:60px 0 28px;font-size:13px}
+  .fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:36px;margin-bottom:34px}
+  .flogo{background:#fff;display:inline-block;padding:8px 12px;border-radius:10px;margin-bottom:16px}
+  .flogo img{height:42px}
+  .faddr{line-height:1.9;font-size:13px;color:#aebfd8}
+  footer h5{color:#fff;font-size:14px;margin-bottom:14px;position:relative;padding-bottom:10px}
+  footer h5::after{content:"";position:absolute;left:0;bottom:0;width:26px;height:2px;background:var(--gold);border-radius:2px}
+  footer ul{list-style:none}
+  footer ul li{margin-bottom:9px}
+  footer ul li a,footer ul li span{color:#9db8e0;transition:.2s;display:inline-flex;align-items:center;gap:7px}
+  footer ul li a::before,footer ul li span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold);opacity:.7;flex:none}
+  footer ul li a:hover{color:#fff;padding-left:3px}
+  .fmap{border-radius:12px;overflow:hidden;border:1px solid #ffffff1f}
+  .fmap iframe{width:100%;height:150px;border:0;display:block;filter:grayscale(.3)}
+  .fmapcap{font-size:11.5px;color:#7e9ac9;margin-top:8px}
+  .fbottom{border-top:1px solid #ffffff1a;padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12px;color:#7e9ac9}
+
+  /* NEWS */
+  .news{background:var(--bg)}
+  .nlist{max-width:820px;margin:0 auto}
+  .nrow{display:flex;align-items:center;gap:18px;padding:18px 6px;border-bottom:1px solid var(--line);transition:.2s;cursor:pointer}
+  .nrow:hover{background:#fff;padding-left:14px;padding-right:14px;border-radius:8px;box-shadow:0 6px 18px rgba(11,61,145,.06)}
+  .ndate{font-size:13px;color:var(--muted);width:92px;flex-shrink:0;font-variant-numeric:tabular-nums}
+  .ncat{font-size:11px;font-weight:600;color:var(--navy);background:#e7eefb;border-radius:20px;padding:3px 12px;flex-shrink:0}
+  .ncat.r{color:#9a5b00;background:#fdeccb}
+  .ncat.g{color:#1c7a47;background:#e2f4ea}
+  .ntitle{font-size:14.5px;color:var(--ink);flex:1}
+  .nmore{text-align:center;margin-top:34px}
+
+  /* MAP */
+  .cmap{max-width:760px;margin:22px auto 0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .cmap iframe{width:100%;height:330px;border:0;display:block}
+
+  /* CONTACT FORM */
+  .contact{background:#fff}
+  .cform{max-width:680px;margin:0 auto;background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:36px}
+  .frow{margin-bottom:18px}
+  .frow label{display:block;font-size:13.5px;font-weight:600;color:var(--navy);margin-bottom:6px}
+  .frow label .req{color:#e24b4a;font-size:11px;margin-left:6px}
+  .frow input,.frow textarea{width:100%;border:1px solid #cfd8e6;border-radius:8px;padding:12px 14px;font-size:14px;font-family:inherit;background:#fff;transition:.15s}
+  .frow input:focus,.frow textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(30,111,214,.12)}
+  .frow textarea{min-height:120px;resize:vertical}
+  .frow .err{display:none;color:#e24b4a;font-size:12px;margin-top:5px}
+  .frow.invalid input,.frow.invalid textarea{border-color:#e24b4a;background:#fff6f6}
+  .frow.invalid .err{display:block}
+  .fcheck{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--muted);margin-bottom:20px}
+  .fcheck input{width:auto;margin-top:3px;flex-shrink:0}
+  .fcheck a{color:var(--blue);text-decoration:underline}
+  .fsubmit{width:100%;background:var(--gold);color:#3d2b00;font-weight:600;font-size:16px;border:0;border-radius:8px;padding:15px;cursor:pointer;transition:.2s}
+  .fsubmit:hover{filter:brightness(.96);transform:translateY(-1px)}
+  .fdone{display:none;text-align:center;background:#e9f7ef;border:1px solid #b6e3c9;color:#1c7a47;border-radius:14px;padding:38px 24px;font-size:15px;line-height:1.8}
+
+  /* PRIVACY */
+  .privacy{background:var(--bg)}
+  .pbox{max-width:820px;margin:0 auto;font-size:13.5px;color:#3a4658;line-height:1.95}
+  .pbox h4{color:var(--navy);font-size:15px;margin:20px 0 6px;font-weight:600}
+  .pbox h4:first-child{margin-top:0}
+  .pbox .plist{margin:4px 0 4px 0;padding-left:20px;list-style:none}
+  .pbox .plist li{position:relative;padding-left:16px;margin-bottom:5px}
+  .pbox .plist li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+  .pbox .prev{margin-top:22px;font-size:12.5px;color:var(--muted)}
+  /* 採用情報 table */
+  .rtbl{max-width:840px;margin:0 auto;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 6px 20px rgba(11,61,145,.05)}
+  .rrow{display:grid;grid-template-columns:190px 1fr;border-bottom:1px solid var(--line)}
+  .rrow:last-child{border-bottom:0}
+  .rk{background:var(--navy);color:#fff;padding:18px 22px;font-weight:600;font-size:14px;display:flex;align-items:center}
+  .rv{padding:18px 22px;font-size:14px;color:#3a4658;line-height:1.85}
+  .rv ul{list-style:none}
+  .rv li{position:relative;padding-left:16px;margin-bottom:6px}
+  .rv li:last-child{margin-bottom:0}
+  .rv li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+  .rv .jobline{display:block;margin-bottom:8px}
+  .rv .jobline:last-child{margin-bottom:0}
+  .rv .jobline b{color:var(--navy)}
+  .rv .salary{color:#c47f00;font-weight:700;margin-left:4px}
+  .rv .note{font-size:12.5px;color:var(--muted);margin-top:8px}
+  .rapply{text-align:center;margin-top:26px}
+  .rapply .tel{font-size:26px;font-weight:800;color:var(--navy);letter-spacing:1px}
+  .rapply .tel span{font-size:13px;color:var(--gold);display:block;letter-spacing:2px;font-weight:700;margin-bottom:2px}
+  /* 導入事例 detailed */
+  .cases{display:flex;flex-direction:column;gap:34px;max-width:960px;margin:0 auto}
+  .kc{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 6px 20px rgba(11,61,145,.06);transition:.3s}
+  .kc:hover{box-shadow:0 18px 40px rgba(11,61,145,.12)}
+  .kc-head{background:linear-gradient(120deg,var(--navy),var(--blue));color:#fff;padding:24px 32px}
+  .kc-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+  .kc-tag{font-size:12px;background:#ffffff26;padding:4px 13px;border-radius:20px}
+  .kc-head h3{font-size:21px;font-weight:700;line-height:1.45}
+  .kc-body{padding:28px 32px}
+  .kc-block{position:relative;padding-left:18px;margin-bottom:20px}
+  .kc-block:last-child{margin-bottom:0}
+  .kc-block::before{content:"";position:absolute;left:0;top:3px;bottom:3px;width:3px;border-radius:3px;background:#cdd8e8}
+  .kc-block.plan::before{background:var(--blue)}
+  .kc-block.result::before{background:var(--gold)}
+  .kc-label{font-size:12px;font-weight:700;letter-spacing:1px;margin-bottom:7px;color:var(--navy)}
+  .kc-block p{font-size:14px;color:#3a4658;line-height:1.9}
+  .kc-block ul{list-style:none}
+  .kc-block li{position:relative;padding-left:20px;font-size:14px;color:#3a4658;line-height:1.8;margin-bottom:5px}
+  .kc-block li::before{content:"\2713";position:absolute;left:0;top:0;color:#1f9d57;font-weight:800}
+  .kc-stats{display:flex;gap:14px;flex-wrap:wrap;margin:12px 0}
+  .kc-stat{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 20px;text-align:center;min-width:120px}
+  .kc-stat b{display:block;font-size:22px;color:var(--navy);font-weight:800;line-height:1.2}
+  .kc-stat span{font-size:11.5px;color:var(--muted)}
+  .kc-comment{background:#f7f9fc;border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:16px 22px;margin-top:6px}
+  .kc-comment p{font-size:14px;color:var(--navy);line-height:1.85}
+  .kc-comment .who{font-size:12px;color:var(--muted);margin-top:8px}
+
+  .demo-note{background:#fff7e6;border-bottom:1px solid #f5d58a;color:#7a5b00;font-size:12.5px;text-align:center;padding:9px}
+
+  /* TOKUTEI GINOU – 制度説明 */
+  .tg-block{margin-top:70px}
+  .tg-head{text-align:center;max-width:840px;margin:0 auto 44px}
+  .tg-badge{display:inline-block;font-size:12px;font-weight:700;letter-spacing:2px;color:var(--gold);background:rgba(245,166,35,.12);padding:6px 16px;border-radius:30px;margin-bottom:14px}
+  .tg-head h3{font-size:26px;color:var(--navy);font-weight:700;margin-bottom:14px}
+  .tg-head p{font-size:14.5px;color:#3a4658;line-height:1.95}
+  .tg-pathlabel{text-align:center;font-size:13px;font-weight:700;letter-spacing:2px;color:var(--navy);margin-bottom:24px;position:relative}
+  .tg-pathlabel::before,.tg-pathlabel::after{content:"";display:inline-block;width:36px;height:1px;background:var(--gold);vertical-align:middle;margin:0 12px}
+  .tg-path{display:flex;align-items:stretch;justify-content:center;gap:0;flex-wrap:nowrap}
+  .tg-stage{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 22px;position:relative;box-shadow:0 6px 18px rgba(11,61,145,.06);transition:.3s}
+  .tg-stage:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(11,61,145,.14)}
+  .tg-stage .tg-term{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--navy),var(--blue));padding:5px 14px;border-radius:30px;margin-bottom:12px}
+  .tg-stage h4{font-size:19px;color:var(--navy);font-weight:700;margin-bottom:5px}
+  .tg-stage .tg-sub{font-size:12.5px;color:var(--gold);font-weight:600;margin-bottom:14px}
+  .tg-stage ul{list-style:none}
+  .tg-stage li{font-size:13px;color:#3a4658;line-height:1.7;padding-left:18px;position:relative;margin-bottom:6px}
+  .tg-stage li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+  .tg-stage.tg-hl{border-color:rgba(245,166,35,.6);box-shadow:0 10px 30px rgba(245,166,35,.16)}
+  .tg-stage.tg-hl .tg-term{background:linear-gradient(135deg,#f7b733,var(--gold));color:#3d2b00}
+  .tg-conn{display:flex;align-items:center;justify-content:center;flex:none;width:46px;color:var(--gold);font-size:26px;font-weight:700}
+  .tg-merit{margin-top:40px;background:linear-gradient(135deg,#0a2f72,#0b3d91);border-radius:18px;padding:36px 34px;color:#fff;position:relative;overflow:hidden}
+  .tg-merit h4{font-size:19px;font-weight:700;margin-bottom:20px;text-align:center}
+  .tg-merit h4 span{color:var(--gold)}
+  .tg-merit-list{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:14px 30px;max-width:760px;margin:0 auto}
+  .tg-merit-list li{font-size:14px;line-height:1.6;padding-left:32px;position:relative;color:#eaf1fc}
+  .tg-merit-list li::before{content:"\2713";position:absolute;left:0;top:-1px;width:22px;height:22px;border-radius:50%;background:var(--gold);color:#3d2b00;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .tg-jobs{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:760px;margin:0 auto}
+  .tg-job{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--navy);background:#fff;border:1px solid var(--line);border-radius:30px;padding:10px 20px;box-shadow:0 4px 12px rgba(11,61,145,.05);transition:.25s}
+  .tg-job::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold)}
+  .tg-job:hover{transform:translateY(-3px);border-color:rgba(245,166,35,.6);box-shadow:0 12px 26px rgba(11,61,145,.12)}
+  .tg-divider{max-width:1100px;margin:64px auto 0;border-top:1px dashed #d6deea}
+
+  @media(max-width:860px){
+    .menu{display:none}.burger{display:block}
+    .grid4,.grid3,.grid3s,.grid2,.mv-grid,.senpai,.msg-grid,.str-grid,.svc-support{grid-template-columns:1fr}
+    .msg-grid{gap:24px}
+    .ctbl .row{grid-template-columns:1fr}.ctbl .k{padding-bottom:4px}.ctbl .v{padding-top:4px}
+    .culture{grid-template-columns:repeat(2,1fr)}
+    .cc{grid-template-columns:1fr;gap:18px}
+    .mv-firstgrid{grid-template-columns:repeat(2,1fr)}
+    .scol:nth-child(2){border:0;padding:0;border-top:1px solid #ffffff2a;border-bottom:1px solid #ffffff2a;padding:20px 0}
+    .steps{flex-direction:column;gap:20px}.fline{display:none}
+    .stat-grid{grid-template-columns:repeat(2,1fr);row-gap:28px}
+    .stat:not(:last-child){border-right:0}.stat:nth-child(odd){border-right:1px solid var(--line)}
+    .snum2{font-size:38px}
+    .tv{grid-template-columns:60px 1fr;column-gap:22px;padding-bottom:30px}
+    .tv::before{left:75px}
+    .tv::after{left:70px}
+    .tv-year{font-size:21px}
+    .tv-year span{font-size:12px}
+    .fgrid{grid-template-columns:1fr}
+    .sec{padding:60px 0}
+    .fullpage{min-height:auto}
+    .cta-row{margin-top:34px}
+    .tg-path{flex-direction:column}
+    .tg-conn{width:auto;height:38px;transform:rotate(90deg)}
+    .tg-merit-list{grid-template-columns:1fr}
+    .voice,.voice:nth-child(even){flex-direction:column;gap:24px}
+    .vmedia{flex:0 0 auto;width:100%;max-width:340px;margin:0 auto}
+    .vmedia img{aspect-ratio:4/3}
+    .rrow{grid-template-columns:1fr}
+    .rk{padding:12px 18px}
+  }
+  /* DOWNLOAD MODAL */
+  .dlmask{position:fixed;inset:0;z-index:200;background:rgba(7,30,70,.62);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .3s}
+  .dlmask.open{display:flex;opacity:1}
+  .dlbox{background:#fff;width:100%;max-width:440px;border-radius:14px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.35);transform:translateY(18px) scale(.98);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+  .dlmask.open .dlbox{transform:none}
+  .dlhead{background:#071e46;color:#fff;padding:22px 26px;position:relative}
+  .dlhead .bar{position:absolute;top:0;left:0;height:3px;width:100%;background:linear-gradient(90deg,#f5a623,#ffe7a8)}
+  .dlhead h3{font-size:18px;font-weight:700;letter-spacing:1px}
+  .dlhead p{font-size:12px;color:#bcd0f0;margin-top:6px}
+  .dlbody{padding:22px 26px 26px}
+  .dlbody .frow{margin-bottom:14px}
+  .dlbody label{display:block;font-size:12.5px;font-weight:600;color:#1f2a3d;margin-bottom:6px}
+  .dlbody label .req{color:#f5a623;font-size:10px;margin-left:6px}
+  .dlbody input{width:100%;padding:11px 13px;border:1.5px solid #d8dfea;border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s}
+  .dlbody input:focus{outline:none;border-color:#1e6fd6}
+  .dlbody .frow.invalid input{border-color:#e23b3b}
+  .dlbody .err{display:none;color:#e23b3b;font-size:11.5px;margin-top:5px}
+  .dlbody .frow.invalid .err{display:block}
+  .dlbody .note{font-size:11px;color:#7a8398;margin:4px 0 16px;line-height:1.6}
+  .dlbody .dlsubmit{width:100%;padding:13px;border:none;border-radius:8px;background:linear-gradient(90deg,#f5a623,#ffb943);color:#071e46;font-weight:700;font-size:15px;font-family:inherit;cursor:pointer;letter-spacing:1px;box-shadow:0 8px 22px rgba(245,166,35,.4);transition:transform .15s}
+  .dlbody .dlsubmit:hover{transform:translateY(-2px)}
+  .dlclose{position:absolute;top:14px;right:16px;color:#fff;background:rgba(255,255,255,.15);border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:18px;line-height:1}
+  .dldone{text-align:center;padding:34px 26px 30px}
+  .dldone .ic{width:58px;height:58px;border-radius:50%;background:#e8f6ee;color:#1f9d57;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 16px}
+  .dldone h3{font-size:18px;color:#071e46;margin-bottom:8px}
+  .dldone p{font-size:13px;color:#5b6473;line-height:1.7}
+  .dldone a{display:inline-block;margin-top:16px;color:#1e6fd6;font-weight:600;font-size:13px}
+</style>
+</head>
+<body>
+
+<div id="preloader">
+  <div class="pl-inner">
+    <svg class="pl-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(50 50)" fill="#f5a623">
+        <g><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="3s" repeatCount="indefinite"/>
+          <rect x="-2" y="-44" width="4" height="16" rx="2"/><g transform="rotate(45)"><rect x="-2" y="-44" width="4" height="16" rx="2"/></g><g transform="rotate(90)"><rect x="-2" y="-44" width="4" height="16" rx="2"/></g><g transform="rotate(135)"><rect x="-2" y="-44" width="4" height="16" rx="2"/></g><g transform="rotate(180)"><rect x="-2" y="-44" width="4" height="16" rx="2"/></g><g transform="rotate(225)"><rect x="-2" y="-44" width="4" height="16" rx="2"/></g><g transform="rotate(270)"><rect x="-2" y="-44" width="4" height="16" rx="2"/></g><g transform="rotate(315)"><rect x="-2" y="-44" width="4" height="16" rx="2"/></g>
+        </g>
+        <circle r="18" fill="url(#plg)"/>
+      </g>
+      <defs><radialGradient id="plg"><stop offset="0%" stop-color="#ffe39a"/><stop offset="100%" stop-color="#f5a623"/></radialGradient></defs>
+    </svg>
+    <div class="pl-name">BIGLIGHT</div>
+    <div class="pl-bar"><i></i></div>
+  </div>
+</div>
+<div id="progress"></div>
+<div class="demo-note">これはデモ（プレビュー）です ／ Bản demo thiết kế hoàn chỉnh — chưa phải code Next.js production.</div>
+
+<header id="hd">
+  <div class="wrap nav">
+    <a class="logo" href="#"><img src="assets/logo.png" alt="BIGLIGHT"></a>
+    <nav class="menu">
+      <div class="item">
+        <a>会社情報 <span class="caret">&#9660;</span></a>
+        <div class="dropdown">
+          <a href="#mv">理念（Mission / Vision）</a>
+          <a href="#message">代表メッセージ</a>
+          <a href="#strength">選ばれる理由</a>
+          <a href="#history">沿革</a>
+          <a href="#company">会社概要</a>
+        </div>
+      </div>
+      <div class="item">
+        <a>サービス <span class="caret">&#9660;</span></a>
+        <div class="dropdown">
+          <a href="#service">特定技能 採用サービス</a>
+          <a href="#service">人材紹介サービス</a>
+        </div>
+      </div>
+      <div class="item"><a href="#flow">導入の流れ</a></div>
+      <div class="item"><a href="#case">導入事例</a></div>
+      <div class="item"><a href="#faq">よくある質問</a></div>
+      <div class="item"><a href="#news">お知らせ</a></div>
+      <div class="item">
+        <a>採用情報 <span class="caret">&#9660;</span></a>
+        <div class="dropdown">
+          <a href="#recruit">採用トップ</a>
+          <a href="#culture">会社文化</a>
+          <a href="#senpai">先輩の声</a>
+        </div>
+      </div>
+      <a class="cta" href="#contact">無料相談</a>
+    </nav>
+    <div class="burger" onclick="document.getElementById('mnav').classList.add('open')">&#9776;</div>
+  </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div id="mnav">
+  <div class="mclose" onclick="document.getElementById('mnav').classList.remove('open')">&times;</div>
+  <h6>会社情報</h6>
+  <a href="#mv">理念（Mission / Vision）</a>
+  <a href="#message">代表メッセージ</a>
+  <a href="#strength">選ばれる理由</a>
+  <a href="#history">沿革</a>
+  <a href="#company">会社概要</a>
+  <h6>サービス</h6>
+  <a href="#service">特定技能 採用サービス</a>
+  <a href="#service">人材紹介サービス</a>
+  <a href="#flow">導入の流れ</a>
+  <a href="#case">導入事例</a>
+  <a href="#faq">よくある質問</a>
+  <a href="#news">お知らせ</a>
+  <h6>採用情報</h6>
+  <a href="#recruit">採用トップ</a>
+  <a href="#culture">会社文化</a>
+  <a href="#senpai">先輩の声</a>
+  <h6>お問い合わせ</h6>
+  <a href="#contact">無料相談</a>
+</div>
+
+<!-- HERO with real video -->
+<section class="hero">
+  <video class="show" autoplay muted loop playsinline preload="auto" poster="assets/hero-fallback.jpg">
+    <source src="assets/hero-sequence.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
+  <div class="hero-vignette"></div>
+  <svg class="hero-particles" viewBox="0 0 1200 700" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#ffd86b">
+      <circle cx="150" cy="560" r="2.5"><animate attributeName="cy" values="600;120" dur="9s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.8;0" dur="9s" repeatCount="indefinite"/></circle>
+      <circle cx="380" cy="600" r="2"><animate attributeName="cy" values="640;160" dur="11s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.7;0" dur="11s" begin="1.5s" repeatCount="indefinite"/></circle>
+      <circle cx="720" cy="580" r="2.5"><animate attributeName="cy" values="620;140" dur="10s" begin=".8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.85;0" dur="10s" begin=".8s" repeatCount="indefinite"/></circle>
+      <circle cx="960" cy="600" r="2"><animate attributeName="cy" values="650;180" dur="12s" begin="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.7;0" dur="12s" begin="2s" repeatCount="indefinite"/></circle>
+      <circle cx="1080" cy="560" r="2.5"><animate attributeName="cy" values="600;120" dur="9.5s" begin="1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.8;0" dur="9.5s" begin="1s" repeatCount="indefinite"/></circle>
+    </g>
+  </svg>
+  <div class="content">
+    <h1 class="hero-h1">日本の成長を、<br>もっとグローバルに。</h1>
+    <div class="hero-line"></div>
+    <p class="hero-en">Powering Japan&rsquo;s Growth, Globally.</p>
+    <div class="btns hero-btns">
+      <a class="btn-gold" href="#contact">無料で相談する</a>
+      <a class="btn-ghost js-dl" href="#" data-dl>資料ダウンロード</a>
+    </div>
+  </div>
+  <div class="scrolldown">SCROLL<span>&#8675;</span></div>
+</section>
+
+<!-- MISSION / VISION -->
+<section class="sec mv" id="mv">
+  <div class="sun"></div>
+  <div class="wrap">
+    <div class="sec-head reveal reveal-lift d1"><div class="en">Mission &amp; Vision</div><h2 style="color:#fff">私たちの理念</h2></div>
+
+    <div class="mv-illus reveal reveal-lift d2">
+      <svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ベトナムと日本をつなぐ架け橋のイラスト">
+        <defs>
+          <radialGradient id="sunG" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ffe39a"/><stop offset="60%" stop-color="#f7b733"/><stop offset="100%" stop-color="#f5a623"/>
+          </radialGradient>
+        </defs>
+
+        <g transform="translate(320 138)">
+          <g opacity="0.85">
+            <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="46s" repeatCount="indefinite"/>
+            <g fill="#f7c46b">
+              <rect x="-2.5" y="-92" width="5" height="22" rx="2.5"/>
+              <rect x="-2.5" y="70" width="5" height="22" rx="2.5"/>
+              <rect x="-92" y="-2.5" width="22" height="5" rx="2.5"/>
+              <rect x="70" y="-2.5" width="22" height="5" rx="2.5"/>
+              <g transform="rotate(45)"><rect x="-2.5" y="-90" width="5" height="20" rx="2.5"/><rect x="-2.5" y="70" width="5" height="20" rx="2.5"/><rect x="-90" y="-2.5" width="20" height="5" rx="2.5"/><rect x="70" y="-2.5" width="20" height="5" rx="2.5"/></g>
+              <g transform="rotate(22.5)"><rect x="-2" y="-86" width="4" height="16" rx="2"/><rect x="-2" y="70" width="4" height="16" rx="2"/><rect x="-86" y="-2" width="16" height="4" rx="2"/><rect x="70" y="-2" width="16" height="4" rx="2"/></g>
+              <g transform="rotate(67.5)"><rect x="-2" y="-86" width="4" height="16" rx="2"/><rect x="-2" y="70" width="4" height="16" rx="2"/><rect x="-86" y="-2" width="16" height="4" rx="2"/><rect x="70" y="-2" width="16" height="4" rx="2"/></g>
+            </g>
+          </g>
+          <circle r="48" fill="none" stroke="#ffd86b" stroke-width="2">
+            <animate attributeName="r" values="48;64;48" dur="3.4s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.55;0;0.55" dur="3.4s" repeatCount="indefinite"/>
+          </circle>
+          <circle r="42" fill="url(#sunG)"/>
+        </g>
+
+        <path d="M40 232 Q320 96 600 232" fill="none" stroke="#1e6fd6" stroke-width="6" stroke-linecap="round" opacity="0.55"/>
+        <path d="M40 232 Q320 96 600 232" fill="none" stroke="#ffd86b" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="14 360">
+          <animate attributeName="stroke-dashoffset" from="374" to="0" dur="3.6s" repeatCount="indefinite"/>
+        </path>
+
+        <g fill="#cfe0f7">
+          <g transform="translate(40 232)"><circle cx="0" cy="-30" r="9"/><rect x="-9" y="-19" width="18" height="26" rx="9"/></g>
+          <g transform="translate(600 232)"><circle cx="0" cy="-30" r="9"/><rect x="-9" y="-19" width="18" height="26" rx="9"/></g>
+        </g>
+
+        <g fill="#ffd86b">
+          <circle cx="180" cy="190" r="3"><animate attributeName="cy" values="200;120" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0" dur="5s" repeatCount="indefinite"/></circle>
+          <circle cx="460" cy="190" r="3"><animate attributeName="cy" values="205;120" dur="6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0" dur="6s" repeatCount="indefinite"/></circle>
+          <circle cx="320" cy="210" r="2.5"><animate attributeName="cy" values="215;110" dur="5.5s" begin="1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0" dur="5.5s" begin="1s" repeatCount="indefinite"/></circle>
+          <circle cx="250" cy="200" r="2"><animate attributeName="cy" values="205;130" dur="4.5s" begin="0.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0" dur="4.5s" begin="0.6s" repeatCount="indefinite"/></circle>
+          <circle cx="390" cy="200" r="2"><animate attributeName="cy" values="205;130" dur="4.8s" begin="1.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0" dur="4.8s" begin="1.4s" repeatCount="indefinite"/></circle>
+        </g>
+      </svg>
+    </div>
+
+    <div class="mv-grid">
+      <div class="mv-card reveal reveal-lift d3">
+        <div class="tag">MISSION</div>
+        <h3>日本の成長を、<br>もっとグローバルに</h3>
+        <p>「日本の成長をもっとグローバルに」という想いをもとに、BIGLIGHTは、人と企業が国籍を越えて信頼でつながる社会を目指します。</p>
+      </div>
+      <div class="mv-card reveal reveal-lift d4">
+        <div class="tag">VISION</div>
+        <h3>東海地域で最も信頼される<br>外国人材の架け橋になる</h3>
+        <p>東海から全国へ、そして世界へ。私たちは、信頼と成長をつむぐ架け橋であり続けます。</p>
+      </div>
+    </div>
+
+    <div class="mv-value reveal">
+      <div class="vh">私たちのValue ― F.I.R.S.T.</div>
+      <div class="vhsub">BIGLIGHTで働く全員が大切にする、5つの価値観です。</div>
+      <div class="mv-firstgrid">
+        <div class="fitem"><div class="fl">F</div><h5>Fast / 迅速</h5><p>迷わず、すぐに行動する</p></div>
+        <div class="fitem"><div class="fl">I</div><h5>Insight / 本質</h5><p>本質を見抜き、集中する</p></div>
+        <div class="fitem"><div class="fl">R</div><h5>Responsibility / 責任</h5><p>最後まで責任を持つ</p></div>
+        <div class="fitem"><div class="fl">S</div><h5>Spirit / 挑戦</h5><p>失敗を恐れず挑戦する</p></div>
+        <div class="fitem"><div class="fl">T</div><h5>Thankful / 感謝</h5><p>感謝を行動で示す</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 代表メッセージ -->
+<section class="sec message" id="message">
+  <div class="wrap msg-grid">
+    <div class="msg-left reveal">
+      <div class="en" style="font-size:13px;letter-spacing:3px;color:var(--gold);font-weight:600">MESSAGE</div>
+      <h2>代表メッセージ</h2>
+      <img src="assets/ceo.png" alt="代表取締役 グェン・タン・トゥン" class="ceo-photo">
+      <div class="rep">
+        <div class="rep-name">代表取締役</div>
+        <div class="rep-name2">グエン・タン・トゥン</div>
+      </div>
+    </div>
+    <div class="msg-right reveal">
+      <p>この度はBIGLIGHT株式会社のホームページをご覧いただき、誠にありがとうございます。</p>
+      <p>私はベトナム出身で、日本で生活し、仕事をする中で、多くの外国人材と企業様の課題を見てきました。</p>
+      <p>外国人材は「日本で働きたい」という強い気持ちを持っていても、言葉や生活、仕事の面で不安を抱えています。一方で、多くの日本企業は人材不足という課題を抱えながらも、「どこに相談すればよいかわからない」「採用後のサポートが心配」と感じているのが現状です。</p>
+      <p>BIGLIGHTは、そんな双方をつなぐ<b>架け橋</b>になりたいという思いから設立しました。</p>
+      <p>私たちは人材を紹介して終わりではありません。採用前のご相談から、入社後の生活支援、職場定着まで、一人ひとり、一社一社と真剣に向き合うことを大切にしています。</p>
+      <p>まだ若い会社ではありますが、お客様への感謝を忘れず、迅速・誠実・責任を持って行動し、信頼されるパートナーであり続けたいと考えています。</p>
+      <p>これからも企業様と外国人材の未来に少しでも貢献できるよう努力してまいります。</p>
+      <p>今後ともBIGLIGHT株式会社をよろしくお願い申し上げます。</p>
+      <div class="sign-block">
+        <div class="sign-role">代表取締役</div>
+        <div class="signature">Nguyen Thanh Tung</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="sec problem" id="issues">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="en">Issues</div><h2>外国人材の採用、こんなお悩みありませんか？</h2><p>人手不足が深刻化するいま、多くの日本企業が同じ課題に直面しています。</p></div>
+    <div class="grid4">
+      <div class="pcard reveal"><div class="ic">&#128101;</div><h3>人手が足りない</h3><p>求人を出しても応募が集まらず、現場の人手不足が慢性化。事業拡大のチャンスを逃してしまう。</p></div>
+      <div class="pcard reveal"><div class="ic">&#128196;</div><h3>手続きが複雑</h3><p>特定技能や在留資格、ビザ申請の手続きが煩雑で、何から手をつければよいか分からない。</p></div>
+      <div class="pcard reveal"><div class="ic">&#9878;</div><h3>法的に不安</h3><p>外国人雇用の法令やコンプライアンスに不安があり、トラブルやリスクが心配。</p></div>
+      <div class="pcard reveal"><div class="ic">&#128682;</div><h3>早期離職が心配</h3><p>せっかく採用しても定着せず早期離職。採用コストが無駄になってしまう。</p></div>
+    </div>
+    <div class="issue-cta reveal">その課題、<b>BIGLIGHTがワンストップで解決します。</b></div>
+  </div>
+</section>
+
+<!-- SOLUTION video band -->
+<section class="solution">
+  <video autoplay muted loop playsinline>
+    <source src="assets/biglight-team.mp4" type="video/mp4">
+  </video>
+  <div class="ov"></div>
+  <div class="inner wrap reveal">
+    <h2>採用から定着まで、ワンストップで。</h2>
+    <p>BIGLIGHTは、人材の募集・紹介から、在留資格やビザの手続き、寮や生活のサポート、そして入社後の定着支援まで、すべてを一気通貫でご支援します。中間業者を介さないワンストップ体制だから、安心とスピード、そして圧倒的な低コストを同時に実現します。</p>
+  </div>
+</section>
+
+<!-- SOLUTION detail -->
+<section class="sec solution-detail" id="solution">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="en">Solution</div><h2>BIGLIGHTの解決策</h2><p>4つのステップで、企業の「採れない・続かない」をまとめて解決します。</p></div>
+    <div class="grid4">
+      <div class="solcard reveal">
+        <div class="sn">01</div><div class="si">&#128269;</div>
+        <h3>集める</h3>
+        <p>豊富な母集団と高精度マッチングで、必要なスキル・人柄の人材を素早く確保します。</p>
+        <span class="stag">→ 人手が足りない</span>
+      </div>
+      <div class="solcard reveal">
+        <div class="sn">02</div><div class="si">&#128221;</div>
+        <h3>手続きを代行</h3>
+        <p>特定技能・在留資格・ビザ申請まで、複雑な手続きをワンストップで代行します。</p>
+        <span class="stag">→ 手続きが複雑</span>
+      </div>
+      <div class="solcard reveal">
+        <div class="sn">03</div><div class="si">&#9878;</div>
+        <h3>法令を守る</h3>
+        <p>登録支援機関として法令を遵守。安心・適正な外国人雇用をサポートします。</p>
+        <span class="stag">→ 法的に不安</span>
+      </div>
+      <div class="solcard reveal">
+        <div class="sn">04</div><div class="si">&#129309;</div>
+        <h3>定着させる</h3>
+        <p>寮・生活サポートと入社後フォローで、長く活躍できる環境づくりを支援します。</p>
+        <span class="stag">→ 早期離職が心配</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec" id="service">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="en">Service</div><h2>サービス</h2><p>BIGLIGHTは、外国人材の採用から定着までをワンストップでご支援する2つの軸を提供します。</p></div>
+    <div class="grid3 svc2">
+      <div class="scard reveal">
+        <div class="snum">01</div>
+        <div class="ic">&#128188;</div>
+        <h3>特定技能 採用サービス</h3>
+        <p>製造・建設・介護・外食など、人手不足の現場に。即戦力となる特定技能外国人材を、募集から採用・入社・定着までトータルでご支援します。</p>
+        <ul class="slist">
+          <li>人材募集・スクリーニング</li>
+          <li>面接調整・通訳サポート</li>
+          <li>在留資格・ビザ手続き代行</li>
+          <li>入社後の定着サポート</li>
+        </ul>
+        <div class="svc-target"><b>おすすめ：</b>現場の人手をすぐに確保したい企業様</div>
+      </div>
+      <div class="scard reveal">
+        <div class="snum">02</div>
+        <div class="ic">&#127891;</div>
+        <h3>人材紹介サービス</h3>
+        <p>技術・人文知識・国際業務（技人国）など、高度・専門人材をご紹介。経験豊富なチームの高精度マッチングで、企業に最適な人材をお繋ぎします。</p>
+        <ul class="slist">
+          <li>高度人材・技術者・エンジニア紹介</li>
+          <li>通訳・コーディネーター紹介</li>
+          <li>完全成功報酬 × 最長1年保証</li>
+          <li>中間業者ゼロの低コスト</li>
+        </ul>
+        <div class="svc-target"><b>おすすめ：</b>専門スキルを持つ人材を採用したい企業様</div>
+      </div>
+    </div>
+    <div class="svc-support reveal">
+      <div class="sup"><div class="si">&#128221;</div><h4>ビザ・在留資格支援</h4><p>申請手続きを専門スタッフが代行</p></div>
+      <div class="sup"><div class="si">&#127968;</div><h4>寮・生活サポート</h4><p>住居の手配や生活面をサポート</p></div>
+      <div class="sup"><div class="si">&#129309;</div><h4>定着フォロー</h4><p>入社後も継続して伴走支援</p></div>
+    </div>
+    <p class="svc-supnote">＼ すべてのサービスに、上記の支援が付帯します ／</p>
+
+    <!-- 特定技能制度の説明 -->
+    <div class="tg-block reveal">
+      <div class="tg-head">
+        <span class="tg-badge">特定技能制度</span>
+        <h3>特定技能制度とは</h3>
+        <p>特定技能制度は、日本の人手不足を解消するために創設された外国人材受入れ制度です。現在は「育成就労制度」と連携し、外国人材が段階的にスキルを身につけながら、長期的に日本で活躍できる仕組みへと発展しています。</p>
+      </div>
+
+      <div class="tg-pathlabel">外国人材のキャリアパス</div>
+      <div class="tg-path">
+        <div class="tg-stage reveal reveal-lift d1">
+          <div class="tg-term">最長3年</div>
+          <h4>育成就労</h4>
+          <div class="tg-sub">現場で技能・日本語を習得</div>
+          <ul>
+            <li>日本での仕事や生活を学ぶ期間</li>
+            <li>技能と日本語能力を向上</li>
+          </ul>
+        </div>
+        <div class="tg-conn">&#9654;</div>
+        <div class="tg-stage reveal reveal-lift d2">
+          <div class="tg-term">最長5年</div>
+          <h4>特定技能1号</h4>
+          <div class="tg-sub">即戦力として活躍</div>
+          <ul>
+            <li>一定の技能と日本語能力を有する人材</li>
+            <li>企業の即戦力として活躍</li>
+          </ul>
+        </div>
+        <div class="tg-conn">&#9654;</div>
+        <div class="tg-stage tg-hl reveal reveal-lift d3">
+          <div class="tg-term">更新上限なし</div>
+          <h4>特定技能2号</h4>
+          <div class="tg-sub">長期就労・家族帯同可能</div>
+          <ul>
+            <li>熟練した技能を持つ人材</li>
+            <li>在留期間の更新回数に制限なし</li>
+            <li>配偶者や子どもの帯同が可能</li>
+            <li>長期的な人材確保につながる</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tg-merit reveal">
+        <h4>企業様にとっての<span>メリット</span></h4>
+        <ul class="tg-merit-list">
+          <li>長期的な人材育成が可能</li>
+          <li>即戦力人材を確保できる</li>
+          <li>定着率向上につながる</li>
+          <li>将来的に特定技能2号として長く活躍してもらえる</li>
+          <li>人手不足の解消と技術継承を実現</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tg-divider"></div>
+
+    <!-- 技人国の説明 -->
+    <div class="tg-block reveal">
+      <div class="tg-head">
+        <span class="tg-badge">技人国</span>
+        <h3>技術・人文知識・国際業務（技人国）</h3>
+        <p>技術・人文知識・国際業務は、大学卒業者や専門知識を持つ外国人材を採用できる在留資格です。エンジニア、設計、品質管理、生産管理、営業、通訳、貿易事務など、専門的な知識やスキルを必要とする職種で活躍できます。BIGLIGHTでは、ベトナムを中心とした優秀な人材をご紹介し、採用から入社後のサポートまで一貫して対応いたします。</p>
+      </div>
+
+      <div class="tg-pathlabel">主な職種</div>
+      <div class="tg-jobs">
+        <span class="tg-job">機械設計</span>
+        <span class="tg-job">生産技術</span>
+        <span class="tg-job">品質管理</span>
+        <span class="tg-job">CADオペレーター</span>
+        <span class="tg-job">営業職</span>
+        <span class="tg-job">通訳・翻訳</span>
+        <span class="tg-job">貿易事務</span>
+        <span class="tg-job">ITエンジニア</span>
+      </div>
+
+      <div class="tg-merit reveal">
+        <h4>企業様の<span>メリット</span></h4>
+        <ul class="tg-merit-list">
+          <li>専門知識を持つ人材を採用できる</li>
+          <li>長期的なキャリア形成が可能</li>
+          <li>技術継承や組織強化につながる</li>
+          <li>グローバル人材の活用を実現</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRENGTH -->
+<section class="sec strength fullpage" id="strength">
+  <div class="str-bg">
+    <div class="str-glow g1"></div>
+    <div class="str-glow g2"></div>
+    <svg class="str-burst" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <g fill="#f5a623" transform="translate(100 100)">
+        <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="60s" repeatCount="indefinite" additive="sum"/>
+        <g><rect x="-3" y="-90" width="6" height="34" rx="3"/><g transform="rotate(30)"><rect x="-3" y="-90" width="6" height="34" rx="3"/></g><g transform="rotate(60)"><rect x="-3" y="-90" width="6" height="34" rx="3"/></g><g transform="rotate(90)"><rect x="-3" y="-90" width="6" height="34" rx="3"/></g><g transform="rotate(120)"><rect x="-3" y="-90" width="6" height="34" rx="3"/></g><g transform="rotate(150)"><rect x="-3" y="-90" width="6" height="34" rx="3"/></g><g transform="rotate(180)"><rect x="-3" y="-90" width="6" height="34" rx="3"/></g><g transform="rotate(210)"><rect x="-3" y="-90" width="6" height="34" rx="3"/></g><g transform="rotate(240)"><rect x="-3" y="-90" width="6" height="34" rx="3"/></g><g transform="rotate(270)"><rect x="-3" y="-90" width="6" height="34" rx="3"/></g><g transform="rotate(300)"><rect x="-3" y="-90" width="6" height="34" rx="3"/></g><g transform="rotate(330)"><rect x="-3" y="-90" width="6" height="34" rx="3"/></g></g>
+        <circle r="34"/>
+      </g>
+    </svg>
+  </div>
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="en">Why BIGLIGHT</div><h2>BIGLIGHTが選ばれる理由</h2><p style="color:#cfe0f7">数多くの企業様に選ばれてきた、3つの理由があります。</p></div>
+    <div class="str-grid">
+      <div class="str-card reveal" style="transition-delay:.05s">
+        <div class="str-no">01</div>
+        <div class="str-ico">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#f5a623" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="24" cy="24" r="16"/><circle cx="24" cy="24" r="9"/>
+            <circle cx="24" cy="24" r="2.6" fill="#f5a623" stroke="none"/>
+            <circle cx="24" cy="24" r="9" stroke="#ffd86b"><animate attributeName="r" values="6;18;6" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".9;0;.9" dur="2.6s" repeatCount="indefinite"/></circle>
+          </svg>
+        </div>
+        <h3>高精度マッチング</h3>
+        <p>最適な人材に、最短で出会える。経験豊富なチームが、企業のニーズと人材を丁寧にマッチングします。</p>
+        <ul class="sub">
+          <li>経験豊富な専任チーム</li>
+          <li>自社プラットフォームの母集団</li>
+          <li>スキル・人柄まで見極め</li>
+        </ul>
+      </div>
+      <div class="str-card reveal" style="transition-delay:.13s">
+        <div class="str-no">02</div>
+        <div class="str-ico">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#f5a623" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M24 4 L40 10 V22 C40 32 33 40 24 44 C15 40 8 32 8 22 V10 Z"/>
+            <path d="M16.5 24 l5 5 L32 18" stroke="#ffd86b" stroke-dasharray="26" stroke-dashoffset="26"><animate attributeName="stroke-dashoffset" values="26;26;0;0;26" keyTimes="0;0.2;0.5;0.85;1" dur="3.2s" repeatCount="indefinite"/></path>
+          </svg>
+        </div>
+        <h3>完全成功報酬 × 1年保証</h3>
+        <p>採用が決まるまで費用は一切ゼロ。さらに最長1年の保証付きで、業界トップクラスの安心をお約束します。</p>
+        <ul class="sub">
+          <li>初期費用・着手金なし</li>
+          <li>採用成功時のみのお支払い</li>
+          <li>最長1年の安心保証</li>
+        </ul>
+      </div>
+      <div class="str-card reveal" style="transition-delay:.21s">
+        <div class="str-no">03</div>
+        <div class="str-ico">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#f5a623" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="24" y1="24" x2="24" y2="9"/><line x1="24" y1="24" x2="39" y2="24"/><line x1="24" y1="24" x2="24" y2="39"/><line x1="24" y1="24" x2="9" y2="24"/>
+            <circle cx="24" cy="9" r="3.4" fill="#fff" stroke="none"/><circle cx="39" cy="24" r="3.4" fill="#fff" stroke="none"/><circle cx="24" cy="39" r="3.4" fill="#fff" stroke="none"/><circle cx="9" cy="24" r="3.4" fill="#fff" stroke="none"/>
+            <circle cx="24" cy="24" r="6" fill="#f5a623" stroke="none"><animate attributeName="r" values="6;7.5;6" dur="1.8s" repeatCount="indefinite"/></circle>
+          </svg>
+        </div>
+        <h3>ワンストップ・低コスト</h3>
+        <p>募集から手続き、定着支援まで全工程をワンストップで完結。中間業者を介さないから、圧倒的な低コストを実現します。</p>
+        <ul class="sub">
+          <li>採用〜定着まで一気通貫</li>
+          <li>中間マージンゼロ</li>
+          <li>東海エリア密着 × ベトナム直結</li>
+        </ul>
+      </div>
+    </div>
+    <div class="str-badges reveal">
+      <div class="str-badge">有料職業紹介 <b>23-ユ-302414</b></div>
+      <div class="str-badge">登録支援機関 <b>21登-006596</b></div>
+      <div class="str-badge"><b>ベトナム</b>に自社子会社</div>
+    </div>
+    <div class="cta-row reveal">
+      <a class="btn-gold" href="#contact">無料で相談する</a>
+      <a class="btn-ghost js-dl" href="#" data-dl>資料ダウンロード</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="sec stats" id="stats">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="en">Performance</div><h2>数字で見るBIGLIGHT</h2></div>
+    <div class="stat-grid">
+      <div class="stat reveal"><div class="snum2">2021</div><div class="slab">設立年</div></div>
+      <div class="stat reveal"><div class="snum2" data-to="500" data-suf="+">0</div><div class="slab">人材紹介実績（名）</div></div>
+      <div class="stat reveal"><div class="snum2" data-to="80" data-suf="+">0</div><div class="slab">取引企業（社）</div></div>
+      <div class="stat reveal"><div class="snum2" data-to="95" data-suf="%">0</div><div class="slab">定着率</div></div>
+    </div>
+    <p class="note">※ 数値はサンプルです。実際の実績に差し替え予定。</p>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="sec flow fullpage" id="flow">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="en">Flow</div><h2>ご利用の流れ</h2><p>ご相談から入社後の定着支援まで、5つのステップでサポートします。</p></div>
+    <div class="steps reveal">
+      <div class="fline"><i></i></div>
+      <div class="step">
+        <div class="dot"><span class="dotnum">1</span><svg class="fsvg" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v10h-9l-4 4v-4H4z"/><path d="M8 9h8M8 12h5"/></svg></div>
+        <div class="scontent"><span class="fstep">STEP 1</span><h3>ご相談</h3><p>無料でヒアリングし、課題やご要望を丁寧に伺います。</p></div>
+      </div>
+      <div class="step">
+        <div class="dot"><span class="dotnum">2</span><svg class="fsvg" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></div>
+        <div class="scontent"><span class="fstep">STEP 2</span><h3>ご提案</h3><p>貴社に最適な人材プラン・スケジュールをご提示します。</p></div>
+      </div>
+      <div class="step">
+        <div class="dot"><span class="dotnum">3</span><svg class="fsvg" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="2.4"/><circle cx="16" cy="9" r="2.4"/><path d="M3.5 18c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4M11.5 18c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4"/></svg></div>
+        <div class="scontent"><span class="fstep">STEP 3</span><h3>マッチング</h3><p>条件に合う人材をご紹介し、面接を実施します。</p></div>
+      </div>
+      <div class="step">
+        <div class="dot"><span class="dotnum">4</span><svg class="fsvg" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg></div>
+        <div class="scontent"><span class="fstep">STEP 4</span><h3>入社</h3><p>各種手続き・ビザ対応をワンストップでサポートします。</p></div>
+      </div>
+      <div class="step">
+        <div class="dot"><span class="dotnum">5</span><svg class="fsvg" viewBox="0 0 24 24" fill="none" stroke="#3d2b00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.7-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.3-7 10-7 10z"/></svg></div>
+        <div class="scontent"><span class="fstep">STEP 5</span><h3>定着支援</h3><p>入社後も生活・就労をフォローし、長期定着を支えます。</p></div>
+      </div>
+    </div>
+    <div class="cta-row reveal">
+      <a class="btn-gold" href="#contact">無料で相談する</a>
+      <a class="btn-outline js-dl" href="#" data-dl>資料ダウンロード</a>
+    </div>
+  </div>
+</section>
+
+<!-- CASE -->
+<section class="sec" id="case">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="en">Case Study</div><h2>導入事例</h2><p>採用から定着まで、BIGLIGHTがご支援した企業様の事例をご紹介します。</p></div>
+    <div class="cases">
+      <article class="kc reveal">
+        <div class="kc-head">
+          <div class="kc-tags"><span class="kc-tag">製造業（溶接・鉄骨加工）</span><span class="kc-tag">愛知県</span><span class="kc-tag">従業員 約50名</span></div>
+          <h3>溶接工程の人手不足を解消し、安定した受注対応へ</h3>
+        </div>
+        <div class="kc-body">
+          <div class="kc-block issue">
+            <div class="kc-label">導入前の課題</div>
+            <p>若手日本人の採用が難しく、慢性的な人手不足が続いていました。特に溶接工程では経験者の確保が困難で、受注増加に対して生産体制が追いつかない状況でした。</p>
+          </div>
+          <div class="kc-block plan">
+            <div class="kc-label">BIGLIGHTの提案</div>
+            <p>ベトナム人特定技能人材3名をご紹介。面接から入社手続き、生活支援までワンストップでサポートしました。</p>
+          </div>
+          <div class="kc-block result">
+            <div class="kc-label">導入後の成果</div>
+            <div class="kc-stats"><div class="kc-stat"><b>3名</b><span>特定技能を採用</span></div></div>
+            <ul>
+              <li>溶接工程の人員不足を解消</li>
+              <li>現場の生産性が向上</li>
+              <li>安定した受注対応が可能に</li>
+            </ul>
+          </div>
+          <div class="kc-comment">
+            <p>「仕事に対する姿勢が真面目で、現場にもすぐ馴染んでくれました。今後も継続的に採用を検討したいと考えています。」</p>
+            <div class="who">― ご担当者様</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="kc reveal">
+        <div class="kc-head">
+          <div class="kc-tags"><span class="kc-tag">内装仕上げ工事業</span><span class="kc-tag">東京都</span></div>
+          <h3>従業員3名から6名へ、売上は約2倍に成長</h3>
+        </div>
+        <div class="kc-body">
+          <div class="kc-block issue">
+            <div class="kc-label">導入前の課題</div>
+            <p>社長を含め日本人従業員3名で事業を運営していました。お客様からの依頼は増えていたものの、人手不足により受注を断らざるを得ない案件も多く、事業拡大に課題を抱えていました。また、外国人材を採用した経験がなく、「コミュニケーションは大丈夫か」「現場で定着するのか」といった不安もありました。</p>
+          </div>
+          <div class="kc-block plan">
+            <div class="kc-label">BIGLIGHTの提案</div>
+            <p>建設分野の特定技能人材をご紹介。面接から在留資格手続き、入社後の生活支援まで一貫してサポートし、安心して受け入れができる体制を整えました。</p>
+          </div>
+          <div class="kc-block result">
+            <div class="kc-label">導入後の成果</div>
+            <div class="kc-stats">
+              <div class="kc-stat"><b>3名→6名</b><span>従業員数</span></div>
+              <div class="kc-stat"><b>約2倍</b><span>売上成長</span></div>
+              <div class="kc-stat"><b>3名</b><span>特定技能が活躍中</span></div>
+            </div>
+            <ul>
+              <li>対応可能な現場数が増加</li>
+              <li>受注機会の損失を大幅に削減</li>
+              <li>工事スケジュールが安定</li>
+              <li>外国人材が事業拡大を支える重要な戦力に</li>
+            </ul>
+          </div>
+          <div class="kc-comment">
+            <p>「最初は外国人採用に不安がありましたが、実際に受け入れてみると非常に真面目で仕事への意欲も高く、現場にもすぐ馴染んでくれました。今では会社の成長に欠かせない存在です。人手不足で悩んでいる企業には、特定技能制度をぜひ検討してほしいと思います。」</p>
+            <div class="who">― ご担当者様</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec problem" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="en">FAQ</div><h2>よくあるご質問</h2></div>
+    <div class="faq reveal">
+      <details class="qa"><summary>技能実習と特定技能の違いは何ですか？<span class="plus">&#43;</span></summary><div class="ans">
+        <p>技能実習は、外国人が日本で技能や知識を学ぶことを目的とした制度です。一方、特定技能は人手不足分野において即戦力となる外国人材を受け入れるための制度です。</p>
+        <p>また、現在は技能実習制度に代わる新制度として「育成就労制度」が創設され、育成就労から特定技能へとステップアップできる仕組みへ移行しています。</p>
+        <div class="faq-path">
+          <span class="pl">キャリアパス</span>
+          <b>育成就労（最大3年）</b>
+          <span class="ar">&#8595;</span>
+          <b>特定技能1号（最大5年）</b>
+          <span class="ar">&#8595;</span>
+          <b class="hl">特定技能2号（更新制限なし）</b>
+        </div>
+        <p>特定技能2号へ移行した場合は、長期的な就労が可能となり、配偶者や子どもの帯同も認められます。</p>
+        <p>企業様にとっては、長期的な人材育成と安定した人材確保につながる制度です。</p>
+      </div></details>
+      <details class="qa"><summary>特定技能外国人を採用するにはどのくらい時間がかかりますか？<span class="plus">&#43;</span></summary><div class="ans">国内在住者の場合は約1～3ヶ月、海外からの採用の場合は約3～6ヶ月が一般的です。職種や在留資格の状況によって異なります。</div></details>
+      <details class="qa"><summary>日本語能力はどの程度ありますか？<span class="plus">&#43;</span></summary><div class="ans">特定技能外国人は、日本語試験および技能試験に合格した人材です。日常業務に必要なコミュニケーション能力を有しています。</div></details>
+      <details class="qa"><summary>どのような業種で採用できますか？<span class="plus">&#43;</span></summary><div class="ans">製造業、建設業、食品製造業、外食業など、特定技能制度で認められている分野で採用が可能です。</div></details>
+      <details class="qa"><summary>特定技能外国人は何年間働くことができますか？<span class="plus">&#43;</span></summary><div class="ans">特定技能1号は最長5年間就労可能です。さらに要件を満たした場合は特定技能2号へ移行することができます。</div></details>
+      <details class="qa"><summary>特定技能2号になるとどうなりますか？<span class="plus">&#43;</span></summary><div class="ans">在留期間の更新回数に制限がなくなり、長期的な就労が可能となります。また、配偶者や子どもの帯同も認められています。</div></details>
+      <details class="qa"><summary>採用後の生活サポートは必要ですか？<span class="plus">&#43;</span></summary><div class="ans">はい。特定技能外国人を受け入れる企業には支援義務があります。BIGLIGHTでは生活支援や各種手続きもサポートしております。</div></details>
+      <details class="qa"><summary>転職は可能ですか？<span class="plus">&#43;</span></summary><div class="ans">同じ特定技能分野内であれば転職は可能です。そのため、働きやすい環境づくりや定着支援が重要になります。</div></details>
+      <details class="qa"><summary>海外から直接採用することはできますか？<span class="plus">&#43;</span></summary><div class="ans">はい。海外在住の人材を採用することも可能です。面接から入国手続きまでサポートいたします。</div></details>
+      <details class="qa"><summary>受入れに必要な手続きは難しいですか？<span class="plus">&#43;</span></summary><div class="ans">在留資格申請や支援計画など一定の手続きが必要ですが、BIGLIGHTがサポートいたしますのでご安心ください。</div></details>
+      <details class="qa"><summary>まずは相談だけでも可能ですか？<span class="plus">&#43;</span></summary><div class="ans">もちろん可能です。人材不足や採用計画に関するご相談だけでもお気軽にお問い合わせください。</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section class="sec news" id="news">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="en">News &amp; Magazine</div><h2>お知らせ・HR Magazine</h2><p>BIGLIGHTからのお知らせや、外国人材採用に役立つ情報をお届けします。</p></div>
+    <div class="nlist reveal">
+      <div class="nrow"><span class="ndate">2026.06.01</span><span class="ncat">お知らせ</span><span class="ntitle">関東エリアでのご相談受付を開始しました。</span></div>
+      <div class="nrow"><span class="ndate">2026.04.15</span><span class="ncat r">Magazine</span><span class="ntitle">特定技能制度の最新動向と、企業が今すべき準備とは。</span></div>
+      <div class="nrow"><span class="ndate">2026.03.01</span><span class="ncat">お知らせ</span><span class="ntitle">関東方面に出張所を開設しました。</span></div>
+      <div class="nrow"><span class="ndate">2025.12.20</span><span class="ncat r">Magazine</span><span class="ntitle">外国人材の定着率を高める、3つのポイント。</span></div>
+      <div class="nrow"><span class="ndate">2024.08.01</span><span class="ncat g">プレス</span><span class="ntitle">ベトナム・ホーチミン市に子会社を設立しました。</span></div>
+    </div>
+    <div class="nmore reveal"><a class="btn-outline" href="#">お知らせ一覧を見る</a></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec cta-sec" id="cta-banner">
+  <div class="wrap reveal">
+    <h2>まずは無料でご相談ください</h2>
+    <p>採用のお悩み、お気軽にお問い合わせください。</p>
+    <div class="btns">
+      <a class="btn-gold" href="#">お問い合わせ</a>
+      <a class="btn-ghost js-dl" href="#" data-dl>資料ダウンロード</a>
+      <a class="btn-ghost" href="tel:0529087944">&#128222; 052-908-7944</a>
+    </div>
+  </div>
+</section>
+
+<!-- RECRUIT -->
+<section class="recruit-hero fullpage" id="recruit">
+  <div class="rec-bg">
+    <div class="rec-slide"></div>
+    <div class="rec-slide"></div>
+    <div class="rec-slide"></div>
+  </div>
+  <div class="rec-ov"></div>
+  <svg class="rec-particles" viewBox="0 0 1200 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#ffd86b">
+      <circle cx="180" cy="480" r="3"><animate attributeName="cy" values="500;120" dur="7s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.9;0" dur="7s" repeatCount="indefinite"/></circle>
+      <circle cx="420" cy="500" r="2.5"><animate attributeName="cy" values="520;140" dur="8.5s" begin="1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.8;0" dur="8.5s" begin="1s" repeatCount="indefinite"/></circle>
+      <circle cx="820" cy="480" r="3"><animate attributeName="cy" values="500;120" dur="9s" begin=".5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.9;0" dur="9s" begin=".5s" repeatCount="indefinite"/></circle>
+      <circle cx="1040" cy="500" r="2.5"><animate attributeName="cy" values="520;160" dur="7.5s" begin="1.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.85;0" dur="7.5s" begin="1.6s" repeatCount="indefinite"/></circle>
+    </g>
+  </svg>
+  <div class="wrap reveal">
+    <div class="en">Recruit</div>
+    <h2>一緒に働く仲間を<br>募集しています</h2>
+    <p class="rec-en">Join Our Team</p>
+    <p class="rec-lead">外国人材と企業をつなぐ仕事を、BIGLIGHTで一緒に。<br>若く、国際的なチームで成長できる環境です。</p>
+    <div class="cta-row" style="margin-top:36px">
+      <a class="btn-gold" href="#recruit-detail">募集要項を見る</a>
+      <a class="btn-ghost" href="#culture">会社文化を見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- 会社文化 -->
+<section class="sec fullpage" id="culture">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="en">Culture</div><h2>会社文化</h2><p>BIGLIGHTのチームが日々大切にしている文化です。</p></div>
+    <div class="cc">
+      <div class="ccard reveal firstcard" style="animation-delay:0s">
+        <div class="cc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0b3d91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V3"/><path d="M6 4h12l-3 3.5L18 11H6z" fill="#f5a623" stroke="none"><animate attributeName="opacity" values="1;.55;1" dur="2.2s" repeatCount="indefinite"/></path></svg></div>
+        <div class="cc-eng">Challenge</div><h4>挑戦</h4><p>変化を恐れず、<br>新しい挑戦を続ける</p>
+      </div>
+      <div class="ccard reveal firstcard" style="animation-delay:.2s">
+        <div class="cc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0b3d91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3" fill="#f5a623" stroke="none"/><path d="M2.5 20c0-3 2.4-5 5.5-5s5.5 2 5.5 5"/><path d="M14.5 15.2c2.7.2 5 2.2 5 4.8"/></svg></div>
+        <div class="cc-eng">Teamwork</div><h4>チームワーク</h4><p>仲間と協力し、<br>より大きな成果を創る</p>
+      </div>
+      <div class="ccard reveal firstcard" style="animation-delay:.4s">
+        <div class="cc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0b3d91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 18h5"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.8 10.6c.7.6 1.3 1.4 1.3 2.4h5c0-1 .6-1.8 1.3-2.4A6 6 0 0 0 12 3z" fill="#fff3d6"><animate attributeName="opacity" values="1;.5;1" dur="1.8s" repeatCount="indefinite"/></path></svg></div>
+        <div class="cc-eng">Innovation</div><h4>革新</h4><p>現状に満足せず、<br>常に改善を追求する</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 採用情報 詳細 -->
+<section class="sec" id="recruit-detail">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="en">Recruit</div><h2>採用情報</h2><p>現在募集中のポジションと募集要項です。</p></div>
+    <div class="rtbl reveal">
+      <div class="rrow"><div class="rk">募集職種</div><div class="rv">
+        <span class="jobline">① <b>法人営業（BtoBセールス）</b><span class="salary">月給 21〜35万円</span></span>
+        <span class="jobline">② <b>ルート営業（既存顧客フォロー）</b><span class="salary">月給 21〜35万円</span></span>
+        <span class="jobline">③ <b>外国人管理・支援スタッフ</b><span class="salary">月給 21〜35万円</span></span>
+      </div></div>
+      <div class="rrow"><div class="rk">雇用形態</div><div class="rv">正社員（フルタイム）</div></div>
+      <div class="rrow"><div class="rk">勤務地</div><div class="rv">愛知県名古屋市北区如意一丁目112 A</div></div>
+      <div class="rrow"><div class="rk">勤務時間</div><div class="rv">9:00〜18:00（休憩1時間）</div></div>
+      <div class="rrow"><div class="rk">給与</div><div class="rv">月給 210,000〜350,000円（経験・能力により決定）</div></div>
+      <div class="rrow"><div class="rk">各種手当</div><div class="rv"><ul>
+        <li>住宅手当：月20,000円</li>
+        <li>会社支給：ノートパソコン、携帯電話</li>
+        <li>交通費全額支給（実費）</li>
+      </ul></div></div>
+      <div class="rrow"><div class="rk">仕事内容</div><div class="rv"><ul>
+        <li>日本企業への人材サービス提案営業（法人営業）</li>
+        <li>既存取引先へのフォローおよび関係構築（ルート営業）</li>
+        <li>外国人スタッフの生活・就労サポート（管理・支援業務）</li>
+      </ul></div></div>
+      <div class="rrow"><div class="rk">応募条件</div><div class="rv"><ul>
+        <li>Google Workspace（Docs, Sheets, Forms など）が使用できる方</li>
+        <li>責任感があり、チームワークを大切にできる方</li>
+      </ul><p class="note">※ 外国籍の方は、日本語N2以上かつ日本の専門学校または大学卒業（または同等レベル）が必要です。</p></div></div>
+      <div class="rrow"><div class="rk">福利厚生</div><div class="rv"><ul>
+        <li>社会保険・雇用保険・労災保険完備</li>
+        <li>年2回の賞与あり</li>
+        <li>日本の祝日および有給休暇制度あり</li>
+        <li>昇進・キャリアアップのチャンスあり</li>
+      </ul></div></div>
+      <div class="rrow"><div class="rk">応募方法</div><div class="rv">お電話にてお気軽にご連絡ください。担当者が対応いたします。</div></div>
+    </div>
+    <div class="rapply reveal">
+      <a class="tel" href="tel:0529087944"><span>応募・お問い合わせ TEL</span>052-908-7944</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec problem" id="senpai">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="en">Interview</div><h2>先輩の声</h2><p>BIGLIGHTで働くメンバーが、仕事への想いをお話しします。</p></div>
+    <div class="senpai">
+      <article class="voice reveal">
+        <div class="vmedia"><img src="assets/staff-1.jpg" alt="マイ ラン リン"><span class="vyear">入社5年目</span></div>
+        <div class="vtext">
+          <span class="qmark">&ldquo;</span>
+          <div class="vhead"><h4>マイ ラン リン</h4><span class="vrole">一般事務</span></div>
+          <p class="vlead">一生懸命に働くことも大切ですが、"心を込めて向き合うこと"で、仕事には温かさと価値が生まれる。</p>
+          <div class="vsec"><h5>ご挨拶</h5><p>この言葉を大切にしながら、候補者の皆さまや企業様に寄り添うことを常に心掛けています。日々の対応に思いやりと丁寧さを添えることで、安心と信頼が広がり、誰かが新しい一歩を踏み出す背中をそっと押せる存在でありたいと思っています。</p></div>
+          <div class="vsec"><h5>経歴・専門分野</h5><p>入社以来、特定技能の応募者約200名、技術・人文知識・国際業務のエンジニア約100名の在留資格手続きに携わってきました。一つひとつの案件に丁寧に向き合い、正確でスムーズな申請を行うことを常に意識しています。人事業務や行政手続きの実務経験を積む中で、外国人材を支えるために必要な知識を幅広く身につけてきました。病院の手続きや税金還付、電気・水道・ガスの契約など生活面のサポートにも携わり、日本で安心して暮らせる環境づくりにも力を入れています。</p></div>
+          <div class="vsec"><h5>仕事のスタイル・大切にしていること</h5><p>一度お約束したことは最後まで責任を持ってやり遂げることを基本としています。人と関わることが好きで、会話を通じて相手の考えや状況を理解し、安心していただける関係性を築くことを大切にしています。信頼は一日で生まれるものではありませんが、日々の積み重ねが確かな安心につながると信じています。</p></div>
+          <div class="vsec"><h5>現在の主な業務</h5><p>ビザ申請や行政手続きに必要な書類作成を中心に、募集から選考、入社フォローまでの採用業務も担当しています。さらに、新規顧客の開拓や特定技能・エンジニアの方々の生活フォローなど、業務範囲は多岐にわたります。一つの仕事にとどまらず幅広い役割を担うことで、自身の成長にもつながっていると感じています。</p></div>
+          <div class="vsec"><h5>BIGLIGHTを選んだ理由</h5><p>私の強みであるコミュニケーション力や採用・生活サポートの経験を最大限に活かせる環境だと感じたことが入社の決め手でした。主体性を尊重する社風があり、挑戦と成長の機会が豊富で、努力が正しく評価される会社です。応募者や企業様に本当に役立つ価値を提供できる仕事に、毎日大きなやりがいを感じています。</p></div>
+          <div class="vsec"><h5>応募者の皆さまへ</h5><p>求人探しは、単なる仕事選びではなく、人生の新しい一歩だと思います。BIGLIGHTは皆さまの想いを大切にしながら、最適な職場と出会えるよう全力でサポートいたします。焦る必要はありません。努力を続ける人には必ずチャンスが訪れます。どうか勇気を持って踏み出してください。私たちがしっかり支えます。</p></div>
+          <div class="vsec"><h5>趣味・パーソナル</h5><p>猫が大好きで、忙しい日々の中でも癒しと元気を与えてくれる大切な存在です。</p></div>
+        </div>
+      </article>
+      <article class="voice reveal">
+        <div class="vmedia"><img src="assets/staff-2.jpg" alt="ノン タン フン"><span class="vyear">入社4年目</span></div>
+        <div class="vtext">
+          <span class="qmark">&ldquo;</span>
+          <div class="vhead"><h4>ノン タン フン</h4><span class="vrole">営業職</span></div>
+          <p class="vlead">お客様と候補者の皆さまに「安心」と「満足」をお届けできるよう、日々の業務に真摯に向き合っています。</p>
+          <div class="vsec"><h5>ご挨拶</h5><p>BIGLIGHTにて営業を担当しておりますフンと申します。相手の立場に寄り添いながら、信頼される存在でありたいという思いを常に持って取り組んでいます。釣りや仲間との時間が好きで、リフレッシュしながら日々のエネルギーにつなげています。</p></div>
+          <div class="vsec"><h5>経歴・スキル</h5><p>入社以来、メールや電話でのビジネスマナーをはじめ、人材募集活動、行政書士関連の手続き、BtoBの新規開拓営業や既存企業様へのルート営業など、幅広い業務を経験してきました。これらの経験を通して多様な知識と実務スキルを積み重ね、どの仕事にも丁寧に向き合い、結果につなげる姿勢を大切にしています。</p></div>
+          <div class="vsec"><h5>働き方・性格</h5><p>新しいことに挑戦することが好きで、明るく、素早く、前向きに動くタイプです。失敗を恐れず行動することで自身の成長につながると信じています。社内外の方々とのコミュニケーションを通して信頼関係を築くことも得意としています。</p></div>
+          <div class="vsec"><h5>現在の担当業務</h5><p>特定技能メンバー約200名の生活サポートを行い、国内の法人企業約50社と直接やり取りをしています。新規企業の開拓や特定技能・技術者のマッチングにも携わり、企業と候補者双方にとって最適な出会いをつくることを目指しています。幅広い役割を担う中で、日々成長を実感しています。</p></div>
+          <div class="vsec"><h5>BIGLIGHTを選んだ理由</h5><p>BIGLIGHTは若く、活気があり、創造性にあふれた会社です。挑戦を歓迎する文化があり、自分の努力がしっかり評価される環境が整っています。自分自身を高められるチャンスが多く、ここでなら大きな成長ができると感じ入社を決めました。</p></div>
+          <div class="vsec"><h5>未来の仲間へメッセージ</h5><p>「挑戦したい」という気持ちがある方にとって、BIGLIGHTはその一歩を後押ししてくれる場所です。新しいことを始めるときには不安もありますが、小さな前進が大きな成長につながります。若くエネルギッシュな仲間が集まり、互いに学び合いながらプロフェッショナルとして働いています。ぜひ私たちと一緒に、新しい未来へ一歩踏み出してみませんか。</p></div>
+        </div>
+      </article>
+      <article class="voice reveal">
+        <div class="vmedia"><img src="assets/staff-3.jpg" alt="レ テ クアン"><span class="vyear">新卒入社1年目</span></div>
+        <div class="vtext">
+          <span class="qmark">&ldquo;</span>
+          <div class="vhead"><h4>レ テ クアン</h4><span class="vrole">営業職</span></div>
+          <p class="vlead">新しい環境での不安を少しでも減らし、前向きに働ける状態をつくることが私の役割です。</p>
+          <div class="vsec"><h5>ご挨拶</h5><p>はじめまして、クアンと申します。BIGLIGHTでは主に応募者の生活サポートや企業様との相談業務を担当しています。日本で働く皆さんが安心して生活できるよう、一人ひとりに丁寧に寄り添いながらサポートすることを大切にしています。</p></div>
+          <div class="vsec"><h5>経歴・専門性</h5><p>日本語の聞く・話す・読む・書くをバランスよく身につけており、企業様とのコミュニケーションや行政機関での手続きにも自信を持って対応しています。大学では日本文化を専攻し、日本での生活習慣や価値観を理解したうえで応募者に寄り添ったサポートを心掛けています。入社して間もないですが、任された役割に責任を持ち、毎日学びながら成長できるよう努力を続けています。</p></div>
+          <div class="vsec"><h5>仕事に対する姿勢</h5><p>応募者一人ひとりの状況に耳を傾け、安心して生活できる環境を整えることを最優先にしています。困りごとがあればすぐに対応し、落ち着いて解決へ導けるよう分かりやすく説明することを常に心掛けています。親しみやすく相談しやすい存在であることが、自分の強みとして活かせていると感じています。</p></div>
+          <div class="vsec"><h5>担当している業務</h5><p>特定技能やエンジニアを中心とした生活サポート全般を担当し、住所登録、保険、銀行、税金、電気・水道・ガスなどの行政・生活手続きの案内を行っています。病院への同行や紛失物の対応、引っ越し・住所変更・勤務先変更などの生活上のトラブルにも対応し、応募者が日本で安心して暮らせるよう幅広く支援しています。企業様との連絡・調整にも携わり、双方にとってより良い環境づくりに努めています。</p></div>
+          <div class="vsec"><h5>BIGLIGHTを選んだ理由</h5><p>日本とベトナムの良さを融合した温かく誠実な社風が魅力です。応募者の安心を最も大切にしている会社であり、その価値観に深く共感したことが入社の大きな理由です。生活サポートを通じて応募者の不安を和らげ、日本での生活が前向きに進むよう直接支えられる点にやりがいを感じています。</p></div>
+          <div class="vsec"><h5>メッセージ</h5><p>BIGLIGHTは若く勢いがあり、柔軟でオープンなカルチャーを持つ会社です。一人ひとりが挑戦できる環境が整っており、新しいことにも積極的に取り組めます。「人の役に立ちたい」「成長したい」という想いがあれば、必ず活躍できる場所です。活気に満ちたこのチームで、ぜひ一緒に新しい価値をつくっていきましょう。</p></div>
+          <div class="vsec"><h5>趣味・パーソナル</h5><p>朝のコーヒーで一日を始める時間が好きで、日本各地を旅行してその土地の文化に触れることも楽しみのひとつです。読書やテクノロジーの学習を通して日々スキルアップを意識しています。</p></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORY -->
+<section class="sec history" id="history">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="en">History</div><h2>沿革</h2><p>ゼロからのスタート、そして信頼の積み重ね。</p></div>
+    <div class="tlv">
+      <div class="tv reveal">
+        <div class="tv-year">2021<span>.8</span></div>
+        <div class="tv-main"><h4>法人設立</h4><p>名古屋市西区</p></div>
+      </div>
+      <div class="tv reveal">
+        <div class="tv-year">2021<span>.12</span></div>
+        <div class="tv-main"><h4>許可取得・営業開始</h4><p>有料職業紹介・登録支援機関の許可を取得</p></div>
+      </div>
+      <div class="tv reveal">
+        <div class="tv-year">2023<span>.12</span></div>
+        <div class="tv-main"><h4>事務所移転</h4><p>名古屋市北区</p></div>
+      </div>
+      <div class="tv reveal">
+        <div class="tv-year">2024<span>.8</span></div>
+        <div class="tv-main"><h4>ベトナム子会社設立</h4><p>ホーチミン市・HR専門部署を立ち上げ</p></div>
+      </div>
+      <div class="tv reveal cur">
+        <div class="tv-year">2026<span>.3</span></div>
+        <div class="tv-main"><h4>関東エリアへ開拓</h4><p>関東方面に出張所を開設</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY -->
+<section class="sec company" id="company">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="en">Company</div><h2>会社概要</h2></div>
+    <div class="ctbl reveal">
+      <div class="row"><div class="k">会社名</div><div class="v">BIGLIGHT株式会社</div></div>
+      <div class="row"><div class="k">代表取締役</div><div class="v">グエン・タン・トゥン</div></div>
+      <div class="row"><div class="k">設立年月日</div><div class="v">2021年8月12日</div></div>
+      <div class="row"><div class="k">資本金</div><div class="v">5,000,000 円</div></div>
+      <div class="row"><div class="k">所在地</div><div class="v">〒462-0007 愛知県名古屋市北区如意一丁目112 A</div></div>
+      <div class="row"><div class="k">TEL / FAX</div><div class="v">052-908-7944 / 052-908-7267</div></div>
+      <div class="row"><div class="k">事業内容</div><div class="v">特定技能外国人支援事業 ／ 外国人高度人材紹介事業</div></div>
+      <div class="row"><div class="k">許可番号</div><div class="v">有料職業紹介事業許可番号 23-ユ-302414<br>登録支援機関登録番号 21登-006596</div></div>
+      <div class="row"><div class="k">取引銀行</div><div class="v">あいち銀行</div></div>
+      <div class="row"><div class="k">関連会社</div><div class="v">BIGLIGHT HR JOINT STOCK COMPANY<br>2nd Floor, THINH PHAT Building, 88 Bach Dang Street, Tan Son Hoa Ward, Ho Chi Minh City, Vietnam</div></div>
+    </div>
+    <div class="cmap reveal">
+      <iframe src="https://www.google.com/maps?q=%E6%84%9B%E7%9F%A5%E7%9C%8C%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA%E5%A6%82%E6%84%8F%E4%B8%80%E4%B8%81%E7%9B%AE112&hl=ja&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="BIGLIGHT株式会社 地図"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="sec contact" id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="en">Contact</div><h2>お問い合わせ</h2><p>採用のご相談・資料請求など、お気軽にどうぞ。最短即日でご返信します。</p></div>
+    <form class="cform reveal" id="contactForm" novalidate>
+      <div class="frow" data-f><label>会社名<span class="req">必須</span></label><input type="text" name="company" placeholder="株式会社〇〇"><div class="err">会社名をご入力ください。</div></div>
+      <div class="frow" data-f><label>ご担当者名<span class="req">必須</span></label><input type="text" name="name" placeholder="山田 太郎"><div class="err">お名前をご入力ください。</div></div>
+      <div class="frow" data-f data-email><label>メールアドレス<span class="req">必須</span></label><input type="email" name="email" placeholder="example@company.co.jp"><div class="err">正しいメールアドレスをご入力ください。</div></div>
+      <div class="frow"><label>電話番号</label><input type="tel" name="tel" placeholder="052-908-7944"></div>
+      <div class="frow" data-f><label>お問い合わせ内容<span class="req">必須</span></label><textarea name="msg" placeholder="ご相談内容をご記入ください。"></textarea><div class="err">お問い合わせ内容をご入力ください。</div></div>
+      <label class="fcheck"><input type="checkbox" id="agree"><span><a href="#privacy">プライバシーポリシー</a>に同意の上、送信します。</span></label>
+      <div id="agreeErr" style="display:none;margin:-12px 0 16px"><div class="err" style="display:block">プライバシーポリシーへの同意が必要です。</div></div>
+      <button type="submit" class="fsubmit">送信する</button>
+    </form>
+    <div class="fdone" id="formDone">送信ありがとうございます。<br>担当者より折り返しご連絡いたします。</div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section class="sec privacy" id="privacy">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="en">Privacy Policy</div><h2>プライバシーポリシー</h2></div>
+    <div class="pbox reveal">
+      <p>BIGLIGHT株式会社（以下「当社」）は、当社が取り扱う個人情報の保護を社会的責務と認識し、個人情報の保護に関する法律（個人情報保護法）およびその他の関係法令を遵守するとともに、以下の方針に基づき、個人情報を適切に取得・利用・管理いたします。</p>
+
+      <h4>1. 個人情報の定義</h4>
+      <p>本ポリシーにおける「個人情報」とは、個人情報保護法に定める個人情報をいい、氏名、生年月日、住所、電話番号、メールアドレス、勤務先、在留資格に関する情報など、特定の個人を識別できる情報を指します。</p>
+
+      <h4>2. 個人情報の取得</h4>
+      <p>当社は、適法かつ公正な手段により個人情報を取得します。お問い合わせフォーム、資料請求、採用応募、サービスのご提供等を通じて、必要な範囲で個人情報をご提供いただく場合があります。</p>
+
+      <h4>3. 利用目的</h4>
+      <p>当社は、取得した個人情報を以下の目的の範囲内で利用します。</p>
+      <ul class="plist">
+        <li>お問い合わせ・ご相談への対応のため</li>
+        <li>外国人材紹介・特定技能支援等、当社サービスのご提供・ご案内のため</li>
+        <li>資料・各種情報の送付のため</li>
+        <li>採用選考および採用活動のため</li>
+        <li>サービスの品質向上、新サービスの開発のため</li>
+        <li>法令に基づく対応および当社の正当な業務遂行のため</li>
+      </ul>
+
+      <h4>4. 第三者提供</h4>
+      <p>当社は、次の場合を除き、あらかじめご本人の同意を得ることなく、個人情報を第三者に提供することはありません。</p>
+      <ul class="plist">
+        <li>法令に基づく場合</li>
+        <li>人の生命、身体または財産の保護のために必要があり、ご本人の同意を得ることが困難な場合</li>
+        <li>業務委託先に対し、利用目的の達成に必要な範囲で委託する場合</li>
+      </ul>
+
+      <h4>5. 個人情報の委託</h4>
+      <p>当社は、利用目的の達成に必要な範囲において、個人情報の取扱いを業務委託先に委託することがあります。この場合、委託先に対して必要かつ適切な監督を行います。</p>
+
+      <h4>6. 安全管理措置</h4>
+      <p>当社は、個人情報への不正アクセス、紛失、破壊、改ざんおよび漏えい等を防止するため、必要かつ適切な安全管理措置を講じるとともに、従業員に対して適切な教育・監督を行います。</p>
+
+      <h4>7. 個人情報の開示・訂正・削除</h4>
+      <p>ご本人から個人情報の開示、訂正、追加、削除、利用停止等のお申し出があった場合は、ご本人であることを確認の上、法令に従い速やかに対応いたします。</p>
+
+      <h4>8. クッキー（Cookie）等の取扱い</h4>
+      <p>当社のウェブサイトでは、サービス向上やアクセス解析のためにCookie等を利用する場合があります。ブラウザの設定によりCookieを無効にすることができますが、一部のサービスがご利用いただけない場合があります。</p>
+
+      <h4>9. 本ポリシーの改定</h4>
+      <p>当社は、法令の変更や事業内容の変化に応じて、本ポリシーを予告なく改定することがあります。改定後の内容は、当ウェブサイトに掲載した時点から効力を生じるものとします。</p>
+
+      <h4>10. お問い合わせ窓口</h4>
+      <p>個人情報の取扱いに関するお問い合わせは、下記までご連絡ください。<br>
+      BIGLIGHT株式会社<br>
+      〒462-0007 愛知県名古屋市北区如意一丁目112 A<br>
+      TEL：052-908-7944 ／ FAX：052-908-7267</p>
+
+      <p class="prev">制定日：2021年8月12日</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="flogo"><img src="assets/logo.png" alt="BIGLIGHT株式会社"></div>
+        <p class="faddr">BIGLIGHT株式会社<br>〒462-0007<br>愛知県名古屋市北区如意一丁目112 A<br>TEL 052-908-7944 ／ FAX 052-908-7267</p>
+      </div>
+      <div><h5>サービス</h5><ul>
+        <li><a href="#service">特定技能 採用サービス</a></li>
+        <li><a href="#service">技人国 人材紹介</a></li>
+        <li><a href="#service">ビザ・在留資格支援</a></li>
+        <li><a href="#service">定着・生活支援</a></li>
+      </ul></div>
+      <div><h5>会社情報</h5><ul>
+        <li><a href="#company">会社概要</a></li>
+        <li><a href="#history">沿革</a></li>
+        <li><a href="#news">お知らせ</a></li>
+        <li><a href="#recruit">採用情報</a></li>
+        <li><a href="#contact">お問い合わせ</a></li>
+        <li><a href="#privacy">プライバシーポリシー</a></li>
+      </ul></div>
+      <div><h5>アクセス</h5>
+        <div class="fmap"><iframe src="https://www.google.com/maps?q=%E6%84%9B%E7%9F%A5%E7%9C%8C%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA%E5%A6%82%E6%84%8F%E4%B8%80%E4%B8%81%E7%9B%AE112&hl=ja&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="BIGLIGHT株式会社 地図"></iframe></div>
+        <div class="fmapcap">名古屋市北区如意一丁目112 A</div>
+      </div>
+    </div>
+    <div class="fbottom">
+      <span>有料職業紹介 23-ユ-302414 ／ 登録支援機関 21登-006596</span>
+      <span>&copy; BIGLIGHT Co., Ltd.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="fab">
+  <a class="fab-cta" href="#contact">無料相談</a>
+  <button class="fab-top" id="toTop" aria-label="ページトップへ">&#8593;</button>
+</div>
+
+<script>
+  var pl=document.getElementById('preloader');
+  function hidePl(){if(pl)pl.classList.add('done');}
+  window.addEventListener('load',function(){setTimeout(hidePl,900);});
+  setTimeout(hidePl,3500);
+  var hd=document.getElementById('hd');
+  var prog=document.getElementById('progress');
+  var toTop=document.getElementById('toTop');
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var sc=h.scrollTop||document.body.scrollTop;
+    var max=h.scrollHeight-h.clientHeight;
+    prog.style.width=(max>0?(sc/max*100):0)+'%';
+    if(sc>500)toTop.classList.add('show');else toTop.classList.remove('show');
+  });
+  toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  var counted=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting)return; counted.unobserve(e.target);
+      var el=e.target, to=+el.getAttribute('data-to'), suf=el.getAttribute('data-suf')||'', t0=null, d=1400;
+      function step(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/d,1);var v=Math.round(to*(1-Math.pow(1-p,3)));el.innerHTML=v+'<span class="suf">'+suf+'</span>';if(p<1)requestAnimationFrame(step);}
+      requestAnimationFrame(step);
+    });
+  },{threshold:.5});
+  document.querySelectorAll('.snum2[data-to]').forEach(function(el){counted.observe(el);});
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>60)hd.classList.add('scrolled');else hd.classList.remove('scrolled');
+  });
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  document.querySelectorAll('#mnav a').forEach(function(a){
+    a.addEventListener('click',function(){document.getElementById('mnav').classList.remove('open');});
+  });
+  var form=document.getElementById('contactForm');
+  if(form){
+    form.addEventListener('submit',function(e){
+      e.preventDefault();var ok=true;
+      form.querySelectorAll('[data-f]').forEach(function(r){
+        var inp=r.querySelector('input,textarea');var v=inp.value.trim();var bad=!v;
+        if(!bad&&r.hasAttribute('data-email')){bad=!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
+        r.classList.toggle('invalid',bad);if(bad)ok=false;
+      });
+      var agree=document.getElementById('agree'),ae=document.getElementById('agreeErr');
+      if(!agree.checked){ae.style.display='block';ok=false;}else{ae.style.display='none';}
+      if(ok){form.style.display='none';var d=document.getElementById('formDone');d.style.display='block';d.scrollIntoView({behavior:'smooth',block:'center'});}
+    });
+    form.querySelectorAll('[data-f] input,[data-f] textarea').forEach(function(i){
+      i.addEventListener('input',function(){i.closest('.frow').classList.remove('invalid');});
+    });
+  }
+
+  // DOWNLOAD GATE (phương án B)
+  (function(){
+    var mask=document.getElementById('dlMask');
+    if(!mask)return;
+    var box=mask.querySelector('.dlbody'), done=document.getElementById('dlDone');
+    var PDF='assets/biglight-company-profile.pdf';
+    function open(e){if(e)e.preventDefault();box.style.display='block';done.style.display='none';mask.classList.add('open');}
+    function close(){mask.classList.remove('open');}
+    document.querySelectorAll('[data-dl]').forEach(function(b){b.addEventListener('click',open);});
+    mask.addEventListener('click',function(e){if(e.target===mask)close();});
+    document.getElementById('dlClose').addEventListener('click',close);
+    var f=document.getElementById('dlForm');
+    f.addEventListener('submit',function(e){
+      e.preventDefault();var ok=true;
+      f.querySelectorAll('[data-f]').forEach(function(r){
+        var inp=r.querySelector('input');var v=inp.value.trim();var bad=!v;
+        if(!bad&&r.hasAttribute('data-email')){bad=!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
+        r.classList.toggle('invalid',bad);if(bad)ok=false;
+      });
+      if(!ok)return;
+      // tải PDF
+      var a=document.createElement('a');a.href=PDF;a.download='BIGLIGHT_会社案内.pdf';
+      document.body.appendChild(a);a.click();a.remove();
+      box.style.display='none';done.style.display='block';f.reset();
+    });
+    f.querySelectorAll('[data-f] input').forEach(function(i){
+      i.addEventListener('input',function(){i.closest('.frow').classList.remove('invalid');});
+    });
+  })();
+</script>
+
+<!-- DOWNLOAD MODAL -->
+<div class="dlmask" id="dlMask">
+  <div class="dlbox">
+    <div class="dlhead">
+      <div class="bar"></div>
+      <button class="dlclose" id="dlClose" aria-label="閉じる">&times;</button>
+      <h3>会社資料ダウンロード</h3>
+      <p>下記をご入力いただくと、会社案内（PDF）をダウンロードいただけます。</p>
+    </div>
+    <form class="dlbody" id="dlForm" name="document-download" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="document-download">
+      <p hidden><label>これは記入しないでください <input name="bot-field"></label></p>
+      <div class="frow" data-f><label>会社名<span class="req">必須</span></label><input type="text" name="company" placeholder="株式会社〇〇"><div class="err">会社名をご入力ください。</div></div>
+      <div class="frow" data-f><label>ご担当者名<span class="req">必須</span></label><input type="text" name="name" placeholder="山田 太郎"><div class="err">お名前をご入力ください。</div></div>
+      <div class="frow" data-f data-email><label>メールアドレス<span class="req">必須</span></label><input type="email" name="email" placeholder="example@company.co.jp"><div class="err">正しいメールアドレスをご入力ください。</div></div>
+      <p class="note">ご入力いただいた情報は、資料送付および当社サービスのご案内にのみ使用いたします。</p>
+      <button type="submit" class="dlsubmit">資料をダウンロード</button>
+    </form>
+    <div class="dldone" id="dlDone" style="display:none">
+      <div class="ic">&#10003;</div>
+      <h3>ダウンロードを開始しました</h3>
+      <p>会社案内（PDF）のダウンロードが始まります。<br>開始しない場合は下のリンクをクリックしてください。</p>
+      <a href="assets/biglight-company-profile.pdf" download="BIGLIGHT_会社案内.pdf">&#11015; 会社案内をダウンロード</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
