@@ -836,6 +836,23 @@
 @media(max-width:900px){.ngrid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.ngrid{grid-template-columns:1fr}.narticle h1{font-size:24px}.nbody{font-size:15px}.nbody h2{font-size:20px}}
 
+/* ===== Modal 資料DL trên điện thoại — vừa màn hình, cuộn được ===== */
+@media(max-width:560px){
+  .dlmask{padding:8px;align-items:flex-start}
+  .dlbox{max-width:96vw;max-height:94vh;display:flex;flex-direction:column;margin-top:6px}
+  .dlhead{padding:11px 16px}
+  .dlhead h3{font-size:15px}
+  .dlhead p{font-size:10.5px;margin-top:3px}
+  .dlbody{overflow-y:auto;padding:11px 14px 13px}
+  .dlbody .frow{margin-bottom:7px}
+  .dlbody input,.dlbody textarea{padding:6px 9px;font-size:12.5px}
+  .dlbody textarea{min-height:34px}
+  .dlchecks{grid-template-columns:1fr;gap:4px}
+  .dlchecks label{font-size:11.5px}
+  .dlbody .dlsubmit{padding:8px;font-size:13px}
+  .dlbody .note{font-size:10px;margin:1px 0 8px}
+}
+
 /* ===== ICON SVG đồng bộ (thay emoji) ===== */
 .pcard .ic svg,.solcard .si svg,.scard .ic svg,.sup .si svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor}
 .pcard .ic svg{width:30px;height:30px}

@@ -352,13 +352,13 @@ cat > "$P/tokutei-rso.html" <<'EOF'
 
     <h3 class="rso-h3 reveal">登録支援機関の主な役割</h3>
     <div class="grid4">
-      <div class="solcard reveal"><div class="sn">01</div><div class="si">&#9992;</div><h3>入国前・入社前サポート</h3>
+      <div class="solcard reveal"><div class="sn">01</div><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div><h3>入国前・入社前サポート</h3>
         <ul class="mlist"><li>事前ガイダンス</li><li>住居確保支援</li><li>ライフライン契約支援</li><li>入国準備サポート</li></ul></div>
-      <div class="solcard reveal"><div class="sn">02</div><div class="si">&#127968;</div><h3>入社後の生活支援</h3>
+      <div class="solcard reveal"><div class="sn">02</div><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><h3>入社後の生活支援</h3>
         <ul class="mlist"><li>生活オリエンテーション</li><li>行政手続き同行</li><li>銀行口座開設支援</li><li>携帯電話契約支援</li></ul></div>
-      <div class="solcard reveal"><div class="sn">03</div><div class="si">&#128172;</div><h3>定期面談・相談対応</h3>
+      <div class="solcard reveal"><div class="sn">03</div><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3>定期面談・相談対応</h3>
         <ul class="mlist"><li>定期面談の実施</li><li>職場・生活相談</li><li>トラブル対応</li><li>企業との連携</li></ul></div>
-      <div class="solcard reveal"><div class="sn">04</div><div class="si">&#128218;</div><h3>日本語学習支援</h3>
+      <div class="solcard reveal"><div class="sn">04</div><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><h3>日本語学習支援</h3>
         <ul class="mlist"><li>日本語学習機会の提供</li><li>生活情報の提供</li><li>地域社会への適応支援</li></ul></div>
     </div>
 
@@ -461,7 +461,7 @@ emit_head(){ local OG_T="${OGTITLE:-$1}" OG_D="${OGDESC:-$2}"; cat <<EOF
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=8">
 EOF
 }
 
@@ -484,7 +484,7 @@ build(){
     cat "$P/footer.html"
     cat "$P/modal-privacy.html"
     cat "$P/modal-download.html"
-    echo '<script src="/assets/main.js"></script>'
+    echo '<script src="/assets/main.js?v=8"></script>'
     echo '</body>'
     echo '</html>'
   } > "$OUT"
@@ -493,6 +493,8 @@ build(){
          -e 's|href="#contact"|href="/contact/"|g' \
          -e 's|href="#">お問い合わせ|href="/contact/">お問い合わせ|g' \
          -e 's|href="#">お知らせ一覧|href="/news/">お知らせ一覧|g' "$OUT"
+  # lazy-load ảnh dưới màn hình đầu (tăng tốc tải trang)
+  sed -i -E 's#<img (src="/assets/(staff-|ceo|recruit-|case))#<img loading="lazy" decoding="async" \1#g' "$OUT"
   # heading đầu tiên -> h1 (chỉ khi trang chưa có h1, vd trang chủ hero đã có sẵn)
   if ! grep -q '<h1' "$OUT"; then
     sed -i '0,/<h2/{s/<h2/<h1/}' "$OUT"
