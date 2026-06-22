@@ -407,7 +407,7 @@
   .senpai{display:flex;flex-direction:column;gap:56px;max-width:1000px;margin:0 auto}
   .voice{display:flex;gap:46px;align-items:flex-start}
   .voice:nth-child(even){flex-direction:row-reverse}
-  .vmedia{flex:0 0 34%;position:sticky;top:90px}
+  .vmedia{flex:0 0 34%;position:static}
   .vmedia img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:18px;box-shadow:0 18px 44px rgba(11,61,145,.2);display:block}
   .vmedia::after{content:"";position:absolute;width:64%;height:64%;border:2px solid var(--gold);border-radius:18px;z-index:-1;bottom:-16px;right:-16px;opacity:.5}
   .voice:nth-child(even) .vmedia::after{right:auto;left:-16px}
