@@ -188,7 +188,6 @@ cat > "$P/footer.html" <<'EOF'
 </footer>
 
 <div class="fab">
-  <a class="fab-cta" href="/contact/">無料相談</a>
   <button class="fab-top" id="toTop" aria-label="ページトップへ">&#8593;</button>
 </div>
 EOF
@@ -461,7 +460,7 @@ emit_head(){ local OG_T="${OGTITLE:-$1}" OG_D="${OGDESC:-$2}"; cat <<EOF
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css?v=8">
+<link rel="stylesheet" href="/assets/style.css?v=9">
 EOF
 }
 
@@ -484,7 +483,7 @@ build(){
     cat "$P/footer.html"
     cat "$P/modal-privacy.html"
     cat "$P/modal-download.html"
-    echo '<script src="/assets/main.js?v=8"></script>'
+    echo '<script src="/assets/main.js?v=9"></script>'
     echo '</body>'
     echo '</html>'
   } > "$OUT"

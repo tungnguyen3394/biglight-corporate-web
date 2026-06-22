@@ -152,4 +152,22 @@
     m.addEventListener('click',function(e){if(e.target===m)close();});
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('open'))close();});
   })();
+
+  /* HOME NEWS — nạp bài viết thật từ admin (đúng số bài, link chuẩn) */
+  (function(){
+    var el=document.getElementById('homeNews');
+    if(!el) return;
+    var CT={news:['お知らせ','ncat'],magazine:['Magazine','ncat r'],seido:['制度・法改正','ncat g'],press:['プレス','ncat g']};
+    var esc=function(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
+    fetch('https://admin.biglight.jp/api/posts/latest').then(function(r){return r.json();}).then(function(d){
+      var items=(d&&d.items)||[];
+      if(!items.length) return;
+      el.innerHTML=items.map(function(p){
+        var c=CT[p.category]||[p.category,'ncat'];
+        var t=p.published_at?new Date(p.published_at):null;
+        var ds=t?(t.getFullYear()+'.'+('0'+(t.getMonth()+1)).slice(-2)+'.'+('0'+t.getDate()).slice(-2)):'';
+        return '<a class="nrow" href="/news/'+encodeURIComponent(p.slug)+'/"><span class="ndate">'+ds+'</span><span class="'+c[1]+'">'+esc(c[0])+'</span><span class="ntitle">'+esc(p.title)+'</span></a>';
+      }).join('');
+    }).catch(function(){});
+  })();
 })();
