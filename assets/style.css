@@ -50,7 +50,7 @@
   header{position:fixed;top:0;left:0;width:100%;z-index:50;transition:.3s;padding:14px 0}
   header.scrolled{background:#fff;box-shadow:0 1px 14px rgba(0,0,0,.07);padding:8px 0}
   .nav{display:flex;align-items:center;justify-content:space-between}
-  .logo img{height:46px;transition:filter .3s}
+  .logo img{height:54px;transition:filter .3s}
   /* Trang có hero tối (chủ / tuyển dụng): logo trắng monochrome khi chưa cuộn */
   body:has(.hero) header:not(.scrolled) .logo img,
   body:has(.recruit-hero) header:not(.scrolled) .logo img{filter:brightness(0) invert(1)}
@@ -89,7 +89,7 @@
   @keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.12)}}
   .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,30,70,.62),rgba(7,30,70,.42),rgba(7,30,70,.6))}
   .hero .content{position:relative;z-index:2;color:#fff;padding:0 20px}
-  .hero h1{font-size:clamp(30px,5vw,56px);font-weight:700;line-height:1.42;letter-spacing:3px;margin-bottom:14px;text-shadow:0 2px 20px rgba(0,0,0,.3)}
+  .hero h1{font-size:clamp(34px,5.6vw,62px);font-weight:700;line-height:1.4;letter-spacing:3px;margin-bottom:16px;text-shadow:0 2px 20px rgba(0,0,0,.3)}
   .hero-en{font-size:clamp(13px,1.7vw,19px);letter-spacing:3px;font-weight:500;margin-bottom:30px;background:linear-gradient(90deg,#ffe7a8,#f5a623,#ffe7a8);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
   .hero .lead{font-size:clamp(14px,2vw,17px);color:#e7eefb;letter-spacing:1px;margin-bottom:36px;text-shadow:0 1px 12px rgba(0,0,0,.3)}
   .hero .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
@@ -591,7 +591,7 @@
     .tg-conn{width:auto;height:38px;transform:rotate(90deg)}
     .tg-merit-list{grid-template-columns:1fr}
     .voice,.voice:nth-child(even){flex-direction:column;gap:24px}
-    .vmedia{flex:0 0 auto;width:100%;max-width:340px;margin:0 auto}
+    .vmedia{flex:0 0 auto;width:100%;max-width:340px;margin:0 auto;position:static;top:auto}
     .vmedia img{aspect-ratio:4/3}
     .rrow{grid-template-columns:1fr}
     .rk{padding:12px 18px}
@@ -605,19 +605,19 @@
   .dlhead .bar{position:absolute;top:0;left:0;height:3px;width:100%;background:linear-gradient(90deg,#f5a623,#ffe7a8)}
   .dlhead h3{font-size:18px;font-weight:700;letter-spacing:1px}
   .dlhead p{font-size:12px;color:#bcd0f0;margin-top:6px}
-  .dlbody{padding:22px 26px 26px}
-  .dlbody .frow{margin-bottom:14px}
-  .dlbody label{display:block;font-size:12.5px;font-weight:600;color:#1f2a3d;margin-bottom:6px}
+  .dlbody{padding:16px 22px 18px}
+  .dlbody .frow{margin-bottom:10px}
+  .dlbody label{display:block;font-size:12px;font-weight:600;color:#1f2a3d;margin-bottom:4px}
   .dlbody label .req{color:#f5a623;font-size:10px;margin-left:6px}
-  .dlbody input{width:100%;padding:11px 13px;border:1.5px solid #d8dfea;border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s}
+  .dlbody input{width:100%;padding:8px 11px;border:1.5px solid #d8dfea;border-radius:8px;font-size:13.5px;font-family:inherit;transition:border-color .2s}
   .dlbody input:focus{outline:none;border-color:#1e6fd6}
   .dlbody .frow.invalid input{border-color:#e23b3b}
   .dlbody .err{display:none;color:#e23b3b;font-size:11.5px;margin-top:5px}
   .dlbody .frow.invalid .err{display:block}
-  .dlbody .note{font-size:11px;color:#7a8398;margin:4px 0 16px;line-height:1.6}
-  .dlbody .dlsubmit{width:100%;padding:13px;border:none;border-radius:8px;background:linear-gradient(90deg,#f5a623,#ffb943);color:#071e46;font-weight:700;font-size:15px;font-family:inherit;cursor:pointer;letter-spacing:1px;box-shadow:0 8px 22px rgba(245,166,35,.4);transition:transform .15s}
+  .dlbody .note{font-size:11px;color:#7a8398;margin:2px 0 12px;line-height:1.55}
+  .dlbody .dlsubmit{width:100%;padding:11px;border:none;border-radius:8px;background:linear-gradient(90deg,#f5a623,#ffb943);color:#071e46;font-weight:700;font-size:14px;font-family:inherit;cursor:pointer;letter-spacing:1px;box-shadow:0 8px 22px rgba(245,166,35,.4);transition:transform .15s}
   .dlbody .dlsubmit:hover{transform:translateY(-2px)}
-  .dlbody textarea{width:100%;padding:11px 13px;border:1.5px solid #d8dfea;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;min-height:54px;transition:border-color .2s}
+  .dlbody textarea{width:100%;padding:8px 11px;border:1.5px solid #d8dfea;border-radius:8px;font-size:13.5px;font-family:inherit;resize:vertical;min-height:44px;transition:border-color .2s}
   .dlbody textarea:focus{outline:none;border-color:#1e6fd6}
   .dlbody .dlhint{font-weight:400;color:#9aa3b2;font-size:11px;margin-left:6px}
   .dlchecks{display:grid;grid-template-columns:1fr 1fr;gap:7px 14px}
@@ -681,7 +681,7 @@
   .sec-head h2,.sec-head h1{font-size:24px}
   .sec-head p{font-size:13.5px}
   .hero{min-height:auto;height:88vh}
-  .hero h1,.hero-h1{font-size:27px;line-height:1.4;letter-spacing:1px}
+  .hero h1,.hero-h1{font-size:31px;line-height:1.42;letter-spacing:1px}
   .hero .btns{flex-direction:column;gap:10px}
   .hero .btns a{width:100%}
   .btn-gold,.btn-ghost,.btn-outline{width:100%;text-align:center}
@@ -834,3 +834,25 @@
 .nback{margin-top:38px}
 @media(max-width:900px){.ngrid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.ngrid{grid-template-columns:1fr}.narticle h1{font-size:24px}.nbody{font-size:15px}.nbody h2{font-size:20px}}
+
+/* ===== ICON SVG đồng bộ (thay emoji) ===== */
+.pcard .ic svg,.solcard .si svg,.scard .ic svg,.sup .si svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor}
+.pcard .ic svg{width:30px;height:30px}
+.solcard .si svg{width:38px;height:38px}
+.scard .ic svg{width:44px;height:44px}
+.sup .si svg{width:30px;height:30px}
+.pcard:hover .ic{transform:scale(1.08);transition:.25s}
+.solcard:hover .si{transform:translateY(-3px);transition:.25s}
+
+/* ===== HERO 強化アニメーション ===== */
+.hero-h1{animation:heroUp 1s .15s both, heroGlow 5s ease-in-out 1.8s infinite}
+@keyframes heroGlow{0%,100%{text-shadow:0 2px 20px rgba(0,0,0,.3)}50%{text-shadow:0 2px 20px rgba(0,0,0,.3),0 0 28px rgba(245,166,35,.5)}}
+.hero .content{animation:heroFloat 8s ease-in-out 1.8s infinite}
+@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.hero-btns .btn-gold{position:relative;overflow:hidden;animation:goldPulse 2.8s ease-in-out 2s infinite}
+@keyframes goldPulse{0%,100%{box-shadow:0 10px 26px rgba(245,166,35,.40)}50%{box-shadow:0 14px 36px rgba(245,166,35,.72)}}
+.hero-btns .btn-gold::after{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-20deg);animation:goldSweep 4s ease-in-out 2.6s infinite}
+@keyframes goldSweep{0%{left:-130%}45%,100%{left:150%}}
+.hero-btns .btn-ghost{transition:.25s}
+.hero-btns .btn-ghost:hover{background:rgba(255,255,255,.16);border-color:#fff;transform:translateY(-2px)}
+@media(prefers-reduced-motion:reduce){.hero .content,.hero-h1,.hero-btns .btn-gold,.hero-btns .btn-gold::after{animation:none}}
