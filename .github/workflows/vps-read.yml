@@ -23,12 +23,15 @@ jobs:
           port: ${{ secrets.VPS_PORT || 22 }}
           command_timeout: 3m
           script: |
-            echo "===== /root/biglight-web (ls)"; ls -la /root/biglight-web
+            echo "===== /root/biglight-web (ls)"; ls -la /root/biglight-web /root/biglight-web/nginx 2>/dev/null
             echo "===== BEGIN docker-compose.yml"; cat /root/biglight-web/docker-compose.yml; echo "===== END docker-compose.yml"
-            echo "===== BEGIN nginx.conf"; cat /root/biglight-web/nginx.conf; echo "===== END nginx.conf"
+            echo "===== BEGIN nginx"; cat /root/biglight-web/nginx/default.conf 2>/dev/null || cat /root/biglight-web/nginx.conf; echo "===== END nginx"
             echo "===== container"; docker inspect biglight-web --format '{{.Created}} {{.Config.Image}} {{.State.Status}}'
-            docker inspect biglight-web --format '{{range .Mounts}}{{.Source}} -> {{.Destination}} ro={{.RW}}{{"\n"}}{{end}}'
-            echo "===== /var/www/biglight (cấp 1)"; ls -la /var/www/biglight
-            echo "===== thư mục không có trong repo (news/uploads...)"; du -sh /var/www/biglight/* 2>/dev/null | sort -h | tail -15
-            echo "===== infra compose: khối biglight-web (nếu có)"; grep -n -B2 -A14 'biglight-web' /root/infra/docker-compose.yml 2>/dev/null || echo "(không có trong /root/infra)"
-            echo "===== kiểm tra trang chủ tại chỗ"; curl -s -o /dev/null -w 'local / -> %{http_code}\n' -H 'Host: biglight.jp' http://127.0.0.1:$(docker port biglight-web 80 2>/dev/null | head -1 | awk -F: '{print $NF}')/ || true
+            docker inspect biglight-web --format '{{range .Mounts}}{{.Source}} -> {{.Destination}}{{"\n"}}{{end}}'
+            echo "===== git tại /var/www/biglight"
+            cd /var/www/biglight && git -c safe.directory='*' status -sb | head -40
+            echo "--- log"; git -c safe.directory='*' log --format='%h %ad %s' --date=iso -8
+            echo "--- khác biệt với origin/main (chỉ tên file)"; git -c safe.directory='*' fetch -q origin 2>/dev/null || true; git -c safe.directory='*' diff --stat origin/main -- . ':!news' ':!sitemap.xml' | tail -25
+            echo "--- file không theo dõi (trừ news)"; git -c safe.directory='*' status --porcelain --untracked-files=all | grep '^??' | grep -v '^?? news/' | head -40
+            echo "===== kiểm trang tại chỗ"
+            for u in / /index.html /about/ /.git/HEAD /build.sh; do docker exec biglight-web wget -S -q --max-redirect=0 -O /dev/null "http://127.0.0.1$u" 2>&1 | awk -v u=$u '/HTTP\//{c=$2} END{print u, c}'; done
