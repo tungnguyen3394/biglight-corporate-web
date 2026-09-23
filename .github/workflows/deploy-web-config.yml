@@ -1,0 +1,104 @@
+# Đưa cấu hình nginx + compose của biglight.jp (deploy/biglight-web/) lên VPS.
+#
+# Nguyên tắc: KIỂM rồi mới coi là xong, hỏng thì TỰ LÙI.
+#   1. sao lưu bản đang chạy vào /root/biglight-web/_prev/
+#   2. chép bản mới, `nginx -t` (cú pháp) → `docker compose up -d` → reload
+#   3. đo ngay trên VPS: /  phải 200, /index.html phải 301 → /, /about/ 200
+#   4. sai bất kỳ điều nào → trả lại _prev, dựng lại, và ĐỎ.
+# KHÔNG đụng /var/www/biglight (nội dung trang): production có nhiều sửa đổi chưa commit
+# và admin.biglight.jp ghi /news/ vào đó — xem deploy/biglight-web/README.md.
+name: Deploy biglight.jp config (nginx + compose)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'deploy/biglight-web/**'
+      - '.github/workflows/deploy-web-config.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: biglight-web-vps
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Kiểm cú pháp nginx NGAY TRÊN RUNNER (chưa đụng VPS)
+        run: |
+          docker run --rm -v "$PWD/deploy/biglight-web/nginx:/etc/nginx/conf.d:ro" nginx:alpine nginx -t
+
+      - name: Sao lưu bản đang chạy
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          script: |
+            set -e
+            mkdir -p /root/biglight-web/nginx /root/biglight-web/_prev
+            # _prev = đúng bản đang phục vụ trước lượt này (ghi đè mỗi lượt, giữ 1 bản)
+            rm -rf /root/biglight-web/_prev/*
+            cp -a /root/biglight-web/docker-compose.yml /root/biglight-web/_prev/ 2>/dev/null || true
+            cp -a /root/biglight-web/nginx /root/biglight-web/_prev/ 2>/dev/null || true
+            # Lần đầu chuyển từ mount-một-file: giữ lại nginx.conf cũ để so sánh
+            [ -f /root/biglight-web/nginx.conf ] && cp -a /root/biglight-web/nginx.conf /root/biglight-web/_prev/nginx.conf.single-file || true
+
+      - name: Chép cấu hình mới
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          source: "deploy/biglight-web/docker-compose.yml,deploy/biglight-web/nginx/"
+          target: /root/biglight-web
+          strip_components: 2
+          overwrite: true
+
+      - name: Dựng + kiểm chứng, hỏng thì lùi
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          command_timeout: 10m
+          script: |
+            cd /root/biglight-web
+            rollback() {
+              echo "!! LÙI VỀ BẢN TRƯỚC"
+              [ -f _prev/docker-compose.yml ] && cp -a _prev/docker-compose.yml ./
+              if [ -d _prev/nginx ]; then find nginx -mindepth 1 -delete; cp -a _prev/nginx/. nginx/; fi
+              docker compose up -d --remove-orphans || true
+              docker compose exec -T biglight-web nginx -s reload || true
+              exit 1
+            }
+            check() {   # $1 đường dẫn, $2 mã mong đợi
+              code=$(docker compose exec -T biglight-web wget -S -q --max-redirect=0 -O /dev/null --header='Host: biglight.jp' "http://127.0.0.1$1" 2>&1 | awk '/HTTP\//{c=$2} END{print c}')
+              echo "  $1 -> $code (mong $2)"
+              [ "$code" = "$2" ]
+            }
+            # compose đổi (mount file → thư mục) thì up -d tự tạo lại container; không đổi thì giữ nguyên
+            docker compose up -d --remove-orphans || rollback
+            docker compose exec -T biglight-web nginx -t || rollback
+            docker compose exec -T biglight-web nginx -s reload || rollback
+            sleep 1
+            echo "— kiểm ngay trên VPS —"
+            check /            200 || rollback
+            check /index.html  301 || rollback
+            check /about/      200 || rollback
+            check /assets/style.css 200 || rollback
+            echo "— kiểm qua Caddy/HTTPS thật —"
+            for i in 1 2 3 4 5; do
+              ext=$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 https://biglight.jp/ || true)
+              [ "$ext" = "200" ] && break; sleep 3
+            done
+            echo "  https://biglight.jp/ -> $ext"
+            [ "$ext" = "200" ] || rollback
+            docker image prune -f >/dev/null 2>&1 || true
+            echo "✓ biglight.jp OK"

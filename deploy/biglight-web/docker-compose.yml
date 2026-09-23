@@ -1,0 +1,32 @@
+# biglight.jp / www.biglight.jp — trang công ty tĩnh (nginx), Caddy của ~/infra đứng trước.
+#
+# Thư mục này là NGUỒN SỰ THẬT cho /root/biglight-web trên VPS. Trước 2026-09-23 nó chỉ
+# tồn tại trên máy chủ (không repo nào giữ). Ngày 23/9 16:09 JST một đợt SEO sửa thẳng
+# nginx.conf trên VPS, thêm `location = /index.html { return 301 /; }` rồi restart mà
+# không mở lại trang chủ → lặp 301 (ERR_TOO_MANY_REDIRECTS) tới 23:07. Từ nay đổi ở đây,
+# push, workflow deploy-web-config.yml mang lên và KIỂM / = 200 trước khi coi là xong.
+#
+# ★ Mount THƯ MỤC ./nginx, không mount một file. Docker gắn bind mount file theo inode:
+#   sửa file (sed -i / editor / scp) tạo inode mới → container vẫn giữ bản cũ, `nginx -s
+#   reload` vô ích và deploy vẫn "xanh" (bẫy đã trả giá ở Academy 09-02, finance 09-13).
+#
+# Web root /var/www/biglight KHÔNG do repo này ghi đè toàn bộ: admin.biglight.jp sinh
+# /news/ + sitemap vào đó. Workflow chỉ chép các trang tĩnh của repo, không xoá thứ khác.
+
+services:
+  biglight-web:
+    image: nginx:alpine
+    container_name: biglight-web
+    restart: unless-stopped
+    volumes:
+      - /var/www/biglight:/usr/share/nginx/html:ro
+      - ./nginx:/etc/nginx/conf.d:ro
+    labels:
+      caddy: biglight.jp www.biglight.jp
+      caddy.reverse_proxy: "{{upstreams 80}}"
+      caddy.encode: zstd gzip     # nén ở MỘT tầng (Caddy); biglight.jp từng là host duy nhất thiếu nén
+    networks: [web]
+
+networks:
+  web:
+    external: true                # mạng chung do ~/infra tạo (Caddy + PostgreSQL)
