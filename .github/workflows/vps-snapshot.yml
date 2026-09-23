@@ -1,0 +1,71 @@
+# Gom NGUYÊN TRẠNG /var/www/biglight (nội dung đang phục vụ thật) về repo, nhánh `vps-production`.
+#
+# Vì sao có: production từng được sửa tay thẳng trên VPS nhiều tháng (số điện thoại, SDGs, hero ngành,
+# đợt SEO 23/9…) mà repo không hề biết → repo cũ hơn production, không dám deploy nội dung.
+# Workflow này KHÔNG đổi, KHÔNG xoá bất kỳ file nào trên VPS. Nó chỉ:
+#   1. tạo 1 commit git ngay trong /var/www/biglight (checkout git sẵn có) với mọi file đang có,
+#      trừ *.bak* và _icon_bak/ (rác sửa tay — vẫn nằm nguyên trên đĩa) và /news/ (.gitignore, admin sinh)
+#   2. đóng gói lịch sử thành git bundle, kéo về runner, đẩy lên nhánh `vps-production`
+# Sau đó hợp nhất `vps-production` vào `main` trên máy làm việc (production thắng mọi xung đột).
+# Chạy: gh workflow run vps-snapshot.yml
+name: VPS snapshot → nhánh vps-production
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: biglight-web-vps
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Commit nguyên trạng ngay trên VPS + đóng bundle
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          command_timeout: 5m
+          script: |
+            set -e
+            cd /var/www/biglight
+            G="git -c safe.directory=* -c user.name=vps-snapshot -c user.email=vps-snapshot@biglight.jp"
+            echo "== trước:"; $G status -sb | head -5
+            $G add -A -- . ':!*.bak*' ':!_icon_bak'
+            if $G diff --cached --quiet; then
+              echo "== không có gì mới để gom"
+            else
+              $G commit -q -m "Nguyên trạng production $(date +%Y-%m-%d\ %H:%M) JST (gom từ VPS, không sửa gì)"
+            fi
+            echo "== sau:"; $G log --format='%h %ad %s' --date=iso -3
+            echo "== còn lại chưa theo dõi (cố ý bỏ qua):"; $G status --porcelain --untracked-files=all | grep '^??' | wc -l
+            rm -f /tmp/biglight-web.bundle
+            $G bundle create /tmp/biglight-web.bundle main
+            ls -la /tmp/biglight-web.bundle
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Kéo bundle về và đẩy lên nhánh vps-production
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_PORT: ${{ secrets.VPS_PORT || 22 }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -e
+          umask 077; printf '%s\n' "$VPS_SSH_KEY" > /tmp/k
+          scp -P "$VPS_PORT" -o StrictHostKeyChecking=no -i /tmp/k "$VPS_USER@$VPS_HOST:/tmp/biglight-web.bundle" /tmp/biglight-web.bundle
+          rm -f /tmp/k
+          git bundle verify /tmp/biglight-web.bundle
+          git fetch /tmp/biglight-web.bundle main:vps-production
+          echo "== vps-production:"; git log --format='%h %ad %s' --date=iso -3 vps-production
+          echo "== khác main (tên file):"; git diff --stat main vps-production | tail -5
+          git push --force origin vps-production
