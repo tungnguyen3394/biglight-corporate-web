@@ -78,8 +78,9 @@ jobs:
               docker compose exec -T biglight-web nginx -s reload || true
               exit 1
             }
-            check() {   # $1 đường dẫn, $2 mã mong đợi
-              code=$(docker compose exec -T biglight-web wget -S -q --max-redirect=0 -O /dev/null --header='Host: biglight.jp' "http://127.0.0.1$1" 2>&1 | awk '/HTTP\//{c=$2} END{print c}')
+            check() {   # $1 đường dẫn, $2 mã mong đợi — curl từ host vào IP container (busybox wget -q nuốt mã trạng thái)
+              ip=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' biglight-web)
+              code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 -H 'Host: biglight.jp' "http://$ip$1" || true)
               echo "  $1 -> $code (mong $2)"
               [ "$code" = "$2" ]
             }
@@ -93,6 +94,8 @@ jobs:
             check /index.html  301 || rollback
             check /about/      200 || rollback
             check /assets/style.css 200 || rollback
+            check /.git/HEAD   404 || rollback
+            check /build.sh    404 || rollback
             echo "— kiểm qua Caddy/HTTPS thật —"
             for i in 1 2 3 4 5; do
               ext=$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 https://biglight.jp/ || true)
