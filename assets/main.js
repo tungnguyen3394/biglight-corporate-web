@@ -2,60 +2,8 @@
 (function(){
   var pl=document.getElementById('preloader');
   function hidePl(){if(pl)pl.classList.add('done');}
-  /* 2026-09-21: TRƯỚC ĐÂY đợi window.load — tức đợi TẢI XONG mọi thứ, kể cả video 8,6 MB
-     và iframe Google Maps — rồi cộng thêm 700 ms, trần 3 giây. Nhưng trang đã dựng xong và
-     đọc được từ lâu trước đó. Site không phải SPA nên MỖI cú bấm là một lần tải trang đầy đủ,
-     nghĩa là mỗi lần chuyển trang người dùng nhìn màn xanh 1,5–3,8 giây. Nay bỏ màn chờ ngay
-     khi DOM + CSS sẵn sàng — đúng lúc trang thật sự nhìn được. */
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',hidePl);
-  else hidePl();
-  setTimeout(hidePl,1500);   // lưới an toàn: lỡ JS lỗi thì màn chờ cũng không kẹt quá 1,5 giây
-
-  /* ── Video nền: nạp CÓ ĐIỀU KIỆN (2026-09-21) ───────────────────────────────────────
-     Trang chủ có 2 video nền: hero-sequence.mp4 (8,6 MB) và biglight-team.mp4 (3,9 MB).
-     Trước đây thẻ <video> mang preload="auto" + autoplay nên trình duyệt tải cả 12,5 MB
-     NGAY, trước cả khi người dùng cuộn tới. Năm ứng dụng (crm · job · academy · finance ·
-     website) dùng CHUNG một đường truyền của máy chủ, nên vài khách vào trang chủ cùng lúc
-     là đủ làm mọi ứng dụng còn lại đứng.
-     Nay chỉ tải khi ĐÁNG tải: trang đã xong việc quan trọng, màn đủ rộng để video có ý nghĩa,
-     mạng không phải loại tiết kiệm/chậm, và người dùng không yêu cầu giảm chuyển động.
-     Không đạt điều kiện thì giữ nguyên ảnh poster — trang vẫn đủ đẹp mà nhẹ hơn 12,5 MB. */
-  function wantVideo(){
-    try{
-      if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return false;
-      if(window.innerWidth<768)return false;                 // điện thoại: video nền tốn nhiều, được ít
-      var c=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
-      if(c){
-        if(c.saveData)return false;
-        if(/^(slow-2g|2g|3g)$/.test(c.effectiveType||''))return false;
-      }
-    }catch(e){}
-    return true;
-  }
-  function loadVideo(v){
-    if(!v||v.getAttribute('data-loaded'))return;
-    var src=v.getAttribute('data-src');
-    if(!src)return;
-    v.setAttribute('data-loaded','1');
-    var s=document.createElement('source');
-    s.type='video/mp4';s.src=src;
-    v.appendChild(s);
-    v.load();
-    var p=v.play();
-    if(p&&p.catch)p.catch(function(){});                     // trình duyệt chặn tự phát thì thôi, vẫn còn poster
-  }
-  function initVideos(){
-    var vs=[].slice.call(document.querySelectorAll('video[data-src]'));
-    if(!vs.length||!wantVideo())return;
-    if(!('IntersectionObserver' in window)){vs.forEach(loadVideo);return;}
-    var io=new IntersectionObserver(function(es){
-      es.forEach(function(e){if(e.isIntersecting){loadVideo(e.target);io.unobserve(e.target);}});
-    },{rootMargin:'200px'});
-    vs.forEach(function(v){io.observe(v);});
-  }
-  // Sau window.load: video không tranh băng thông với CSS/JS/ảnh của chính trang.
-  if(document.readyState==='complete')initVideos();
-  else window.addEventListener('load',initVideos);
+  window.addEventListener('load',function(){setTimeout(hidePl,700);});
+  setTimeout(hidePl,3000);
 
   var hd=document.getElementById('hd');
   var prog=document.getElementById('progress');
