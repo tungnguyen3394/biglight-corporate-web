@@ -24,6 +24,8 @@ dist
 /news/
 # ảnh upload từ admin (アイキャッチ)
 /assets/uploads/
+# sitemap do admin sinh lại mỗi khi đăng bài — không theo dõi (deploy-site.yml luôn giữ nguyên file trên VPS)
+/sitemap.xml
 
 # Build artifacts / dev
 _partials/

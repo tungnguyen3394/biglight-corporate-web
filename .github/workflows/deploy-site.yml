@@ -1,0 +1,83 @@
+# Đưa NỘI DUNG trang (HTML/CSS/ảnh) lên VPS: /var/www/biglight là một checkout git của repo này,
+# deploy = fast-forward tới origin/main. KHÔNG dựng lại container, KHÔNG đụng nginx.
+#
+# Khoá an toàn (ưu tiên giữ nguyên hiện trạng, không bao giờ ghi đè sửa tay):
+#   • VPS có file theo dõi bị sửa tay chưa gom  → ĐỎ, không làm gì. Chạy vps-snapshot.yml trước.
+#   • VPS có commit riêng chưa có trên origin    → ĐỎ (ff-only không ghép được).
+#   • /news/, /assets/uploads/, sitemap.xml (admin.biglight.jp sinh) và *.bak* → không theo dõi, không đụng.
+#   • sitemap.xml: sao lưu trước, trả lại sau — kể cả khi repo đổi cách theo dõi nó.
+# Sau khi ff: đo / , /about/, /news/ = 200 ngay tại VPS; hỏng thì lùi HEAD về chỗ cũ.
+name: Deploy biglight.jp site (nội dung)
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'deploy/**'
+      - '.github/workflows/deploy-web-config.yml'
+      - '.github/workflows/vps-*.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: biglight-web-vps
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fast-forward /var/www/biglight tới origin/main (có khoá an toàn)
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          command_timeout: 10m
+          script: |
+            set -e
+            cd /var/www/biglight
+            G="git -c safe.directory=*"
+            $G fetch -q origin main
+            BEFORE=$($G rev-parse HEAD)
+            echo "== HEAD hiện tại: $BEFORE"; $G log --format='  %h %ad %s' --date=iso -1
+
+            # Khoá 1: sửa tay chưa gom (bỏ qua sitemap.xml — admin sinh)
+            DIRTY=$($G status --porcelain --untracked-files=no | grep -v ' sitemap.xml$' || true)
+            if [ -n "$DIRTY" ]; then
+              echo "!! VPS có file theo dõi bị sửa tay CHƯA GOM về repo — không ghi đè. Chạy vps-snapshot.yml trước, rồi deploy lại."
+              echo "$DIRTY"; exit 1
+            fi
+            # Khoá 2: commit riêng trên VPS
+            if [ -n "$($G log origin/main..HEAD --oneline)" ]; then
+              echo "!! VPS có commit chưa có trên origin/main — chạy vps-snapshot.yml trước."; $G log origin/main..HEAD --oneline; exit 1
+            fi
+
+            cp -a sitemap.xml /tmp/sitemap.xml.keep 2>/dev/null || true
+            if [ "$BEFORE" = "$($G rev-parse origin/main)" ]; then
+              echo "== đã ở origin/main, không có gì để đưa lên"
+            else
+              # sitemap.xml đang bị admin sửa thì ff sẽ từ chối ("would be overwritten") → trả về bản git tạm thời,
+              # đã sao lưu ở trên và sẽ chép lại ngay sau. (Commit mới bỏ theo dõi nó → git xoá khỏi đĩa → cũng chép lại.)
+              $G checkout -q -- sitemap.xml 2>/dev/null || true
+              $G merge --ff-only origin/main
+              echo "== đã ff tới:"; $G log --format='  %h %ad %s' --date=iso -1
+            fi
+            # Trả lại sitemap.xml của admin dù chuyện gì xảy ra
+            [ -f /tmp/sitemap.xml.keep ] && cp -a /tmp/sitemap.xml.keep sitemap.xml && rm -f /tmp/sitemap.xml.keep
+
+            echo "== kiểm ngay tại VPS"
+            ip=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' biglight-web)
+            fail=0
+            for p in / /about/ /news/ /sitemap.xml /assets/style.css; do
+              code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 -H 'Host: biglight.jp' "http://$ip$p" || true)
+              echo "  $p -> $code"; [ "$code" = "200" ] || fail=1
+            done
+            for p in /deploy/biglight-web/nginx/default.conf /.github/workflows/deploy-site.yml /build.sh; do
+              code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 -H 'Host: biglight.jp' "http://$ip$p" || true)
+              echo "  $p -> $code (mong 404)"; [ "$code" = "404" ] || fail=1
+            done
+            if [ "$fail" = "1" ]; then
+              echo "!! kiểm hỏng — lùi HEAD về $BEFORE"; $G reset -q --hard "$BEFORE"; exit 1
+            fi
+            echo "✓ nội dung biglight.jp = origin/main $($G rev-parse --short HEAD)"
