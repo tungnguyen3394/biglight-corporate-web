@@ -877,3 +877,23 @@
 .hero-btns .btn-ghost{transition:.25s}
 .hero-btns .btn-ghost:hover{background:rgba(255,255,255,.16);border-color:#fff;transform:translateY(-2px)}
 @media(prefers-reduced-motion:reduce){.hero .content,.hero-h1,.hero-btns .btn-gold,.hero-btns .btn-gold::after{animation:none}}
+
+/* Desktop: mo rong cot bai tin (お知らせ) len ~1080px. Mobile/tablet giu nguyen 780px */
+@media(min-width:1025px){.narticle .nart{max-width:1080px}}
+
+/* ===== v10: hide teichaku + mega bar dropdown ===== */
+.dropdown a[href="/service/teichaku/"],#mnav a[href="/service/teichaku/"],footer a[href="/service/teichaku/"]{display:none!important}
+.menu .item{position:static}
+.menu .dropdown{position:absolute;top:100%;left:0;right:0;width:auto;min-width:0;background:linear-gradient(180deg,#12315e,#0b2545);border:0;border-radius:0;box-shadow:0 24px 44px rgba(4,18,45,.34);padding:28px max(24px,calc((100% - 1100px)/2)) 32px;display:flex;gap:0;counter-reset:megai;transform:translateY(8px)}
+.menu .item:hover .dropdown{transform:translateY(0)}
+.menu .dropdown a{flex:1 1 0;position:relative;display:block;padding:16px 22px;border-radius:0;border-top:2px solid rgba(255,255,255,.16);color:#fff;font-size:15px;font-weight:700;line-height:1.55;background:transparent;counter-increment:megai;transition:background .2s,color .2s}
+.menu .dropdown a::before{content:counter(megai,decimal-leading-zero);display:block;font-family:Georgia,serif;font-size:12px;letter-spacing:.15em;color:rgba(255,255,255,.5);font-weight:700;margin-bottom:10px}
+.menu .dropdown a + a{border-left:1px solid rgba(255,255,255,.1)}
+.menu .dropdown a:first-child{background:rgba(255,255,255,.06);border-top-color:var(--gold)}
+.menu .dropdown a:hover{background:rgba(255,255,255,.09);color:var(--gold)}
+.menu .dropdown a:hover::before{color:var(--gold)}
+
+/* v12-noframe: xoa khung trang tri anh nhan vien tren mobile */
+@media(max-width:860px){
+  .vmedia::before,.vmedia::after,.voice::before,.voice::after,.vtext::before,.vtext::after{content:none!important;display:none!important;border:0!important}
+}
