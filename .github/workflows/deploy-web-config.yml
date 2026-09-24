@@ -96,6 +96,8 @@ jobs:
             check /assets/style.css 200 || rollback
             check /.git/HEAD   404 || rollback
             check /build.sh    404 || rollback
+            check /tuyen-dung.html 410 || rollback   # URL site cũ → 410 (SEO 2026-09-24)
+            check /blog.html   301 || rollback       # trang danh sách blog cũ vẫn 301 → /news/
             echo "— kiểm qua Caddy/HTTPS thật —"
             for i in 1 2 3 4 5; do
               ext=$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 https://biglight.jp/ || true)
