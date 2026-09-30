@@ -25,6 +25,12 @@ services:
       caddy: biglight.jp www.biglight.jp
       caddy.reverse_proxy: "{{upstreams 80}}"
       caddy.encode: zstd gzip     # nén ở MỘT tầng (Caddy); biglight.jp từng là host duy nhất thiếu nén
+      # 2026-09-30 (audit hạ tầng): header an toàn đặt ở tầng Caddy — quét 17 tên miền ngày 30/9,
+      # biglight.jp/www thiếu cả 4. Dấu "?" = chỉ đặt khi nginx bên trong chưa tự đặt (không đè).
+      caddy.header.Strict-Transport-Security: "max-age=31536000"
+      caddy.header.?X-Content-Type-Options: nosniff
+      caddy.header.?X-Frame-Options: SAMEORIGIN
+      caddy.header.?Referrer-Policy: strict-origin-when-cross-origin
     networks: [web]
 
 networks:
