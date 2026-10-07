@@ -22,6 +22,17 @@ var BLT=(function(){
     window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments);};window.gtag('js',new Date());window.gtag('config',GA4_ID);
   }
   if(isArticle){store('bl_src',path);send({e:'view',p:path});}
+  /* フォーム営業のリンク（?bl=BL-XXXXXX）から来たら、どの会社が開いたかを CRM に知らせる（2026-10-07）。
+     番号だけを送り、すぐにアドレス欄から消す（共有・ブックマークに残さない） */
+  try{
+    var qs=new URLSearchParams(location.search), bl=(qs.get('bl')||'').toUpperCase();
+    if(/^BL-[A-Z0-9]{6}$/.test(bl)){
+      var fb=JSON.stringify({r:bl,p:path}), FAPI='https://api-crm.biglight.jp/formbot/c';
+      if(!(navigator.sendBeacon&&navigator.sendBeacon(FAPI,fb)))fetch(FAPI,{method:'POST',body:fb,keepalive:true,mode:'no-cors'}).catch(function(){});
+      qs.delete('bl'); var rest=qs.toString();
+      history.replaceState(history.state,'',path+(rest?'?'+rest:'')+location.hash);
+    }
+  }catch(e){}
   /* 押したボタンの名前。問い合わせ・資料・電話・LINE・求人・記事内の CTA だけを数える（ほかのリンクは数えない） */
   function ctaLabel(el){
     var href=el.getAttribute('href')||'';
