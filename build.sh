@@ -483,7 +483,7 @@ build(){
     cat "$P/footer.html"
     cat "$P/modal-privacy.html"
     cat "$P/modal-download.html"
-    echo '<script src="/assets/main.js?v=10"></script>'
+    echo '<script src="/assets/main.js?v=11"></script>'
     echo '</body>'
     echo '</html>'
   } > "$OUT"
