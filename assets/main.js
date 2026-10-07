@@ -32,7 +32,9 @@ var BLT=(function(){
     if(el.classList.contains('ncta-btn'))return (el.textContent||'').trim().slice(0,40)||'記事の CTA';
     return '';
   }
+  /* CTA 率 ＝ 記事から押した数 ÷ 記事の表示。記事以外のページで押したものは数えない */
   document.addEventListener('click',function(e){
+    if(!isArticle)return;
     var el=e.target&&e.target.closest?e.target.closest('a,button'):null;if(!el)return;
     var l=ctaLabel(el);if(!l)return;
     send({e:'cta',p:path,l:l});
