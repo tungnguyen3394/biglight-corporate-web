@@ -11,7 +11,8 @@ var BLT=(function(){
   var API='https://api-crm.biglight.jp/mktbot/t';
   var GA4_ID='';
   var path=location.pathname;
-  var isArticle=/^\/news\/[^\/]+/.test(path);
+  /* 記事 = /news/<slug>/ だけ（/news/tag/… /news/category/… /news/page/… の一覧は記事ではない） */
+  var isArticle=/^\/news\/(?!(tag|category|page|author)\/)[^\/]+\/?$/.test(path);
   function store(k,v){try{if(v===undefined)return sessionStorage.getItem(k)||'';sessionStorage.setItem(k,v);}catch(e){return '';}}
   function sid(){var s=store('bl_sid');if(!s){s=(Date.now().toString(36)+Math.random().toString(36).slice(2,12)).replace(/[^a-z0-9]/g,'');store('bl_sid',s);}return s;}
   function send(o){try{var b=JSON.stringify(o);if(navigator.sendBeacon&&navigator.sendBeacon(API,b))return;fetch(API,{method:'POST',body:b,keepalive:true,mode:'no-cors'}).catch(function(){});}catch(e){}}
