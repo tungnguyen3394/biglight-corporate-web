@@ -1,4 +1,50 @@
 /* BIGLIGHT – shared scripts (multi-page) */
+
+/* ===== 記事 → ボタン → 問い合わせ を数える（2026-10-07・marketing.biglight.jp のレポート用）=====
+   ・記事（/news/…）を開いた・問い合わせ系のボタンを押した・フォームの送信が成功した を数えるだけ。
+   ・個人は送らない: 氏名・メール・電話・IP・Cookie は使わない。sessionStorage（タブを閉じると消える）に
+     「直前に読んだ記事のパス」と「タブごとの乱数」だけを置く（同じ送信を二重に数えないため）。
+   ・送り先は CRM（api-crm.biglight.jp/mktbot/t）。届かなくてもページの動きは何も変わらない。
+   ・GA4_ID に Google アナリティクスの測定 ID（G-XXXXXXX）を入れると、同じ出来事を GA4 にも送る
+     （cta_click ・ generate_lead）。空のあいだは GA4 を読み込まない。 */
+var BLT=(function(){
+  var API='https://api-crm.biglight.jp/mktbot/t';
+  var GA4_ID='';
+  var path=location.pathname;
+  var isArticle=/^\/news\/[^\/]+/.test(path);
+  function store(k,v){try{if(v===undefined)return sessionStorage.getItem(k)||'';sessionStorage.setItem(k,v);}catch(e){return '';}}
+  function sid(){var s=store('bl_sid');if(!s){s=(Date.now().toString(36)+Math.random().toString(36).slice(2,12)).replace(/[^a-z0-9]/g,'');store('bl_sid',s);}return s;}
+  function send(o){try{var b=JSON.stringify(o);if(navigator.sendBeacon&&navigator.sendBeacon(API,b))return;fetch(API,{method:'POST',body:b,keepalive:true,mode:'no-cors'}).catch(function(){});}catch(e){}}
+  function ga(ev,params){try{if(window.gtag)window.gtag('event',ev,params);}catch(e){}}
+  if(GA4_ID){
+    var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(GA4_ID);document.head.appendChild(g);
+    window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments);};window.gtag('js',new Date());window.gtag('config',GA4_ID);
+  }
+  if(isArticle){store('bl_src',path);send({e:'view',p:path});}
+  /* 押したボタンの名前。問い合わせ・資料・電話・LINE・求人・記事内の CTA だけを数える（ほかのリンクは数えない） */
+  function ctaLabel(el){
+    var href=el.getAttribute('href')||'';
+    if(el.hasAttribute('data-dl'))return '資料ダウンロード';
+    if(/^tel:/i.test(href))return '電話';
+    if(/line\.me|lin\.ee/i.test(href))return 'LINE';
+    if(/job\.biglight\.jp/i.test(href))return '求人を見る';
+    if(/\/contact\/?(#|$)/.test(href)||el.classList.contains('cta')||el.classList.contains('macc-cta'))return '無料相談';
+    if(el.classList.contains('ncta-btn'))return (el.textContent||'').trim().slice(0,40)||'記事の CTA';
+    return '';
+  }
+  document.addEventListener('click',function(e){
+    var el=e.target&&e.target.closest?e.target.closest('a,button'):null;if(!el)return;
+    var l=ctaLabel(el);if(!l)return;
+    send({e:'cta',p:path,l:l});
+    ga('cta_click',{cta_label:l,page_path:path,source_article:store('bl_src')});
+  },true);
+  return {
+    /** 直前に読んだ記事のパス（無ければ ''） */
+    src:function(){return store('bl_src');},
+    /** 送信が成功したときに呼ぶ。kind = form（無料相談）/ download（資料） */
+    conv:function(kind){var src=store('bl_src');send({e:'conv',p:path,k:kind,s:sid(),src:src});ga('generate_lead',{method:kind,source_article:src});}
+  };
+})();
 (function(){
   var pl=document.getElementById('preloader');
   function hidePl(){if(pl)pl.classList.add('done');}
@@ -89,9 +135,12 @@
       var old=cs.textContent; cs.disabled=true; cs.textContent='送信中…';
       var fd={}; form.querySelectorAll('input,textarea').forEach(function(i){ if(i.name) fd[i.name]=i.value.trim(); });
       var payload={company:fd.company||'',name:fd.name||'',email:fd.email||'',tel:fd.tel||'',message:fd.msg||'',website:fd.website||''};
+      /* 2026-10-07: どの記事を読んでから来たか — 担当者がメールで分かるように本文の最後に 1 行足す（お客様の文はそのまま） */
+      var srcArt=BLT.src(); if(srcArt&&payload.message) payload.message+='\n\n――\n参照した記事: https://biglight.jp'+srcArt;
       fetch('https://admin.biglight.jp/api/inquiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
         .then(function(r){ if(!r.ok) throw new Error('failed'); return r.json(); })
         .then(function(){
+          BLT.conv('form');
           if(confirmBox)confirmBox.style.display='none';
           if(done){done.style.display='block';done.scrollIntoView({behavior:'smooth',block:'center'});}
         })
@@ -129,9 +178,11 @@
         var fd={}; f.querySelectorAll('input[type=text],input[type=email]').forEach(function(i){ if(i.name) fd[i.name]=i.value.trim(); });
         var interest=[]; f.querySelectorAll('input[name="interest"]:checked').forEach(function(c){ interest.push(c.value); });
         var noteEl=f.querySelector('[name="note"]'); var note=noteEl?noteEl.value.trim():'';
+        var srcArt=BLT.src(); if(srcArt) note=(note?note+'\n':'')+'参照した記事: https://biglight.jp'+srcArt;
         fetch('https://admin.biglight.jp/api/download',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({company:fd.company||'',name:fd.name||'',email:fd.email||'',interest:interest,note:note})}).catch(function(){});
         var a=document.createElement('a');a.href=PDF;a.download='BIGLIGHT_会社案内.pdf';
         document.body.appendChild(a);a.click();a.remove();
+        BLT.conv('download');
         box.style.display='none';done.style.display='block';f.reset();
       });
       f.querySelectorAll('[data-f] input').forEach(function(i){
