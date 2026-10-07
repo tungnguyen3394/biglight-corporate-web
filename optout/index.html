@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>配信停止｜BIGLIGHT株式会社</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<!-- 配信停止のページ（2026-10-07）。フォーム営業の手紙の最後のリンク（?bl=参照番号）から来る。
+     押すと CRM（api-crm.biglight.jp/formbot/optout）が その会社を「送らない先」に入れる。ログインも入力も要らない。
+     このページは main.js（クリックの計測）を読み込まない（停止の操作を「関心あり」と数えないため）。 -->
+<style>
+  :root{ --bg:#f6f7f9; --card:#fff; --text:#1f2937; --muted:#6b7280; --border:#e5e7eb; --brand:#1552B0; --ok:#15803d; --err:#b91c1c; }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#0f141b; --card:#161d27; --text:#e5e7eb; --muted:#9ca3af; --border:#273142; --brand:#5b8def; --ok:#4ade80; --err:#f87171; } }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic UI",Meiryo,sans-serif; line-height:1.8; }
+  main{ max-width:560px; margin:0 auto; padding:48px 16px 64px; }
+  .logo{ font-weight:800; letter-spacing:.06em; color:var(--brand); margin-bottom:20px; }
+  .card{ background:var(--card); border:1px solid var(--border); border-radius:14px; padding:28px 24px; }
+  h1{ font-size:20px; margin:0 0 12px; }
+  p{ margin:0 0 12px; }
+  .co{ font-weight:700; }
+  label{ display:block; font-size:13px; color:var(--muted); margin:16px 0 6px; }
+  select, textarea{ width:100%; font:inherit; font-size:15px; padding:10px 12px; border:1px solid var(--border); border-radius:10px; background:var(--card); color:var(--text); }
+  textarea{ min-height:72px; resize:vertical; }
+  button{ display:block; width:100%; margin-top:20px; font:inherit; font-size:16px; font-weight:700; padding:14px; border:0; border-radius:12px; background:var(--brand); color:#fff; cursor:pointer; }
+  button:disabled{ opacity:.6; cursor:default; }
+  .done{ color:var(--ok); font-weight:700; }
+  .err{ color:var(--err); font-size:14px; min-height:20px; margin-top:10px; }
+  .muted{ color:var(--muted); font-size:13px; }
+  .hide{ display:none; }
+  footer{ text-align:center; margin-top:24px; font-size:12px; color:var(--muted); }
+  footer a{ color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <div class="logo">BIGLIGHT</div>
+  <div class="card">
+    <div id="vLoad"><p class="muted">読み込んでいます…</p></div>
+
+    <div id="vAsk" class="hide">
+      <h1>ご案内の配信停止</h1>
+      <p><span class="co" id="coName"></span> 様</p>
+      <p>BIGLIGHT株式会社からのご案内（メール・お問い合わせフォームでのご連絡）を停止します。下のボタンを押すと、以後ご連絡いたしません。</p>
+      <label for="why">よろしければ理由をお聞かせください（任意）</label>
+      <select id="why">
+        <option value="">選ばない</option>
+        <option>外国人の採用予定がない</option>
+        <option>すでに他社に依頼している</option>
+        <option>営業のご連絡はお断りしている</option>
+        <option>担当部署ではない</option>
+        <option>その他</option>
+      </select>
+      <label for="note" class="hide" id="noteLb">その他（任意）</label>
+      <textarea id="note" class="hide" maxlength="150" placeholder="ご自由にお書きください"></textarea>
+      <button id="go" type="button">配信を停止する</button>
+      <div class="err" id="err"></div>
+    </div>
+
+    <div id="vDone" class="hide">
+      <h1>配信を停止しました</h1>
+      <p class="done">以後、ご案内はお送りいたしません。</p>
+      <p class="muted">行き違いでご案内が届いた場合は、恐れ入りますがご容赦ください。お手数をおかけしました。</p>
+    </div>
+
+    <div id="vNone" class="hide">
+      <h1>ご案内の配信停止</h1>
+      <p>リンクの番号を確かめられませんでした。お手数ですが、届いたメールに「配信不要」とご返信いただくか、<a href="/contact/">お問い合わせ</a>からご連絡ください。以後ご連絡いたしません。</p>
+    </div>
+  </div>
+  <footer>BIGLIGHT株式会社 ・ <a href="/privacy/">プライバシーポリシー</a></footer>
+</main>
+<script>
+(function(){
+  var API = 'https://api-crm.biglight.jp/formbot/optout';
+  var bl = '';
+  try { bl = (new URLSearchParams(location.search).get('bl') || '').toUpperCase(); } catch (e) {}
+  function show(id){ ['vLoad','vAsk','vDone','vNone'].forEach(function(x){ document.getElementById(x).classList.toggle('hide', x !== id); }); }
+  if (!/^BL-[A-Z0-9]{6}$/.test(bl)) { show('vNone'); return; }
+  var why = document.getElementById('why'), note = document.getElementById('note'), noteLb = document.getElementById('noteLb');
+  why.addEventListener('change', function(){ var o = why.value === 'その他'; note.classList.toggle('hide', !o); noteLb.classList.toggle('hide', !o); });
+  fetch(API + '?bl=' + encodeURIComponent(bl), { cache:'no-store' }).then(function(r){
+    if (!r.ok) throw new Error(r.status);
+    return r.json();
+  }).then(function(j){
+    document.getElementById('coName').textContent = j.name || '';
+    show(j.done ? 'vDone' : 'vAsk');
+  }).catch(function(){ show('vNone'); });
+  document.getElementById('go').addEventListener('click', function(){
+    var b = this, err = document.getElementById('err');
+    b.disabled = true; b.textContent = '停止しています…'; err.textContent = '';
+    var reason = why.value === 'その他' ? ('その他: ' + note.value.trim()).slice(0, 150) : why.value;
+    /* text/plain で送る（事前確認のない単純なリクエスト） */
+    fetch(API, { method:'POST', headers:{ 'Content-Type':'text/plain' }, body: JSON.stringify({ r: bl, reason: reason }) })
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(){ show('vDone'); })
+      .catch(function(){ b.disabled = false; b.textContent = '配信を停止する'; err.textContent = '停止できませんでした。時間をおいてもう一度お試しいただくか、メールに「配信不要」とご返信ください。'; });
+  });
+})();
+</script>
+</body>
+</html>
