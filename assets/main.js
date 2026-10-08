@@ -59,6 +59,43 @@ var BLT=(function(){
     conv:function(kind){var src=store('bl_src');send({e:'conv',p:path,k:kind,s:sid(),src:src});ga('generate_lead',{method:kind,source_article:src});}
   };
 })();
+/* ===== フォームのボット対策（2026-10-08・admin.biglight.jp /api/form-config）=====
+   ・ft = サーバーが署名した「フォームを開いた時刻」。送信時に一緒に送る（直接 POST するボットを見分ける）。
+   ・Cloudflare Turnstile: サイトキーが設定されているときだけ読み込む。普段は表示されず、怪しいときだけ確認が出る。
+   ・設定が取れない・Turnstile が読めないときでも、フォーム自体はそのまま送れる（お客様を止めない）。 */
+var BLF=(function(){
+  var CFG='https://admin.biglight.jp/api/form-config', cfgP=null, tsP=null;
+  function cfg(){ if(!cfgP) cfgP=fetch(CFG,{cache:'no-store'}).then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}); return cfgP; }
+  function loadTs(){
+    if(!tsP) tsP=new Promise(function(ok){
+      if(window.turnstile) return ok(window.turnstile);
+      var s=document.createElement('script'); s.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'; s.async=true;
+      s.onload=function(){ok(window.turnstile||null);}; s.onerror=function(){ok(null);}; document.head.appendChild(s);
+    });
+    return tsP;
+  }
+  /* form に確認用の枠を差し込み、送信時に使う {ft, turnstile} を返す関数を持つオブジェクトを返す */
+  function mount(form, before){
+    var st={ft:'',token:'',wid:null,box:null};
+    cfg().then(function(c){
+      st.ft=c.ft||'';
+      if(!c.turnstileSiteKey) return;
+      st.box=document.createElement('div'); st.box.className='cf-ts';
+      if(before&&before.parentNode) before.parentNode.insertBefore(st.box,before); else form.appendChild(st.box);
+      loadTs().then(function(ts){
+        if(!ts) return;
+        st.wid=ts.render(st.box,{sitekey:c.turnstileSiteKey,appearance:'interaction-only',language:'ja','refresh-expired':'auto',
+          callback:function(t){st.token=t;}, 'expired-callback':function(){st.token='';}, 'error-callback':function(){st.token='';}});
+      });
+    });
+    return {
+      fields:function(){ return {ft:st.ft,turnstile:st.token}; },
+      reset:function(){ st.token=''; try{ if(window.turnstile&&st.wid!=null) window.turnstile.reset(st.wid); }catch(e){} }
+    };
+  }
+  return {mount:mount};
+})();
+
 (function(){
   var pl=document.getElementById('preloader');
   function hidePl(){if(pl)pl.classList.add('done');}
@@ -115,7 +152,7 @@ var BLT=(function(){
     function validate(){
       var ok=true;
       form.querySelectorAll('[data-f]').forEach(function(r){
-        var inp=r.querySelector('input,textarea');var v=inp.value.trim();var bad=!v;
+        var inp=r.querySelector('input,textarea,select');var v=inp.value.trim();var bad=!v;
         if(!bad&&r.hasAttribute('data-email')){bad=!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
         r.classList.toggle('invalid',bad);if(bad)ok=false;
       });
@@ -123,15 +160,16 @@ var BLT=(function(){
       if(agree&&!agree.checked){if(ae)ae.style.display='block';ok=false;}else if(ae){ae.style.display='none';}
       return ok;
     }
+    var guard=BLF.mount(form,document.getElementById('agree')&&document.getElementById('agree').closest('label'));
     form.addEventListener('submit',function(e){
       e.preventDefault();
       if(!validate())return;
       var rows='';
       form.querySelectorAll('.frow').forEach(function(r){
-        var lab=r.querySelector('label'),inp=r.querySelector('input,textarea');
+        var lab=r.querySelector('label'),inp=r.querySelector('input,textarea,select');
         if(!lab||!inp)return;
         var name=lab.textContent.replace('必須','').trim();
-        var val=inp.value.trim();
+        var val=inp.tagName==='SELECT'?(inp.value?inp.options[inp.selectedIndex].text:''):inp.value.trim();
         if(!val)val='—';
         rows+='<div class="confrow"><div class="confk">'+esc(name)+'</div><div class="confv">'+esc(val).replace(/\n/g,'<br>')+'</div></div>';
       });
@@ -147,24 +185,27 @@ var BLT=(function(){
     var cs=document.getElementById('confSend');
     if(cs)cs.addEventListener('click',function(){
       var old=cs.textContent; cs.disabled=true; cs.textContent='送信中…';
-      var fd={}; form.querySelectorAll('input,textarea').forEach(function(i){ if(i.name) fd[i.name]=i.value.trim(); });
-      var payload={company:fd.company||'',name:fd.name||'',email:fd.email||'',tel:fd.tel||'',message:fd.msg||'',website:fd.website||''};
+      var fd={}; form.querySelectorAll('input,textarea,select').forEach(function(i){ if(i.name) fd[i.name]=i.value.trim(); });
+      var g=guard.fields();
+      var payload={company:fd.company||'',name:fd.name||'',email:fd.email||'',tel:fd.tel||'',kind:fd.kind||'',message:fd.msg||'',website:fd.website||'',ft:g.ft,turnstile:g.turnstile};
       /* 2026-10-07: どの記事を読んでから来たか — 担当者がメールで分かるように本文の最後に 1 行足す（お客様の文はそのまま） */
       var srcArt=BLT.src(); if(srcArt&&payload.message) payload.message+='\n\n――\n参照した記事: https://biglight.jp'+srcArt;
       fetch('https://admin.biglight.jp/api/inquiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
-        .then(function(r){ if(!r.ok) throw new Error('failed'); return r.json(); })
+        .then(function(r){ return r.json().catch(function(){return {};}).then(function(j){ if(!r.ok){ var er=new Error(j.error||'failed'); er.code=j.code; er.msg=j.error; throw er; } return j; }); })
         .then(function(){
           BLT.conv('form');
           if(confirmBox)confirmBox.style.display='none';
           if(done){done.style.display='block';done.scrollIntoView({behavior:'smooth',block:'center'});}
         })
-        .catch(function(){
-          cs.disabled=false; cs.textContent=old;
-          alert('送信に失敗しました。お手数ですが、お電話（052-908-7944）でもご連絡ください。');
+        .catch(function(er){
+          cs.disabled=false; cs.textContent=old; guard.reset();
+          /* ボット確認に失敗 → 入力画面に戻して確認をやり直してもらう（入力内容はそのまま） */
+          if(er&&er.code==='turnstile'){ if(confirmBox)confirmBox.style.display='none'; form.style.display='block'; form.scrollIntoView({behavior:'smooth',block:'start'}); alert(er.msg||'送信の確認に失敗しました。もう一度お試しください。'); return; }
+          alert((er&&er.msg&&er.msg!=='failed'?er.msg+'\n':'')+'送信に失敗しました。お手数ですが、お電話（052-908-7944）でもご連絡ください。');
         });
     });
-    form.querySelectorAll('[data-f] input,[data-f] textarea').forEach(function(i){
-      i.addEventListener('input',function(){i.closest('.frow').classList.remove('invalid');});
+    form.querySelectorAll('[data-f] input,[data-f] textarea,[data-f] select').forEach(function(i){
+      i.addEventListener(i.tagName==='SELECT'?'change':'input',function(){i.closest('.frow').classList.remove('invalid');});
     });
   }
 
@@ -174,12 +215,13 @@ var BLT=(function(){
     if(!mask)return;
     var box=mask.querySelector('.dlbody'), done=document.getElementById('dlDone');
     var PDF='/assets/biglight-company-profile.pdf';
-    function open(e){if(e)e.preventDefault();box.style.display='block';done.style.display='none';mask.classList.add('open');}
+    var f=document.getElementById('dlForm'), guard=null;
+    /* ボット対策は資料ダウンロードを開いたときだけ読み込む（全ページで Turnstile を読まない） */
+    function open(e){if(e)e.preventDefault();if(f&&!guard)guard=BLF.mount(f,f.querySelector('.dlsubmit'));box.style.display='block';done.style.display='none';mask.classList.add('open');}
     function close(){mask.classList.remove('open');}
     document.querySelectorAll('[data-dl]').forEach(function(b){b.addEventListener('click',open);});
     mask.addEventListener('click',function(e){if(e.target===mask)close();});
     var dc=document.getElementById('dlClose');if(dc)dc.addEventListener('click',close);
-    var f=document.getElementById('dlForm');
     if(f){
       f.addEventListener('submit',function(e){
         e.preventDefault();var ok=true;
@@ -193,7 +235,9 @@ var BLT=(function(){
         var interest=[]; f.querySelectorAll('input[name="interest"]:checked').forEach(function(c){ interest.push(c.value); });
         var noteEl=f.querySelector('[name="note"]'); var note=noteEl?noteEl.value.trim():'';
         var srcArt=BLT.src(); if(srcArt) note=(note?note+'\n':'')+'参照した記事: https://biglight.jp'+srcArt;
-        fetch('https://admin.biglight.jp/api/download',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({company:fd.company||'',name:fd.name||'',email:fd.email||'',interest:interest,note:note})}).catch(function(){});
+        var g=guard?guard.fields():{}, hp=f.querySelector('[name="bot-field"]');
+        fetch('https://admin.biglight.jp/api/download',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({company:fd.company||'',name:fd.name||'',email:fd.email||'',interest:interest,note:note,website:hp?hp.value:'',ft:g.ft||'',turnstile:g.turnstile||''})}).catch(function(){});
+        if(guard)guard.reset();
         var a=document.createElement('a');a.href=PDF;a.download='BIGLIGHT_会社案内.pdf';
         document.body.appendChild(a);a.click();a.remove();
         BLT.conv('download');

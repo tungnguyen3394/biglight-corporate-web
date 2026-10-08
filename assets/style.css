@@ -464,11 +464,13 @@
   .frow{margin-bottom:18px}
   .frow label{display:block;font-size:13.5px;font-weight:600;color:var(--navy);margin-bottom:6px}
   .frow label .req{color:#e24b4a;font-size:11px;margin-left:6px}
-  .frow input,.frow textarea{width:100%;border:1px solid #cfd8e6;border-radius:8px;padding:12px 14px;font-size:14px;font-family:inherit;background:#fff;transition:.15s}
-  .frow input:focus,.frow textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(30,111,214,.12)}
+  .frow input,.frow textarea,.frow select{width:100%;border:1px solid #cfd8e6;border-radius:8px;padding:12px 14px;font-size:14px;font-family:inherit;background:#fff;transition:.15s}
+  .frow input:focus,.frow textarea:focus,.frow select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(30,111,214,.12)}
   .frow textarea{min-height:120px;resize:vertical}
+  .cf-ts{margin:4px 0 14px;min-height:0}
+  .fnote{font-size:12px;color:#6b7280;margin:-8px 0 16px;line-height:1.6}
   .frow .err{display:none;color:#e24b4a;font-size:12px;margin-top:5px}
-  .frow.invalid input,.frow.invalid textarea{border-color:#e24b4a;background:#fff6f6}
+  .frow.invalid input,.frow.invalid textarea,.frow.invalid select{border-color:#e24b4a;background:#fff6f6}
   .frow.invalid .err{display:block}
   .fcheck{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--muted);margin-bottom:20px}
   .fcheck input{width:auto;margin-top:3px;flex-shrink:0}
