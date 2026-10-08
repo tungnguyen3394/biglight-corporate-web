@@ -30,7 +30,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css?v=12">
+<link rel="stylesheet" href="/assets/style.css?v=13">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://biglight.jp/"},{"@type":"ListItem","position":2,"name":"お問い合わせ","item":"https://biglight.jp/contact/"}]}</script>
 </head>
 <body>
@@ -138,6 +138,17 @@
       <div class="frow" data-f><label>ご担当者名<span class="req">必須</span></label><input type="text" name="name" placeholder="山田 太郎"><div class="err">お名前をご入力ください。</div></div>
       <div class="frow" data-f data-email><label>メールアドレス<span class="req">必須</span></label><input type="email" name="email" placeholder="example@company.co.jp"><div class="err">正しいメールアドレスをご入力ください。</div></div>
       <div class="frow" data-f><label>電話番号<span class="req">必須</span></label><input type="tel" name="tel" placeholder="052-908-7944"><div class="err">電話番号をご入力ください。</div></div>
+      <div class="frow" data-f><label>お問い合わせ種別<span class="req">必須</span></label><select name="kind">
+        <option value="">選択してください</option>
+        <option>外国人材の採用について</option>
+        <option>特定技能の支援委託（登録支援機関）について</option>
+        <option>料金・資料について</option>
+        <option>お仕事を探している方（求職者）</option>
+        <option>取材・メディア</option>
+        <option>営業・ご提案</option>
+        <option>その他</option>
+      </select><div class="err">お問い合わせ種別をお選びください。</div></div>
+      <p class="fnote">営業・サービスのご提案は「営業・ご提案」をお選びください。内容を確認のうえ、必要な場合のみご連絡いたします。</p>
       <div class="frow" data-f><label>お問い合わせ内容<span class="req">必須</span></label><textarea name="msg" placeholder="ご相談内容をご記入ください。"></textarea><div class="err">お問い合わせ内容をご入力ください。</div></div>
       <label class="fcheck"><input type="checkbox" id="agree"><span><a href="#" class="js-pp">プライバシーポリシー</a>に同意の上、確認画面へ進みます。</span></label>
       <div id="agreeErr" style="display:none;margin:-12px 0 16px"><div class="err" style="display:block">プライバシーポリシーへの同意が必要です。</div></div>
@@ -322,6 +333,6 @@
     </div>
   </div>
 </div>
-<script src="/assets/main.js?v=13"></script>
+<script src="/assets/main.js?v=14"></script>
 </body>
 </html>
