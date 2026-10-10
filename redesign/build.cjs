@@ -16,13 +16,19 @@ const copies = {
   'badges/apple-ja.svg':'img/badge-appstore.svg','badges/google-ja.png':'img/badge-googleplay.png',
 };
 Object.assign(copies,{'img/og-image.jpg':'img/og-image.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
-for (const [s,d] of Object.entries(copies)) fs.copyFileSync(path.join(__dirname,'src',s), path.join(OUT,d));
+// ảnh chụp: dùng bản WebP (src/img/*.webp) nếu có — tên đích đổi .jpg → .webp, tham chiếu được thay ở bước SEO
+const WEBP = {};
+for (const [s,d] of Object.entries(copies)) {
+  const w = s.replace(/\.jpg$/, '.webp');
+  if (w !== s && fs.existsSync(path.join(__dirname,'src',w))) { const dw = d.replace(/\.jpg$/, '.webp'); fs.copyFileSync(path.join(__dirname,'src',w), path.join(OUT,dw)); WEBP[d] = dw; }
+  else fs.copyFileSync(path.join(__dirname,'src',s), path.join(OUT,d));
+}
 
 // ---------- CSS ----------
 const css = `
 /* BIGLIGHT corporate prototype — bố cục theo guidable.co.jp, màu theo BIGLIGHT */
 :root{
-  --ink:#202020; --ink2:#444; --grey:#9a9a9a; --line:#e0e0e0; --bg:#fff;
+  --ink:#202020; --ink2:#444; --grey:#737373; --line:#e0e0e0; --bg:#fff;
   --accent:#0b3d91; --accent-d:#072a66; --gold:#f5a623; --gold-l:#ffcb05; --blue:#1e6fd6;
   --loop:rgba(245,166,35,.16);
   --jp:"Noto Sans JP","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
@@ -118,7 +124,7 @@ html.js .opening{animation:opout .3s .85s ease forwards}
 html:not(.js) .opening{display:none}
 /* mở trang: thứ tự thời gian như Guidable */
 html.js.home .hd{opacity:0;animation:pagein .8s 2.1s ease forwards}
-html.js .hero .ch{display:inline-block;opacity:0;transform:translateY(31px);animation:chin .75s cubic-bezier(.2,.6,.2,1) forwards}
+html.js .hero .ch{display:inline-block;opacity:.02;transform:translateY(31px);animation:chin .75s cubic-bezier(.2,.6,.2,1) forwards}
 @keyframes chin{to{opacity:1;transform:none}}
 html.js .hero .sub{opacity:0;transform:translateY(15px);animation:leadin .7s 1.55s cubic-bezier(.2,.6,.2,1) forwards}
 @keyframes leadin{to{opacity:1;transform:none}}
@@ -486,7 +492,7 @@ html.js .fx.in img.photo{transform:none}
 .row:hover .circ40,.nitem:hover .circ40,.cbox:hover .circ{transform:translateX(6px)}
 .badges a img{transition:transform .3s}
 .badges a:hover img{transform:translateY(-3px)}
-html.js .hero .ch{display:inline-block;opacity:0;transform:translateY(.35em);animation:chin .7s cubic-bezier(.2,.6,.2,1) forwards}
+html.js .hero .ch{display:inline-block;opacity:.02;transform:translateY(.35em);animation:chin .7s cubic-bezier(.2,.6,.2,1) forwards}
 @keyframes chin{to{opacity:1;transform:none}}
 html.js .hero .line,html.js .hero .sub,html.js .hero .btns{opacity:0;animation:pagein .9s ease forwards}
 html.js .hero .line{animation-delay:1.1s}html.js .hero .sub{animation-delay:1.3s}html.js .hero .btns{animation-delay:1.5s}
@@ -823,7 +829,7 @@ html.js .en.chars .ch{transform:translateY(.6em)}
   .blk{padding-top:100px}
 }
 `;
-fs.writeFileSync(path.join(OUT,'css/site.css'), css);
+fs.writeFileSync(path.join(OUT,'css/site.css'), css.replace(/\/\*[\s\S]*?\*\//g,'').replace(/\s*\n\s*/g,'').replace(/\s*([{};:,>])\s*/g,'$1').replace(/;}/g,'}'));
 
 // ---------- JS ----------
 const js = `
@@ -983,14 +989,14 @@ function page({root, title, desc, body, active, home}) {
       <p class="copy">© BIGLIGHT Co., Ltd.</p>
     </div>
   </div></footer>
-  <script src="${r}js/site.js"></script>`;
+  <script src="${r}js/site.js" defer></script>`;
   return `<!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${title}</title><meta name="description" content="${desc}">
 <!--SEO-->
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" href="/icon-96.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0b3d91">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@500;700&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@500;700&display=swap"></noscript>
 <link rel="stylesheet" href="${r}css/site.css">
 <script>document.documentElement.classList.add('js'${home?",'home'":''});</script>
 </head><body>
@@ -1908,7 +1914,7 @@ FIELDS.forEach((f,i)=>{pages['service/field/'+f.slug+'/index.html']=fieldPage(f,
 pages['404.html']=page({root:'/',title:'ページが見つかりません｜BIGLIGHT株式会社',desc:'お探しのページは見つかりませんでした。',body:`
 <section class="ph"><div class="wrap"><h1 class="phh"><span class="en">404</span><span class="ja-lb">ページが見つかりません</span></h1>${dots}</div></section>
 <section><div class="wrap lead-end"><p class="lead16">お探しのページは移動または削除された可能性があります。</p><div style="margin-top:40px;display:flex;gap:20px;flex-wrap:wrap">${pill('トップページへ','/index.html')}${pill('お問い合わせ','/contact/index.html')}</div></div></section>`});
-const nPages=require('./seo.cjs')(pages,{OUT,SITE,ARTICLES});
+const nPages=require('./seo.cjs')(pages,{OUT,SITE,ARTICLES,WEBP});
 console.log('pages',nPages);
 /* ảnh tạm (差し替え予定) */
 function phSvg(en,ja,hue){ let lines='';for(let i=0;i<34;i++){const dy=i*9;lines+='<path d="M-50 '+(520+dy)+' C 250 '+(330+dy)+', 520 '+(660+dy)+', 800 '+(470+dy)+' S 1100 '+(260+dy)+', 1260 '+(360+dy)+'" fill="none" stroke="hsl('+hue+',55%,'+(48+i)+'%)" stroke-width="1.2" opacity=".55"/>';}

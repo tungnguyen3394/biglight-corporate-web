@@ -54,7 +54,9 @@ const META = {
 const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const strip = (h) => h.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 
-module.exports = function seo(pages, { OUT, SITE, ARTICLES }) {
+module.exports = function seo(pages, { OUT, SITE, ARTICLES, WEBP = {} }) {
+  const webp = (x) => { for (const [a, b] of Object.entries(WEBP)) x = x.split(a).join(b); return x; };
+  for (const f of ['css/site.css', 'js/site.js']) { const p = path.join(OUT, f); fs.writeFileSync(p, webp(fs.readFileSync(p, 'utf8'))); }
   const urls = [];
   for (const [f, raw] of Object.entries(pages)) {
     let html = raw;
@@ -70,6 +72,7 @@ module.exports = function seo(pages, { OUT, SITE, ARTICLES }) {
     const art = slug && ARTICLES[slug];
     const ogImg = art ? `${SITE}/img/${art.img}` : `${SITE}/img/og-image.jpg`;
 
+    html = webp(html);
     // 1) URL sạch: ".../index.html" → ".../"
     html = html.replace(/(href=")([^"#]*?)index\.html(#[^"]*)?"/g, (m, a, p, h) => `${a}${p || './'}${h || ''}"`);
 
