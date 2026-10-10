@@ -1252,8 +1252,7 @@ function home(){ const r='./'; return page({root:r,home:true,title:'BIGLIGHT株�
 <div class="loop" aria-hidden="true"><span>Powering Japan’s Growth, Globally. Powering Japan’s Growth, Globally. </span><span>Powering Japan’s Growth, Globally. Powering Japan’s Growth, Globally. </span></div>
 
 <section class="sec bgw bgw-r"><div class="wrap">
-  <div class="sec-head"><div><h2 class="en">Service</h2><div class="ja-lb">事業内容</div></div>
-    <p class="lead">BIGLIGHTは、特定技能・技人国の外国人材の紹介から、<br>在留資格の手続き、住まいと生活、入社後の定着までを自社で一貫して支援しています。</p></div>
+  <div class="sec-head"><div><h2 class="en">Service</h2><div class="ja-lb">事業内容</div></div></div>
   <div class="rows">
     <a class="row" href="${r}service/tokutei-ginou/index.html"><div class="nm"><span class="nm-en">Specified Skilled Worker</span><small>特定技能 採用支援</small></div><div class="ds">人手不足の現場に、即戦力の特定技能人材を。募集・面接から入社後の定着支援まで、登録支援機関として一貫対応。</div>${circ()}</a>
     <a class="row" href="${r}service/engineer/index.html"><div class="nm"><span class="nm-en">Engineer / Specialist</span><small>技人国 人材紹介</small></div><div class="ds">エンジニア・通訳・貿易事務など、専門スキルを持つ高度人材のご紹介。</div>${circ()}</a>
