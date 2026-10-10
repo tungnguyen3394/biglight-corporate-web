@@ -56,7 +56,8 @@ const strip = (h) => h.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 
 module.exports = function seo(pages, { OUT, SITE, ARTICLES, WEBP = {} }) {
   const webp = (x) => { for (const [a, b] of Object.entries(WEBP)) x = x.split(a).join(b); return x; };
-  for (const f of ['css/site.css', 'js/site.js']) { const p = path.join(OUT, f); fs.writeFileSync(p, webp(fs.readFileSync(p, 'utf8'))); }
+  const ver = {};
+  for (const f of ['css/site.css', 'js/site.js']) { const p = path.join(OUT, f); const c = webp(fs.readFileSync(p, 'utf8')); fs.writeFileSync(p, c); ver[f] = require('crypto').createHash('md5').update(c).digest('hex').slice(0, 8); }
   const urls = [];
   for (const [f, raw] of Object.entries(pages)) {
     let html = raw;
@@ -72,7 +73,7 @@ module.exports = function seo(pages, { OUT, SITE, ARTICLES, WEBP = {} }) {
     const art = slug && ARTICLES[slug];
     const ogImg = art ? `${SITE}/img/${art.img}` : `${SITE}/img/og-image.jpg`;
 
-    html = webp(html);
+    html = webp(html).replace('__CSSV__', ver['css/site.css']).replace('__JSV__', ver['js/site.js']);
     // 1) URL sạch: ".../index.html" → ".../"
     html = html.replace(/(href=")([^"#]*?)index\.html(#[^"]*)?"/g, (m, a, p, h) => `${a}${p || './'}${h || ''}"`);
 

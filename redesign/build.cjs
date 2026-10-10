@@ -112,25 +112,25 @@ body.menu-open .mnav{display:flex}
 /* opening overlay: 4 chấm bay rồi xếp hàng */
 .opening{position:fixed;inset:0;background:#fff;z-index:100;display:flex;align-items:center;justify-content:center}
 .opening i{position:absolute;width:8px;height:8px;border-radius:50%;left:50%;top:50%;margin:-4px 0 0 -4px}
-.opening i:nth-child(1){background:var(--gold-l);animation:op1 1.3s linear forwards}
-.opening i:nth-child(2){background:var(--gold);animation:op2 1.3s linear forwards}
-.opening i:nth-child(3){background:var(--blue);animation:op3 1.3s linear forwards}
-.opening i:nth-child(4){background:var(--accent);animation:op4 1.3s linear forwards}
-@keyframes op1{0.0%{transform:translate(-45px,0.0px)}8.3%{transform:translate(-45px,22.9px)}16.7%{transform:translate(-45px,28.9px)}25.0%{transform:translate(-45px,14.2px)}33.3%{transform:translate(-45px,-9.2px)}41.7%{transform:translate(-45px,-23.3px)}50.0%{transform:translate(-45px,-19.2px)}58.3%{transform:translate(-45px,-3.3px)}66.7%{transform:translate(-45px,9.9px)}75.0%{transform:translate(-45px,11.0px)}83.3%{transform:translate(-45px,3.9px)}91.7%{transform:translate(-45px,-0.1px)}100.0%{transform:translate(-45px,0.0px)}}
-@keyframes op2{0.0%{transform:translate(-15px,30.0px)}8.3%{transform:translate(-15px,19.2px)}16.7%{transform:translate(-15px,-5.1px)}25.0%{transform:translate(-15px,-24.5px)}33.3%{transform:translate(-15px,-25.2px)}41.7%{transform:translate(-15px,-8.5px)}50.0%{transform:translate(-15px,11.1px)}58.3%{transform:translate(-15px,18.8px)}66.7%{transform:translate(-15px,11.7px)}75.0%{transform:translate(-15px,0.0px)}83.3%{transform:translate(-15px,-4.6px)}91.7%{transform:translate(-15px,-0.4px)}100.0%{transform:translate(-15px,0.0px)}}
-@keyframes op3{0.0%{transform:translate(15px,0.0px)}8.3%{transform:translate(15px,-22.9px)}16.7%{transform:translate(15px,-28.9px)}25.0%{transform:translate(15px,-14.2px)}33.3%{transform:translate(15px,9.2px)}41.7%{transform:translate(15px,23.3px)}50.0%{transform:translate(15px,19.2px)}58.3%{transform:translate(15px,3.3px)}66.7%{transform:translate(15px,-9.9px)}75.0%{transform:translate(15px,-11.0px)}83.3%{transform:translate(15px,-3.9px)}91.7%{transform:translate(15px,0.1px)}100.0%{transform:translate(15px,0.0px)}}
-@keyframes op4{0.0%{transform:translate(45px,-30.0px)}8.3%{transform:translate(45px,-19.2px)}16.7%{transform:translate(45px,5.1px)}25.0%{transform:translate(45px,24.5px)}33.3%{transform:translate(45px,25.2px)}41.7%{transform:translate(45px,8.5px)}50.0%{transform:translate(45px,-11.1px)}58.3%{transform:translate(45px,-18.8px)}66.7%{transform:translate(45px,-11.7px)}75.0%{transform:translate(45px,-0.0px)}83.3%{transform:translate(45px,4.6px)}91.7%{transform:translate(45px,0.4px)}100.0%{transform:translate(45px,0.0px)}}
-html.js .opening{animation:opout .4s 1.35s ease forwards}
+.opening i:nth-child(1){background:var(--gold-l);animation:op1 2s linear forwards}
+.opening i:nth-child(2){background:var(--gold);animation:op2 2s linear forwards}
+.opening i:nth-child(3){background:var(--blue);animation:op3 2s linear forwards}
+.opening i:nth-child(4){background:var(--accent);animation:op4 2s linear forwards}
+@keyframes op1{0.00%{transform:translate(-45px,0.0px)}6.25%{transform:translate(-45px,22.6px)}12.50%{transform:translate(-45px,31.6px)}18.75%{transform:translate(-45px,22.0px)}25.00%{transform:translate(-45px,0.0px)}31.25%{transform:translate(-45px,-20.5px)}37.50%{transform:translate(-45px,-27.6px)}43.75%{transform:translate(-45px,-18.3px)}50.00%{transform:translate(-45px,-0.0px)}56.25%{transform:translate(-45px,15.1px)}62.50%{transform:translate(-45px,18.5px)}68.75%{transform:translate(-45px,10.8px)}75.00%{transform:translate(-45px,0.0px)}81.25%{transform:translate(-45px,-5.6px)}87.50%{transform:translate(-45px,-3.7px)}93.75%{transform:translate(-45px,0.0px)}100.00%{transform:translate(-45px,0.0px)}}
+@keyframes op2{0.00%{transform:translate(-15px,32.0px)}6.25%{transform:translate(-15px,22.6px)}12.50%{transform:translate(-15px,0.0px)}18.75%{transform:translate(-15px,-22.0px)}25.00%{transform:translate(-15px,-30.2px)}31.25%{transform:translate(-15px,-20.5px)}37.50%{transform:translate(-15px,-0.0px)}43.75%{transform:translate(-15px,18.3px)}50.00%{transform:translate(-15px,23.7px)}56.25%{transform:translate(-15px,15.1px)}62.50%{transform:translate(-15px,0.0px)}68.75%{transform:translate(-15px,-10.8px)}75.00%{transform:translate(-15px,-11.8px)}81.25%{transform:translate(-15px,-5.6px)}87.50%{transform:translate(-15px,-0.0px)}93.75%{transform:translate(-15px,0.0px)}100.00%{transform:translate(-15px,0.0px)}}
+@keyframes op3{0.00%{transform:translate(15px,0.0px)}6.25%{transform:translate(15px,-22.6px)}12.50%{transform:translate(15px,-31.6px)}18.75%{transform:translate(15px,-22.0px)}25.00%{transform:translate(15px,-0.0px)}31.25%{transform:translate(15px,20.5px)}37.50%{transform:translate(15px,27.6px)}43.75%{transform:translate(15px,18.3px)}50.00%{transform:translate(15px,0.0px)}56.25%{transform:translate(15px,-15.1px)}62.50%{transform:translate(15px,-18.5px)}68.75%{transform:translate(15px,-10.8px)}75.00%{transform:translate(15px,-0.0px)}81.25%{transform:translate(15px,5.6px)}87.50%{transform:translate(15px,3.7px)}93.75%{transform:translate(15px,0.0px)}100.00%{transform:translate(15px,0.0px)}}
+@keyframes op4{0.00%{transform:translate(45px,-32.0px)}6.25%{transform:translate(45px,-22.6px)}12.50%{transform:translate(45px,-0.0px)}18.75%{transform:translate(45px,22.0px)}25.00%{transform:translate(45px,30.2px)}31.25%{transform:translate(45px,20.5px)}37.50%{transform:translate(45px,0.0px)}43.75%{transform:translate(45px,-18.3px)}50.00%{transform:translate(45px,-23.7px)}56.25%{transform:translate(45px,-15.1px)}62.50%{transform:translate(45px,-0.0px)}68.75%{transform:translate(45px,10.8px)}75.00%{transform:translate(45px,11.8px)}81.25%{transform:translate(45px,5.6px)}87.50%{transform:translate(45px,0.0px)}93.75%{transform:translate(45px,0.0px)}100.00%{transform:translate(45px,0.0px)}}
+html.js .opening{animation:opout .45s 2.05s ease forwards}
 @keyframes opout{to{opacity:0;visibility:hidden}}
 html:not(.js) .opening{display:none}
 /* mở trang: thứ tự thời gian như Guidable */
-html.js.home .hd{opacity:0;animation:pagein .8s 2.65s ease forwards}
+html.js.home .hd{opacity:0;animation:pagein .8s 3.35s ease forwards}
 html.js .hero .ch{display:inline-block;opacity:.02;transform:translateY(31px);animation:chin .75s cubic-bezier(.2,.6,.2,1) forwards}
 @keyframes chin{to{opacity:1;transform:none}}
-html.js .hero .sub{opacity:0;transform:translateY(15px);animation:leadin .7s 2.1s cubic-bezier(.2,.6,.2,1) forwards}
+html.js .hero .sub{opacity:0;transform:translateY(15px);animation:leadin .7s 2.8s cubic-bezier(.2,.6,.2,1) forwards}
 @keyframes leadin{to{opacity:1;transform:none}}
-html.js .hero .dots{opacity:0;animation:pagein .6s 2.4s ease forwards}
-html.js .hero .scrl{opacity:0;animation:pagein .6s 2.4s ease forwards}
+html.js .hero .dots{opacity:0;animation:pagein .6s 3.1s ease forwards}
+html.js .hero .scrl{opacity:0;animation:pagein .6s 3.1s ease forwards}
 @media (prefers-reduced-motion:reduce){.opening{display:none}html.js.home .hd,html.js .hero .sub,html.js .hero .dots,html.js .hero .scrl{opacity:1;animation:none;transform:none}}
 
 /* thiết bị: MacBook + iPhone */
@@ -808,9 +808,9 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 .people{position:relative;overflow:hidden;height:540px;margin-top:80px}
 .prow-s{position:absolute;left:-10%;width:120%;transform:rotate(-6deg)}
 .prow-s:first-child{top:70px}.prow-s.rev{top:270px}
-.ptrack{display:flex;gap:14px;width:max-content;animation:pslide 90s linear infinite}
+.people .ptrack{display:flex!important;flex-direction:row;flex-wrap:nowrap;gap:14px;width:max-content;animation:pslide 90s linear infinite}
 .prow-s.rev .ptrack{animation-direction:reverse;animation-duration:100s}
-.ptrack img{width:240px;height:160px;object-fit:cover;border-radius:8px;flex:none;display:block}
+.people .ptrack img{width:240px;height:160px;max-width:none;object-fit:cover;border-radius:8px;flex:none;display:block}
 @keyframes pslide{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.ptrack{animation:none}}
 @media (max-width:1100px){.crow{grid-template-columns:220px 1fr 40px}.crow .ck{grid-column:2}}
@@ -898,7 +898,7 @@ const js = `
   } else { els.forEach(function(e){e.classList.add('in');}); }
   /* tách chữ: hero + tiêu đề mission */
   function split(el,base,step){var i=0;function walk(n){[].slice.call(n.childNodes).forEach(function(c){if(c.nodeType===3){var f=document.createDocumentFragment();c.textContent.split('').forEach(function(ch){var sp=document.createElement('span');sp.className='ch';sp.textContent=ch===' '?'\u00a0':ch;sp.style.animationDelay=(base+i*step)+'ms';i++;f.appendChild(sp);});n.replaceChild(f,c);}else if(c.nodeType===1&&c.tagName!=='BR'){walk(c);}});}walk(el);}
-  var h=document.querySelector('.hero h1'); if(h) split(h,1500,40);
+  var h=document.querySelector('.hero h1'); if(h) split(h,2200,40);
   document.querySelectorAll('.chars').forEach(function(e){split(e,0,40);});
   /* nút: nhân đôi chữ cho hiệu ứng trượt */
   document.querySelectorAll('.pill').forEach(function(p){var c=p.querySelector('.circ');var txt='';[].slice.call(p.childNodes).forEach(function(n){if(n.nodeType===3){txt+=n.textContent;p.removeChild(n);}});txt=txt.trim();if(!txt)return;var t=document.createElement('span');t.className='tx';t.innerHTML='<span>'+txt+'</span><span aria-hidden="true">'+txt+'</span>';p.insertBefore(t,c);});
@@ -932,9 +932,9 @@ const js = `
   var hs=document.querySelectorAll('.hero .sl'),hd=document.querySelectorAll('.hero .dots i');
   if(hs.length){var hc=0,ht;function hgo(n){var old=hs[hc];old.classList.remove('on');old.classList.add('out');hd[hc].classList.remove('on');hc=(n+hs.length)%hs.length;var nw=hs[hc];hd[hc].classList.add('on');setTimeout(function(){old.classList.remove('out');nw.classList.add('on');},1450);}
     /* lần đầu: ảnh vào lúc 3.4s như Guidable */
-    hs[0].classList.remove('on');setTimeout(function(){hs[0].classList.add('on');},matchMedia('(prefers-reduced-motion: reduce)').matches?0:2700);
+    hs[0].classList.remove('on');setTimeout(function(){hs[0].classList.add('on');},matchMedia('(prefers-reduced-motion: reduce)').matches?0:3400);
     hd.forEach(function(d,i){d.addEventListener('click',function(){hgo(i);clearInterval(ht);ht=setInterval(function(){hgo(hc+1);},5000);});});
-    if(!matchMedia('(prefers-reduced-motion: reduce)').matches) setTimeout(function(){ht=setInterval(function(){hgo(hc+1);},5200);},2700);}
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches) setTimeout(function(){ht=setInterval(function(){hgo(hc+1);},5200);},3400);}
   /* v8: parallax ảnh khi cuộn */
   var pars=[].slice.call(document.querySelectorAll('.cul .ph-col img, .pic .main img, .slant .s img, .msg-photo'));
   pars.forEach(function(e){e.classList.add('par');});
@@ -1040,7 +1040,7 @@ function page({root, title, desc, body, active, home}) {
       <p class="copy">© BIGLIGHT Co., Ltd.</p>
     </div>
   </div></footer>
-  <script src="${r}js/site.js" defer></script>`;
+  <script src="${r}js/site.js?v=__JSV__" defer></script>`;
   return `<!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${title}</title><meta name="description" content="${desc}">
@@ -1048,7 +1048,7 @@ function page({root, title, desc, body, active, home}) {
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" href="/icon-96.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0b3d91">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@500;700&display=swap"></noscript>
-<link rel="stylesheet" href="${r}css/site.css">
+<link rel="stylesheet" href="${r}css/site.css?v=__CSSV__">
 <script>document.documentElement.classList.add('js'${home?",'home'":''});</script>
 </head><body>
 ${nav}
