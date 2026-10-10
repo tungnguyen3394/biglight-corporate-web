@@ -79,13 +79,30 @@ h1,h2,h3,h4,p{margin:0}
 .hd nav .dd .menu a:hover{color:var(--accent)}
 .hd .cta{background:var(--accent);color:#fff;border-radius:19px;padding:10px 22px;font-family:var(--en);font-size:14px;font-weight:700;letter-spacing:.1em;line-height:1;margin-left:4px}
 .hd .cta:hover{background:var(--accent-d)}
-.hd .burger{display:none;width:44px;height:44px;border:0;background:none;cursor:pointer;position:relative}
-.hd .burger span{position:absolute;left:10px;right:10px;height:2px;background:var(--ink);top:14px}
-.hd .burger span+span{top:21px}.hd .burger span+span+span{top:28px}
-.mnav{display:none;position:fixed;inset:69px 0 0 0;background:#fff;z-index:49;padding:32px 40px;flex-direction:column;gap:22px;font-family:var(--en);font-size:18px;font-weight:700;letter-spacing:.1em;overflow:auto}
-.mnav a{padding:6px 0}.mnav small{display:block;font-family:var(--jp);font-size:12px;color:var(--grey);letter-spacing:0;font-weight:500}
-.mnav .sub{display:flex;flex-direction:column;gap:12px;padding-left:18px;font-size:14px;color:var(--ink2)}
-body.menu-open .mnav{display:flex}
+.hd .burger{display:none;border:0;background:none;cursor:pointer;padding:6px 0 0;width:52px;height:52px;flex-direction:column;align-items:center;justify-content:center;gap:7px;-webkit-tap-highlight-color:transparent}
+.hd .burger .sq{display:grid;grid-template-columns:repeat(2,auto);gap:7px;transition:gap .35s cubic-bezier(.2,.6,.2,1)}
+.hd .burger .sq i{width:6px;height:6px;display:block;transition:width .35s cubic-bezier(.2,.6,.2,1),height .35s cubic-bezier(.2,.6,.2,1)}
+.hd .burger .sq i:nth-child(1){background:var(--gold-l)}.hd .burger .sq i:nth-child(2){background:var(--gold)}.hd .burger .sq i:nth-child(3){background:var(--blue)}.hd .burger .sq i:nth-child(4){background:var(--accent)}
+.hd .burger .mt{font-family:var(--en);font-size:9px;font-weight:700;letter-spacing:.2em;color:var(--ink);line-height:1}
+body.menu-open .hd .burger .sq{gap:2px}
+body.menu-open .hd .burger .sq i{width:11px;height:11px}
+.mnav{position:fixed;inset:69px 0 0 0;background:#fff;z-index:49;padding:8px 24px 40px;overflow:auto;-webkit-overflow-scrolling:touch;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .3s,transform .3s,visibility .3s}
+body.menu-open .mnav{opacity:1;visibility:visible;transform:none}
+body.menu-open{overflow:hidden}
+.mnav .mi,.mnav summary{display:flex;align-items:baseline;gap:14px;padding:22px 4px;border-bottom:1px solid var(--line);cursor:pointer;list-style:none}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav b{font-family:var(--en);font-size:17px;font-weight:700;letter-spacing:.12em;color:var(--ink)}
+.mnav small{font-size:12px;color:var(--grey);font-weight:500}
+.mnav summary i{margin-left:auto;align-self:center;width:9px;height:9px;border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:translateY(-3px) rotate(45deg);transition:transform .3s}
+.mnav details[open] summary i{transform:translateY(3px) rotate(-135deg)}
+.mnav .sub{display:flex;flex-direction:column;padding:6px 0 14px 18px;border-bottom:1px solid var(--line)}
+.mnav .sub a{font-family:var(--en);font-size:14px;font-weight:500;letter-spacing:.06em;color:var(--ink2);padding:11px 0}
+.mnav .mbtn{display:flex;gap:12px;margin-top:32px}
+.mnav .mbtn a{flex:1;text-align:center;font-family:var(--en);font-size:14px;font-weight:700;letter-spacing:.1em;border-radius:40px;padding:14px 0}
+.mnav .mbtn .dl-btn{border:1.5px solid var(--accent);color:var(--accent)}
+.mnav .mbtn .cta{background:var(--gold);color:var(--accent-d)}
+.mnav .mtel{margin-top:24px;text-align:center;font-size:12px;color:var(--grey);line-height:1.9}
+.mnav .mtel b{font-family:var(--en);font-size:16px;color:var(--ink);letter-spacing:.06em}
 
 /* hero (Guidable式 — 実測: h766 / title 80px lh104 ls8 y203 / lead 20px y451 / dots y531 / scroll x80) */
 .hero{position:relative;height:766px;padding:0 80px;overflow:hidden}
@@ -834,11 +851,13 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 @media (max-width:860px){
   .wrap{padding-inline:20px}
   .hd{padding:0 20px}
+  .mnav{padding-left:max(24px,6vw);padding-right:max(24px,6vw)}
   .hd nav,.hd .cta{display:none}
-  .hd .burger{display:block}
+  .hd .burger{display:flex}
   .hero{height:auto;padding:40px 20px 0}
   .hero .tx{position:static}
-  .hero h1{white-space:nowrap;font-size:10.5vw;line-height:1.3;letter-spacing:.08em}
+  .hero h1{white-space:nowrap;font-size:min(10.5vw,58px);line-height:1.3;letter-spacing:.08em}
+  .hero .tx{padding-top:10px}
   .hero .sub{font-size:13px;margin-top:20px}
   .hero .vis{position:relative;left:auto;top:auto;width:100%;height:auto;aspect-ratio:4/3;margin:32px -20px 0;width:calc(100% + 40px)}
   .hero .strip{width:33.333%;height:100%;clip-path:polygon(28% 0,100% 0,72% 100%,0 100%)}
@@ -852,14 +871,15 @@ html.js .en.chars .ch{transform:translateY(.6em)}
   .hero .scrl{display:none}
   .message{padding-top:110px}
   .message p{font-size:20px;letter-spacing:.06em}
-  .loop span{font-size:72px;line-height:150px}
-  .loop{margin-top:-60px}
+  .loop span{font-size:56px;line-height:110px}
+  .loop{margin-top:30px}
   .sec{padding-top:90px}
   .sec-head,.two,.side,.svc .g,.news-side,.form,.dl div{grid-template-columns:1fr;gap:24px}
   .sec-head .en,.ph .en,.cbox .en,.side .en{font-size:36px;line-height:1.2}
   .sec-head .lead b{font-size:22px}
-  .row{grid-template-columns:1fr 40px;padding:32px 0}
-  .row .ds{grid-column:1/-1}
+  .row{grid-template-columns:1fr 40px;gap:14px 16px;padding:30px 0}
+  .row .nm{grid-column:1}.row .ds{grid-column:1;font-size:14px}
+  .row .circ40{grid-column:2;grid-row:1/3;align-self:center}
   .row .nm{font-size:20px}
   .prow{grid-template-columns:1fr;padding:32px 0}
   .store{justify-content:flex-start}
@@ -956,7 +976,7 @@ const js = `
   if(nf){var fl=function(c){[].forEach.call(document.querySelectorAll('.nlist .nitem'),function(e){e.style.display=(!c||e.getAttribute('data-cat')===c)?'':'none';});[].forEach.call(nf.querySelectorAll('a'),function(a){a.classList.toggle('on',a.getAttribute('data-f')===c);});};
     nf.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;e.preventDefault();fl(a.getAttribute('data-f'));history.replaceState(null,'',a.getAttribute('href')==='#'?location.pathname:a.getAttribute('href'));});
     var hh={'#oshirase':'お知らせ','#magazine':'HR Magazine'}[location.hash];if(hh)fl(hh);}
-  var b=document.querySelector('.burger'); if(b){b.addEventListener('click',function(){document.body.classList.toggle('menu-open');});}
+  var b=document.querySelector('.burger'); if(b){var setM=function(o){document.body.classList.toggle('menu-open',o);b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');};b.addEventListener('click',function(){setM(!document.body.classList.contains('menu-open'));});[].forEach.call(document.querySelectorAll('.mnav a'),function(a){a.addEventListener('click',function(){setM(false);});});document.addEventListener('keydown',function(e){if(e.key==='Escape')setM(false);});}
   /* sóng kẻ mảnh (band) */
   /* dải ruy-băng xoắn: hai đường biên A,B cắt nhau, N đường nội suy ở giữa */
   document.querySelectorAll('svg.wave').forEach(function(svg){
@@ -1019,18 +1039,16 @@ function page({root, title, desc, body, active, home}) {
       <a class="dl-btn" href="${r}download/index.html">DOWNLOAD</a>
       <a class="cta" href="${r}contact/index.html">CONTACT</a>
     </nav>
-    <button class="burger" aria-label="menu"><span></span><span></span><span></span></button>
+    <button class="burger" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="mnav"><span class="sq"><i></i><i></i><i></i><i></i></span><span class="mt">MENU</span></button>
   </header>
-  <div class="mnav">
-    <a href="${r}about/index.html">ABOUT<small>私たちについて</small></a>
-    <div class="sub"><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div>
-    <a href="${r}service/index.html">SERVICE<small>事業内容</small></a>
-    <div class="sub"><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}case/index.html">Case</a></div>
-    <a href="${r}product/index.html">PRODUCT<small>アプリ</small></a>
-    <a href="${r}news/index.html">NEWS<small>お知らせ</small></a>
-    <a href="${r}recruit/index.html">RECRUIT<small>採用情報</small></a>
-    <a href="${r}download/index.html">DOWNLOAD<small>資料ダウンロード</small></a>
-    <a href="${r}contact/index.html">CONTACT<small>お問い合わせ</small></a>
+  <div class="mnav" id="mnav">
+    <details><summary><b>ABOUT</b><small>私たちについて</small><i></i></summary><div class="sub"><a href="${r}about/index.html">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div></details>
+    <details><summary><b>SERVICE</b><small>事業内容</small><i></i></summary><div class="sub"><a href="${r}service/index.html">Overview</a><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}case/index.html">Case</a></div></details>
+    <a class="mi" href="${r}product/index.html"><b>PRODUCT</b><small>アプリ</small></a>
+    <a class="mi" href="${r}news/index.html"><b>NEWS</b><small>お知らせ</small></a>
+    <a class="mi" href="${r}recruit/index.html"><b>RECRUIT</b><small>採用情報</small></a>
+    <div class="mbtn"><a class="dl-btn" href="${r}download/index.html">DOWNLOAD</a><a class="cta" href="${r}contact/index.html">CONTACT</a></div>
+    <p class="mtel">お電話でのご相談　<b>052-908-7944</b><br>平日 9:00–18:00</p>
   </div>`;
   const footer = `
   <footer class="ft"><div class="wrap">
@@ -1040,7 +1058,7 @@ function page({root, title, desc, body, active, home}) {
       <nav class="fsite"><div><a class="h" href="${r}about/index.html">ABOUT</a><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><a href="${r}contact/index.html">Contact</a><a href="${r}download/index.html">Download</a></div></nav>
     </div>
     <div class="bot">
-      <div class="links"><a href="https://biglight.jp/privacy/">プライバシーポリシー</a><a href="https://biglight.jp/faq/">よくある質問</a><a href="https://biglight.jp/optout/">配信停止</a><a href="${r}download/index.html">資料ダウンロード</a></div>
+      <div class="links"><a href="https://biglight.jp/privacy/">プライバシーポリシー</a><a href="https://biglight.jp/faq/">よくある質問</a><a href="${r}download/index.html">資料ダウンロード</a></div>
       <div class="lic">有料職業紹介 23-ユ-302414 ／ 登録支援機関 21登-006596</div>
       <p class="copy">© BIGLIGHT Co., Ltd.</p>
     </div>
