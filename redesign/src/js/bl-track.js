@@ -12,22 +12,32 @@ var BLT=(function(){
   var path=location.pathname;
   /* 記事 = /news/<slug>/ だけ（/news/tag/… /news/category/… /news/page/… の一覧は記事ではない） */
   var isArticle=/^\/news\/(?!(tag|category|page|author)\/)[^\/]+\/?$/.test(path);
-  function store(k,v){try{if(v===undefined)return sessionStorage.getItem(k)||'';sessionStorage.setItem(k,v);}catch(e){return '';}}
+  /* 2026-10-10 Cookie同意: アクセス解析に同意（BLC.has('a')）するまで 送らない・保存しない。
+     同意前の出来事は Q に貯め、同じページで同意されたら まとめて送る（拒否なら捨てる）。 */
+  var Q=[];
+  function ok(){return !!(window.BLC&&window.BLC.has('a'));}
+  function later(fn){if(ok())fn();else Q.push(fn);}
+  document.addEventListener('bl:consent',function(e){var d=e.detail||{};if(d.a){var q=Q;Q=[];q.forEach(function(f){try{f();}catch(x){}});loadGA();}else Q=[];});
+  function store(k,v){try{if(v===undefined)return sessionStorage.getItem(k)||'';if(ok())sessionStorage.setItem(k,v);}catch(e){return '';}}
   function sid(){var s=store('bl_sid');if(!s){s=(Date.now().toString(36)+Math.random().toString(36).slice(2,12)).replace(/[^a-z0-9]/g,'');store('bl_sid',s);}return s;}
-  function send(o){try{var b=JSON.stringify(o);if(navigator.sendBeacon&&navigator.sendBeacon(API,b))return;fetch(API,{method:'POST',body:b,keepalive:true,mode:'no-cors'}).catch(function(){});}catch(e){}}
-  function ga(ev,params){try{if(window.gtag)window.gtag('event',ev,params);}catch(e){}}
-  if(GA4_ID){
+  function send(o){later(function(){post(o);});}
+  function post(o){try{var b=JSON.stringify(o);if(navigator.sendBeacon&&navigator.sendBeacon(API,b))return;fetch(API,{method:'POST',body:b,keepalive:true,mode:'no-cors'}).catch(function(){});}catch(e){}}
+  function ga(ev,params){if(!GA4_ID)return;later(function(){try{if(window.gtag)window.gtag('event',ev,params);}catch(e){}});}
+  /* GA4（未設定のあいだは何もしない）: 同意後にだけ読み込む。Consent Mode v2 の既定値は <head> で denied */
+  var gaOn=false;
+  function loadGA(){if(!GA4_ID||gaOn||!ok())return;gaOn=true;
     var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(GA4_ID);document.head.appendChild(g);
-    window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments);};window.gtag('js',new Date());window.gtag('config',GA4_ID);
+    window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};window.gtag('js',new Date());window.gtag('config',GA4_ID);
   }
-  if(isArticle){store('bl_src',path);send({e:'view',p:path});}
+  loadGA();
+  if(isArticle)later(function(){store('bl_src',path);post({e:'view',p:path});});
   /* フォーム営業のリンク（?bl=BL-XXXXXX）から来たら、どの会社が開いたかを CRM に知らせる（2026-10-07）。
      番号だけを送り、すぐにアドレス欄から消す（共有・ブックマークに残さない） */
   try{
     var qs=new URLSearchParams(location.search), bl=(qs.get('bl')||'').toUpperCase();
     if(/^BL-[A-Z0-9]{6}$/.test(bl)){
       var fb=JSON.stringify({r:bl,p:path}), FAPI='https://api-crm.biglight.jp/formbot/c';
-      if(!(navigator.sendBeacon&&navigator.sendBeacon(FAPI,fb)))fetch(FAPI,{method:'POST',body:fb,keepalive:true,mode:'no-cors'}).catch(function(){});
+      later(function(){if(!(navigator.sendBeacon&&navigator.sendBeacon(FAPI,fb)))fetch(FAPI,{method:'POST',body:fb,keepalive:true,mode:'no-cors'}).catch(function(){});});
       qs.delete('bl'); var rest=qs.toString();
       history.replaceState(history.state,'',path+(rest?'?'+rest:'')+location.hash);
     }

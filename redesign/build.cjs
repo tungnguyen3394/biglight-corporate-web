@@ -115,7 +115,7 @@ body.menu-open{overflow:hidden}
 .hero .dots i.on{opacity:1}
 .hero .vis{position:absolute;left:calc(50% - 130px);top:0;width:930px;height:766px;z-index:1}
 .hero .sl{position:absolute;inset:0}
-.hero .strip{position:absolute;top:0;width:485px;height:766px;overflow:hidden;clip-path:polygon(270px 0,485px 0,215px 100%,0 100%);opacity:0;transform:translateX(30px);transition:opacity 1.3s cubic-bezier(.2,.6,.2,1),transform 1.3s cubic-bezier(.2,.6,.2,1)}
+.hero .strip{position:absolute;top:0;margin:0;width:485px;height:766px;overflow:hidden;clip-path:polygon(270px 0,485px 0,215px 100%,0 100%);opacity:0;transform:translateX(30px);transition:opacity 1.3s cubic-bezier(.2,.6,.2,1),transform 1.3s cubic-bezier(.2,.6,.2,1)}
 .hero .strip:nth-child(1){left:0}.hero .strip:nth-child(2){left:214px;transition-delay:.15s}.hero .strip:nth-child(3){left:428px;transition-delay:.3s}
 .hero .sl.on .strip{opacity:1;transform:none}
 .hero .sl.out .strip{opacity:0;transform:translateX(-30px);transition-duration:1.2s;transition-timing-function:cubic-bezier(.4,0,.6,1)}
@@ -708,7 +708,42 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 .ft .addr{font-size:12px;color:var(--ink2);line-height:1.7;margin-top:10px}
 .ft .top{align-items:flex-start}
 .ft .fb{flex-basis:100%}
-.ft .fmap{margin-left:auto;width:340px;flex:none}.ft .fmap iframe{display:block;width:100%;height:210px;border:0;border-radius:8px;background:#eef1f5}.ft .fmap a{display:inline-block;margin-top:8px;font-size:12px;color:var(--accent);letter-spacing:.04em}
+.ft .fmap{margin-left:auto;width:340px;flex:none;position:relative}
+.ft .fmap iframe:not([src]){display:none}
+.fmap-ph{height:210px;border-radius:8px;background:#eef1f5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:0 24px;text-align:center}
+.fmap-ph p{font-size:11.5px;line-height:1.7;color:var(--grey)}
+.fmap-load{font:inherit;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--accent);background:#fff;border:1px solid var(--accent);border-radius:30px;padding:8px 22px;cursor:pointer}
+.fmap.on .fmap-ph{display:none}
+.ck-link{font:inherit;background:none;border:0;padding:0;color:inherit;cursor:pointer;letter-spacing:inherit}
+.ck-link:hover{color:var(--accent)}
+/* Cookie同意バナー */
+.totop{bottom:calc(28px + var(--ckh,0px));transition:bottom .3s ease,opacity .3s,transform .3s}
+@media (max-width:860px){.totop{bottom:calc(16px + var(--ckh,0px))}}
+.ck{position:fixed;left:0;right:0;bottom:0;z-index:90;background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 24px rgba(11,61,145,.08);transform:translateY(100%);transition:transform .3s ease;padding-bottom:env(safe-area-inset-bottom)}
+.ck.on{transform:none}
+.ck-in{max-width:1180px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;gap:32px}
+.ck-tx{flex:1;font-size:13px;line-height:1.85;color:var(--ink2)}
+.ck-tx a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.ck-bt{display:flex;gap:10px;flex:none}
+.ck-bt button,.ck-save{font:inherit;font-size:13px;font-weight:700;letter-spacing:.04em;border-radius:30px;padding:10px 20px;cursor:pointer;white-space:nowrap;line-height:1.2}
+.ck-ok,.ck-save{background:var(--accent);color:#fff;border:1px solid var(--accent)}
+.ck-no{background:#fff;color:var(--accent);border:1px solid var(--accent)}
+.ck-set{background:#fff;color:var(--ink2);border:1px solid var(--line)}
+.ck-bt button:hover,.ck-save:hover{opacity:.85}
+.ck-panel{max-width:1180px;margin:0 auto;padding:0 40px 18px}
+.ck-row{display:flex;align-items:center;gap:24px;padding:12px 0;border-top:1px solid var(--line);cursor:pointer}
+.ck-row span{flex:1}
+.ck-row b{display:block;font-size:13px;font-weight:700}
+.ck-row small{display:block;font-size:12px;color:var(--grey);line-height:1.7;margin-top:2px}
+.ck-row input{position:absolute;opacity:0;width:1px;height:1px}
+.ck-row i{position:relative;flex:none;width:40px;height:22px;border-radius:22px;background:#cfd5de;transition:background .2s}
+.ck-row i::after{content:"";position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s}
+.ck-row input:checked+i{background:var(--accent)}
+.ck-row input:checked+i::after{transform:translateX(18px)}
+.ck-row input:disabled+i{opacity:.55}
+.ck-row input:focus-visible+i{outline:2px solid var(--blue);outline-offset:2px}
+.ck-sv{display:flex;justify-content:flex-end;padding-top:12px;border-top:1px solid var(--line)}
+@media (max-width:860px){.ck-in{flex-direction:column;align-items:stretch;gap:12px;padding:14px 16px}.ck-tx{font-size:12px;line-height:1.75}.ck-bt{gap:8px}.ck-bt button{flex:1;padding:10px 6px;font-size:12px}.ck-panel{padding:0 16px 14px;max-height:52vh;overflow:auto}.ck-row{gap:14px}.ck-save{width:100%}}.ft .fmap iframe{display:block;width:100%;height:210px;border:0;border-radius:8px;background:#eef1f5}.ft .fmap a{display:inline-block;margin-top:8px;font-size:12px;color:var(--accent);letter-spacing:.04em}
 @media (max-width:1180px) and (min-width:861px){.ft .fmap{margin-left:0;width:100%}.ft .fmap iframe{height:240px}}
 .ft .fsite{display:grid;grid-template-columns:repeat(6,auto);gap:0 36px}
 .ft .fsite div{display:flex;flex-direction:column;gap:7px}
@@ -1049,7 +1084,7 @@ const js = `
   });
 })();
 `;
-fs.writeFileSync(path.join(OUT,'js/site.js'), fs.readFileSync(path.join(__dirname,'src/js/bl-track.js'),'utf8')+'\n'+js);
+fs.writeFileSync(path.join(OUT,'js/site.js'), fs.readFileSync(path.join(__dirname,'src/js/consent.js'),'utf8')+'\n'+fs.readFileSync(path.join(__dirname,'src/js/bl-track.js'),'utf8')+'\n'+js);
 
 // ---------- helpers ----------
 const SDG_COLORS=['#E5243B','#DDA63A','#4C9F38','#C5192D','#FF3A21','#26BDE2','#FCC30B','#A21942','#FD6925','#DD1367','#FD9D24','#BF8B2E','#3F7E44','#0A97D9','#56C02B','#00689D','#19486A'];
@@ -1103,10 +1138,10 @@ function page({root, title, desc, body, active, home}) {
       <div class="fb"><a class="logo" href="${r}index.html"><img src="${r}img/logo.png" alt=""><img class="wm" src="${r}img/wordmark.png" alt="BIGLIGHT"></a>
         <p class="addr">〒462-0007 愛知県名古屋市北区如意一丁目112 A<span class="tel">　TEL 052-908-7944　FAX 052-908-7267</span></p></div>
       <nav class="fsite"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}download/index.html">Download</a></div></nav>
-      <div class="fmap"><iframe src="https://www.google.com/maps?q=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA&hl=ja&z=16&output=embed" title="BIGLIGHT株式会社の地図（愛知県名古屋市北区如意一丁目112 A）" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="https://www.google.com/maps/search/?api=1&query=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA">Google マップで開く →</a></div>
+      <div class="fmap"><div class="fmap-ph"><p>地図を表示すると、Google社のCookieが使用される場合があります。</p><button type="button" class="fmap-load">地図を表示</button></div><iframe data-src="https://www.google.com/maps?q=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA&hl=ja&z=16&output=embed" title="BIGLIGHT株式会社の地図（愛知県名古屋市北区如意一丁目112 A）" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="https://www.google.com/maps/search/?api=1&query=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA">Google マップで開く →</a></div>
     </div>
     <div class="bot">
-      <div class="links"><a href="${r}privacy/index.html">プライバシーポリシー</a><a href="${r}service/tokutei-ginou/index.html#faq">よくある質問</a><a href="${r}download/index.html">資料ダウンロード</a></div>
+      <div class="links"><a href="${r}privacy/index.html">プライバシーポリシー</a><a href="${r}service/tokutei-ginou/index.html#faq">よくある質問</a><a href="${r}download/index.html">資料ダウンロード</a><button type="button" class="ck-link" data-cookie-settings>Cookie設定</button></div>
       <div class="lic">有料職業紹介 23-ユ-302414 ／ 登録支援機関 21登-006596</div>
       <p class="copy">Copyright © BIGLIGHT Co., Ltd. All Rights Reserved.</p>
     </div>
@@ -1120,7 +1155,7 @@ function page({root, title, desc, body, active, home}) {
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@500;700&display=swap"></noscript>
 <link rel="stylesheet" href="${r}css/site.css?v=__CSSV__">
-<script>document.documentElement.classList.add('js'${home?",'home'":''});</script>
+<script>document.documentElement.classList.add('js'${home?",'home'":''});(function(){var s=null;try{s=JSON.parse(localStorage.getItem('bl_consent')||'null')}catch(e){}if(s&&(s.v!==1||!(Date.now()-s.t<31536e6)))s=null;window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){dataLayer.push(arguments)};var g=function(c){return c?'granted':'denied'};gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',functionality_storage:'granted',security_storage:'granted',wait_for_update:500});if(s)gtag('consent','update',{analytics_storage:g(s.a),ad_storage:g(s.m),ad_user_data:g(s.m),ad_personalization:g(s.m)});window.BLC={s:s,has:function(k){return!!(this.s&&this.s[k])}}})();</script>
 </head><body>
 ${nav}
 <main>
