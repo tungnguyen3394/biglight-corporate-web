@@ -81,7 +81,7 @@ h1,h2,h3,h4,p{margin:0}
 .hd .cta:hover{background:var(--accent-d)}
 .hd .burger{display:none;border:0;background:none;cursor:pointer;padding:6px 0 0;width:52px;height:52px;flex-direction:column;align-items:center;justify-content:center;gap:7px;-webkit-tap-highlight-color:transparent}
 .hd .burger .sq{display:grid;grid-template-columns:repeat(2,auto);gap:7px;transition:gap .35s cubic-bezier(.2,.6,.2,1)}
-.hd .burger .sq i{width:6px;height:6px;display:block;transition:width .35s cubic-bezier(.2,.6,.2,1),height .35s cubic-bezier(.2,.6,.2,1)}
+.hd .burger .sq i{width:7px;height:7px;border-radius:50%;display:block;transition:width .35s cubic-bezier(.2,.6,.2,1),height .35s cubic-bezier(.2,.6,.2,1)}
 .hd .burger .sq i:nth-child(1){background:var(--gold-l)}.hd .burger .sq i:nth-child(2){background:var(--gold)}.hd .burger .sq i:nth-child(3){background:var(--blue)}.hd .burger .sq i:nth-child(4){background:var(--accent)}
 .hd .burger .mt{font-family:var(--en);font-size:9px;font-weight:700;letter-spacing:.2em;color:var(--ink);line-height:1}
 body.menu-open .hd .burger .sq{gap:2px}
@@ -854,20 +854,13 @@ html.js .en.chars .ch{transform:translateY(.6em)}
   .mnav{padding-left:max(24px,6vw);padding-right:max(24px,6vw)}
   .hd nav,.hd .cta{display:none}
   .hd .burger{display:flex}
-  .hero{height:auto;padding:40px 20px 0}
+  /* ảnh hero = nguyên khối PC 930×766 thu nhỏ theo bề ngang (--hs do JS đặt) */
+  .hero{height:auto;padding:28px 20px 0;overflow:hidden}
   .hero .tx{position:static}
-  .hero h1{white-space:nowrap;font-size:min(10.5vw,58px);line-height:1.3;letter-spacing:.08em}
-  .hero .tx{padding-top:10px}
-  .hero .sub{font-size:13px;margin-top:20px}
-  .hero .vis{position:relative;left:auto;top:auto;width:100%;height:auto;aspect-ratio:4/3;margin:32px -20px 0;width:calc(100% + 40px)}
-  .hero .strip{width:33.333%;height:100%;clip-path:polygon(28% 0,100% 0,72% 100%,0 100%)}
-  .hero .strip:nth-child(1){left:0}.hero .strip:nth-child(2){left:23.8%}.hero .strip:nth-child(3){left:47.6%}
-  .hero .strip .inner{width:300%;height:100%}
-  .hero .strip:nth-child(2) .inner{left:-71.4%}.hero .strip:nth-child(3) .inner{left:-142.8%}
-  .hero .vis{overflow:hidden}
-  .hero .inner.devs .dev{left:8%;top:14%;width:66%;height:72%;perspective:900px}
-  .hero .inner.devs .dev .lap{width:70%;right:0;top:26%}
-  .hero .inner.devs .dev .iph{width:24%;left:4%;top:0}
+  .hero h1{white-space:nowrap;font-size:min(9.6vw,58px);line-height:1.32;letter-spacing:.08em}
+  .hero .sub{font-size:min(3.3vw,16px);margin-top:16px}
+  .hero .dots{margin-top:22px;gap:30px}
+  .hero .vis{position:relative;left:auto;top:auto;width:930px;height:766px;margin:24px 0 0 -20px;transform:scale(var(--hs,.42));transform-origin:0 0;margin-bottom:calc(766px * (var(--hs,.42) - 1))}
   .hero .scrl{display:none}
   .message{padding-top:110px}
   .message p{font-size:20px;letter-spacing:.06em}
@@ -1153,6 +1146,7 @@ function home(){ const r='./'; return page({root:r,home:true,title:'BIGLIGHT株�
     ${heroSlide(dev(r,'desk-academy.jpg','shot-academy.jpg'), false, 'devs')}
   </div>
   <div class="scrl"></div>
+  <script>(function(){var d=document.documentElement;function f(){d.style.setProperty('--hs',Math.min(1,d.clientWidth/930));}f();addEventListener('resize',f);})();</script>
 </section>
 
 <section class="message"><div class="wrap">
