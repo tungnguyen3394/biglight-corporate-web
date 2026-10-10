@@ -170,7 +170,7 @@ jobs:
           curl -sI https://biglight.jp/ | tee /tmp/h.txt
           grep -qi '^HTTP/.* 200' /tmp/h.txt
           ! grep -qi '^x-robots-tag: noindex' /tmp/h.txt
-          [ "$(curl -s -o /dev/null -w '%{http_code}' https://www.biglight.jp/)" = "200" ]
+          [ "$(curl -s -o /dev/null -w '%{http_code}' https://www.biglight.jp/)" = "301" ]
           for i in $(seq 1 12); do
             r=$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' https://new.biglight.jp/about/ || true); echo "new.biglight.jp → $r"
             [ "$r" = "301 https://biglight.jp/about/" ] && break; sleep 5

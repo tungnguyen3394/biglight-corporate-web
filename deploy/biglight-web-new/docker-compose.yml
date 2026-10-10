@@ -15,14 +15,14 @@ services:
       - /var/www/biglight:/usr/share/nginx/old:ro
       - ./nginx:/etc/nginx/conf.d:ro
     labels:
-      caddy: biglight.jp www.biglight.jp
+      caddy: biglight.jp
       caddy.reverse_proxy: "{{upstreams 80}}"
       caddy.encode: zstd gzip
       caddy.header.Strict-Transport-Security: "max-age=31536000"
       caddy.header.?X-Content-Type-Options: nosniff
       caddy.header.?X-Frame-Options: SAMEORIGIN
       caddy.header.?Referrer-Policy: strict-origin-when-cross-origin
-      caddy_1: new.biglight.jp
+      caddy_1: new.biglight.jp www.biglight.jp   # tên miền phụ → 301 về biglight.jp (một URL cho Google)
       caddy_1.redir: "https://biglight.jp{uri} 301"
     networks: [web]
 
