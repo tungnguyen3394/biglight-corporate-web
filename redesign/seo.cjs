@@ -9,7 +9,7 @@ const ORG = {
   alternateName: ['BIGLIGHT', 'ビッグライト'],
   url: 'https://biglight.jp/',
   logo: 'https://biglight.jp/img/logo.png',
-  image: 'https://biglight.jp/img/og-image.jpg',
+  image: 'https://biglight.jp/img/ogp.jpg',
   telephone: '+81-52-908-7944',
   faxNumber: '+81-52-908-7267',
   foundingDate: '2021-08-12',
@@ -34,6 +34,10 @@ const CRUMB = {
 
 
 // Tiêu đề + mô tả cho Google (mô tả 80〜120 ký tự, có từ khoá 特定技能・技人国・名古屋・登録支援機関)
+const OG_HOME = {
+  title: 'BIGLIGHT（ビッグライト）株式会社',
+  desc: '設立5年目のスタートアップ企業。BIGLIGHT株式会社は、日本で働く多国籍の人材を支え、日本企業へのご紹介から入社後の定着までを一貫してサポートする人材サービス会社です。',
+};
 const META = {
   '': ['BIGLIGHT株式会社｜特定技能・技人国の外国人材紹介・登録支援機関【名古屋】', 'BIGLIGHT株式会社は、特定技能・技人国の外国人材を採用から定着までワンストップで支援する名古屋の登録支援機関です。完全成功報酬・最長1年保証。製造・建設・食品・外食分野の採用に強みがあります。'],
   'about/': ['私たちについて（ミッション・ビジョン・バリュー）｜BIGLIGHT株式会社', '「日本の成長を、もっとグローバルに。」をミッションに、名古屋から外国人材と日本企業をつなぐBIGLIGHTの理念と、全員が大切にする5つの価値観 F.I.R.S.T. をご紹介します。'],
@@ -71,7 +75,9 @@ module.exports = function seo(pages, { OUT, SITE, ARTICLES, WEBP = {} }) {
     html = html.replace(/<title>[^<]*<\/title>/, '<title>' + esc(title) + '</title>').replace(/<meta name="description" content="[^"]*">/, '<meta name="description" content="' + esc(desc) + '">');
     const slug = (dir.match(/^news\/([^/]+)\/$/) || [])[1];
     const art = slug && ARTICLES[slug];
-    const ogImg = art ? `${SITE}/img/${art.img}` : `${SITE}/img/og-image.jpg`;
+    const ogImg = art ? `${SITE}/img/${art.img}` : `${SITE}/img/ogp.jpg`;
+    // Link Preview (LINE / Slack / Facebook…): trang chủ dùng kiểu Guidable — tên công ty + câu giới thiệu
+    const [ogT, ogD] = dir === '' ? [OG_HOME.title, OG_HOME.desc] : [title, desc];
 
     html = webp(html).replace('__CSSV__', ver['css/site.css']).replace('__JSV__', ver['js/site.js']);
     // link ngoài → tab mới
@@ -106,8 +112,8 @@ module.exports = function seo(pages, { OUT, SITE, ARTICLES, WEBP = {} }) {
       `<link rel="canonical" href="${url}">`,
       `<meta property="og:site_name" content="BIGLIGHT株式会社">`,
       `<meta property="og:type" content="${art ? 'article' : (dir ? 'website' : 'website')}">`,
-      `<meta property="og:title" content="${esc(title)}">`,
-      `<meta property="og:description" content="${esc(desc)}">`,
+      `<meta property="og:title" content="${esc(ogT)}">`,
+      `<meta property="og:description" content="${esc(ogD)}">`,
       `<meta property="og:url" content="${url}">`,
       `<meta property="og:image" content="${ogImg}">`,
       `<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">`,

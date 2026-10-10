@@ -15,7 +15,7 @@ const copies = {
   'img/desk-academy.jpg':'img/desk-academy.jpg','img/desk-job.jpg':'img/desk-job.jpg','img/shot-portal-916.jpg':'img/shot-portal.jpg','img/shot-academy.jpg':'img/shot-academy.jpg','img/shot-job.jpg':'img/shot-job.jpg',
   'badges/apple-ja.svg':'img/badge-appstore.svg','badges/google-ja.png':'img/badge-googleplay.png',
 };
-Object.assign(copies,{'img/og-image.jpg':'img/og-image.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
+Object.assign(copies,{'img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
 fs.mkdirSync(path.join(OUT,'img/people'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/people')).filter(f=>f.endsWith('.webp')))fs.copyFileSync(path.join(__dirname,'src/img/people',f),path.join(OUT,'img/people',f));
 { let out='';const N=34,S=80;const A=t=>330+110*Math.sin(t*Math.PI*1.9+0.2)-210*t, B=t=>330+110*Math.sin(t*Math.PI*1.9+2.9)-210*t+70*Math.sin(t*Math.PI);
   const mix=(a,b,k)=>a.map((v,i)=>Math.round(v+(b[i]-v)*k));const navy=[11,61,145],blue=[30,111,214],gold=[245,166,35];
@@ -333,6 +333,7 @@ html.js .hero .scrl{opacity:0;animation:pagein .6s 4.1s ease forwards}
 .flow p{font-size:14px;color:var(--ink2);line-height:1.9;margin-top:8px}
 .lead28{font-size:28px;font-weight:700;letter-spacing:.1em;line-height:1.9;margin-top:60px}
 .lead16{font-size:16px;margin-top:24px}
+.pv{max-width:860px;padding-top:56px;font-size:15px;line-height:2;color:var(--ink2)}.pv h2{font-size:18px;font-weight:700;color:var(--ink);margin:48px 0 12px;letter-spacing:.04em}.pv ul{padding-left:1.4em;margin:8px 0}.pv li{margin:4px 0}.pv .pv-date{margin-top:48px;font-size:13px;color:var(--grey)}
 .lead-end{border-bottom:1px solid var(--line);padding-bottom:60px}
 
 .news-side{display:grid;grid-template-columns:270px 1fr;gap:40px;margin-top:0}
@@ -982,7 +983,6 @@ const js = `
     if(hdr)hdr.classList.toggle('scrolled',y>10);tt.classList.toggle('on',y>600);tt.style.setProperty('--pg',H>0?(y/H).toFixed(3):0);
     if(RM)return;pars.forEach(function(e){var r=e.parentNode.getBoundingClientRect();if(r.bottom<-50||r.top>vh+50)return;var k=parseFloat(e.getAttribute('data-par')||'0.1');var p=((r.top+r.height/2)-vh/2)/vh;e.style.setProperty('--py',(-p*k*r.height).toFixed(1)+'px');});});}
   window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);onScroll();
-  [['dlf','.dldone:not(#cf-done)'],['cf','#cf-done']].forEach(function(x){var f=document.getElementById(x[0]);if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();var ok=true,first=null;f.querySelectorAll('input[required]').forEach(function(i){var bad=!i.value.trim()||(i.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(i.value));i.closest('.fld').classList.toggle('bad',bad);i.setAttribute('aria-invalid',bad);if(bad){ok=false;first=first||i;}});if(!ok){first.focus();return;}f.hidden=true;var d=document.querySelector(x[1]);d.hidden=false;d.scrollIntoView({block:'center',behavior:'smooth'});});});
   /* lọc tin theo loại */
   var nf=document.getElementById('nf');
   if(nf){var fl=function(c){[].forEach.call(document.querySelectorAll('.nlist .nitem'),function(e){e.style.display=(!c||e.getAttribute('data-cat')===c)?'':'none';});[].forEach.call(nf.querySelectorAll('a'),function(a){a.classList.toggle('on',a.getAttribute('data-f')===c);});};
@@ -1015,7 +1015,7 @@ const js = `
   });
 })();
 `;
-fs.writeFileSync(path.join(OUT,'js/site.js'), js);
+fs.writeFileSync(path.join(OUT,'js/site.js'), fs.readFileSync(path.join(__dirname,'src/js/bl-track.js'),'utf8')+'\n'+js);
 
 // ---------- helpers ----------
 const SDG_COLORS=['#E5243B','#DDA63A','#4C9F38','#C5192D','#FF3A21','#26BDE2','#FCC30B','#A21942','#FD6925','#DD1367','#FD9D24','#BF8B2E','#3F7E44','#0A97D9','#56C02B','#00689D','#19486A'];
@@ -1071,7 +1071,7 @@ function page({root, title, desc, body, active, home}) {
       <nav class="fsite"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}download/index.html">Download</a></div></nav>
     </div>
     <div class="bot">
-      <div class="links"><a href="https://biglight.jp/privacy/">プライバシーポリシー</a><a href="https://biglight.jp/faq/">よくある質問</a><a href="${r}download/index.html">資料ダウンロード</a></div>
+      <div class="links"><a href="${r}privacy/index.html">プライバシーポリシー</a><a href="${r}service/tokutei-ginou/index.html#faq">よくある質問</a><a href="${r}download/index.html">資料ダウンロード</a></div>
       <div class="lic">有料職業紹介 23-ユ-302414 ／ 登録支援機関 21登-006596</div>
       <p class="copy">© BIGLIGHT Co., Ltd.</p>
     </div>
@@ -1157,12 +1157,12 @@ function home(){ const r='./'; return page({root:r,home:true,title:'BIGLIGHT株�
   <div class="tx">
     <h1>日本の成長を、<br>もっと<br>グローバルに。</h1>
     <p class="sub">Powering Japan’s Growth, Globally.</p>
-    <div class="dots"><i class="on"></i><i></i><i></i><i></i></div>
+    <div class="dots"><i class="on"></i><i></i><i></i></div>
   </div>
   <div class="vis">
     ${heroSlide('<img class="full" src="'+r+'img/office-hcm.jpg" alt="BIGLIGHTのオフィス">', true)}
     ${heroSlide(dev(r,'desk-job.jpg','shot-job.jpg'), false, 'devs')}
-    ${heroSlide('<img class="full" src="'+r+'img/hero-team.jpg" alt="BIGLIGHTのチーム">')}
+    <!-- ảnh 4 người tạm ẩn (CEO 10-10): ${'hero-team.jpg'} -->
     ${heroSlide(dev(r,'desk-academy.jpg','shot-academy.jpg'), false, 'devs')}
   </div>
   <div class="scrl"></div>
@@ -1468,15 +1468,15 @@ function contact(){ const r='../'; return page({root:r,title:'お問い合わせ
 ${pageHead('Contact','お問い合わせ・無料相談')}
 <section><div class="wrap form">
   <div class="info"><b>052-908-7944</b>平日 9:00–18:00<br>採用人数・職種・時期が未定でも構いません。<br>登録支援機関として、制度の説明からお手伝いします。<br><br>〒462-0007<br>愛知県名古屋市北区如意一丁目112 A</div>
-  <form id="cf" novalidate>
+  <form id="cf" novalidate><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
     <label for="cf-type">お問い合わせ種別<small>必須</small></label><select id="cf-type" name="type"><option>無料相談（採用について）</option><option>資料請求</option><option>アプリについて</option><option>採用について（求職者の方）</option><option>その他</option></select>
     <label for="cf-co">会社名<small>必須</small></label><div class="fld"><input id="cf-co" name="company" type="text" autocomplete="organization" placeholder="BIGLIGHT株式会社" required></div>
     <label for="cf-nm">お名前<small>必須</small></label><div class="fld"><input id="cf-nm" name="name" type="text" autocomplete="name" placeholder="山田 太郎" required></div>
     <label for="cf-em">メールアドレス<small>必須</small></label><div class="fld"><input id="cf-em" name="email" type="email" autocomplete="email" placeholder="example@company.co.jp" required></div>
-    <label for="cf-tel">電話番号</label><div class="fld"><input id="cf-tel" name="tel" type="tel" autocomplete="tel" placeholder="052-000-0000"></div>
-    <label for="cf-msg">お問い合わせ内容</label><div class="fld"><textarea id="cf-msg" name="message" placeholder="採用したい職種・人数・時期など"></textarea></div>
+    <label for="cf-tel">電話番号<small>必須</small></label><div class="fld"><input id="cf-tel" name="tel" type="tel" autocomplete="tel" placeholder="052-000-0000" required></div>
+    <label for="cf-msg">お問い合わせ内容<small>必須</small></label><div class="fld"><textarea id="cf-msg" name="message" placeholder="採用したい職種・人数・時期など" required></textarea></div>
     <div class="send"><button class="pill" type="submit" style="cursor:pointer">送信する<span class="circ">→</span></button></div>
-    <p class="note">※ 試作版のため送信はされません。本番ではボット対策（Turnstile）付きの現行フォームに接続します。</p>
+    <p class="note">送信いただいた個人情報は<a href="${r}privacy/index.html">プライバシーポリシー</a>に基づき取り扱います。</p>
   </form>
   <div class="dldone" id="cf-done" hidden><b>送信ありがとうございました。</b><p>担当者より2営業日以内にご連絡いたします。お急ぎの場合はお電話（052-908-7944）でご連絡ください。</p></div>
 </div></section>
@@ -1516,7 +1516,7 @@ const FAQ_EN = [
   ['費用はいつ発生しますか？','完全成功報酬のため、採用が決まるまで費用は一切かかりません。さらに最長1年の保証が付きます。'],
 ];
 const faq = (list) => `<div class="faq">${list.map(([q,a])=>`<details><summary><b>Q</b><span>${q}</span><i></i></summary><div class="ans"><b>A</b><div>${a.startsWith('<p>')?a:'<p>'+a+'</p>'}</div></div></details>`).join('')}</div>`;
-const faqSec = (list) => `<section class="blk faq-sec"><div class="wrap side" style="margin-top:0">
+const faqSec = (list) => `<section class="blk faq-sec" id="faq"><div class="wrap side" style="margin-top:0">
   <h2 class="en">FAQ<small class="ja-sub">よくある質問</small></h2>
   ${faq(list)}
 </div></section>`;
@@ -1887,21 +1887,29 @@ ${CASES.map((c,i)=>`<section class="blk case" id="${c.slug}"><div class="wrap">
 </div></section>`).join('')}
 ${contactBox(r)}
 `});}
+function privacy(){ const r='../'; const src=fs.readFileSync(path.join(__dirname,'../privacy/index.html'),'utf8');
+  const a=src.indexOf('<div class="pbox reveal">'), b=src.indexOf('</div>\n</div></section>',a); if(a<0||b<0) throw new Error('privacy: không tách được nội dung /privacy/');
+  const body=src.slice(a+'<div class="pbox reveal">'.length,b).replace(/<h4>/g,'<h2>').replace(/<\/h4>/g,'</h2>').replace(/ class="plist"/g,'').replace(/<p class="prev">/,'<p class="pv-date">');
+  return page({root:r,title:'プライバシーポリシー｜BIGLIGHT株式会社',desc:'BIGLIGHT株式会社の個人情報保護方針（プライバシーポリシー）です。',body:`
+${pageHead('Privacy Policy','プライバシーポリシー')}
+<section><div class="wrap"><div class="pv">${body}</div></div></section>
+`});}
+
 function download(){ const r='../'; const IN=['外国人材の採用を検討している','特定技能について知りたい','技人国（エンジニア・専門職）について','定着・生活支援について','まずは資料を見たい（情報収集）','その他'];
  return page({root:r,title:'資料ダウンロード｜BIGLIGHT株式会社',desc:'BIGLIGHTの会社資料（PDF）をダウンロード',body:`
 ${pageHead('Download','資料ダウンロード')}
 <section><div class="wrap form">
   <div class="info"><b>会社資料</b>PDF ／ 無料<br>サービス内容・料金体系・支援の流れ・導入事例をまとめた資料です。<br>ご入力後、すぐにダウンロードいただけます。<br><br>お電話でのご相談<br>052-908-7944（平日 9:00–18:00）</div>
-  <form id="dlf" novalidate>
+  <form id="dlf" novalidate><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
     <label for="dl-co">会社名<small>必須</small></label><div class="fld"><input id="dl-co" name="company" type="text" autocomplete="organization" placeholder="BIGLIGHT株式会社" required></div>
     <label for="dl-nm">お名前<small>必須</small></label><div class="fld"><input id="dl-nm" name="name" type="text" autocomplete="name" placeholder="山田 太郎" required></div>
     <label for="dl-em">メールアドレス<small>必須</small></label><div class="fld"><input id="dl-em" name="email" type="email" autocomplete="email" placeholder="example@company.co.jp" required></div>
-    <label>ご興味のある内容</label><div class="checks">${IN.map(x=>`<label class="ck"><input type="checkbox" value="${x}"><span>${x}</span></label>`).join('')}</div>
-    <label>ご質問・ご要望</label><div class="fld"><textarea placeholder="気になる点があればご記入ください"></textarea></div>
+    <label>ご興味のある内容</label><div class="checks">${IN.map(x=>`<label class="ck"><input type="checkbox" name="interest" value="${x}"><span>${x}</span></label>`).join('')}</div>
+    <label for="dl-note">ご質問・ご要望</label><div class="fld"><textarea id="dl-note" name="note" placeholder="気になる点があればご記入ください"></textarea></div>
     <div class="send"><button class="pill" type="submit" style="cursor:pointer">資料をダウンロードする<span class="circ">↓</span></button></div>
-    <p class="note">※ 試作版のため送信はされません。本番では現行フォーム（admin.biglight.jp）に接続します。</p>
+    <p class="note">送信いただいた個人情報は<a href="${r}privacy/index.html">プライバシーポリシー</a>に基づき取り扱います。</p>
   </form>
-  <div class="dldone" hidden><b>ありがとうございました。</b><p>下のボタンから資料をダウンロードいただけます。</p><a class="pill" href="https://biglight.jp/assets/biglight-company-profile.pdf">会社資料（PDF）を開く<span class="circ">↓</span></a></div>
+  <div class="dldone" id="dl-done" hidden><b>ありがとうございました。</b><p>下のボタンから資料をダウンロードいただけます。</p><a class="pill" href="https://biglight.jp/assets/biglight-company-profile.pdf">会社資料（PDF）を開く<span class="circ">↓</span></a></div>
 </div></section>
 `});}
 
@@ -1947,6 +1955,7 @@ const pages = {
   'about/strength/index.html': strength(),
   'case/index.html': cases(),
   'download/index.html': download(),
+  'privacy/index.html': privacy(),
 };
 FIELDS.forEach((f,i)=>{pages['service/field/'+f.slug+'/index.html']=fieldPage(f,i);});
 NEWS.forEach(n=>{pages['news/'+n.slug+'/index.html']=article(n.slug);});

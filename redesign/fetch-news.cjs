@@ -20,7 +20,13 @@ const MAP = [
 const dec = (s) => s.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
 const strip = (h) => dec(h.replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
 
-async function get(u) { const r = await fetch(u, { headers: { 'User-Agent': 'BIGLIGHT-redesign-build' } }); if (!r.ok) throw new Error(u + ' ' + r.status); return r.text(); }
+// NEWS_DIR = bản sao thư mục web cũ trên VPS (/var/www/biglight, admin.biglight.jp ghi /news/ vào đó).
+// Sau khi biglight.jp chuyển sang giao diện mới, /news/<bài>/ trên mạng là trang của CHÍNH bản này → phải đọc file gốc.
+const NEWS_DIR = process.env.NEWS_DIR || '';
+async function get(u) {
+  if (NEWS_DIR) { const p = path.join(NEWS_DIR, new URL(u).pathname, 'index.html'); if (!fs.existsSync(p)) throw new Error(p + ' không có'); return fs.readFileSync(p, 'utf8'); }
+  const r = await fetch(u, { headers: { 'User-Agent': 'BIGLIGHT-redesign-build' } }); if (!r.ok) throw new Error(u + ' ' + r.status); return r.text();
+}
 
 async function article(slug) {
   const h = await get(`${BASE}/news/${slug}/`);

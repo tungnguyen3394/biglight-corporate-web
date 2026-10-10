@@ -1,10 +1,10 @@
-# new.biglight.jp — BẢN XEM TRƯỚC giao diện mới (nhánh `redesign`, thư mục redesign/).
-# Tách hẳn khỏi biglight.jp: compose riêng (/root/biglight-web-new), container riêng, web root riêng
-# (/var/www/biglight-new). Web chính biglight.jp KHÔNG bị đụng.
+# biglight.jp / www.biglight.jp — GIAO DIỆN MỚI (nhánh `redesign`, thư mục redesign/), chính thức từ 2026-10-10.
+# new.biglight.jp (bản xem trước cũ) → 301 về biglight.jp.
 #
-# Giai đoạn xem trước: X-Robots-Tag noindex → Google không lập chỉ mục (tránh trùng nội dung với
-# biglight.jp). Trang đã có đủ canonical/OGP/JSON-LD/sitemap trỏ về https://biglight.jp — khi chuyển
-# sang tên miền chính chỉ cần bỏ dòng noindex.
+# Web cũ KHÔNG bị xoá: container `biglight-web` (/root/biglight-web) vẫn chạy nhưng đã bỏ nhãn Caddy
+# (deploy/biglight-web/docker-compose.yml). Thư mục /var/www/biglight được gắn CHỈ ĐỌC vào đây làm
+# nguồn dự phòng (PDF, ảnh bài tin, /optout/, bài tin admin vừa đăng…) — xem nginx/default.conf.
+# Quay lại giao diện cũ: trả nhãn Caddy cho biglight-web, đổi nhãn ở đây về new.biglight.jp.
 services:
   biglight-web-new:
     image: nginx:alpine
@@ -12,16 +12,18 @@ services:
     restart: unless-stopped
     volumes:
       - /var/www/biglight-new:/usr/share/nginx/html:ro
+      - /var/www/biglight:/usr/share/nginx/old:ro
       - ./nginx:/etc/nginx/conf.d:ro
     labels:
-      caddy: new.biglight.jp
+      caddy: biglight.jp www.biglight.jp
       caddy.reverse_proxy: "{{upstreams 80}}"
       caddy.encode: zstd gzip
-      caddy.header.X-Robots-Tag: "\"noindex, nofollow\""   # bẫy: giá trị có dấu phẩy phải bọc "\"...\""
       caddy.header.Strict-Transport-Security: "max-age=31536000"
       caddy.header.?X-Content-Type-Options: nosniff
       caddy.header.?X-Frame-Options: SAMEORIGIN
       caddy.header.?Referrer-Policy: strict-origin-when-cross-origin
+      caddy_1: new.biglight.jp
+      caddy_1.redir: "https://biglight.jp{uri} 301"
     networks: [web]
 
 networks:

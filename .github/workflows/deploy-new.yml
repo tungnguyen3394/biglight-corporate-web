@@ -1,11 +1,15 @@
-# new.biglight.jp — bản xem trước giao diện mới. Chỉ chạy trên nhánh `redesign`.
-# KHÔNG đụng biglight.jp: thư mục /root/biglight-web-new, web root /var/www/biglight-new, container biglight-web-new.
+# biglight.jp — GIAO DIỆN MỚI (nhánh `redesign`, thư mục redesign/). Chính thức từ 2026-10-10
+# (trước đó là bản xem trước new.biglight.jp; new.biglight.jp nay 301 về biglight.jp).
 #
-#   1. build trên runner (node redesign/build.cjs → redesign/dist) + kiểm link nội bộ + nginx -t
-#   2. chép bản build vào thư mục tạm trên VPS, rsync --delete sang web root (giữ nguyên thư mục → bind mount không lệch)
-#   3. compose up, đo tại VPS (curl vào IP container) rồi đo HTTPS thật từ runner
-#   4. sai → trả bản trước (_prev) và ĐỎ
-name: Deploy new.biglight.jp (redesign preview)
+#   1. lấy /news/ gốc từ web cũ trên VPS (admin.biglight.jp ghi bài vào /var/www/biglight/news) → news.json
+#   2. build trên runner + kiểm link nội bộ/title/canonical/h1 + nginx -t
+#   3. đưa bản build vào /var/www/biglight-new; container biglight-web-new giữ tên miền biglight.jp,
+#      container web cũ biglight-web vẫn chạy nhưng bỏ nhãn Caddy (ẩn, không xoá)
+#   4. đo tại VPS + HTTPS thật; sai → trả compose/nginx/bản build trước (_prev) cho CẢ HAI container và ĐỎ
+# Bài mới admin đăng: lịch mỗi giờ (bản sao file này trên nhánh main — lịch chỉ chạy từ nhánh mặc định) lấy lại /news/,
+# CHỈ deploy khi news.json đổi. Giữa hai lần, bài mới vẫn mở được (nginx lấy từ web cũ).
+# ⚠ Sửa file này thì chép y nguyên sang nhánh main.
+name: Deploy biglight.jp (giao diện mới, nhánh redesign)
 
 on:
   push:
@@ -13,8 +17,11 @@ on:
     paths:
       - 'redesign/**'
       - 'deploy/biglight-web-new/**'
+      - 'deploy/biglight-web/docker-compose.yml'
       - '.github/workflows/deploy-new.yml'
   workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
 
 concurrency:
   group: biglight-web-new
@@ -25,17 +32,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: redesign
 
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
 
-      - name: Lấy tin mới nhất từ biglight.jp/news (lỗi mạng → dùng redesign/news.json đã lưu)
-        run: node redesign/fetch-news.cjs
+      - name: Lấy bài /news/ gốc từ web cũ trên VPS (lỗi → giữ redesign/news.json đã lưu)
+        id: news
+        env:
+          KEY: ${{ secrets.VPS_SSH_KEY }}
+          HOST: ${{ secrets.VPS_HOST }}
+          USR: ${{ secrets.VPS_USER }}
+          PORT: ${{ secrets.VPS_PORT }}
+        run: |
+          mkdir -p ~/.ssh && printf '%s\n' "$KEY" > ~/.ssh/vps && chmod 600 ~/.ssh/vps
+          mkdir -p /tmp/oldsite
+          if ssh -i ~/.ssh/vps -p "${PORT:-22}" -o StrictHostKeyChecking=no -o ConnectTimeout=20 "$USR@$HOST" 'tar -C /var/www/biglight -cz news' > /tmp/news.tgz && tar -C /tmp/oldsite -xzf /tmp/news.tgz; then
+            NEWS_DIR=/tmp/oldsite node redesign/fetch-news.cjs
+            # so với bản ĐANG CHẠY (mã băm ghi lúc deploy thành công), không so với git
+            old=$(ssh -i ~/.ssh/vps -p "${PORT:-22}" -o StrictHostKeyChecking=no "$USR@$HOST" 'cat /root/biglight-web-new/news.sha256 2>/dev/null' || true)
+            new=$(sha256sum redesign/news.json | cut -d' ' -f1)
+            [ "$old" = "$new" ] && echo "changed=0" >> $GITHUB_OUTPUT || echo "changed=1" >> $GITHUB_OUTPUT
+            echo "news.json: đang chạy=$old  mới=$new"
+          else
+            echo "::warning::Không đọc được /news/ trên VPS — dùng redesign/news.json đã lưu"
+          fi
+          rm -f ~/.ssh/vps
 
       - name: Build
+        if: github.event_name != 'schedule' || steps.news.outputs.changed == '1'
         run: node redesign/build.cjs
 
       - name: Kiểm bản build (link nội bộ, title/description/canonical, h1)
+        if: github.event_name != 'schedule' || steps.news.outputs.changed == '1'
         run: |
           node -e '
           const fs=require("fs"),path=require("path");const D="redesign/dist";let bad=0,n=0;
@@ -49,7 +79,8 @@ jobs:
           console.log("html",n,"problems",bad);if(bad)process.exit(1);'
           docker run --rm -v "$PWD/deploy/biglight-web-new/nginx:/etc/nginx/conf.d:ro" nginx:alpine nginx -t
 
-      - name: Chuẩn bị thư mục trên VPS
+      - name: Chuẩn bị thư mục + sao lưu bản đang chạy trên VPS
+        if: github.event_name != 'schedule' || steps.news.outputs.changed == '1'
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -58,24 +89,32 @@ jobs:
           port: ${{ secrets.VPS_PORT || 22 }}
           script: |
             set -e
-            mkdir -p /root/biglight-web-new/nginx /var/www/biglight-new /var/www/biglight-new-prev
-            rm -rf /root/biglight-web-new/_incoming && mkdir -p /root/biglight-web-new/_incoming
-            # _prev = bản đang phục vụ (để lùi)
-            rsync -a --delete /var/www/biglight-new/ /var/www/biglight-new-prev/ 2>/dev/null || cp -a /var/www/biglight-new/. /var/www/biglight-new-prev/
             command -v rsync >/dev/null || (apt-get update -qq && apt-get install -y -qq rsync)
+            mkdir -p /root/biglight-web-new/nginx /root/biglight-web-new/_prev /root/biglight-web/_prev-new /var/www/biglight-new /var/www/biglight-new-prev
+            rm -rf /root/biglight-web-new/_incoming && mkdir -p /root/biglight-web-new/_incoming
+            rsync -a --delete /var/www/biglight-new/ /var/www/biglight-new-prev/
+            rm -rf /root/biglight-web-new/_prev/* /root/biglight-web/_prev-new/*
+            cp -a /root/biglight-web-new/docker-compose.yml /root/biglight-web-new/nginx /root/biglight-web-new/_prev/ 2>/dev/null || true
+            cp -a /root/biglight-web/docker-compose.yml /root/biglight-web/_prev-new/
+            # Bản compose web cũ CÒN nhãn Caddy (trước lần chuyển đầu tiên) → giữ vĩnh viễn để quay lại được
+            if grep -q '^ *caddy: biglight.jp' /root/biglight-web/docker-compose.yml && [ ! -f /root/biglight-web/docker-compose.truoc-chuyen-2026-10-10.yml ]; then
+              cp -a /root/biglight-web/docker-compose.yml /root/biglight-web/docker-compose.truoc-chuyen-2026-10-10.yml
+            fi
 
       - name: Chép bản build + cấu hình
+        if: github.event_name != 'schedule' || steps.news.outputs.changed == '1'
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           port: ${{ secrets.VPS_PORT || 22 }}
-          source: "redesign/dist/,deploy/biglight-web-new/docker-compose.yml,deploy/biglight-web-new/nginx/"
+          source: "redesign/news.json,redesign/dist/,deploy/biglight-web-new/docker-compose.yml,deploy/biglight-web-new/nginx/,deploy/biglight-web/docker-compose.yml"
           target: /root/biglight-web-new/_incoming
           overwrite: true
 
-      - name: Đưa lên + kiểm chứng, hỏng thì lùi
+      - name: Đưa lên + kiểm tại VPS, hỏng thì lùi cả hai container
+        if: github.event_name != 'schedule' || steps.news.outputs.changed == '1'
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -84,32 +123,74 @@ jobs:
           port: ${{ secrets.VPS_PORT || 22 }}
           command_timeout: 10m
           script: |
-            set -e
             IN=/root/biglight-web-new/_incoming
-            cd /root/biglight-web-new
-            cp -a $IN/deploy/biglight-web-new/docker-compose.yml ./docker-compose.yml
-            rsync -a --delete $IN/deploy/biglight-web-new/nginx/ ./nginx/
-            rsync -a --delete $IN/redesign/dist/ /var/www/biglight-new/
-            docker compose up -d
-            docker compose exec -T biglight-web-new nginx -s reload || true
+            rollback() {
+              echo "!! LÙI VỀ BẢN TRƯỚC (cả web cũ lẫn mới)"
+              rsync -a --delete /var/www/biglight-new-prev/ /var/www/biglight-new/
+              [ -f /root/biglight-web-new/_prev/docker-compose.yml ] && cp -a /root/biglight-web-new/_prev/docker-compose.yml /root/biglight-web-new/
+              [ -d /root/biglight-web-new/_prev/nginx ] && rsync -a --delete /root/biglight-web-new/_prev/nginx/ /root/biglight-web-new/nginx/
+              # thứ tự: bản mới nhả tên miền trước, web cũ nhận lại sau (không để 2 container cùng tên miền)
+              (cd /root/biglight-web-new && docker compose up -d && docker compose exec -T biglight-web-new nginx -s reload) || true
+              cp -a /root/biglight-web/_prev-new/docker-compose.yml /root/biglight-web/ && (cd /root/biglight-web && docker compose up -d) || true
+              exit 1
+            }
+            set -x
+            rsync -a --delete $IN/redesign/dist/ /var/www/biglight-new/ || rollback
+            rsync -a --delete $IN/deploy/biglight-web-new/nginx/ /root/biglight-web-new/nginx/ || rollback
+            # 1) web cũ nhả tên miền (container vẫn chạy, chỉ bỏ nhãn Caddy) — rồi 2) bản mới nhận
+            cp -a $IN/deploy/biglight-web/docker-compose.yml /root/biglight-web/docker-compose.yml || rollback
+            (cd /root/biglight-web && docker compose up -d) || rollback
+            cp -a $IN/deploy/biglight-web-new/docker-compose.yml /root/biglight-web-new/docker-compose.yml || rollback
+            (cd /root/biglight-web-new && docker compose up -d && docker compose exec -T biglight-web-new nginx -t && docker compose exec -T biglight-web-new nginx -s reload) || rollback
+            set +x
             sleep 2
             IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' biglight-web-new)
             fail=0
-            chk(){ c=$(curl -s -o /dev/null -w '%{http_code}' "http://$IP$1"); echo "$1 -> $c (want $2)"; [ "$c" = "$2" ] || fail=1; }
-            chk / 200; chk /about/ 200; chk /service/tokutei-ginou/ 200; chk /news/website-renewal/ 200
-            chk /about/index.html 301; chk /sitemap.xml 200; chk /robots.txt 200; chk /khong-co/ 404; chk /.git/HEAD 404
-            if [ "$fail" = 1 ]; then
-              echo "!! LÙI VỀ BẢN TRƯỚC"; rsync -a --delete /var/www/biglight-new-prev/ /var/www/biglight-new/; exit 1
-            fi
+            chk(){ c=$(curl -s -o /dev/null -w '%{http_code}' -H 'Host: biglight.jp' "http://$IP$1"); echo "$1 -> $c (mong $2)"; [ "$c" = "$2" ] || fail=1; }
+            chk / 200; chk /about/ 200; chk /service/tokutei-ginou/ 200; chk /contact/ 200; chk /privacy/ 200
+            chk /index.html 301; chk /sitemap.xml 200; chk /robots.txt 200; chk /khong-co/ 404; chk /.git/HEAD 404; chk /build.sh 404
+            chk /optout/ 200; chk /assets/biglight-company-profile.pdf 200; chk /news/ 200
+            chk /faq/ 301; chk /sdgs/ 301; chk /service/jinzai-shoukai/ 301; chk /tuyen-dung.html 410; chk /blog.html 301
+            docker ps --format '{{.Names}} {{.Status}}' | grep -E '^biglight-web(-new)? ' || fail=1
+            [ "$fail" = 1 ] && rollback
+            sha256sum $IN/redesign/news.json | cut -d" " -f1 > /root/biglight-web-new/news.sha256
             rm -rf $IN
+            echo "✓ VPS OK"
 
-      - name: Đo HTTPS thật từ ngoài (Caddy cấp chứng chỉ có thể mất vài chục giây lần đầu)
+      - name: Đo HTTPS thật từ ngoài
+        id: ext
+        if: github.event_name != 'schedule' || steps.news.outputs.changed == '1'
         run: |
-          for i in $(seq 1 18); do
-            code=$(curl -s -o /dev/null -w '%{http_code}' https://new.biglight.jp/ || true)
-            [ "$code" = "200" ] && break; echo "chờ HTTPS ($code)…"; sleep 10
+          ok=0
+          for i in $(seq 1 24); do
+            if curl -s https://biglight.jp/ | grep -q 'id="mnav"'; then ok=1; break; fi
+            echo "chờ Caddy chuyển sang bản mới…"; sleep 5
           done
-          curl -sI https://new.biglight.jp/ | tee /tmp/h.txt
+          [ "$ok" = 1 ]
+          curl -sI https://biglight.jp/ | tee /tmp/h.txt
           grep -qi '^HTTP/.* 200' /tmp/h.txt
-          grep -qi '^x-robots-tag: noindex' /tmp/h.txt
-          [ "$(curl -s -o /dev/null -w '%{http_code}' https://biglight.jp/)" = "200" ]   # web chính vẫn sống
+          ! grep -qi '^x-robots-tag: noindex' /tmp/h.txt
+          [ "$(curl -s -o /dev/null -w '%{http_code}' https://www.biglight.jp/)" = "200" ]
+          for i in $(seq 1 12); do
+            r=$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' https://new.biglight.jp/about/ || true); echo "new.biglight.jp → $r"
+            [ "$r" = "301 https://biglight.jp/about/" ] && break; sleep 5
+          done
+          curl -s https://biglight.jp/contact/ | grep -q 'id="cf"'
+          [ "$(curl -s -o /dev/null -w '%{http_code}' https://biglight.jp/assets/biglight-company-profile.pdf)" = "200" ]
+          [ "$(curl -s -o /dev/null -w '%{http_code}' https://biglight.jp/optout/)" = "200" ]
+
+      - name: Từ ngoài hỏng → trả biglight.jp về bản trước
+        if: failure() && steps.ext.conclusion == 'failure'
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          script: |
+            rsync -a --delete /var/www/biglight-new-prev/ /var/www/biglight-new/
+            cp -a /root/biglight-web-new/_prev/docker-compose.yml /root/biglight-web-new/ 2>/dev/null
+            [ -d /root/biglight-web-new/_prev/nginx ] && rsync -a --delete /root/biglight-web-new/_prev/nginx/ /root/biglight-web-new/nginx/
+            cd /root/biglight-web-new && docker compose up -d && docker compose exec -T biglight-web-new nginx -s reload
+            cp -a /root/biglight-web/_prev-new/docker-compose.yml /root/biglight-web/ && cd /root/biglight-web && docker compose up -d
+            echo "đã trả về bản trước"
