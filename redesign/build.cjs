@@ -683,13 +683,32 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 .ft .fsite a{font-family:var(--en);font-size:11.5px;font-weight:500;letter-spacing:.06em;color:var(--ink2);white-space:nowrap}
 .ft .fsite a.h{font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--ink);margin-bottom:5px}
 .ft .fsite a:hover{color:var(--accent)}
+.ft .fsite .tg{display:none}
 .ft .fnavl a{font-family:var(--en);font-size:13px;font-weight:700;letter-spacing:.1em}
 .ft .fnavl a:hover{color:var(--accent)}
 .ft .bot{border-top:1px solid var(--line);margin-top:26px;padding-top:18px;display:flex;justify-content:space-between;align-items:center;gap:12px 28px;flex-wrap:wrap;font-size:12px}
 .ft .bot .links{display:flex;gap:22px;flex-wrap:wrap}
 .ft .bot .lic{color:var(--grey);font-size:11px;letter-spacing:.04em}
 .ft .copy{font-family:var(--en);font-size:11px;font-weight:700;letter-spacing:.06em;margin:0;text-align:right}
-@media (max-width:860px){.ft{margin-top:72px;padding:26px 0 16px}.ft .top{flex-direction:column;align-items:flex-start;gap:12px}.ft .addr{margin-top:6px;font-size:11px}.ft .fsite{grid-template-columns:repeat(3,1fr);gap:20px 16px;width:100%}.ft .bot{margin-top:16px;padding-top:12px;flex-direction:column;align-items:flex-start;gap:6px}.ft .bot .links{gap:4px 14px;font-size:11px}.ft .copy{text-align:left}}
+@media (max-width:860px){
+.ft{margin-top:72px;padding:8px 0 24px}
+.ft .top{flex-direction:column;align-items:stretch;gap:36px}
+.ft .fsite{order:-1;display:block;width:100%}
+.ft .fsite div{position:relative;display:block;border-bottom:1px solid var(--line)}
+.ft .fsite a{display:none;white-space:normal;font-size:13px;padding:10px 0 10px 16px}
+.ft .fsite a.h{display:block;font-size:15px;letter-spacing:.12em;padding:20px 48px 20px 2px;margin:0}
+.ft .fsite div.open{padding-bottom:12px}.ft .fsite div.open a{display:block}
+.ft .fsite .tg{display:block;position:absolute;right:0;top:12px;width:44px;height:44px;border:0;background:none;cursor:pointer}
+.ft .fsite .tg::before,.ft .fsite .tg::after{content:"";position:absolute;left:15px;top:21px;width:14px;height:2px;background:var(--accent);transition:transform .3s}
+.ft .fsite .tg::after{transform:rotate(90deg)}
+.ft .fsite div.open .tg::after{transform:rotate(0)}
+.ft .fb{text-align:center}.ft .logo{justify-content:center}
+.ft .logo img{height:44px}.ft .logo img.wm{height:16px}
+.ft .addr{margin-top:12px;font-size:11.5px}.ft .addr .tel{display:block}
+.ft .bot{margin-top:28px;padding-top:20px;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.ft .bot .links{justify-content:center;gap:6px 18px;font-size:12px;display:flex;flex-wrap:wrap}
+.ft .bot .lic{font-size:11px;color:var(--grey)}
+.ft .copy{text-align:center;margin-top:14px}}
 /* v17: số liệu / lý do / 事例 / download */
 .kstats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .kstats>div{padding:34px 0 30px 28px}
@@ -969,6 +988,7 @@ const js = `
   if(nf){var fl=function(c){[].forEach.call(document.querySelectorAll('.nlist .nitem'),function(e){e.style.display=(!c||e.getAttribute('data-cat')===c)?'':'none';});[].forEach.call(nf.querySelectorAll('a'),function(a){a.classList.toggle('on',a.getAttribute('data-f')===c);});};
     nf.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;e.preventDefault();fl(a.getAttribute('data-f'));history.replaceState(null,'',a.getAttribute('href')==='#'?location.pathname:a.getAttribute('href'));});
     var hh={'#oshirase':'お知らせ','#magazine':'HR Magazine'}[location.hash];if(hh)fl(hh);}
+  [].forEach.call(document.querySelectorAll('.ft .fsite .tg'),function(t){t.addEventListener('click',function(){var o=t.parentNode.classList.toggle('open');t.setAttribute('aria-expanded',o);t.setAttribute('aria-label',o?'閉じる':'開く');});});
   var b=document.querySelector('.burger'); if(b){var setM=function(o){document.body.classList.toggle('menu-open',o);b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');};b.addEventListener('click',function(){setM(!document.body.classList.contains('menu-open'));});[].forEach.call(document.querySelectorAll('.mnav a'),function(a){a.addEventListener('click',function(){setM(false);});});document.addEventListener('keydown',function(e){if(e.key==='Escape')setM(false);});}
   /* sóng kẻ mảnh (band) */
   /* dải ruy-băng xoắn: hai đường biên A,B cắt nhau, N đường nội suy ở giữa */
@@ -1047,8 +1067,8 @@ function page({root, title, desc, body, active, home}) {
   <footer class="ft"><div class="wrap">
     <div class="top">
       <div class="fb"><a class="logo" href="${r}index.html"><img src="${r}img/logo.png" alt=""><img class="wm" src="${r}img/wordmark.png" alt="BIGLIGHT"></a>
-        <p class="addr">〒462-0007 愛知県名古屋市北区如意一丁目112 A　TEL 052-908-7944</p></div>
-      <nav class="fsite"><div><a class="h" href="${r}about/index.html">ABOUT</a><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><a href="${r}contact/index.html">Contact</a><a href="${r}download/index.html">Download</a></div></nav>
+        <p class="addr">〒462-0007 愛知県名古屋市北区如意一丁目112 A<span class="tel">　TEL 052-908-7944</span></p></div>
+      <nav class="fsite"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}download/index.html">Download</a></div></nav>
     </div>
     <div class="bot">
       <div class="links"><a href="https://biglight.jp/privacy/">プライバシーポリシー</a><a href="https://biglight.jp/faq/">よくある質問</a><a href="${r}download/index.html">資料ダウンロード</a></div>
