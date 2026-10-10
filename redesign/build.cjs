@@ -707,6 +707,9 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 .ft .logo img{height:38px}.ft .logo img.wm{height:14px}
 .ft .addr{font-size:12px;color:var(--ink2);line-height:1.7;margin-top:10px}
 .ft .top{align-items:flex-start}
+.ft .fb{flex-basis:100%}
+.ft .fmap{margin-left:auto;width:340px;flex:none}.ft .fmap iframe{display:block;width:100%;height:210px;border:0;border-radius:8px;background:#eef1f5}.ft .fmap a{display:inline-block;margin-top:8px;font-size:12px;color:var(--accent);letter-spacing:.04em}
+@media (max-width:1180px) and (min-width:861px){.ft .fmap{margin-left:0;width:100%}.ft .fmap iframe{height:240px}}
 .ft .fsite{display:grid;grid-template-columns:repeat(6,auto);gap:0 36px}
 .ft .fsite div{display:flex;flex-direction:column;gap:7px}
 .ft .fsite a{font-family:var(--en);font-size:11.5px;font-weight:500;letter-spacing:.06em;color:var(--ink2);white-space:nowrap}
@@ -731,13 +734,13 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 .ft .fsite .tg::before,.ft .fsite .tg::after{content:"";position:absolute;left:15px;top:21px;width:14px;height:2px;background:var(--accent);transition:transform .3s}
 .ft .fsite .tg::after{transform:rotate(90deg)}
 .ft .fsite div.open .tg::after{transform:rotate(0)}
-.ft .fb{text-align:center}.ft .logo{justify-content:center}
+.ft .fb{text-align:center}.ft .logo{justify-content:center}.ft .fmap{width:100%;margin:0}.ft .fmap iframe{height:220px}.ft .fmap a{display:block;text-align:center}
 .ft .logo img{height:44px}.ft .logo img.wm{height:16px}
 .ft .addr{margin-top:12px;font-size:11.5px}.ft .addr .tel{display:block}
 .ft .bot{margin-top:28px;padding-top:20px;flex-direction:column;align-items:center;gap:10px;text-align:center}
 .ft .bot .links{justify-content:center;gap:6px 18px;font-size:12px;display:flex;flex-wrap:wrap}
 .ft .bot .lic{font-size:11px;color:var(--grey)}
-.ft .copy{text-align:center;margin-top:14px}}
+.ft .copy{text-align:center;margin-top:14px;font-size:10.5px;letter-spacing:.02em;padding:0 64px 0 0}}
 /* v17: số liệu / lý do / 事例 / download */
 .kstats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .kstats>div{padding:34px 0 30px 28px}
@@ -1100,11 +1103,12 @@ function page({root, title, desc, body, active, home}) {
       <div class="fb"><a class="logo" href="${r}index.html"><img src="${r}img/logo.png" alt=""><img class="wm" src="${r}img/wordmark.png" alt="BIGLIGHT"></a>
         <p class="addr">〒462-0007 愛知県名古屋市北区如意一丁目112 A<span class="tel">　TEL 052-908-7944　FAX 052-908-7267</span></p></div>
       <nav class="fsite"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}download/index.html">Download</a></div></nav>
+      <div class="fmap"><iframe src="https://www.google.com/maps?q=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA&hl=ja&z=16&output=embed" title="BIGLIGHT株式会社の地図（愛知県名古屋市北区如意一丁目112 A）" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="https://www.google.com/maps/search/?api=1&query=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA">Google マップで開く →</a></div>
     </div>
     <div class="bot">
       <div class="links"><a href="${r}privacy/index.html">プライバシーポリシー</a><a href="${r}service/tokutei-ginou/index.html#faq">よくある質問</a><a href="${r}download/index.html">資料ダウンロード</a></div>
       <div class="lic">有料職業紹介 23-ユ-302414 ／ 登録支援機関 21登-006596</div>
-      <p class="copy">© BIGLIGHT Co., Ltd.</p>
+      <p class="copy">Copyright © BIGLIGHT Co., Ltd. All Rights Reserved.</p>
     </div>
   </div></footer>
   <script src="${r}js/site.js?v=__JSV__" defer></script>`;
@@ -1177,7 +1181,7 @@ const products = (r) => `
   <div class="prow" data-hv="${r}img/shot-job.jpg" data-type="dev" data-lap="${r}img/desk-job.jpg" data-ph="${r}img/shot-job.jpg" data-cap="BIGLIGHT JOB · Web / iPhone" data-href="${r}product/index.html#job">
     <div class="head"><img src="${r}img/icon-job.png" alt=""><div class="nm">BIGLIGHT JOB<small>Job · for job seekers</small></div></div>
     <div class="ds"><span class="for">求職者・採用企業向け</span>特定技能専門の求人サイト。履歴書作成から面接、入社後フォローまで。</div>
-    <div class="store"><div class="badges"><span class="soon"><img src="${r}img/badge-appstore.svg" alt="App Store 近日公開"><em>App Store：審査中・近日公開</em></span><a href="https://play.google.com/store/apps/details?id=jp.biglight.job"><img class="gp" src="${r}img/badge-googleplay.png" alt="Google Play で手に入れよう"></a></div></div>
+    <div class="store"><div class="badges"><a href="https://apps.apple.com/jp/app/biglight-job/id6814082285"><img src="${r}img/badge-appstore.svg" alt="App Store からダウンロード"></a><a href="https://play.google.com/store/apps/details?id=jp.biglight.job"><img class="gp" src="${r}img/badge-googleplay.png" alt="Google Play で手に入れよう"></a></div></div>
   </div>
 </div>`;
 
@@ -1436,7 +1440,7 @@ ${pageHead('Product','アプリ')}
   <div class="g">
     <div><div class="ic"><img src="${r}img/icon-job.png" alt=""><h2>BIGLIGHT JOB<small>Job</small></h2></div>
       <p class="ds">特定技能専門の求人サイト。製造・建設・外食など全国の求人検索から、多言語の履歴書作成、面接練習、ビザ申請、入社後フォローまで。企業様は求人掲載・応募管理に。</p>
-      <div class="acts"><div>求職者・採用企業向け${pill('JOB を開く','https://job.biglight.jp/')}</div></div><div class="badges pb"><span class="soon"><img src="${r}img/badge-appstore.svg" alt="App Store 近日公開"><em>App Store：審査中・近日公開</em></span><a href="https://play.google.com/store/apps/details?id=jp.biglight.job"><img class="gp" src="${r}img/badge-googleplay.png" alt="Google Play"></a></div></div>
+      <div class="acts"><div>求職者・採用企業向け${pill('JOB を開く','https://job.biglight.jp/')}</div></div><div class="badges pb"><a href="https://apps.apple.com/jp/app/biglight-job/id6814082285"><img src="${r}img/badge-appstore.svg" alt="App Store からダウンロード"></a><a href="https://play.google.com/store/apps/details?id=jp.biglight.job"><img class="gp" src="${r}img/badge-googleplay.png" alt="Google Play"></a></div></div>
     <div class="store" style="justify-content:flex-start;gap:40px;flex-wrap:wrap"><div class="devwrap">${dev(r,'desk-job.jpg','shot-job.jpg')}</div></div>
   </div>
 </div></section>
