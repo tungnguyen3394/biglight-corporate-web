@@ -715,7 +715,7 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 .ft .fmap{margin-left:auto;width:340px;flex:none;position:relative}
 .ft .fmap iframe:not([src]){display:none}
 .fmap-ph{height:210px;border-radius:8px;background:#eef1f5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:0 24px;text-align:center}
-.fmap-ph p{font-size:11.5px;line-height:1.7;color:var(--grey)}
+.fmap-ph p{font-size:11.5px;line-height:1.7;color:#5b616e}
 .fmap-load{font:inherit;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--accent);background:#fff;border:1px solid var(--accent);border-radius:30px;padding:8px 22px;cursor:pointer}
 .fmap.on .fmap-ph{display:none}
 a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
