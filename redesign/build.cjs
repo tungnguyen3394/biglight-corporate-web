@@ -1144,7 +1144,6 @@ function page({root, title, desc, body, active, home}) {
           <a href="${r}about/message/index.html">Message</a>
           <a href="${r}about/strength/index.html">Strength</a>
           <a href="${r}about/company/index.html">Company</a>
-          <a href="${r}about/sdgs/index.html">SDGs</a>
         </div></div>
       </div>
       <a href="${r}service/index.html">SERVICE</a>
@@ -1156,7 +1155,7 @@ function page({root, title, desc, body, active, home}) {
     <button class="burger" type="button" aria-label="MENU（メニューを開く）" aria-expanded="false" aria-controls="mnav"><span class="sq"><i></i><i></i><i></i><i></i></span><span class="mt">MENU</span></button>
   </header>
   <div class="mnav" id="mnav">
-    <details><summary><b>ABOUT</b><small>私たちについて</small><i></i></summary><div class="sub"><a href="${r}about/index.html">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div></details>
+    <details><summary><b>ABOUT</b><small>私たちについて</small><i></i></summary><div class="sub"><a href="${r}about/index.html">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a></div></details>
     <details><summary><b>SERVICE</b><small>事業内容</small><i></i></summary><div class="sub"><a href="${r}service/index.html">Overview</a><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}case/index.html">Case</a></div></details>
     <a class="mi" href="${r}product/index.html"><b>PRODUCT</b><small>アプリ</small></a>
     <a class="mi" href="${r}news/index.html"><b>NEWS</b><small>お知らせ</small></a>
