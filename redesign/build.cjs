@@ -201,7 +201,7 @@ html.js .hero .scrl{opacity:0;animation:pagein .6s 4.1s ease forwards}
 .prow .ds{font-size:16px;line-height:2}
 .prow .ds .for{display:block;font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em;margin-bottom:4px}
 .store{display:flex;gap:18px;align-items:center;justify-content:flex-end}
-.prow .badges{flex-direction:row;align-items:center;gap:10px}
+.prow .badges{flex-direction:row;align-items:flex-start;gap:10px}
 .prow .badges .soon em{white-space:nowrap;font-size:10px}
 .badges{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
 .badges img{height:40px;width:auto}
@@ -408,10 +408,10 @@ html.js .pic .fl.b{animation-duration:6.2s;animation-delay:.6s}html.js .pic .fl.
 .hv{position:fixed;left:0;top:0;z-index:40;pointer-events:none;width:400px;padding:0;background:transparent;opacity:0;transform:translate(-50%,-50%) scale(.9) rotate(-1deg);transition:opacity .35s cubic-bezier(.2,.6,.2,1),transform .45s cubic-bezier(.2,.6,.2,1)}
 .hv.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0)}
 .hv.port{width:190px}
-.hv.land{width:400px}
+.hv.land{width:420px}
 .hv .iph.solo{box-shadow:none}
 .hv .dev{margin-bottom:4%}
-.hv>img{width:100%;display:block;border-radius:10px;box-shadow:0 24px 60px rgba(11,42,102,.22)}
+.hv>img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;border-radius:10px;box-shadow:0 24px 60px rgba(11,42,102,.22)}
 .hv .dev .base{box-shadow:0 18px 40px rgba(11,42,102,.18)}
 .hv .cap{display:none}
 .row,.prow{cursor:pointer}
@@ -721,6 +721,7 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 .form .ck{margin:0;font-weight:500;font-size:14px;display:flex;align-items:center;gap:10px;cursor:pointer;letter-spacing:.02em}
 .form .ck input{width:18px;height:18px;padding:0;border:1px solid var(--ink);accent-color:var(--accent);flex:none}
 .fld.bad input{border-bottom-color:#d33}
+.fld.bad::before{content:"入力してください";position:absolute;right:0;bottom:-22px;font-size:12px;color:#c62828}
 .dldone{grid-column:2;border:1px solid var(--line);border-radius:12px;padding:40px}
 .dldone b{font-size:22px}.dldone p{margin:12px 0 28px;color:var(--ink2)}
 @media (max-width:860px){.kstats{grid-template-columns:1fr 1fr}.kstats>div{padding:22px 0 20px 16px}.kstats>div:nth-child(3){border-left:0}.kstats>div:nth-child(n+3){border-top:1px solid var(--line)}.ccards{grid-template-columns:1fr}.reasons .rs{grid-template-columns:1fr;gap:14px;padding:36px 0}.reasons h3{font-size:21px}.case .chead{grid-template-columns:1fr}.case .chead h2{font-size:24px}.ckpi>div,.ckpi>div+div{padding:18px 20px 16px 0;margin-right:20px;border-left:0}.checks{grid-template-columns:1fr}.dldone{grid-column:1}.cvoice{padding:24px 20px}}
@@ -819,14 +820,6 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 @media (prefers-reduced-motion:reduce){.ptrack{animation:none}}
 @media (max-width:1100px){.crow{grid-template-columns:220px 1fr 40px}.crow .ck{grid-column:2}}
 @media (max-width:860px){.crow{grid-template-columns:1fr 40px;gap:14px;padding:30px 0}.crow .cno,.crow .ct,.crow .ck{grid-column:1}.crow .circ40{grid-column:2;grid-row:1/4}.crow .ct{font-size:17px}.people{margin-top:60px;gap:10px}.people .ptrack img{width:240px;height:160px}}
-/* nền: mảng xám rất nhạt cắt xiên (cùng góc với hero / Value) */
-.bgw{position:relative;isolation:isolate;overflow-x:clip}
-.bgw::before{content:"";position:absolute;z-index:-1;pointer-events:none;top:0;bottom:0;width:30%;background:#f6f7f9;transform:skewX(-20deg)}
-.bgw-r::before{right:-6%}
-.bgw-l::before{left:-6%}
-.ph{position:relative;isolation:isolate;overflow-x:clip}
-.ph::before{content:"";position:absolute;z-index:-1;pointer-events:none;top:-80px;bottom:-40px;right:-4%;width:24%;background:#f6f7f9;transform:skewX(-20deg)}
-@media (max-width:860px){.bgw::before{width:42%}.ph::before{width:38%}}
 /* responsive */
 @media (max-width:1360px) and (min-width:861px){
   .hero h1{font-size:clamp(48px,4.9vw,68px);line-height:1.35;letter-spacing:.09em}
@@ -925,7 +918,7 @@ const js = `
   if(matchMedia('(hover:hover)').matches){
     var hv=document.createElement('div');hv.className='hv';document.body.appendChild(hv);
     var tx=0,ty=0,cx=0,cy=0,raf=null,on=false,cur=null;
-    function place(el){var r=el.getBoundingClientRect(),w=hv.offsetWidth||400,h=hv.offsetHeight||300;tx=innerWidth-w/2-28;ty=Math.min(Math.max(r.top+r.height/2,69+h/2+12),innerHeight-h/2-12);}
+    function place(el){var r=el.getBoundingClientRect(),w=hv.offsetWidth||420,h=hv.offsetHeight||280;tx=Math.min(innerWidth-24,innerWidth/2+620)-w/2;ty=Math.min(Math.max(r.top+r.height/2,69+h/2+12),innerHeight-h/2-12);}
     function build(el){var t=el.getAttribute('data-type')||'img',cap=el.getAttribute('data-cap')||'';var h='';
       if(t==='dev'){h='<div class="dev"><div class="lap"><div class="scr"><img src="'+el.getAttribute('data-lap')+'" alt=""></div><div class="base"></div></div><div class="iph"><img src="'+el.getAttribute('data-ph')+'" alt=""></div></div>';hv.className='hv land';}
       else if(t==='ph'){h='<div class="iph solo"><img src="'+el.getAttribute('data-ph')+'" alt=""></div>';hv.className='hv port';}
@@ -957,7 +950,7 @@ const js = `
     if(hdr)hdr.classList.toggle('scrolled',y>10);tt.classList.toggle('on',y>600);tt.style.setProperty('--pg',H>0?(y/H).toFixed(3):0);
     if(RM)return;pars.forEach(function(e){var r=e.parentNode.getBoundingClientRect();if(r.bottom<-50||r.top>vh+50)return;var k=parseFloat(e.getAttribute('data-par')||'0.1');var p=((r.top+r.height/2)-vh/2)/vh;e.style.setProperty('--py',(-p*k*r.height).toFixed(1)+'px');});});}
   window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);onScroll();
-  var dlf=document.getElementById('dlf');if(dlf){dlf.addEventListener('submit',function(e){e.preventDefault();var ok=true;dlf.querySelectorAll('input[required]').forEach(function(i){var bad=!i.value.trim()||(i.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(i.value));i.closest('.fld').classList.toggle('bad',bad);if(bad)ok=false;});if(!ok)return;dlf.hidden=true;var d=document.querySelector('.dldone');d.hidden=false;});}
+  [['dlf','.dldone:not(#cf-done)'],['cf','#cf-done']].forEach(function(x){var f=document.getElementById(x[0]);if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();var ok=true,first=null;f.querySelectorAll('input[required]').forEach(function(i){var bad=!i.value.trim()||(i.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(i.value));i.closest('.fld').classList.toggle('bad',bad);i.setAttribute('aria-invalid',bad);if(bad){ok=false;first=first||i;}});if(!ok){first.focus();return;}f.hidden=true;var d=document.querySelector(x[1]);d.hidden=false;d.scrollIntoView({block:'center',behavior:'smooth'});});});
   /* lọc tin theo loại */
   var nf=document.getElementById('nf');
   if(nf){var fl=function(c){[].forEach.call(document.querySelectorAll('.nlist .nitem'),function(e){e.style.display=(!c||e.getAttribute('data-cat')===c)?'':'none';});[].forEach.call(nf.querySelectorAll('a'),function(a){a.classList.toggle('on',a.getAttribute('data-f')===c);});};
@@ -1443,16 +1436,17 @@ function contact(){ const r='../'; return page({root:r,title:'お問い合わせ
 ${pageHead('Contact','お問い合わせ・無料相談')}
 <section><div class="wrap form">
   <div class="info"><b>052-908-7944</b>平日 9:00–18:00<br>採用人数・職種・時期が未定でも構いません。<br>登録支援機関として、制度の説明からお手伝いします。<br><br>〒462-0007<br>愛知県名古屋市北区如意一丁目112 A</div>
-  <form onsubmit="return false">
-    <label>お問い合わせ種別<small>必須</small></label><select><option>無料相談（採用について）</option><option>資料請求</option><option>アプリについて</option><option>採用について（求職者の方）</option><option>その他</option></select>
-    <label>会社名<small>必須</small></label><div class="fld"><input type="text" placeholder="BIGLIGHT株式会社"></div>
-    <label>お名前<small>必須</small></label><div class="fld"><input type="text" placeholder="山田 太郎"></div>
-    <label>メールアドレス<small>必須</small></label><div class="fld"><input type="email" placeholder="example@company.co.jp"></div>
-    <label>電話番号</label><div class="fld"><input type="tel" placeholder="052-000-0000"></div>
-    <label>お問い合わせ内容</label><div class="fld"><textarea placeholder="採用したい職種・人数・時期など"></textarea></div>
+  <form id="cf" novalidate>
+    <label for="cf-type">お問い合わせ種別<small>必須</small></label><select id="cf-type" name="type"><option>無料相談（採用について）</option><option>資料請求</option><option>アプリについて</option><option>採用について（求職者の方）</option><option>その他</option></select>
+    <label for="cf-co">会社名<small>必須</small></label><div class="fld"><input id="cf-co" name="company" type="text" autocomplete="organization" placeholder="BIGLIGHT株式会社" required></div>
+    <label for="cf-nm">お名前<small>必須</small></label><div class="fld"><input id="cf-nm" name="name" type="text" autocomplete="name" placeholder="山田 太郎" required></div>
+    <label for="cf-em">メールアドレス<small>必須</small></label><div class="fld"><input id="cf-em" name="email" type="email" autocomplete="email" placeholder="example@company.co.jp" required></div>
+    <label for="cf-tel">電話番号</label><div class="fld"><input id="cf-tel" name="tel" type="tel" autocomplete="tel" placeholder="052-000-0000"></div>
+    <label for="cf-msg">お問い合わせ内容</label><div class="fld"><textarea id="cf-msg" name="message" placeholder="採用したい職種・人数・時期など"></textarea></div>
     <div class="send"><button class="pill" type="submit" style="cursor:pointer">送信する<span class="circ">→</span></button></div>
-    <p class="note">※ 試作版のため送信はできません。本番ではボット対策（Turnstile）付きの現行フォームに接続します。</p>
+    <p class="note">※ 試作版のため送信はされません。本番ではボット対策（Turnstile）付きの現行フォームに接続します。</p>
   </form>
+  <div class="dldone" id="cf-done" hidden><b>送信ありがとうございました。</b><p>担当者より2営業日以内にご連絡いたします。お急ぎの場合はお電話（052-908-7944）でご連絡ください。</p></div>
 </div></section>
 `});}
 
@@ -1867,9 +1861,9 @@ ${pageHead('Download','資料ダウンロード')}
 <section><div class="wrap form">
   <div class="info"><b>会社資料</b>PDF ／ 無料<br>サービス内容・料金体系・支援の流れ・導入事例をまとめた資料です。<br>ご入力後、すぐにダウンロードいただけます。<br><br>お電話でのご相談<br>052-908-7944（平日 9:00–18:00）</div>
   <form id="dlf" novalidate>
-    <label>会社名<small>必須</small></label><div class="fld"><input type="text" placeholder="BIGLIGHT株式会社" required></div>
-    <label>お名前<small>必須</small></label><div class="fld"><input type="text" placeholder="山田 太郎" required></div>
-    <label>メールアドレス<small>必須</small></label><div class="fld"><input type="email" placeholder="example@company.co.jp" required></div>
+    <label for="dl-co">会社名<small>必須</small></label><div class="fld"><input id="dl-co" name="company" type="text" autocomplete="organization" placeholder="BIGLIGHT株式会社" required></div>
+    <label for="dl-nm">お名前<small>必須</small></label><div class="fld"><input id="dl-nm" name="name" type="text" autocomplete="name" placeholder="山田 太郎" required></div>
+    <label for="dl-em">メールアドレス<small>必須</small></label><div class="fld"><input id="dl-em" name="email" type="email" autocomplete="email" placeholder="example@company.co.jp" required></div>
     <label>ご興味のある内容</label><div class="checks">${IN.map(x=>`<label class="ck"><input type="checkbox" value="${x}"><span>${x}</span></label>`).join('')}</div>
     <label>ご質問・ご要望</label><div class="fld"><textarea placeholder="気になる点があればご記入ください"></textarea></div>
     <div class="send"><button class="pill" type="submit" style="cursor:pointer">資料をダウンロードする<span class="circ">↓</span></button></div>

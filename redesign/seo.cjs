@@ -74,6 +74,8 @@ module.exports = function seo(pages, { OUT, SITE, ARTICLES, WEBP = {} }) {
     const ogImg = art ? `${SITE}/img/${art.img}` : `${SITE}/img/og-image.jpg`;
 
     html = webp(html).replace('__CSSV__', ver['css/site.css']).replace('__JSV__', ver['js/site.js']);
+    // link ngoài → tab mới
+    html = html.replace(/<a ([^>]*?)href="(https?:\/\/(?!(?:new\.)?biglight\.jp)[^"]+)"(?![^>]*target=)/g, '<a $1href="$2" target="_blank" rel="noopener"');
     // 1) URL sạch: ".../index.html" → ".../"
     html = html.replace(/(href=")([^"#]*?)index\.html(#[^"]*)?"/g, (m, a, p, h) => `${a}${p || './'}${h || ''}"`);
 
