@@ -15,7 +15,7 @@ const copies = {
   'img/desk-academy.jpg':'img/desk-academy.jpg','img/desk-job.jpg':'img/desk-job.jpg','img/shot-portal-916.jpg':'img/shot-portal.jpg','img/shot-academy.jpg':'img/shot-academy.jpg','img/shot-job.jpg':'img/shot-job.jpg',
   'badges/apple-ja.svg':'img/badge-appstore.svg','badges/google-ja.png':'img/badge-googleplay.png',
 };
-Object.assign(copies,{'img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
+Object.assign(copies,{'img/svc-ssw.jpg':'img/svc-ssw.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
 fs.mkdirSync(path.join(OUT,'img/sdg'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/sdg')).filter(f=>f.endsWith('.png')))fs.copyFileSync(path.join(__dirname,'src/img/sdg',f),path.join(OUT,'img/sdg',f));
 fs.mkdirSync(path.join(OUT,'img/people'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/people')).filter(f=>f.endsWith('.webp')))fs.copyFileSync(path.join(__dirname,'src/img/people',f),path.join(OUT,'img/people',f));
 { let out='';const N=34,S=80;const A=t=>330+110*Math.sin(t*Math.PI*1.9+0.2)-210*t, B=t=>330+110*Math.sin(t*Math.PI*1.9+2.9)-210*t+70*Math.sin(t*Math.PI);
@@ -1255,8 +1255,8 @@ function home(){ const r='./'; return page({root:r,home:true,title:'BIGLIGHT株�
   <div class="sec-head"><div><h2 class="en">Service</h2><div class="ja-lb">事業内容</div></div>
     <p class="lead">BIGLIGHTは、特定技能・技人国の外国人材の紹介から、<br>在留資格の手続き、住まいと生活、入社後の定着までを自社で一貫して支援しています。</p></div>
   <div class="rows">
-    <a class="row" href="${r}service/tokutei-ginou/index.html" data-hv="${r}img/svc-kensetsu.jpg" data-cap="Specified Skilled Worker"><div class="nm"><span class="nm-en">Specified Skilled Worker</span><small>特定技能 採用支援</small></div><div class="ds">人手不足の現場に、即戦力の特定技能人材を。募集・面接から入社後の定着支援まで、登録支援機関として一貫対応。</div>${circ()}</a>
-    <a class="row" href="${r}service/engineer/index.html" data-hv="${r}img/engineer.jpg" data-cap="Engineer / Specialist"><div class="nm"><span class="nm-en">Engineer / Specialist</span><small>技人国 人材紹介</small></div><div class="ds">エンジニア・通訳・貿易事務など、専門スキルを持つ高度人材のご紹介。</div>${circ()}</a>
+    <a class="row" href="${r}service/tokutei-ginou/index.html"><div class="nm"><span class="nm-en">Specified Skilled Worker</span><small>特定技能 採用支援</small></div><div class="ds">人手不足の現場に、即戦力の特定技能人材を。募集・面接から入社後の定着支援まで、登録支援機関として一貫対応。</div>${circ()}</a>
+    <a class="row" href="${r}service/engineer/index.html"><div class="nm"><span class="nm-en">Engineer / Specialist</span><small>技人国 人材紹介</small></div><div class="ds">エンジニア・通訳・貿易事務など、専門スキルを持つ高度人材のご紹介。</div>${circ()}</a>
   </div>
   <div class="more-r"><a href="${r}service/index.html">事業内容を見る <span class="ar">→</span></a></div>
 </div></section>
@@ -1417,7 +1417,7 @@ ${pageHead('Service','事業内容')}
     <div><h2><span class="nm-en">Specified Skilled Worker</span><small>特定技能 採用支援</small></h2>
       <p class="ds">製造・建設・介護・外食など、人手不足の現場に即戦力人材を。人材募集・スクリーニング、面接調整・通訳、在留資格・ビザ手続きの代行から、登録支援機関として住居・行政手続き・定期面談・母国語相談まで、入社後の定着を一貫して支えます。</p>
       <div class="acts"><div>外国人採用をすぐ始めたい${pill('事業者様はこちら', r+'contact/index.html')}</div><div>働きたい外国人の方${pill('BIGLIGHT JOB へ','https://job.biglight.jp/')}</div></div></div>
-    <img class="photo" src="${r}img/svc-kensetsu.jpg" alt="">
+    <img class="photo" src="${r}img/svc-ssw.jpg" alt="特定技能人材が働く建設現場">
   </div>
 </div></section>
 
@@ -1427,7 +1427,7 @@ ${pageHead('Service','事業内容')}
     <div><h2><span class="nm-en">Engineer / Specialist</span><small>技人国 人材紹介</small></h2>
       <p class="ds">技術・人文知識・国際業務の在留資格を持つ高度人材をご紹介。エンジニア、機械設計、生産技術、品質管理、貿易事務、海外営業、通訳・翻訳など。経験・日本語力・専門性を考慮した最適なご提案。</p>
       <div class="acts"><div>専門人材を採用したい${pill('事業者様はこちら', r+'contact/index.html')}</div></div></div>
-    <img class="photo" src="${r}img/engineer.jpg" alt="">
+    <img class="photo" src="${r}img/engineer-cad.jpg" alt="CADで設計図を作成するエンジニア">
   </div>
 </div></section>
 
@@ -1625,7 +1625,7 @@ ${pageHead('Service','事業内容',serviceTabs(r,'overview'))}
     <div><h2><span class="nm-en">Specified Skilled Worker</span><small>特定技能 採用支援</small></h2>
       <p class="ds">人手不足の16分野に、即戦力の外国人材を。募集・面接から在留資格の手続き、登録支援機関としての義務的支援まで一貫して対応します。</p>
       <div class="acts"><div>詳しく知りたい${pill('特定技能 採用支援', r+'service/tokutei-ginou/index.html')}</div></div></div>
-    <img class="photo" src="${r}img/svc-kensetsu.jpg" alt="">
+    <img class="photo" src="${r}img/svc-ssw.jpg" alt="特定技能人材が働く建設現場">
   </div>
 </div></section>
 <section class="svc" id="s2"><div class="wrap">
@@ -1634,7 +1634,7 @@ ${pageHead('Service','事業内容',serviceTabs(r,'overview'))}
     <div><h2><span class="nm-en">Engineer / Specialist</span><small>技人国 人材紹介</small></h2>
       <p class="ds">エンジニア・通訳・貿易事務など、専門知識を持つ高度人材をご紹介します。経験・日本語力・専門性から最適な人材をご提案します。</p>
       <div class="acts"><div>詳しく知りたい${pill('技人国 人材紹介', r+'service/engineer/index.html')}</div></div></div>
-    <img class="photo" src="${r}img/svc-seizo.jpg" alt="">
+    <img class="photo" src="${r}img/engineer-cad.jpg" alt="CADで設計図を作成するエンジニア">
   </div>
 </div></section>
 <section class="blk" id="fields"><div class="wrap">
@@ -1658,7 +1658,7 @@ ${contactBox(r)}
 
 function tokutei(){ const r='../../'; return page({root:r,title:'特定技能 採用支援｜BIGLIGHT株式会社',desc:'特定技能外国人の採用から登録支援機関としての支援まで。',body:`
 ${pageHead('Specified Skilled Worker','特定技能 採用支援',serviceTabs(r,'tg'))}
-<section><div class="wrap">${slant(r+'img/svc-kensetsu.jpg','特定技能の現場')}</div></section>
+<section><div class="wrap">${slant(r+'img/svc-ssw.jpg','特定技能の現場')}</div></section>
 <section class="blk" style="padding-top:140px"><div class="wrap side" style="margin-top:0">
   <h2 class="en">About</h2>
   <div><p class="lead28" style="margin-top:0">人手不足の現場に、<br>即戦力の外国人材を。</p>
@@ -1717,7 +1717,7 @@ ${contactBox(r)}
 
 function engineer(){ const r='../../'; return page({root:r,title:'技人国 人材紹介｜BIGLIGHT株式会社',desc:'技術・人文知識・国際業務の在留資格を持つ高度人材のご紹介。',body:`
 ${pageHead('Engineer','技人国 人材紹介',serviceTabs(r,'en'))}
-<section><div class="wrap">${slant(r+'img/engineer.jpg','CNC機械を操作するエンジニア')}</div></section>
+<section><div class="wrap">${slant(r+'img/engineer-cad.jpg','CADで設計図を作成するエンジニア')}</div></section>
 <section class="blk" style="padding-top:140px"><div class="wrap side" style="margin-top:0">
   <h2 class="en">About</h2>
   <div><p class="lead28" style="margin-top:0">専門知識と国際感覚を持つ、<br>高度人材をご紹介。</p>
@@ -1777,7 +1777,7 @@ ${contactBox(r)}
 const SUP10 = ['事前ガイダンス','出入国時の送迎','住居の確保','生活オリエンテーション','公的手続の同行','日本語学習の機会提供','相談・苦情対応','日本人との交流促進','転職支援（非自発的離職時）','定期面談（四半期ごと）'];
 const CAREER = (a,b,c) => [['最長3年','育成就労','2027年4月〜',a],['最長5年','特定技能1号','即戦力として活躍',b],['上限なし','特定技能2号','長期就労・家族帯同可能',c]];
 const FIELDS = [
- {slug:'kogyo',en:'Manufacturing',ja:'工業製品製造業',photo:'kogyo.jpg',
+ {slug:'kogyo',en:'Manufacturing',ja:'工業製品製造業',photo:'../field-kogyo.jpg',
   lead:'製造現場の即戦力を、<br>特定技能で確保する。',
   desc:'機械金属加工・電気電子機器組立て・金属表面処理をはじめ、幅広い製造現場へ。募集から在留資格手続き、入社後の定着まで、名古屋の登録支援機関BIGLIGHTが一貫支援します。',
   stats:[['56,736','人','工業製品製造業の特定技能'],['173,300','人','5年間の受入れ上限（最多）'],['26.0','%','外国人労働者は製造業が最多']],
@@ -1793,7 +1793,7 @@ const FIELDS = [
   career:CAREER('現場で技能・日本語を習得','一定の技能と日本語能力を有する人材','在留期間の更新回数に制限なし・配偶者や子どもの帯同が可能'),
   flow:[['お問い合わせ','まずはお気軽にご相談ください。採用のお悩みを伺います。'],['ヒアリング','必要な人材像・業務区分・条件を丁寧にヒアリングします。'],['候補者のご紹介','経験・日本語力・専門性を考慮した最適な人材をご提案します。'],['面接','企業様と候補者の面接を実施。通訳・日程調整もサポートします。'],['内定','双方合意のうえ内定。雇用条件・入社時期を確定します。'],['在留資格手続き','在留資格の申請・変更手続きを専門スタッフが代行します。'],['入社・定着支援','入社後も定期訪問・面談でフォローし、長期定着を支えます。']],
   faq:[['最短でどのくらいで入社できますか？','候補者の状況により異なりますが、選考から在留資格手続きを経て入社まで、目安として数か月程度です。'],['技能実習生からの切替はできますか？','可能です。同分野であれば技能試験・日本語試験が免除され、特定技能へスムーズに移行できます。'],['費用はどのくらいかかりますか？','人材紹介・支援委託の費用は、受入れ人数やご要望により異なります。お見積り・ご相談は無料です。'],['対応エリアはどこまでですか？','名古屋を拠点に、全国の製造現場に対応しています。']]},
- {slug:'kensetsu',en:'Construction',ja:'建設業',photo:'../svc-kensetsu.jpg',
+ {slug:'kensetsu',en:'Construction',ja:'建設業',photo:'../field-kensetsu.jpg',
   lead:'建設現場の担い手不足を、<br>特定技能で確実に埋める。',
   desc:'土木・建築・ライフライン設備。試験に合格した即戦力人材を、JAC加入・受入計画認定・入管手続き・定着支援までワンストップで。名古屋の登録支援機関BIGLIGHTが、採用のリスクと手間をまとめて引き受けます。',
   stats:[['約3.8','万人','建設分野で働く特定技能外国人（16分野中4位）'],['8.0','万人','建設分野の5年間受入れ見込数（2024〜2028年度）'],['69.6','%','建設業就業者はピーク（1997年）比約7割まで減少']],
@@ -1811,7 +1811,7 @@ const FIELDS = [
   career:CAREER('現場で技能・日本語を習得。特定技能1号への移行を前提に育成','試験合格済みの即戦力。区分内の実作業を一人で担う中核戦力','班長・職長として現場を指揮。在留期間の更新に上限なし・家族帯同も可能'),
   flow:[['お問い合わせ','採用したい職種・人数・時期をヒアリングします。'],['ニーズ整理・ご提案','現場要件と予算を整理し、最適な採用プランをご提案します。'],['候補者のご紹介・面接','要件に合う候補者を紹介し、オンライン等で面接を実施します。'],['内定・雇用契約','月給制・昇給明記など、建設分野の基準に沿った契約を締結します。'],['JAC加入・CCUS登録','建設技能人材機構への加入、キャリアアップシステム登録を代行します。'],['受入計画の認定申請','国土交通省へ受入計画を申請。認定取得まで伴走します（標準約2ヶ月）。'],['在留資格の申請','認定後、入管へ在留資格を申請。書類作成を一括で代行します。'],['受入れ・定着支援','入国・配属後も、10項目支援と定期面談で長期定着をサポートします。']],
   faq:[['採用決定から就労開始まで、最短でどのくらい？','建設分野は「受入計画認定（標準約2ヶ月）」が必要なため、選考から就労開始まで概ね4〜6ヶ月を見込みます。技能実習からの移行で短縮できる場合もあります。逆算スケジュールはBIGLIGHTが設計します。'],['JACには必ず加入が必要ですか？費用は？','建設分野では加入が必須です。賛助会員として直接加入する場合の年会費は24万円。加えて受入負担金が月額・1人あたりで発生します（海外試験合格者25,000円、国内試験合格者13,500円、技能実習2号修了者12,500円など）。手続きはBIGLIGHTが代行します。'],['技能実習生を特定技能に切り替えられますか？','はい。建設職種の技能実習2号を良好に修了していれば、技能試験・日本語試験が免除され、スムーズに特定技能へ移行できます。雇用中の実習生の継続雇用にも有効です。'],['給与は日給でもよいですか？','建設分野は月給制が必須で、日給・時給制は認められません。同等技能の日本人と同等以上の報酬とし、技能習熟に応じた昇給を雇用契約に明記する必要があります。'],['何人まで受け入れられますか？','特定技能外国人と外国人建設就労者の合計が、御社の常勤職員数を超えない範囲となります（技能実習生は含みません）。人数計画のご相談も承ります。'],['対応エリアは？費用の目安は？','名古屋を拠点に全国の建設現場に対応します。費用は職種・人数・支援範囲により異なり、無料でお見積りします。まずは無料相談をご利用ください。']]},
- {slug:'inshoku',en:'Food Manufacturing',ja:'飲食料品製造業',photo:'../svc-seizo.jpg',
+ {slug:'inshoku',en:'Food Manufacturing',ja:'飲食料品製造業',photo:'../field-inshoku.jpg',
   lead:'食品工場の人手不足を、<br>特定技能で安定させる。',
   desc:'全16分野で受入れ「最多」、そして最も需要が旺盛な分野。コンビニ弁当・惣菜・パン・飲料まで、24時間稼働する現場の即戦力を、採用から入管手続き・生活支援・定着まで、名古屋の登録支援機関BIGLIGHTがワンストップでお届けします。',
   stats:[['約6.8','万人','飲食料品製造業で働く特定技能外国人（全16分野で第1位）'],['13.9','万人','5年間の受入れ見込数（2024〜2028年度）＝全分野で最大枠'],['2.19','倍','飲食料品製造業の有効求人倍率（全産業平均1.16倍の約2倍）']],
@@ -1827,7 +1827,7 @@ const FIELDS = [
   career:CAREER('現場で技能・日本語を習得。特定技能1号への移行を前提に育成','試験合格済みの即戦力。製造ラインの各工程を一人で担う','工程管理・後輩指導を担う現場リーダー。在留期間の更新に上限なし・家族帯同も可能'),
   flow:[['お問い合わせ','採用したい工程・人数・時期をヒアリングします。'],['ニーズ整理・ご提案','現場要件と予算を整理し、最適な採用プランをご提案します。'],['候補者のご紹介・面接','要件に合う候補者を紹介し、オンライン等で面接を実施します。'],['内定・雇用契約','日本人と同等以上の待遇を満たす雇用条件で契約を締結します。'],['在留資格の申請','入管へ在留資格を申請。必要書類の作成を一括で代行します。'],['入国・受入れ準備','住居・生活インフラの手配、事前ガイダンスを実施します。'],['受入れ・定着支援','配属後も10項目支援と定期面談で長期定着をサポートします。']],
   faq:[['採用決定から就労開始まで、最短でどのくらい？','候補者の状況によりますが、選考から在留資格手続きを経て、概ね数ヶ月で就労開始が目安です。すでに国内在住・技能実習からの移行の場合は、さらに短縮できるケースもあります。逆算スケジュールはBIGLIGHTが設計します。'],['スーパーのバックヤードや惣菜製造も対象になりますか？','製造・加工が主たる業務であれば対象になり得ます。一方で、店舗での接客・調理・配膳（＝外食業分野）は対象外です。御社の業態が対象になるか、無料で判定いたします。'],['技能実習生を特定技能に切り替えられますか？','はい。飲食料品製造・食品加工の技能実習2号を良好に修了していれば、技能試験・日本語試験が免除され、スムーズに特定技能へ移行できます。現に雇用中の実習生の継続雇用にも有効です。'],['5年で必ず帰国してしまいますか？','いいえ。飲食料品製造業は2023年に特定技能2号の対象となりました。2号の試験・実務要件を満たせば在留期間の上限がなくなり、家族帯同も可能です。長く働いてもらえる制度設計です。'],['夜勤や交替制でも働いてもらえますか？','日本人と同様のルール（労働時間・割増賃金・安全衛生）を守れば、夜勤・交替制も可能です。待遇は日本人と同等以上とする必要があります。シフト設計のご相談も承ります。'],['対応エリアは？費用の目安は？','名古屋を拠点に全国の食品工場に対応します。費用は工程・人数・支援範囲により異なり、無料でお見積りします。まずは無料相談をご利用ください。']]},
- {slug:'gaishoku',en:'Food Service',ja:'外食業',photo:'../svc-gaishoku.jpg',
+ {slug:'gaishoku',en:'Food Service',ja:'外食業',photo:'../field-gaishoku.jpg',
   lead:'外食業は「上限到達」。<br>それでも採れる道を、設計する。',
   desc:'2026年4月13日、外食業の特定技能1号は上限到達により新規受入が原則停止。海外からの呼び寄せや他分野からの切替はほぼ不可に。しかし「転職組の受入れ」「技能実習からの移行」「特定技能2号への移行」の3つは今も有効です。名古屋の登録支援機関BIGLIGHTが、御社が採れる最短ルートを設計します。',
   stats:[['5.0','万人','外食業の受入れ上限（2026年1月に下方修正）'],['約88','%','充足率（在留者 約4.4万人／2025年12月末）'],['4/13','〜停止','2026年4月13日受理分から新規受入が原則停止']],
