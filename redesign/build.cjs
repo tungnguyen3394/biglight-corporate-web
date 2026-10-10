@@ -812,25 +812,21 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 .people{position:relative;overflow:hidden;margin-top:80px;padding:10px 0;display:flex;flex-direction:column;gap:14px}
 .prow-s{position:relative;width:100%;overflow:hidden}
 
-.people .ptrack{display:flex!important;flex-direction:row;flex-wrap:nowrap;gap:14px;width:max-content;animation:pslide 100s linear infinite}
+.people .ptrack{display:flex!important;flex-direction:row;flex-wrap:nowrap;gap:14px;width:max-content;animation:pslide 160s linear infinite}
 .prow-s.rev .ptrack{animation-direction:reverse;animation-duration:115s}
-.people .ptrack img{width:240px;height:160px;max-width:none;object-fit:cover;border-radius:8px;flex:none;display:block}
+.people .ptrack img{width:360px;height:240px;max-width:none;object-fit:cover;border-radius:8px;flex:none;display:block}
 @keyframes pslide{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.ptrack{animation:none}}
 @media (max-width:1100px){.crow{grid-template-columns:220px 1fr 40px}.crow .ck{grid-column:2}}
-@media (max-width:860px){.crow{grid-template-columns:1fr 40px;gap:14px;padding:30px 0}.crow .cno,.crow .ct,.crow .ck{grid-column:1}.crow .circ40{grid-column:2;grid-row:1/4}.crow .ct{font-size:17px}.people{margin-top:60px;gap:10px}.ptrack img{width:160px;height:106px}}
-/* nền: sóng mảnh mờ (B) + đốm sáng nhạt (A) — tối giản, không đè chữ */
+@media (max-width:860px){.crow{grid-template-columns:1fr 40px;gap:14px;padding:30px 0}.crow .cno,.crow .ct,.crow .ck{grid-column:1}.crow .circ40{grid-column:2;grid-row:1/4}.crow .ct{font-size:17px}.people{margin-top:60px;gap:10px}.people .ptrack img{width:240px;height:160px}}
+/* nền: mảng xám rất nhạt cắt xiên (cùng góc với hero / Value) */
 .bgw{position:relative;isolation:isolate;overflow-x:clip}
-.bgw::before{content:"";position:absolute;z-index:-1;pointer-events:none;width:min(900px,70vw);aspect-ratio:2/1;top:40px;background:url(../img/bg-wave.svg) no-repeat center/contain;opacity:.13;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 35%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 35%,transparent 100%);}
-.bgw-r::before{right:-12vw}
-.bgw-l::before{left:-14vw;transform:scaleX(-1)}
-.bgw::after{content:"";position:absolute;z-index:-1;pointer-events:none;width:520px;height:520px;border-radius:50%;filter:blur(20px)}
-.bgw-r::after{left:-220px;top:20%;background:radial-gradient(circle,rgba(245,166,35,.07),rgba(245,166,35,0) 65%)}
-.bgw-l::after{right:-200px;top:30%;background:radial-gradient(circle,rgba(30,111,214,.06),rgba(30,111,214,0) 65%)}
+.bgw::before{content:"";position:absolute;z-index:-1;pointer-events:none;top:0;bottom:0;width:30%;background:#f6f7f9;transform:skewX(-20deg)}
+.bgw-r::before{right:-6%}
+.bgw-l::before{left:-6%}
 .ph{position:relative;isolation:isolate;overflow-x:clip}
-.ph::before{content:"";position:absolute;z-index:-1;pointer-events:none;right:-120px;top:-180px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,.08),rgba(245,166,35,0) 62%)}
-.ph::after{content:"";position:absolute;z-index:-1;pointer-events:none;right:-6vw;top:10px;width:min(620px,48vw);aspect-ratio:2/1;background:url(../img/bg-wave.svg) no-repeat center/contain;opacity:.09;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 35%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 35%,transparent 100%);}
-@media (max-width:860px){.bgw::before{width:110vw;opacity:.09}.bgw::after{display:none}.ph::after{width:80vw;opacity:.07}}
+.ph::before{content:"";position:absolute;z-index:-1;pointer-events:none;top:-80px;bottom:-40px;right:-4%;width:24%;background:#f6f7f9;transform:skewX(-20deg)}
+@media (max-width:860px){.bgw::before{width:42%}.ph::before{width:38%}}
 /* responsive */
 @media (max-width:1360px) and (min-width:861px){
   .hero h1{font-size:clamp(48px,4.9vw,68px);line-height:1.35;letter-spacing:.09em}
@@ -1185,7 +1181,7 @@ ${homeStats(r)}
     <div class="lead"><b>日本と世界をつなぐ仕事を、一緒に。</b>BIGLIGHTは「日本の成長を、もっとグローバルに。」というミッションのもと、ベトナム・インドネシア・ミャンマー・ネパールなど、さまざまな国の人材と企業の未来を本気で支える仲間を求めています。<div style="margin-top:40px">${pill('採用情報を見る', r+'recruit/index.html')}</div></div></div>
 </div></section>
 <div class="people" aria-label="日本の現場で働く人たち">
-  ${[["p01","p02","p03","p04","p05","p06","p07","p08","p09","p10","p11","p12","p13","p14","p15","p16","p17"],["p18","p19","p20","p21","p22","p23","p24","p25","p26","p27","p28","p29","p30","p31","p32","p33","p34"]].map((row,k)=>`<div class="prow-s${k?' rev':''}"><div class="ptrack">${row.concat(row).map((p,j)=>`<img src="${r}img/people/${p}.webp" alt="${j<row.length?'現場で働く人':''}" width="240" height="160">`).join('')}</div></div>`).join('')}
+  <div class="prow-s"><div class="ptrack">${Array.from({length:34},(_,k)=>'p'+String(k+1).padStart(2,'0')).concat(Array.from({length:34},(_,k)=>'p'+String(k+1).padStart(2,'0'))).map((p,j)=>`<img src="${r}img/people/${p}.webp" alt="${j<34?'日本の現場で働く人':''}" width="360" height="240">`).join('')}</div></div>
 </div>
 
 <section class="band">
