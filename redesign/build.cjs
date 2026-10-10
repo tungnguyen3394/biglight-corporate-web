@@ -7,7 +7,7 @@ for (const d of ['css','js','img','about','about/message','about/company','about
 
 // ---------- assets ----------
 const copies = {
-  'img/logo-mark.png':'img/logo.png','img/wordmark.png':'img/wordmark.png','img/engineer.jpg':'img/engineer.jpg','img/news-kokunai.jpg':'img/news-kokunai.jpg','img/news-renewal.jpg':'img/news-renewal.jpg','img/illu-culture-1.svg':'img/illu-culture-1.svg','img/illu-culture-2.svg':'img/illu-culture-2.svg','img/illu-culture-3.svg':'img/illu-culture-3.svg','img/illu-mission.svg':'img/illu-mission.svg','img/illu-vision.svg':'img/illu-vision.svg','img/mark-alpha.png':'img/mark.png','img/icon-portal.png':'img/icon-portal.png','img/icon-academy.png':'img/icon-academy.png','img/icon-job.png':'img/icon-job.png',
+  'img/logo-mark.png':'img/logo.png','img/wordmark.png':'img/wordmark.png','img/engineer.jpg':'img/engineer.jpg','img/desk-portal.jpg':'img/desk-portal.jpg','img/news-kokunai.jpg':'img/news-kokunai.jpg','img/news-renewal.jpg':'img/news-renewal.jpg','img/illu-culture-1.svg':'img/illu-culture-1.svg','img/illu-culture-2.svg':'img/illu-culture-2.svg','img/illu-culture-3.svg':'img/illu-culture-3.svg','img/illu-mission.svg':'img/illu-mission.svg','img/illu-vision.svg':'img/illu-vision.svg','img/mark-alpha.png':'img/mark.png','img/icon-portal.png':'img/icon-portal.png','img/icon-academy.png':'img/icon-academy.png','img/icon-job.png':'img/icon-job.png',
   'img/recruit-1.jpg':'img/team.jpg','img/hero-team.jpg':'img/hero-team.jpg','img/ceo-full.jpg':'img/ceo.jpg',
   'img/hero-kensetsu.jpg':'img/svc-kensetsu.jpg','img/hero-gaishoku.jpg':'img/svc-gaishoku.jpg','img/hero-inshokuryohin.jpg':'img/svc-seizo.jpg',
   'img/staff-1.jpg':'img/staff-1.jpg','img/staff-2.jpg':'img/staff-2.jpg','img/staff-3.jpg':'img/staff-3.jpg',
@@ -111,25 +111,25 @@ body.menu-open .mnav{display:flex}
 /* opening overlay: 4 chấm bay rồi xếp hàng */
 .opening{position:fixed;inset:0;background:#fff;z-index:100;display:flex;align-items:center;justify-content:center}
 .opening i{position:absolute;width:8px;height:8px;border-radius:50%;left:50%;top:50%;margin:-4px 0 0 -4px}
-.opening i:nth-child(1){background:var(--gold-l);animation:op1 .78s linear forwards}
-.opening i:nth-child(2){background:var(--gold);animation:op2 .78s linear forwards}
-.opening i:nth-child(3){background:var(--blue);animation:op3 .78s linear forwards}
-.opening i:nth-child(4){background:var(--accent);animation:op4 .78s linear forwards}
-@keyframes op1{0%{transform:translate(-45px,0.0px)}10%{transform:translate(-45px,25.4px)}20%{transform:translate(-45px,25.8px)}30%{transform:translate(-45px,2.2px)}40%{transform:translate(-45px,-20.4px)}50%{transform:translate(-45px,-20.5px)}60%{transform:translate(-45px,-2.9px)}70%{transform:translate(-45px,10.4px)}80%{transform:translate(-45px,7.7px)}90%{transform:translate(-45px,0.4px)}100%{transform:translate(-45px,0.0px)}}
-@keyframes op2{0%{transform:translate(-15px,30.0px)}10%{transform:translate(-15px,15.6px)}20%{transform:translate(-15px,-13.1px)}30%{transform:translate(-15px,-27.4px)}40%{transform:translate(-15px,-14.8px)}50%{transform:translate(-15px,8.5px)}60%{transform:translate(-15px,18.1px)}70%{transform:translate(-15px,8.9px)}80%{transform:translate(-15px,-2.5px)}90%{transform:translate(-15px,-1.6px)}100%{transform:translate(-15px,0.0px)}}
-@keyframes op3{0%{transform:translate(15px,0.0px)}10%{transform:translate(15px,-25.4px)}20%{transform:translate(15px,-25.8px)}30%{transform:translate(15px,-2.2px)}40%{transform:translate(15px,20.4px)}50%{transform:translate(15px,20.5px)}60%{transform:translate(15px,2.9px)}70%{transform:translate(15px,-10.4px)}80%{transform:translate(15px,-7.7px)}90%{transform:translate(15px,-0.4px)}100%{transform:translate(15px,0.0px)}}
-@keyframes op4{0%{transform:translate(45px,-30.0px)}10%{transform:translate(45px,-15.6px)}20%{transform:translate(45px,13.1px)}30%{transform:translate(45px,27.4px)}40%{transform:translate(45px,14.8px)}50%{transform:translate(45px,-8.5px)}60%{transform:translate(45px,-18.1px)}70%{transform:translate(45px,-8.9px)}80%{transform:translate(45px,2.5px)}90%{transform:translate(45px,1.6px)}100%{transform:translate(45px,0.0px)}}
-html.js .opening{animation:opout .3s .85s ease forwards}
+.opening i:nth-child(1){background:var(--gold-l);animation:op1 1.3s linear forwards}
+.opening i:nth-child(2){background:var(--gold);animation:op2 1.3s linear forwards}
+.opening i:nth-child(3){background:var(--blue);animation:op3 1.3s linear forwards}
+.opening i:nth-child(4){background:var(--accent);animation:op4 1.3s linear forwards}
+@keyframes op1{0.0%{transform:translate(-45px,0.0px)}8.3%{transform:translate(-45px,22.9px)}16.7%{transform:translate(-45px,28.9px)}25.0%{transform:translate(-45px,14.2px)}33.3%{transform:translate(-45px,-9.2px)}41.7%{transform:translate(-45px,-23.3px)}50.0%{transform:translate(-45px,-19.2px)}58.3%{transform:translate(-45px,-3.3px)}66.7%{transform:translate(-45px,9.9px)}75.0%{transform:translate(-45px,11.0px)}83.3%{transform:translate(-45px,3.9px)}91.7%{transform:translate(-45px,-0.1px)}100.0%{transform:translate(-45px,0.0px)}}
+@keyframes op2{0.0%{transform:translate(-15px,30.0px)}8.3%{transform:translate(-15px,19.2px)}16.7%{transform:translate(-15px,-5.1px)}25.0%{transform:translate(-15px,-24.5px)}33.3%{transform:translate(-15px,-25.2px)}41.7%{transform:translate(-15px,-8.5px)}50.0%{transform:translate(-15px,11.1px)}58.3%{transform:translate(-15px,18.8px)}66.7%{transform:translate(-15px,11.7px)}75.0%{transform:translate(-15px,0.0px)}83.3%{transform:translate(-15px,-4.6px)}91.7%{transform:translate(-15px,-0.4px)}100.0%{transform:translate(-15px,0.0px)}}
+@keyframes op3{0.0%{transform:translate(15px,0.0px)}8.3%{transform:translate(15px,-22.9px)}16.7%{transform:translate(15px,-28.9px)}25.0%{transform:translate(15px,-14.2px)}33.3%{transform:translate(15px,9.2px)}41.7%{transform:translate(15px,23.3px)}50.0%{transform:translate(15px,19.2px)}58.3%{transform:translate(15px,3.3px)}66.7%{transform:translate(15px,-9.9px)}75.0%{transform:translate(15px,-11.0px)}83.3%{transform:translate(15px,-3.9px)}91.7%{transform:translate(15px,0.1px)}100.0%{transform:translate(15px,0.0px)}}
+@keyframes op4{0.0%{transform:translate(45px,-30.0px)}8.3%{transform:translate(45px,-19.2px)}16.7%{transform:translate(45px,5.1px)}25.0%{transform:translate(45px,24.5px)}33.3%{transform:translate(45px,25.2px)}41.7%{transform:translate(45px,8.5px)}50.0%{transform:translate(45px,-11.1px)}58.3%{transform:translate(45px,-18.8px)}66.7%{transform:translate(45px,-11.7px)}75.0%{transform:translate(45px,-0.0px)}83.3%{transform:translate(45px,4.6px)}91.7%{transform:translate(45px,0.4px)}100.0%{transform:translate(45px,0.0px)}}
+html.js .opening{animation:opout .4s 1.35s ease forwards}
 @keyframes opout{to{opacity:0;visibility:hidden}}
 html:not(.js) .opening{display:none}
 /* mở trang: thứ tự thời gian như Guidable */
-html.js.home .hd{opacity:0;animation:pagein .8s 2.1s ease forwards}
+html.js.home .hd{opacity:0;animation:pagein .8s 2.65s ease forwards}
 html.js .hero .ch{display:inline-block;opacity:.02;transform:translateY(31px);animation:chin .75s cubic-bezier(.2,.6,.2,1) forwards}
 @keyframes chin{to{opacity:1;transform:none}}
-html.js .hero .sub{opacity:0;transform:translateY(15px);animation:leadin .7s 1.55s cubic-bezier(.2,.6,.2,1) forwards}
+html.js .hero .sub{opacity:0;transform:translateY(15px);animation:leadin .7s 2.1s cubic-bezier(.2,.6,.2,1) forwards}
 @keyframes leadin{to{opacity:1;transform:none}}
-html.js .hero .dots{opacity:0;animation:pagein .6s 1.85s ease forwards}
-html.js .hero .scrl{opacity:0;animation:pagein .6s 1.85s ease forwards}
+html.js .hero .dots{opacity:0;animation:pagein .6s 2.4s ease forwards}
+html.js .hero .scrl{opacity:0;animation:pagein .6s 2.4s ease forwards}
 @media (prefers-reduced-motion:reduce){.opening{display:none}html.js.home .hd,html.js .hero .sub,html.js .hero .dots,html.js .hero .scrl{opacity:1;animation:none;transform:none}}
 
 /* thiết bị: MacBook + iPhone */
@@ -769,6 +769,28 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 .phh{margin:0;font-size:inherit;font-weight:inherit;line-height:inherit}
 .phh span{display:block}
 .ph .phh .ja-lb{margin-top:4px}
+.nm-en{display:block;font-family:var(--en);font-weight:700;letter-spacing:.06em;line-height:1.25}
+.row .nm small,.svc h2 small{font-family:var(--jp);font-size:14px;letter-spacing:.08em;color:var(--accent);margin-top:10px;font-weight:700}
+.row .nm .nm-en{font-size:28px}.svc h2 .nm-en{font-size:38px}
+@media (max-width:860px){.row .nm .nm-en{font-size:22px}.svc h2 .nm-en{font-size:26px}}
+/* trang tin */
+.nitem .thumbs{display:none}
+.art .thumb{aspect-ratio:1200/630}
+.art .body .ntoc{background:#f6f8fb;border-radius:10px;padding:22px 28px;margin:0 0 36px}
+.art .body .ntoc-h{font-weight:700;font-size:14px;letter-spacing:.08em;color:var(--accent);margin-bottom:8px}
+.art .body .ntoc ol{margin:0;padding-left:1.3em;font-size:14px;line-height:1.9}
+.art .body .ntoc li.lv3{margin-left:1.2em;list-style:circle;font-size:13px}
+.art .body .ntoc a:hover{color:var(--accent)}
+.art .body .nbody-tablewrap{overflow-x:auto;margin:10px 0 24px}
+.art .body table{width:100%;min-width:520px;border-collapse:collapse;font-size:14px;line-height:1.7}
+.art .body th,.art .body td{border:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top}
+.art .body thead th{background:#f4f6f9;font-weight:700}
+.art .body blockquote{margin:0 0 22px;padding:18px 22px;border-left:3px solid var(--gold);background:#fffaf0;font-size:14px;line-height:1.9}
+.art .body a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.art .body strong{font-weight:700}
+.art .afaq{margin-top:56px}
+.art .afaq h2{font-size:20px;margin-bottom:20px;padding-left:16px;border-left:3px solid var(--accent)}
+.filters a{cursor:pointer}
 /* responsive */
 @media (max-width:1360px) and (min-width:861px){
   .hero h1{font-size:clamp(48px,4.9vw,68px);line-height:1.35;letter-spacing:.09em}
@@ -852,7 +874,7 @@ const js = `
   } else { els.forEach(function(e){e.classList.add('in');}); }
   /* tách chữ: hero + tiêu đề mission */
   function split(el,base,step){var i=0;function walk(n){[].slice.call(n.childNodes).forEach(function(c){if(c.nodeType===3){var f=document.createDocumentFragment();c.textContent.split('').forEach(function(ch){var sp=document.createElement('span');sp.className='ch';sp.textContent=ch===' '?'\u00a0':ch;sp.style.animationDelay=(base+i*step)+'ms';i++;f.appendChild(sp);});n.replaceChild(f,c);}else if(c.nodeType===1&&c.tagName!=='BR'){walk(c);}});}walk(el);}
-  var h=document.querySelector('.hero h1'); if(h) split(h,960,40);
+  var h=document.querySelector('.hero h1'); if(h) split(h,1500,40);
   document.querySelectorAll('.chars').forEach(function(e){split(e,0,40);});
   /* nút: nhân đôi chữ cho hiệu ứng trượt */
   document.querySelectorAll('.pill').forEach(function(p){var c=p.querySelector('.circ');var txt='';[].slice.call(p.childNodes).forEach(function(n){if(n.nodeType===3){txt+=n.textContent;p.removeChild(n);}});txt=txt.trim();if(!txt)return;var t=document.createElement('span');t.className='tx';t.innerHTML='<span>'+txt+'</span><span aria-hidden="true">'+txt+'</span>';p.insertBefore(t,c);});
@@ -886,9 +908,9 @@ const js = `
   var hs=document.querySelectorAll('.hero .sl'),hd=document.querySelectorAll('.hero .dots i');
   if(hs.length){var hc=0,ht;function hgo(n){var old=hs[hc];old.classList.remove('on');old.classList.add('out');hd[hc].classList.remove('on');hc=(n+hs.length)%hs.length;var nw=hs[hc];hd[hc].classList.add('on');setTimeout(function(){old.classList.remove('out');nw.classList.add('on');},1450);}
     /* lần đầu: ảnh vào lúc 3.4s như Guidable */
-    hs[0].classList.remove('on');setTimeout(function(){hs[0].classList.add('on');},matchMedia('(prefers-reduced-motion: reduce)').matches?0:2150);
+    hs[0].classList.remove('on');setTimeout(function(){hs[0].classList.add('on');},matchMedia('(prefers-reduced-motion: reduce)').matches?0:2700);
     hd.forEach(function(d,i){d.addEventListener('click',function(){hgo(i);clearInterval(ht);ht=setInterval(function(){hgo(hc+1);},5000);});});
-    if(!matchMedia('(prefers-reduced-motion: reduce)').matches) setTimeout(function(){ht=setInterval(function(){hgo(hc+1);},5200);},2150);}
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches) setTimeout(function(){ht=setInterval(function(){hgo(hc+1);},5200);},2700);}
   /* v8: parallax ảnh khi cuộn */
   var pars=[].slice.call(document.querySelectorAll('.cul .ph-col img, .pic .main img, .slant .s img, .msg-photo'));
   pars.forEach(function(e){e.classList.add('par');});
@@ -900,6 +922,11 @@ const js = `
     if(RM)return;pars.forEach(function(e){var r=e.parentNode.getBoundingClientRect();if(r.bottom<-50||r.top>vh+50)return;var k=parseFloat(e.getAttribute('data-par')||'0.1');var p=((r.top+r.height/2)-vh/2)/vh;e.style.setProperty('--py',(-p*k*r.height).toFixed(1)+'px');});});}
   window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);onScroll();
   var dlf=document.getElementById('dlf');if(dlf){dlf.addEventListener('submit',function(e){e.preventDefault();var ok=true;dlf.querySelectorAll('input[required]').forEach(function(i){var bad=!i.value.trim()||(i.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(i.value));i.closest('.fld').classList.toggle('bad',bad);if(bad)ok=false;});if(!ok)return;dlf.hidden=true;var d=document.querySelector('.dldone');d.hidden=false;});}
+  /* lọc tin theo loại */
+  var nf=document.getElementById('nf');
+  if(nf){var fl=function(c){[].forEach.call(document.querySelectorAll('.nlist .nitem'),function(e){e.style.display=(!c||e.getAttribute('data-cat')===c)?'':'none';});[].forEach.call(nf.querySelectorAll('a'),function(a){a.classList.toggle('on',a.getAttribute('data-f')===c);});};
+    nf.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;e.preventDefault();fl(a.getAttribute('data-f'));history.replaceState(null,'',a.getAttribute('href')==='#'?location.pathname:a.getAttribute('href'));});
+    var hh={'#oshirase':'お知らせ','#magazine':'HR Magazine'}[location.hash];if(hh)fl(hh);}
   var b=document.querySelector('.burger'); if(b){b.addEventListener('click',function(){document.body.classList.toggle('menu-open');});}
   /* sóng kẻ mảnh (band) */
   /* dải ruy-băng xoắn: hai đường biên A,B cắt nhau, N đường nội suy ở giữa */
@@ -1040,24 +1067,13 @@ const aboutTabs = (r, on) => `<div class="tabs">
   <a href="${r}about/sdgs/index.html" class="${on==='sdgs'?'on':''}">SDGS <span class="ch">›</span></a>
 </div>`;
 
-const news = [
-  ['2026.10.09','HR Magazine','外食分野の特定技能が新規受入れ停止｜飲食店が今できる採用の代替策【2026年】'],
-  ['2026.09.24','お知らせ','BIGLIGHT JOB の Android アプリを公開しました。'],
-  ['2026.09.24','HR Magazine','特定技能「国内転職者」採用ガイド｜海外採用と費用・期間・定着率を比較【2026年】','tokutei-ginou-kokunai-tenshokusha-saiyo'],
-  ['2026.09.23','HR Magazine','建設分野の特定技能採用｜JAC加入・CCUS登録・2号までの流れ'],
-  ['2026.09.23','HR Magazine','飲食料品製造業の特定技能採用｜最多10万人の分野で離職を防ぐ実務'],
-  ['2026.09.23','HR Magazine','工業製品製造業で特定技能を採用する｜業務区分の確認と溶接・機械加工の実務'],
-  ['2026.09.23','HR Magazine','特定技能外国人が辞める本当の理由｜離職率のデータと定着対策の優先順位'],
-  ['2026.06.01','お知らせ','関東エリアでのご相談受付を開始しました。'],
-  ['2026.03.01','お知らせ','関東方面に出張所を開設しました。'],
-  ['2026.06.23','お知らせ','BIGLIGHT株式会社 コーポレートサイトリニューアルのお知らせ','website-renewal'],
-  ['2024.08.01','プレスリリース','ベトナム・ホーチミン市に子会社「BIGLIGHT HR JOINT STOCK COMPANY」を設立しました。'],
-];
-const nitem = ([d,c,t,slug],r='') => `<a class="nitem" href="${slug?r+'news/'+slug+'/index.html':'https://biglight.jp/news/'}"><div><div class="tt">${t}</div><div class="mt">${d}<b>${c}</b></div></div>${circ()}</a>`;
+const NEWS = JSON.parse(fs.readFileSync(path.join(__dirname,'news.json'),'utf8'));
+const news = NEWS.map(n=>[n.date,n.cat,n.title,n.slug]);
+const nitem = ([d,c,t,slug],r='') => `<a class="nitem" data-cat="${c}" href="${slug?r+'news/'+slug+'/index.html':'https://biglight.jp/news/'}"><div><div class="tt">${t}</div><div class="mt">${d}<b>${c}</b></div></div>${circ()}</a>`;
 
 const products = (r) => `
 <div class="rows" style="margin-top:60px">
-  <div class="prow" data-hv="${r}img/shot-portal.jpg" data-type="ph" data-ph="${r}img/shot-portal.jpg" data-cap="BIGLIGHT Portal · iPhone" data-href="${r}product/index.html#portal">
+  <div class="prow" data-hv="${r}img/shot-portal.jpg" data-type="dev" data-lap="${r}img/desk-portal.jpg" data-ph="${r}img/shot-portal.jpg" data-cap="BIGLIGHT Portal · Web / iPhone" data-href="${r}product/index.html#portal">
     <div class="head"><img src="${r}img/icon-portal.png" alt=""><div class="nm">BIGLIGHT ポータル<small>Portal · for companies &amp; workers</small></div></div>
     <div class="ds"><span class="for">企業様・外国人材向け</span>在留資格・提出書類・連絡・定期面談を、企業と本人がひとつの画面で。</div>
     <div class="store"><div class="badges"><a href="https://apps.apple.com/jp/app/biglight/id6804992207"><img src="${r}img/badge-appstore.svg" alt="App Storeからダウンロード"></a><a href="https://play.google.com/store/apps/details?id=jp.biglight.app"><img class="gp" src="${r}img/badge-googleplay.png" alt="Google Play で手に入れよう"></a></div></div>
@@ -1103,16 +1119,15 @@ function home(){ const r='./'; return page({root:r,home:true,title:'BIGLIGHT株�
   <div class="sec-head"><div><h2 class="en">Service</h2><div class="ja-lb">事業内容</div></div>
     <p class="lead">BIGLIGHTは、特定技能・技人国の外国人材の紹介から、<br>在留資格の手続き、住まいと生活、入社後の定着までを自社で一貫して支援しています。</p></div>
   <div class="rows">
-    <a class="row" href="${r}service/tokutei-ginou/index.html" data-hv="${r}img/svc-kensetsu.jpg" data-cap="Specified Skilled Worker"><div class="nm">特定技能 採用支援<small>Specified Skilled Worker</small></div><div class="ds">人手不足の現場に、即戦力の特定技能人材を。募集・面接から入社後の定着支援まで、登録支援機関として一貫対応。</div>${circ()}</a>
-    <a class="row" href="${r}service/engineer/index.html" data-hv="${r}img/engineer.jpg" data-cap="Engineer / Specialist"><div class="nm">技人国 人材紹介<small>Engineer / Specialist</small></div><div class="ds">エンジニア・通訳・貿易事務など、専門スキルを持つ高度人材のご紹介。</div>${circ()}</a>
+    <a class="row" href="${r}service/tokutei-ginou/index.html" data-hv="${r}img/svc-kensetsu.jpg" data-cap="Specified Skilled Worker"><div class="nm"><span class="nm-en">Specified Skilled Worker</span><small>特定技能 採用支援</small></div><div class="ds">人手不足の現場に、即戦力の特定技能人材を。募集・面接から入社後の定着支援まで、登録支援機関として一貫対応。</div>${circ()}</a>
+    <a class="row" href="${r}service/engineer/index.html" data-hv="${r}img/engineer.jpg" data-cap="Engineer / Specialist"><div class="nm"><span class="nm-en">Engineer / Specialist</span><small>技人国 人材紹介</small></div><div class="ds">エンジニア・通訳・貿易事務など、専門スキルを持つ高度人材のご紹介。</div>${circ()}</a>
   </div>
   <div class="more-r"><a href="${r}service/index.html">事業内容を見る <span class="ar">→</span></a></div>
 </div></section>
 
 ${homeStats(r)}
 <section class="sec"><div class="wrap">
-  <div class="sec-head"><div><h2 class="en">Product</h2><div class="ja-lb">アプリ</div></div>
-    <p class="lead">採用・学習・定着のそれぞれの現場に、3つのアプリを導入しています。<br>企業様にも外国人材にも、手続きと連絡がひとつにまとまります。</p></div>
+  <div class="sec-head"><div><h2 class="en">Product</h2><div class="ja-lb">アプリ</div></div></div>
   ${products(r)}
   <div class="more-r"><a href="${r}product/index.html">アプリの詳細を見る <span class="ar">→</span></a></div>
 </div></section>
@@ -1244,7 +1259,7 @@ ${pageHead('Service','事業内容')}
 <section class="svc" id="s1"><div class="wrap">
   <div class="num">SERVICE-01</div>
   <div class="g">
-    <div><h2>特定技能 採用支援<small>Specified Skilled Worker</small></h2>
+    <div><h2><span class="nm-en">Specified Skilled Worker</span><small>特定技能 採用支援</small></h2>
       <p class="ds">製造・建設・介護・外食など、人手不足の現場に即戦力人材を。人材募集・スクリーニング、面接調整・通訳、在留資格・ビザ手続きの代行から、登録支援機関として住居・行政手続き・定期面談・母国語相談まで、入社後の定着を一貫して支えます。</p>
       <div class="acts"><div>外国人採用をすぐ始めたい${pill('事業者様はこちら', r+'contact/index.html')}</div><div>働きたい外国人の方${pill('BIGLIGHT JOB へ','https://job.biglight.jp/')}</div></div></div>
     <img class="photo" src="${r}img/svc-kensetsu.jpg" alt="">
@@ -1254,7 +1269,7 @@ ${pageHead('Service','事業内容')}
 <section class="svc" id="s2"><div class="wrap">
   <div class="num">SERVICE-02</div>
   <div class="g">
-    <div><h2>技人国 人材紹介<small>Engineer / Specialist</small></h2>
+    <div><h2><span class="nm-en">Engineer / Specialist</span><small>技人国 人材紹介</small></h2>
       <p class="ds">技術・人文知識・国際業務の在留資格を持つ高度人材をご紹介。エンジニア、機械設計、生産技術、品質管理、貿易事務、海外営業、通訳・翻訳など。経験・日本語力・専門性を考慮した最適なご提案。</p>
       <div class="acts"><div>専門人材を採用したい${pill('事業者様はこちら', r+'contact/index.html')}</div></div></div>
     <img class="photo" src="${r}img/engineer.jpg" alt="">
@@ -1291,7 +1306,7 @@ ${pageHead('Product','アプリ')}
     <div><div class="ic"><img src="${r}img/icon-portal.png" alt=""><h2>BIGLIGHT ポータル<small>Portal</small></h2></div>
       <p class="ds">在留資格・提出書類・連絡・定期面談・年末調整などの支援業務を、企業と本人がひとつの画面で。書類の期限管理、担当者とのメッセージ、在留カードのスキャン読み取りに対応。</p>
       <div class="acts"><div>企業様・外国人材向け${pill('ポータルを開く','https://portal.biglight.jp/')}</div></div></div>
-    <div class="store" style="justify-content:flex-start;gap:40px"><div class="phwrap">${phone(r,'shot-portal.jpg')}</div><div class="badges"><a href="https://apps.apple.com/jp/app/biglight/id6804992207"><img src="${r}img/badge-appstore.svg" alt="App Store"></a><a href="https://play.google.com/store/apps/details?id=jp.biglight.app"><img class="gp" src="${r}img/badge-googleplay.png" alt="Google Play"></a></div></div>
+    <div class="store" style="justify-content:flex-start;gap:40px;flex-wrap:wrap"><div class="devwrap">${dev(r,'desk-portal.jpg','shot-portal.jpg')}</div><div class="badges"><a href="https://apps.apple.com/jp/app/biglight/id6804992207"><img src="${r}img/badge-appstore.svg" alt="App Store"></a><a href="https://play.google.com/store/apps/details?id=jp.biglight.app"><img class="gp" src="${r}img/badge-googleplay.png" alt="Google Play"></a></div></div>
   </div>
 </div></section>
 
@@ -1321,9 +1336,8 @@ ${contactBox(r)}
 function newsPage(){ const r='../'; return page({root:r,title:'お知らせ・HR Magazine｜BIGLIGHT株式会社',desc:'BIGLIGHTからのお知らせと採用お役立ち情報',body:`
 <section class="ph"><div class="wrap news-side">
   <div><h1 class="phh"><span class="en">News</span><span class="ja-lb">お知らせ・HR Magazine</span></h1>${dots}
-    <div class="filters"><a class="on" href="#">すべて</a><a href="#">お知らせ</a><a href="#">HR Magazine</a><a href="#">プレスリリース</a></div></div>
-  <div><div class="nlist">${news.map(n=>nitem(n,r)).join('')}</div>
-    <div class="pager"><b>1</b><span>2</span><span>3</span><span>…</span><span>9</span><span class="ch">›</span></div></div>
+    <div class="filters" id="nf"><a class="on" href="#" data-f="">すべて</a><a href="#oshirase" data-f="お知らせ">お知らせ</a><a href="#magazine" data-f="HR Magazine">HR Magazine</a></div></div>
+  <div><div class="nlist">${news.map(n=>nitem(n,r)).join('')}</div></div>
 </div></section>
 `});}
 
@@ -1452,7 +1466,7 @@ ${pageHead('Service','事業内容',serviceTabs(r,'overview'))}
 <section class="svc" id="s1"><div class="wrap">
   <div class="num">SERVICE-01</div>
   <div class="g">
-    <div><h2>特定技能 採用支援<small>Specified Skilled Worker</small></h2>
+    <div><h2><span class="nm-en">Specified Skilled Worker</span><small>特定技能 採用支援</small></h2>
       <p class="ds">人手不足の16分野に、即戦力の外国人材を。募集・面接から在留資格の手続き、登録支援機関としての義務的支援まで一貫して対応します。</p>
       <div class="acts"><div>詳しく知りたい${pill('特定技能 採用支援', r+'service/tokutei-ginou/index.html')}</div></div></div>
     <img class="photo" src="${r}img/svc-kensetsu.jpg" alt="">
@@ -1461,7 +1475,7 @@ ${pageHead('Service','事業内容',serviceTabs(r,'overview'))}
 <section class="svc" id="s2"><div class="wrap">
   <div class="num">SERVICE-02</div>
   <div class="g">
-    <div><h2>技人国 人材紹介<small>Engineer / Specialist</small></h2>
+    <div><h2><span class="nm-en">Engineer / Specialist</span><small>技人国 人材紹介</small></h2>
       <p class="ds">エンジニア・通訳・貿易事務など、専門知識を持つ高度人材をご紹介します。経験・日本語力・専門性から最適な人材をご提案します。</p>
       <div class="acts"><div>詳しく知りたい${pill('技人国 人材紹介', r+'service/engineer/index.html')}</div></div></div>
     <img class="photo" src="${r}img/svc-seizo.jpg" alt="">
@@ -1753,14 +1767,12 @@ const caseCard = (r,c) => `<a class="ccard" href="${r}case/index.html#${c.slug}"
 // trang chủ: dải số + khối 導入事例
 const homeStats = (r) => `
 <section class="sec kband"><div class="wrap">
-  <div class="sec-head"><div><h2 class="en">Strength</h2><div class="ja-lb">数字で見るBIGLIGHT</div></div>
-    <p class="lead">採用から定着まで、企業様と外国人材に選ばれてきた実績です。</p></div>
+  <div class="sec-head"><div><h2 class="en">Strength</h2><div class="ja-lb">数字で見るBIGLIGHT</div></div></div>
   ${statsRow()}
   <div class="more-r"><a href="${r}about/strength/index.html">選ばれる理由を見る <span class="ar">→</span></a></div>
 </div></section>
 <section class="sec"><div class="wrap">
-  <div class="sec-head"><div><h2 class="en">Case</h2><div class="ja-lb">導入事例</div></div>
-    <p class="lead">採用から定着まで、BIGLIGHTがご支援した企業様の事例です。</p></div>
+  <div class="sec-head"><div><h2 class="en">Case</h2><div class="ja-lb">導入事例</div></div></div>
   <div class="ccards">${CASES.map(c=>caseCard(r,c)).join('')}</div>
   <div class="more-r"><a href="${r}case/index.html">導入事例を見る <span class="ar">→</span></a></div>
 </div></section>`;
@@ -1827,59 +1839,20 @@ ${pageHead('Download','資料ダウンロード')}
 
 
 // ---------- NEWS ARTICLE (demo: 2 bài thật từ biglight.jp/news/; bản thật do admin.biglight.jp sinh) ----------
-const ARTICLES = {
- 'website-renewal': {date:'2026.06.23',cat:'お知らせ',img:'news-renewal.jpg',title:'BIGLIGHT株式会社 コーポレートサイトリニューアルのお知らせ',read:'約1分',tags:['BIGLIGHT','お知らせ','サイトリニューアル','外国人採用','特定技能'],body:`
-<p>平素よりBIGLIGHT株式会社のホームページをご利用いただき、誠にありがとうございます。</p>
-<p>このたび、BIGLIGHT株式会社ではコーポレートサイトを全面リニューアルいたしました。</p>
-<p>今回のリニューアルでは、企業様や求職者の皆様にとって、より見やすく、使いやすいウェブサイトを目指し、デザインや構成を一新しております。</p>
-<h2>リニューアルの主な内容</h2>
-<h3>デザインの刷新</h3><p>スマートフォン・タブレット・パソコンなど、さまざまなデバイスから快適に閲覧いただけるよう、サイトデザインを全面的に見直しました。</p>
-<h3>サービス情報の充実</h3><p>特定技能、技術・人文知識・国際業務（技人国）、外国人採用支援に関するサービス内容をより分かりやすく掲載しております。</p>
-<h3>情報発信の強化</h3><p>今後は外国人採用に関する制度改正情報、採用ノウハウ、業界動向、導入事例などを定期的に発信してまいります。</p>
-<h2>BIGLIGHT株式会社について</h2>
-<p>BIGLIGHT株式会社は、外国人材紹介および登録支援機関として、企業様の人材不足解消をサポートしております。主に以下のサービスを提供しております。</p>
-<ul><li>特定技能外国人の紹介</li><li>技術・人文知識・国際業務（技人国）人材の紹介</li><li>登録支援業務</li><li>外国人採用コンサルティング</li><li>入社後の定着支援</li></ul>
-<h2>今後の取り組み</h2>
-<p>今後も企業様と外国人材の架け橋となる存在を目指し、より有益な情報発信とサービス向上に努めてまいります。また、外国人採用に関する最新情報や制度改正情報についても、継続的に発信してまいります。</p>
-<h2>まとめ</h2>
-<p>BIGLIGHT株式会社では、このたびのサイトリニューアルを通じて、より分かりやすく、より使いやすい情報提供を実現いたしました。今後ともBIGLIGHT株式会社をよろしくお願い申し上げます。</p>`},
- 'tokutei-ginou-kokunai-tenshokusha-saiyo': {date:'2026.09.24',cat:'HR Magazine',img:'news-kokunai.jpg',title:'特定技能「国内転職者」採用ガイド｜海外採用と費用・期間・定着率を比較【2026年】',read:'約7分',tags:['特定技能','外国人採用','国内転職','製造業','建設業'],body:`
-<p>「特定技能を採りたいが、海外から呼ぶと半年待ち。来月から人が欲しい」。東海・関東の製造業や建設業から、この相談が2026年に入って目立って増えました。</p>
-<p>答えは一つです。すでに日本国内で働いている特定技能人材（転職者）を採用する。この記事は、その方法を費用・期間・リスクの順に整理したものです。</p>
-<h2>先に結論：国内転職者の採用は「半額・3分の1の期間・即戦力」</h2>
-<div class="ctable-wrap"><table class="ctable two-col"><thead><tr><th>比較項目</th><th>海外から採用</th><th class="hl">国内転職者を採用</th></tr></thead><tbody>
-<tr><th>初期費用の目安</th><td>約40〜110万円</td><td class="hl">約22〜44万円</td></tr><tr><th>就労開始まで</th><td>半年前後</td><td class="hl">1〜3か月</td></tr><tr><th>主なリスク</th><td>入国手続きの遅れ</td><td class="hl">前職の退職手続き・書類不備</td></tr></tbody></table></div>
-<p class="src">※費用は人材紹介会社・登録支援機関の公表相場（2026年時点）。</p>
-<p>国内転職者の採用が向いているのは、次のいずれかに当たる企業です。</p>
-<ul><li>3か月以内に現場へ人を入れたい</li><li>日本語で日常の業務指示ができる人が欲しい</li><li>初めて特定技能を受け入れるので、まず1〜2名で試したい</li></ul>
-<p>逆に、10名以上をまとめて同時期に入れたい場合は、海外採用との併用が現実的です。</p>
-<h2>特定技能人材はどれくらい転職しているのか</h2>
-<p>「転職者を採る」と言っても、そもそも市場に人がいなければ話になりません。数字を確認します。</p>
-<div class="ctable-wrap"><table class="ctable two-col"><thead><tr><th>指標</th><th>数値</th><th>時点</th></tr></thead><tbody>
-<tr><th>特定技能在留者（1号＋2号）</th><td>416,947人</td><td>2026年3月末速報</td></tr><tr><th>1年間の増加数（1号）</th><td>92,838人</td><td>2025年6月末→2026年6月末</td></tr><tr><th>退職後に特定技能内で転職した割合</th><td>30.3%</td><td>制度運用状況</td></tr></tbody></table></div>
-<p class="src">出典：出入国在留管理庁 特定技能制度運用状況</p>
-<p>つまり、辞めた人の3人に1人は、特定技能のまま別の会社へ移っています。帰国する人（31.4%）とほぼ同じ規模です。この層が「国内転職者」の供給源です。</p>
-<h2>東海・関東に候補者が集中している</h2>
-<p>都道府県別では愛知県が30,605人で全国1位、東京・埼玉・千葉・神奈川がそれに続きます（2025年12月末）。東海・関東に工場や現場がある企業は、通勤圏内に候補者がいる状態です。</p>
-<h2>期間の内訳：1〜3か月で何が起きるか</h2>
-<ol><li>求人票の作成・紹介（1〜2週間）。報酬は日本人と同等以上が必須要件です</li><li>面接・内定（1〜2週間）。前職在籍中の候補者が多く、平日夜や土曜の面接が現実的です</li><li>書類準備（2〜4週間）。ここが最も遅れやすい工程です</li><li>在留資格変更許可申請・審査（1〜2か月）。地方出入国在留管理局によって差があります</li><li>許可が出てから就労開始。許可前に働くことはできません</li></ol>
-<p>合計で早くて1か月半、通常2〜3か月です。BIGLIGHTでは内定後も前職に在籍したまま申請する段取りを基本にしています。</p>
-<h2>BIGLIGHTの現場から</h2>
-<p>BIGLIGHTは名古屋を拠点に、250名以上の特定技能人材を支援し、70社以上の企業と取引しています。転職希望者の相談で最も多いのは「給料」ではなく「情報がない」ことです。「今の会社を辞めたら在留資格はどうなるのか」「次の会社をどう探せばいいのか分からない」。情報を正しく伝える企業・紹介会社が、結果として良い人材を採れています。</p>
-<p>2027年4月以降、育成就労制度の施行で転職市場は確実に大きくなります。「転職者を採る力」は、2027年以降の外国人採用の基本能力になります。</p>`},
-};
-function article(slug){ const A=ARTICLES[slug]; const r='../../'; const others=news.filter(n=>n[3]&&n[3]!==slug).concat(news.filter(n=>!n[3])).slice(0,3);
- return page({root:r,title:A.title+'｜BIGLIGHT株式会社',desc:A.body.replace(/<[^>]+>/g,'').replace(/\s+/g,'').slice(0,110)+'…',body:`
+const ARTICLES = Object.fromEntries(NEWS.map(n=>[n.slug,n]));
+function article(slug){ const A=ARTICLES[slug]; const r='../../'; const others=news.filter(n=>n[3]!==slug).slice(0,3);
+ return page({root:r,title:A.title+'｜BIGLIGHT株式会社',desc:A.desc,body:`
 <section class="ph"><div class="wrap news-side">
   <div><div class="phh"><span class="en">News</span><span class="ja-lb">お知らせ</span></div>${dots}
-    <div class="filters"><a href="${r}news/index.html">すべて</a><a class="${A.cat==='お知らせ'?'on':''}" href="${r}news/index.html">お知らせ</a><a class="${A.cat==='HR Magazine'?'on':''}" href="${r}news/index.html">HR Magazine</a><a href="${r}news/index.html">プレスリリース</a></div></div>
+    <div class="filters"><a href="${r}news/index.html">すべて</a><a class="${A.cat==='お知らせ'?'on':''}" href="${r}news/index.html#oshirase">お知らせ</a><a class="${A.cat==='HR Magazine'?'on':''}" href="${r}news/index.html#magazine">HR Magazine</a></div></div>
   <article class="art">
-    <div class="thumb"><img src="${r}img/${A.img}" alt=""></div>
+    <div class="thumb"><img src="${A.img}" alt="${A.title}"></div>
     <h1 class="art-h">${A.title}</h1>
     <div class="meta">${A.date}<b>${A.cat}</b><span>${A.read}で読めます</span></div>
     <div class="body">${A.body}</div>
+    ${A.faq.length?`<div class="afaq"><h2>よくある質問</h2>${faq(A.faq)}</div>`:''}
     <div class="tags">${A.tags.map(t=>'<span>#'+t+'</span>').join('')}</div>
-    <div class="share"><span>シェア</span><a href="#">Facebook</a><a href="#">X</a><a href="#">LINE</a><a href="#">LinkedIn</a></div>
+    <div class="share"><span>シェア</span><a href="https://www.facebook.com/sharer/sharer.php?u=https://biglight.jp/news/${slug}/" target="_blank" rel="noopener">Facebook</a><a href="https://twitter.com/intent/tweet?url=https://biglight.jp/news/${slug}/" target="_blank" rel="noopener">X</a><a href="https://social-plugins.line.me/lineit/share?url=https://biglight.jp/news/${slug}/" target="_blank" rel="noopener">LINE</a><a href="https://www.linkedin.com/sharing/share-offsite/?url=https://biglight.jp/news/${slug}/" target="_blank" rel="noopener">LinkedIn</a></div>
     <div class="more-r" style="margin-top:50px"><a href="${r}news/index.html">お知らせ一覧へ <span class="ar">→</span></a></div>
   </article>
 </div></section>
@@ -1901,8 +1874,6 @@ const pages = {
   'service/engineer/index.html': engineer(),
   'product/index.html': product(),
   'news/index.html': newsPage(),
-  'news/website-renewal/index.html': article('website-renewal'),
-  'news/tokutei-ginou-kokunai-tenshokusha-saiyo/index.html': article('tokutei-ginou-kokunai-tenshokusha-saiyo'),
   'recruit/index.html': recruit(),
   'contact/index.html': contact(),
   'about/strength/index.html': strength(),
@@ -1910,6 +1881,7 @@ const pages = {
   'download/index.html': download(),
 };
 FIELDS.forEach((f,i)=>{pages['service/field/'+f.slug+'/index.html']=fieldPage(f,i);});
+NEWS.forEach(n=>{pages['news/'+n.slug+'/index.html']=article(n.slug);});
 
 pages['404.html']=page({root:'/',title:'ページが見つかりません｜BIGLIGHT株式会社',desc:'お探しのページは見つかりませんでした。',body:`
 <section class="ph"><div class="wrap"><h1 class="phh"><span class="en">404</span><span class="ja-lb">ページが見つかりません</span></h1>${dots}</div></section>

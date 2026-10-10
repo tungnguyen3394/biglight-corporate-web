@@ -29,6 +29,9 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
 
+      - name: Lấy tin mới nhất từ biglight.jp/news (lỗi mạng → dùng redesign/news.json đã lưu)
+        run: node redesign/fetch-news.cjs
+
       - name: Build
         run: node redesign/build.cjs
 
