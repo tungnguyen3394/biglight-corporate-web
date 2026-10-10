@@ -123,13 +123,19 @@ var BLF=(function(){
         .catch(function(er){btn.disabled=false;btn.innerHTML=old;cg.reset();
           alert((er&&er.msg&&er.msg!=='failed'?er.msg+'\n':'')+(er&&er.code==='turnstile'?'':'送信に失敗しました。お手数ですが、お電話（052-908-7944）でもご連絡ください。'));});
     });}
-  /* 資料ダウンロード: PDF は公開資料 → 送信の成否にかかわらずすぐ開ける（web cũ と同じ） */
+  /* 資料請求（2026-10-10 CEO）: PDF はその場で渡さない。/api/inquiry（種別「資料請求」）へ送る
+     → 担当者に通知メール・お客様に受付の自動返信が届き、担当者から資料を送って連絡する。 */
   var df=document.getElementById('dlf');
-  if(df){var dg=BLF.mount(df,df.querySelector('.send'));
-    df.addEventListener('submit',function(e){e.preventDefault();if(!check(df))return;
+  if(df){var dg=BLF.mount(df,df.querySelector('.send')),dbtn=df.querySelector('button[type=submit]');
+    df.addEventListener('submit',function(e){e.preventDefault();if(!check(df)||dbtn.disabled)return;
       var v=vals(df),g=dg.fields(),interest=[];[].forEach.call(df.querySelectorAll('input[name=interest]:checked'),function(c){interest.push(c.value);});
-      var note=v.note||'';var src=BLT.src();if(src)note=(note?note+'\n':'')+'参照した記事: https://biglight.jp'+src;
-      fetch(API+'download',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({company:v.company||'',name:v.name||'',email:v.email||'',interest:interest,note:note,website:v.website||'',ft:g.ft||'',turnstile:g.turnstile||''})}).catch(function(){});
-      dg.reset();BLT.conv('download');done(df,document.getElementById('dl-done'));
+      var msg='【資料請求】会社資料の送付を希望します。'+(interest.length?'\n【ご興味のある内容】'+interest.join('／'):'')+(v.note?'\n【ご質問・ご要望】\n'+v.note:'');
+      var src=BLT.src();if(src)msg+='\n\n――\n参照した記事: https://biglight.jp'+src;
+      var old=dbtn.innerHTML;dbtn.disabled=true;[].forEach.call(dbtn.querySelectorAll('.tx span'),function(x){x.textContent='送信中…';});
+      fetch(API+'inquiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({company:v.company||'',name:v.name||'',email:v.email||'',tel:v.tel||'',kind:'資料請求',message:msg,website:v.website||'',ft:g.ft,turnstile:g.turnstile})})
+        .then(function(r){return r.json().catch(function(){return {};}).then(function(j){if(!r.ok){var er=new Error(j.error||'failed');er.code=j.code;er.msg=j.error;throw er;}return j;});})
+        .then(function(){BLT.conv('download');done(df,document.getElementById('dl-done'));})
+        .catch(function(er){dbtn.disabled=false;dbtn.innerHTML=old;dg.reset();
+          alert((er&&er.msg&&er.msg!=='failed'?er.msg+'\n':'')+(er&&er.code==='turnstile'?'':'送信に失敗しました。お手数ですが、お電話（052-908-7944）でもご連絡ください。'));});
     });}
 })();

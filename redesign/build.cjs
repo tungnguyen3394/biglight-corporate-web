@@ -723,8 +723,8 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 /* Cookie同意バナー */
 .totop{bottom:calc(28px + var(--ckh,0px));transition:bottom .3s ease,opacity .3s,transform .3s}
 @media (max-width:860px){.totop{bottom:calc(16px + var(--ckh,0px))}}
-.ck{position:fixed;left:0;right:0;bottom:0;z-index:90;background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 24px rgba(11,61,145,.08);transform:translateY(100%);transition:transform .3s ease;padding-bottom:env(safe-area-inset-bottom)}
-.ck.on{transform:none}
+.ckb{position:fixed;left:0;right:0;bottom:0;z-index:90;background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 24px rgba(11,61,145,.08);transform:translateY(100%);transition:transform .3s ease;padding-bottom:env(safe-area-inset-bottom)}
+.ckb.on{transform:none}
 .ck-in{max-width:1180px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;gap:32px}
 .ck-tx{flex:1;font-size:13px;line-height:1.85;color:var(--ink2)}
 .ck-tx a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
@@ -1146,7 +1146,7 @@ function page({root, title, desc, body, active, home}) {
       <div class="fmap"><div class="fmap-ph"><p>地図を表示すると、Google社のCookieが使用される場合があります。</p><button type="button" class="fmap-load">地図を表示</button></div><iframe data-src="https://www.google.com/maps?q=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA&hl=ja&z=16&output=embed" title="BIGLIGHT株式会社の地図（愛知県名古屋市北区如意一丁目112 A）" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="https://www.google.com/maps/search/?api=1&query=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA">Google マップで開く →</a></div>
     </div>
     <div class="bot">
-      <div class="links"><a href="${r}privacy/index.html">プライバシーポリシー</a><a href="${r}service/tokutei-ginou/index.html#faq">よくある質問</a><a href="${r}download/index.html">資料ダウンロード</a><button type="button" class="ck-link" data-cookie-settings>Cookie設定</button></div>
+      <div class="links"><a href="${r}privacy/index.html">プライバシーポリシー</a><a href="${r}service/tokutei-ginou/index.html#faq">よくある質問</a><a href="${r}download/index.html">資料請求</a><button type="button" class="ck-link" data-cookie-settings>Cookie設定</button></div>
       <div class="lic">有料職業紹介 23-ユ-302414 ／ 登録支援機関 21登-006596</div>
       <p class="copy">Copyright © BIGLIGHT Co., Ltd. All Rights Reserved.</p>
     </div>
@@ -1988,20 +1988,21 @@ ${pageHead('Privacy Policy','プライバシーポリシー')}
 `});}
 
 function download(){ const r='../'; const IN=['外国人材の採用を検討している','特定技能について知りたい','技人国（エンジニア・専門職）について','定着・生活支援について','まずは資料を見たい（情報収集）','その他'];
- return page({root:r,title:'資料ダウンロード｜BIGLIGHT株式会社',desc:'BIGLIGHTの会社資料（PDF）をダウンロード',body:`
-${pageHead('Download','資料ダウンロード')}
+ return page({root:r,title:'資料請求｜BIGLIGHT株式会社',desc:'BIGLIGHTの会社資料のご請求',body:`
+${pageHead('Download','資料請求')}
 <section><div class="wrap form">
-  <div class="info"><b>会社資料</b>PDF ／ 無料<br>サービス内容・料金体系・支援の流れ・導入事例をまとめた資料です。<br>ご入力後、すぐにダウンロードいただけます。<br><br>お電話でのご相談<br>052-908-7944（平日 9:00–18:00）</div>
+  <div class="info"><b>会社資料</b>無料<br>サービス内容・料金体系・支援の流れ・導入事例をまとめた資料です。<br>ご請求いただいた内容を確認のうえ、担当者よりメールで資料をお送りし、ご連絡いたします。<br><br>お電話でのご相談<br>052-908-7944（平日 9:00–18:00）</div>
   <form id="dlf" novalidate><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
     <label for="dl-co">会社名<small>必須</small></label><div class="fld" data-err="入力してください"><input id="dl-co" name="company" type="text" autocomplete="organization" placeholder="株式会社〇〇" required></div>
     <label for="dl-nm">お名前<small>必須</small></label><div class="fld" data-err="入力してください"><input id="dl-nm" name="name" type="text" autocomplete="name" placeholder="山田 太郎" required></div>
     <label for="dl-em">メールアドレス<small>必須</small></label><div class="fld" data-err="正しいメールアドレスを入力してください"><input id="dl-em" name="email" type="email" autocomplete="email" placeholder="example@company.co.jp" required></div>
+    <label for="dl-tel">電話番号<small>必須</small></label><div class="fld" data-err="入力してください"><input id="dl-tel" name="tel" type="tel" autocomplete="tel" placeholder="052-000-0000" required></div>
     <label>ご興味のある内容</label><div class="checks">${IN.map(x=>`<label class="ck"><input type="checkbox" name="interest" value="${x}"><span>${x}</span></label>`).join('')}</div>
     <label for="dl-note">ご質問・ご要望</label><div class="fld" data-err="入力してください"><textarea id="dl-note" name="note" placeholder="気になる点があればご記入ください"></textarea></div>
-    <div class="send"><button class="pill" type="submit" style="cursor:pointer">資料をダウンロードする<span class="circ">↓</span></button></div>
+    <div class="send"><button class="pill" type="submit" style="cursor:pointer">資料を請求する<span class="circ">→</span></button></div>
     <p class="note">送信いただいた個人情報は<a href="${r}privacy/index.html">プライバシーポリシー</a>に基づき取り扱います。</p>
   </form>
-  <div class="dldone" id="dl-done" hidden><b>ありがとうございました。</b><p>下のボタンから資料をダウンロードいただけます。</p><a class="pill" href="https://biglight.jp/assets/biglight-company-profile.pdf">会社資料（PDF）を開く<span class="circ">↓</span></a></div>
+  <div class="dldone" id="dl-done" hidden><b>資料のご請求ありがとうございました。</b><p>ご入力いただいたメールアドレスに受付確認メールをお送りしました。内容を確認のうえ、担当者より2営業日以内に資料をお送りし、ご連絡いたします。お急ぎの場合はお電話（052-908-7944）でご連絡ください。</p></div>
 </div></section>
 `});}
 

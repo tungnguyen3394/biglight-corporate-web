@@ -20,7 +20,7 @@
   function close(){if(box){box.classList.remove('on');lift();setTimeout(function(){if(box&&!box.classList.contains('on'))box.hidden=true;},300);}}
   function build(){
     box=document.createElement('section');
-    box.className='ck';box.hidden=true;
+    box.className='ckb';box.hidden=true;
     box.setAttribute('role','region');box.setAttribute('aria-label','Cookieの設定');
     box.innerHTML=
       '<div class="ck-in">'+
