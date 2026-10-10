@@ -284,6 +284,7 @@ html.js .hero .scrl{opacity:0;animation:pagein 1.2s 2.7s ease forwards}
 .ph{padding:80px 0 0}
 .ph .en{font-size:50px;line-height:65px}
 .tabs{display:flex;gap:24px;margin-top:70px}
+@media (min-width:861px) and (max-width:1000px){.tabs{gap:16px}.tabs a{min-width:0;flex:1}}
 .tabs a{min-width:150px;gap:16px;white-space:nowrap;display:flex;justify-content:space-between;align-items:center;padding:0 10px 10px 0;border-bottom:1px solid var(--line);font-family:var(--en);font-size:14px;font-weight:700;letter-spacing:.1em}
 .tabs a .ch{color:var(--accent);font-size:12px}
 .tabs a.on{border-bottom-color:var(--accent)}
@@ -291,6 +292,8 @@ html.js .hero .scrl{opacity:0;animation:pagein 1.2s 2.7s ease forwards}
 .blk .lbl,.vscroll .lbl{font-family:var(--en);font-size:20px;font-weight:700;letter-spacing:.06em;color:var(--accent)}
 .blk .lbl::before,.vscroll .lbl::before{content:"::";margin-right:10px;letter-spacing:0}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-top:40px}
+.two>*{min-width:0}
+@media (min-width:861px) and (max-width:1000px){.two{grid-template-columns:1fr;gap:24px}}
 .two h2{font-size:44px;font-weight:700;letter-spacing:.06em;line-height:1.45;white-space:nowrap}
 .two .sub-en{font-family:var(--en);font-weight:500;font-size:13px;letter-spacing:.14em;color:var(--grey);margin-top:22px}
 .two .txt{font-size:16px;font-weight:700;line-height:2.2}
@@ -346,7 +349,8 @@ html.js .hero .scrl{opacity:0;animation:pagein 1.2s 2.7s ease forwards}
 .lead-end{border-bottom:1px solid var(--line);padding-bottom:60px}
 
 .news-side{display:grid;grid-template-columns:245px 1fr;gap:0;margin-top:0}
-@media (min-width:861px){.news-side>div+div,.news-home .sec-head>div+div{margin-right:-40px}.news-home .sec-head{grid-template-columns:245px 1fr;gap:0}.nitem .tt{font-size:16px}.nitem{padding:30px 0 31px}}
+@media (min-width:861px){.news-side>div+div,.news-home .sec-head>div+div{margin-right:0}.news-home .sec-head{grid-template-columns:245px 1fr;gap:0}.nitem .tt{font-size:16px}.nitem{padding:30px 0 31px}}
+@media (min-width:1201px){.news-side>div+div,.news-home .sec-head>div+div{margin-right:-40px}}
 .filters{display:flex;flex-direction:column;gap:12px;margin-top:60px;font-size:14px;font-weight:700;letter-spacing:.06em}
 .filters a{color:var(--grey)}.filters a.on{color:var(--accent)}
 .pager{display:flex;gap:28px;justify-content:center;margin-top:60px;font-family:var(--en);font-weight:700;font-size:16px;letter-spacing:.06em;color:var(--grey)}
@@ -683,6 +687,8 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 .flow.f4{grid-template-columns:repeat(4,1fr);row-gap:44px}
 .src{font-size:11px;color:var(--grey);line-height:1.8;margin-top:28px}
 .fstats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:48px;border-top:1px solid var(--line)}
+.fstats>div{min-width:0}
+@media (min-width:861px) and (max-width:1100px){.fstats b{font-size:34px}.fstats span{white-space:normal}}
 .fstats>div{padding:26px 22px 0 0}
 .fstats>div+div{padding-left:22px;border-left:1px solid var(--line)}
 .fstats b{display:block;font-family:var(--en);font-size:44px;line-height:1.1;font-weight:700;color:var(--accent);letter-spacing:.02em;white-space:nowrap}
@@ -739,6 +745,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 .skip:focus{top:8px}
 .ck-link{font:inherit;background:none;border:0;padding:0;color:inherit;cursor:pointer;letter-spacing:inherit}
 .ck-link:hover{color:var(--accent)}
+@media (max-width:360px){.ftiles{grid-template-columns:1fr}.ph .phh .en,.ph h1 .en{font-size:30px}.chars .w{white-space:normal}h2.chars{font-size:26px!important}}
 /* Cookie同意バナー */
 .totop{bottom:calc(28px + var(--ckh,0px));transition:bottom .3s ease,opacity .3s,transform .3s}
 @media (max-width:860px){.totop{bottom:calc(16px + var(--ckh,0px))}}
@@ -955,7 +962,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 /* responsive */
 @media (max-width:1360px) and (min-width:861px){
   .hero h1{font-size:clamp(48px,4.9vw,68px);line-height:1.35;letter-spacing:.09em}
-  .hero .vis{left:auto;right:0;transform:scale(.88);transform-origin:100% 0}
+  .hero .vis{left:auto;right:0;transform:scale(var(--hl,.88));transform-origin:100% 0}
+  .hero .vis{overflow:hidden}
+  .hero .sub{font-size:clamp(15px,1.55vw,20px)}
 }
 @media (max-width:1100px){
   .sec-head{grid-template-columns:260px 1fr}
@@ -1268,7 +1277,10 @@ function home(){ const r='./'; return page({root:r,home:true,title:'BIGLIGHT株�
     ${heroSlide(dev(r,'desk-academy.jpg','shot-academy.jpg'), false, 'devs')}
   </div>
   <div class="scrl"></div>
-  <script>(function(){var d=document.documentElement;function f(){d.style.setProperty('--hs',Math.min(1,d.clientWidth/930));}f();addEventListener('resize',f);})();</script>
+  <script>(function(){var d=document.documentElement;function f(){var w=d.clientWidth;d.style.setProperty('--hs',Math.min(1,w/930));
+  /* 861–1360px (iPad ngang, laptop nhỏ): thu ảnh vừa đủ để mép chéo bên trái của ảnh không đè lên chữ (2026-10-11) */
+  if(w>860&&w<=1360){var hero=document.querySelector('.hero'),top=hero.getBoundingClientRect().top,s=1;[].forEach.call(document.querySelectorAll('.hero h1,.hero .sub'),function(e){var r=document.createRange();r.selectNodeContents(e);[].forEach.call(r.getClientRects(),function(q){var y=q.top+q.height/2-top;s=Math.min(s,(w-.3525*y-q.right-28)/660);});});d.style.setProperty('--hl',Math.max(.48,Math.min(.94,s)).toFixed(3));}}
+  f();addEventListener('resize',f);if(document.fonts)document.fonts.ready.then(f);})();</script>
 </section>
 
 <section class="message"><div class="wrap">
