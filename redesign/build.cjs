@@ -174,6 +174,9 @@ html.js .hero .scrl{opacity:0;animation:pagein .6s 4.1s ease forwards}
 .message .t{font-family:var(--en);font-size:20px;font-weight:500;letter-spacing:.04em;color:var(--accent);text-transform:lowercase}
 .message p{font-size:28px;font-weight:700;letter-spacing:.1em;line-height:1.9;margin-top:40px}
 .message .more{margin-top:74px}
+.message .t.tag{font-family:var(--jp);font-size:22px;font-weight:700;letter-spacing:.14em;text-transform:none;color:var(--accent)}
+.message p .mph{display:inline-block}
+.message .t.tag span{margin:0 .5em;color:var(--line);font-weight:400}
 
 /* pill button (c-buttonPrimary) */
 .pill{display:inline-flex;align-items:center;gap:22px;border:1px solid var(--ink);border-radius:64px;padding:14px 14px 14px 24px;font-size:16px;font-weight:700;letter-spacing:.06em;line-height:1;background:#fff;transition:background .25s,color .25s}
@@ -338,7 +341,8 @@ html.js .hero .scrl{opacity:0;animation:pagein .6s 4.1s ease forwards}
 .pv{max-width:860px;padding-top:56px;font-size:15px;line-height:2;color:var(--ink2)}.pv h2{font-size:18px;font-weight:700;color:var(--ink);margin:48px 0 12px;letter-spacing:.04em}.pv ul{padding-left:1.4em;margin:8px 0}.pv li{margin:4px 0}.pv .pv-date{margin-top:48px;font-size:13px;color:var(--grey)}
 .lead-end{border-bottom:1px solid var(--line);padding-bottom:60px}
 
-.news-side{display:grid;grid-template-columns:270px 1fr;gap:40px;margin-top:0}
+.news-side{display:grid;grid-template-columns:245px 1fr;gap:0;margin-top:0}
+@media (min-width:861px){.news-side>div+div,.news-home .sec-head>div+div{margin-right:-40px}.news-home .sec-head{grid-template-columns:245px 1fr;gap:0}.nitem .tt{font-size:16px}.nitem{padding:30px 0 31px}}
 .filters{display:flex;flex-direction:column;gap:12px;margin-top:60px;font-size:14px;font-weight:700;letter-spacing:.06em}
 .filters a{color:var(--grey)}.filters a.on{color:var(--accent)}
 .pager{display:flex;gap:28px;justify-content:center;margin-top:60px;font-family:var(--en);font-weight:700;font-size:16px;letter-spacing:.06em;color:var(--grey)}
@@ -952,6 +956,7 @@ html.js .en.chars .ch{transform:translateY(.6em)}
   .hero .scrl{display:none}
   .message{padding-top:110px}
   .message p{font-size:20px;letter-spacing:.06em}
+  .message .t.tag{font-size:16px;letter-spacing:.08em}
   .loop span{font-size:56px;line-height:110px}
   .loop{margin-top:30px}
   .sec{padding-top:90px}
@@ -1240,8 +1245,8 @@ function home(){ const r='./'; return page({root:r,home:true,title:'BIGLIGHT株�
 </section>
 
 <section class="message"><div class="wrap">
-  <div class="t">message</div>
-  <p>人材を紹介して、終わりにしない。<br>採用から定着まで、企業と外国人材のそばで<br>伴走しつづける登録支援機関です。</p>
+  <div class="t tag">特定技能採用専門<span>｜</span>登録支援機関</div>
+  <p>人材を紹介して、終わりにしない。<br><span class="mph">特定技能の採用から定着まで、</span><span class="mph">企業と外国人材のそばで</span><br><span class="mph">伴走しつづける</span><span class="mph">登録支援機関です。</span></p>
   <div class="more">${pill('私たちについて', r+'about/index.html')}</div>
 </div></section>
 <div class="loop" aria-hidden="true"><span>Powering Japan’s Growth, Globally. Powering Japan’s Growth, Globally. </span><span>Powering Japan’s Growth, Globally. Powering Japan’s Growth, Globally. </span></div>
@@ -1264,7 +1269,7 @@ ${homeStats(r)}
 </div></section>
 
 <div class="deco a"><i></i><i></i><i></i><i></i></div>
-<section class="sec bgw bgw-r"><div class="wrap">
+<section class="sec bgw bgw-r news-home"><div class="wrap">
   <div class="sec-head"><div><h2 class="en">News</h2><div class="ja-lb">お知らせ</div></div>
     <div><div class="nlist">${news.slice(0,3).map(n=>nitem(n,r)).join('')}</div>
     <div class="more-r"><a href="${r}news/index.html">ニュース一覧を見る <span class="ar">→</span></a></div></div></div>
