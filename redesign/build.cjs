@@ -15,7 +15,7 @@ const copies = {
   'img/desk-academy.jpg':'img/desk-academy.jpg','img/desk-job.jpg':'img/desk-job.jpg','img/shot-portal-916.jpg':'img/shot-portal.jpg','img/shot-academy.jpg':'img/shot-academy.jpg','img/shot-job.jpg':'img/shot-job.jpg',
   'badges/apple-ja.svg':'img/badge-appstore.svg','badges/google-ja.png':'img/badge-googleplay.png',
 };
-Object.assign(copies,{'img/logo-s.webp':'img/logo-s.webp','img/svc-ssw.jpg':'img/svc-ssw.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
+Object.assign(copies,{'img/logo-s.webp':'img/logo-s.webp','img/svc-ssw2.jpg':'img/svc-ssw2.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
 fs.mkdirSync(path.join(OUT,'img/sdg'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/sdg')).filter(f=>f.endsWith('.png')))fs.copyFileSync(path.join(__dirname,'src/img/sdg',f),path.join(OUT,'img/sdg',f));
 fs.mkdirSync(path.join(OUT,'img/people'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/people')).filter(f=>f.endsWith('.webp')))fs.copyFileSync(path.join(__dirname,'src/img/people',f),path.join(OUT,'img/people',f));
 { let out='';const N=34,S=80;const A=t=>330+110*Math.sin(t*Math.PI*1.9+0.2)-210*t, B=t=>330+110*Math.sin(t*Math.PI*1.9+2.9)-210*t+70*Math.sin(t*Math.PI);
@@ -146,14 +146,17 @@ html.js .opening{animation:opout .4s 1s ease forwards}
 @keyframes opout{to{opacity:0;visibility:hidden}}
 html:not(.js) .opening{display:none}
 /* mở trang: thứ tự thời gian như Guidable */
-html.js.home .hd{opacity:0;animation:pagein .8s 2.3s ease forwards}
+html.js.home .hd{opacity:0;animation:pagein 1.2s 2.7s ease forwards}
 html.js .hero .ch{display:inline-block;opacity:.02;transform:translateY(31px);animation:chin .75s cubic-bezier(.2,.6,.2,1) forwards}
 @keyframes chin{to{opacity:1;transform:none}}
-html.js .hero .sub{opacity:0;transform:translateY(15px);animation:leadin .7s 2.55s cubic-bezier(.2,.6,.2,1) forwards}
+html.js .hero .sub{opacity:0;transform:translateY(15px);animation:leadin .75s 1.9s cubic-bezier(.2,.6,.2,1) forwards}
 @keyframes leadin{to{opacity:1;transform:none}}
-html.js .hero .dots{opacity:0;animation:pagein .6s 3.05s ease forwards}
-html.js .hero .scrl{opacity:0;animation:pagein .6s 3.05s ease forwards}
-@media (prefers-reduced-motion:reduce){.opening{display:none}html.js.home .hd,html.js .hero .sub,html.js .hero .dots,html.js .hero .scrl{opacity:1;animation:none;transform:none}}
+html.js .hero .dots{opacity:0;animation:pagein .8s 2.25s ease forwards}
+html.js .hero .dots i{transform:translateY(14px);animation:dotup 1.1s cubic-bezier(.2,.6,.2,1) 2.25s forwards!important}
+html.js .hero .dots i:nth-child(2){animation-delay:2.35s!important}html.js .hero .dots i:nth-child(3){animation-delay:2.45s!important}html.js .hero .dots i:nth-child(4){animation-delay:2.55s!important}
+@keyframes dotup{to{transform:none}}
+html.js .hero .scrl{opacity:0;animation:pagein 1.2s 2.7s ease forwards}
+@media (prefers-reduced-motion:reduce){.opening{display:none}html.js.home .hd,html.js .hero .sub,html.js .hero .dots,html.js .hero .scrl{opacity:1;animation:none;transform:none}html.js .hero .dots i{animation:none!important;transform:none}}
 
 /* thiết bị: MacBook + iPhone */
 .dev{position:relative;width:100%;aspect-ratio:16/10}
@@ -555,7 +558,7 @@ html.js .fx.in img.photo{transform:none}
 .row:hover .circ40,.nitem:hover .circ40,.cbox:hover .circ{transform:translateX(6px)}
 .badges a img{transition:transform .3s}
 .badges a:hover img{transform:translateY(-3px)}
-html.js .hero .ch{display:inline-block;opacity:.02;transform:translateY(.35em);animation:chin .7s cubic-bezier(.2,.6,.2,1) forwards}
+html.js .hero .ch{display:inline-block;opacity:.02;transform:translateY(30%);animation:chin .75s cubic-bezier(.2,.6,.2,1) forwards}
 @keyframes chin{to{opacity:1;transform:none}}
 html.js .hero .line,html.js .hero .btns{opacity:0;animation:pagein .9s ease forwards}
 html.js .hero .line{animation-delay:1.1s}html.js .hero .btns{animation-delay:1.5s}
@@ -1029,7 +1032,7 @@ const js = `
   /* tách chữ: hero + tiêu đề mission */
   function split(el,base,step){var i=0;function chars(t,f){t.split('').forEach(function(ch){var sp=document.createElement('span');sp.className='ch';sp.textContent=ch===' '?'\u00a0':ch;sp.style.animationDelay=(base+i*step)+'ms';i++;f.appendChild(sp);});}
   function walk(n){[].slice.call(n.childNodes).forEach(function(c){if(c.nodeType===3){var f=document.createDocumentFragment();c.textContent.split(/( +)/).forEach(function(part){if(!part)return;if(/^ +$/.test(part)){chars(part,f);return;}var w=document.createElement('span');w.className='w';chars(part,w);f.appendChild(w);});n.replaceChild(f,c);}else if(c.nodeType===1&&c.tagName!=='BR'){walk(c);}});}walk(el);}
-  var h=document.querySelector('.hero h1'); if(h) split(h,1150,40);
+  var h=document.querySelector('.hero h1'); if(h) split(h,1000,45);
   document.querySelectorAll('.chars').forEach(function(e){split(e,0,40);});
   /* nút: nhân đôi chữ cho hiệu ứng trượt */
   document.querySelectorAll('.pill').forEach(function(p){var c=p.querySelector('.circ');var txt='';[].slice.call(p.childNodes).forEach(function(n){if(n.nodeType===3){txt+=n.textContent;p.removeChild(n);}});txt=txt.trim();if(!txt)return;var t=document.createElement('span');t.className='tx';t.innerHTML='<span>'+txt+'</span><span aria-hidden="true">'+txt+'</span>';p.insertBefore(t,c);});
@@ -1068,9 +1071,9 @@ const js = `
   var hs=document.querySelectorAll('.hero .sl'),hd=document.querySelectorAll('.hero .dots i');
   if(hs.length){var hc=0,ht;function hgo(n){var old=hs[hc];old.classList.remove('on');old.classList.add('out');hd[hc].classList.remove('on');hc=(n+hs.length)%hs.length;var nw=hs[hc];hd[hc].classList.add('on');setTimeout(function(){old.classList.remove('out');nw.classList.add('on');},1450);}
     /* lần đầu: ảnh vào lúc 3.4s như Guidable */
-    hs[0].classList.remove('on');setTimeout(function(){hs[0].classList.add('on');},matchMedia('(prefers-reduced-motion: reduce)').matches?0:1800);
+    hs[0].classList.remove('on');setTimeout(function(){hs[0].classList.add('on');},matchMedia('(prefers-reduced-motion: reduce)').matches?0:2700);
     hd.forEach(function(d,i){d.addEventListener('click',function(){hgo(i);clearInterval(ht);ht=setInterval(function(){hgo(hc+1);},4200);});});
-    if(!matchMedia('(prefers-reduced-motion: reduce)').matches) setTimeout(function(){ht=setInterval(function(){hgo(hc+1);},4200);},1800);}
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches) setTimeout(function(){ht=setInterval(function(){hgo(hc+1);},4200);},2700);}
   /* v8: parallax ảnh khi cuộn */
   var pars=[].slice.call(document.querySelectorAll('.cul .ph-col img, .pic .main img, .slant .s img, .msg-photo'));
   pars.forEach(function(e){e.classList.add('par');});
@@ -1441,7 +1444,7 @@ ${pageHead('Service','事業内容')}
     <div><h2><span class="nm-en">Specified Skilled Worker</span><small>特定技能 採用支援</small></h2>
       <p class="ds">製造・建設・介護・外食など、人手不足の現場に即戦力人材を。人材募集・スクリーニング、面接調整・通訳、在留資格・ビザ手続きの代行から、登録支援機関として住居・行政手続き・定期面談・母国語相談まで、入社後の定着を一貫して支えます。</p>
       <div class="acts"><div>外国人採用をすぐ始めたい${pill('事業者様はこちら', r+'contact/index.html')}</div><div>働きたい外国人の方${pill('BIGLIGHT JOB へ','https://job.biglight.jp/')}</div></div></div>
-    <img class="photo" src="${r}img/svc-ssw.jpg" alt="特定技能人材が働く建設現場">
+    <img class="photo" src="${r}img/svc-ssw2.jpg" alt="特定技能人材が働く建設現場">
   </div>
 </div></section>
 
@@ -1668,7 +1671,7 @@ ${pageHead('Service','事業内容',serviceTabs(r,'overview'))}
     <div><h2><span class="nm-en">Specified Skilled Worker</span><small>特定技能 採用支援</small></h2>
       <p class="ds">人手不足の16分野に、即戦力の外国人材を。募集・面接から在留資格の手続き、登録支援機関としての義務的支援まで一貫して対応します。</p>
       <div class="acts"><div>詳しく知りたい${pill('特定技能 採用支援', r+'service/tokutei-ginou/index.html')}</div></div></div>
-    <img class="photo" src="${r}img/svc-ssw.jpg" alt="特定技能人材が働く建設現場">
+    <img class="photo" src="${r}img/svc-ssw2.jpg" alt="特定技能人材が働く建設現場">
   </div>
 </div></section>
 <section class="svc" id="s2"><div class="wrap">
@@ -1701,7 +1704,7 @@ ${contactBox(r)}
 
 function tokutei(){ const r='../../'; return page({root:r,title:'特定技能 採用支援｜BIGLIGHT株式会社',desc:'特定技能外国人の採用から登録支援機関としての支援まで。',body:`
 ${pageHead('Specified Skilled Worker','特定技能 採用支援',serviceTabs(r,'tg'))}
-<section><div class="wrap">${slant(r+'img/svc-ssw.jpg','特定技能の現場')}</div></section>
+<section><div class="wrap">${slant(r+'img/svc-ssw2.jpg','特定技能の現場')}</div></section>
 <section class="blk" style="padding-top:140px"><div class="wrap side" style="margin-top:0">
   <h2 class="en">About</h2>
   <div><p class="lead28" style="margin-top:0">人手不足の現場に、<br>即戦力の外国人材を。</p>
