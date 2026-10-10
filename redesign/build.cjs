@@ -3,7 +3,7 @@ const fs = require('fs'); const path = require('path');
 const OUT = path.join(__dirname, 'dist');
 const SITE = 'https://biglight.jp'; // URL chính thức (canonical). Bản xem trước new.biglight.jp bị chặn index ở tầng Caddy.
 fs.rmSync(OUT, { recursive: true, force: true });
-for (const d of ['css','js','img','about','about/message','about/company','about/sdgs','service','service/tokutei-ginou','service/engineer','img/field','product','news','recruit','contact']) fs.mkdirSync(path.join(OUT,d),{recursive:true});
+for (const d of ['antisocial','css','js','img','about','about/message','about/company','about/sdgs','service','service/tokutei-ginou','service/engineer','img/field','product','news','recruit','contact']) fs.mkdirSync(path.join(OUT,d),{recursive:true});
 
 // ---------- assets ----------
 const copies = {
@@ -341,7 +341,8 @@ html.js .hero .scrl{opacity:0;animation:pagein 1.2s 2.7s ease forwards}
 .flow p{font-size:14px;color:var(--ink2);line-height:1.9;margin-top:8px}
 .lead28{font-size:28px;font-weight:700;letter-spacing:.1em;line-height:1.9;margin-top:60px}
 .lead16{font-size:16px;margin-top:24px}
-.pv{max-width:860px;padding-top:56px;font-size:15px;line-height:2;color:var(--ink2)}.pv h2{font-size:18px;font-weight:700;color:var(--ink);margin:48px 0 12px;letter-spacing:.04em}.pv ul{padding-left:1.4em;margin:8px 0}.pv li{margin:4px 0}.pv .pv-date{margin-top:48px;font-size:13px;color:var(--grey)}
+.pv{max-width:860px;padding-top:56px;font-size:15px;line-height:2;color:var(--ink2)}.pv h2{font-size:18px;font-weight:700;color:var(--ink);margin:48px 0 12px;letter-spacing:.04em}.pv ul{padding-left:1.4em;margin:8px 0}.pv li{margin:4px 0}.pv .pv-ext{overflow-x:auto;margin:16px 0 8px;-webkit-overflow-scrolling:touch}.pv .pv-ext table{width:100%;min-width:640px;border-collapse:collapse;font-size:13px;line-height:1.7}.pv .pv-ext th,.pv .pv-ext td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}.pv .pv-ext th{background:#f5f7fa;font-weight:700;color:var(--ink);white-space:nowrap}.pv .pv-ext td:first-child{white-space:nowrap;font-weight:700;color:var(--accent)}
+.pv .pv-date{margin-top:48px;font-size:13px;color:var(--grey)}
 .lead-end{border-bottom:1px solid var(--line);padding-bottom:60px}
 
 .news-side{display:grid;grid-template-columns:245px 1fr;gap:0;margin-top:0}
@@ -1173,8 +1174,7 @@ function page({root, title, desc, body, active, home}) {
       <div class="fmap"><div class="fmap-ph"><p>地図を表示すると、Google社のCookieが使用される場合があります。</p><button type="button" class="fmap-load">地図を表示</button></div><iframe data-src="https://www.google.com/maps?q=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA&hl=ja&z=16&output=embed" title="BIGLIGHT株式会社の地図（愛知県名古屋市北区如意一丁目112 A）" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="https://www.google.com/maps/search/?api=1&query=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA">Google マップで開く →</a></div>
     </div>
     <div class="bot">
-      <div class="links"><a href="${r}privacy/index.html">プライバシーポリシー</a><a href="${r}contact/index.html#request">資料請求</a><button type="button" class="ck-link" data-cookie-settings>Cookie設定</button></div>
-      <div class="lic">有料職業紹介 23-ユ-302414 ／ 登録支援機関 21登-006596</div>
+      <div class="links"><a href="${r}privacy/index.html">プライバシーポリシー</a><a href="${r}antisocial/index.html">反社会的勢力に対する基本方針</a><button type="button" class="ck-link" data-cookie-settings>Cookie設定</button></div>
       <p class="copy">Copyright © BIGLIGHT Co., Ltd. All Rights Reserved.</p>
     </div>
   </div></footer>
@@ -2025,9 +2025,45 @@ ${CASES.map((c,i)=>`<section class="blk case" id="${c.slug}"><div class="wrap">
 </div></section>`).join('')}
 ${contactBox(r)}
 `});}
+/* 2026-10-11: mục 8 của プライバシーポリシー — Cookie・外部送信（khớp banner Cookie同意 + bảng dịch vụ đang dùng thật） */
+const COOKIE_SEC = `<h2>8. Cookie・外部送信について</h2>
+      <p>当社のウェブサイトでは、サイトの表示・機能の提供、不正な送信の防止、アクセス解析および外部サービスの表示のために、Cookieおよびこれに類する技術（ブラウザの保存領域など）を使用し、お客様の端末から以下の外部サービス等へ情報が送信される場合があります。</p>
+      <p>アクセス解析および広告・マーケティングに関するものは、サイト下部に表示するバナーでお客様が同意された場合にのみ使用します。選択内容は、各ページ下部の「Cookie設定」からいつでも変更できます。ブラウザの設定によりCookieを無効にすることもできますが、一部の機能がご利用いただけない場合があります。</p>
+      <div class="pv-ext"><table>
+        <thead><tr><th>区分</th><th>送信先・サービス</th><th>送信される主な情報</th><th>利用目的</th></tr></thead>
+        <tbody>
+          <tr><td>必須</td><td>Google Fonts（Google LLC）</td><td>IPアドレス、ブラウザの種類、閲覧ページのURL</td><td>文字（フォント）の表示</td></tr>
+          <tr><td>必須</td><td>Cloudflare Turnstile（Cloudflare, Inc.）</td><td>IPアドレス、ブラウザ・端末に関する情報、操作の情報</td><td>お問い合わせ・資料請求フォームの不正送信（ボット）の防止</td></tr>
+          <tr><td>必須</td><td>当社サーバー（admin.biglight.jp）</td><td>フォームにご入力いただいた内容、IPアドレス、ブラウザの種類</td><td>お問い合わせ・資料請求の受付</td></tr>
+          <tr><td>アクセス解析</td><td>当社サーバー（api-crm.biglight.jp）</td><td>閲覧した記事のURL、押したボタンの種類、フォーム送信の有無（氏名・メールアドレス等は含みません）</td><td>記事からお問い合わせまでの流れの集計・サイトの改善</td></tr>
+          <tr><td>広告・マーケティング</td><td>Google マップ（Google LLC）</td><td>IPアドレス、ブラウザの種類、閲覧ページのURL、Google社のCookie</td><td>所在地の地図の表示</td></tr>
+        </tbody>
+      </table></div>
+      <p>同意の内容はお客様のブラウザ（保存期間1年）に、閲覧した記事の情報はブラウザのタブを閉じるまでの間に限り保存します。各外部サービスにおける情報の取扱いは、各社のプライバシーポリシーをご確認ください。</p>`;
+function antisocial(){ const r='../'; return page({root:r,title:'反社会的勢力に対する基本方針｜BIGLIGHT株式会社',desc:'BIGLIGHT株式会社は、反社会的勢力との一切の関係を遮断し、不当要求には組織として毅然と対応します。当社の反社会的勢力に対する基本方針です。',body:`
+${pageHead('Policy','反社会的勢力に対する基本方針')}
+<section><div class="wrap"><div class="pv">
+  <p>BIGLIGHT株式会社（以下「当社」）は、社会の秩序や安全に脅威を与える反社会的勢力との関係を遮断するため、以下のとおり基本方針を定め、これを遵守します。</p>
+  <h2>1. 組織としての対応</h2>
+  <p>反社会的勢力に対しては、経営トップ以下、組織全体として対応し、対応する役員および従業員の安全を確保します。</p>
+  <h2>2. 外部専門機関との連携</h2>
+  <p>平素から、警察、暴力追放運動推進センター、弁護士等の外部専門機関と緊密な連携関係を構築します。</p>
+  <h2>3. 取引を含めた一切の関係遮断</h2>
+  <p>反社会的勢力とは、取引関係を含めて、一切の関係を持ちません。また、反社会的勢力による不当要求は拒絶します。</p>
+  <h2>4. 有事における民事と刑事の法的対応</h2>
+  <p>反社会的勢力による不当要求に対しては、民事と刑事の両面から法的対応を行います。</p>
+  <h2>5. 裏取引や資金提供の禁止</h2>
+  <p>反社会的勢力による不当要求が、事業活動上の不祥事や従業員の不祥事を理由とする場合であっても、事案を隠蔽するための裏取引を絶対に行いません。また、反社会的勢力への資金提供は、絶対に行いません。</p>
+  <p class="pv-date">制定日：2026年10月11日<br>BIGLIGHT株式会社　代表取締役　グエン・タン・トゥン</p>
+</div></div></section>
+`});}
+
 function privacy(){ const r='../'; const src=fs.readFileSync(path.join(__dirname,'../privacy/index.html'),'utf8');
   const a=src.indexOf('<div class="pbox reveal">'), b=src.indexOf('</div>\n</div></section>',a); if(a<0||b<0) throw new Error('privacy: không tách được nội dung /privacy/');
-  const body=src.slice(a+'<div class="pbox reveal">'.length,b).replace(/<h4>/g,'<h2>').replace(/<\/h4>/g,'</h2>').replace(/ class="plist"/g,'').replace(/<p class="prev">/,'<p class="pv-date">');
+  const body=src.slice(a+'<div class="pbox reveal">'.length,b).replace(/<h4>/g,'<h2>').replace(/<\/h4>/g,'</h2>').replace(/ class="plist"/g,'').replace(/<p class="prev">/,'<p class="pv-date">')
+    .replace(/<h2>8\. クッキー（Cookie）等の取扱い<\/h2>\s*<p>[\s\S]*?<\/p>/, COOKIE_SEC)
+    .replace(/改定日：\d{4}年\d{1,2}月\d{1,2}日/, '改定日：2026年10月11日');
+  if(!body.includes('pv-ext')) throw new Error('privacy: không thay được mục 8 (Cookie)');
   return page({root:r,title:'プライバシーポリシー｜BIGLIGHT株式会社',desc:'BIGLIGHT株式会社の個人情報保護方針（プライバシーポリシー）です。',body:`
 ${pageHead('Privacy Policy','プライバシーポリシー')}
 <section><div class="wrap"><div class="pv">${body}</div></div></section>
@@ -2078,6 +2114,7 @@ const pages = {
   'about/strength/index.html': strength(),
   'case/index.html': cases(),
   'privacy/index.html': privacy(),
+  'antisocial/index.html': antisocial(),
 };
 FIELDS.forEach((f,i)=>{pages['service/field/'+f.slug+'/index.html']=fieldPage(f,i);});
 NEWS.forEach(n=>{pages['news/'+n.slug+'/index.html']=article(n.slug);});
