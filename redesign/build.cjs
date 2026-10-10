@@ -222,6 +222,7 @@ html.js .hero .scrl{opacity:0;animation:pagein .6s 4.1s ease forwards}
 .prow .badges .soon em{white-space:nowrap;font-size:10px}
 .badges{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
 .badges img{height:40px;width:auto}
+.badges.pb{flex-direction:row;flex-wrap:wrap;align-items:flex-start;gap:6px 14px;margin-top:26px}.badges.pb .soon{display:flex;flex-direction:column;align-items:flex-start}
 .badges img.gp{height:54px;margin:-7px 0 -7px -8px}
 .badges .soon{display:inline-block}
 .badges .soon img{opacity:.35;filter:grayscale(1)}
@@ -534,9 +535,9 @@ html.js .band.in svg path{animation:draw 3s cubic-bezier(.3,.5,.2,1) forwards}
 .tabs a.on{border-bottom-color:transparent}
 /* value slider */
 /* VALUE kiểu Guidable: ghim + dải xám xiên + chấm màu tăng dần */
-.vscroll{position:relative;height:500vh;margin-top:120px}
+.vscroll{position:relative;height:320vh;margin-top:120px}
 .vsticky{position:sticky;top:69px;height:calc(100vh - 69px);overflow:hidden;display:flex;align-items:center}
-.vband{position:absolute;left:32%;top:0;bottom:0;width:15%;background:#f4f5f7;transform:skewX(-20deg)}
+.vband{display:none}
 .vin{position:relative;z-index:1;width:100%}
 .vstage{position:relative;height:330px;margin-top:40px}
 .vslide{position:absolute;inset:0;opacity:0;transform:translateY(40px);transition:opacity .6s ease,transform .8s cubic-bezier(.2,.6,.2,1);pointer-events:none}
@@ -568,7 +569,7 @@ html.js .illu.in img{animation:bob 6s ease-in-out 1.3s infinite}
 .illu .fl.b{width:14px;height:14px;background:var(--blue);right:8%;top:-10px}
 .illu .fl.c{width:10px;height:10px;background:var(--accent);left:34%;bottom:-16px}
 .illu .fl.d{width:46px;height:46px;border:2px solid var(--gold);right:-20px;bottom:20%;background:transparent}
-@media (max-width:860px){.vscroll{height:420vh;margin-top:60px}.vsticky{top:69px}.vband{left:40%;width:28%}.vstage{height:340px}.vslide h2{font-size:34px}.vslide p{font-size:14px}.vmarks{right:10%;top:20%}.vmarks i{width:16px;height:16px}.illu{max-width:100%}}
+@media (max-width:860px){.vscroll{height:300vh;margin-top:60px}.vsticky{top:69px}.vband{left:40%;width:28%}.vstage{height:340px}.vslide h2{font-size:34px}.vslide p{font-size:14px}.vmarks{right:10%;top:20%}.vmarks i{width:16px;height:16px}.illu{max-width:100%}}
 @media (prefers-reduced-motion:reduce){html.js .illu img{opacity:1;transform:none;animation:none}.illu .fl{transform:scale(1)}.vslide{transition:none}}
 @media (prefers-reduced-motion:reduce){html.js .fx{opacity:1;transform:none;transition:none}html.js .hero .ch,html.js .chars .ch,html.js .hero .line,html.js .hero .sub,html.js .hero .btns{opacity:1;transform:none;animation:none}html.js .band svg path{stroke-dashoffset:0;animation:none}html.js body{animation:none}.vslide.on{animation:none}}
 @media (max-width:860px){.vslide{grid-template-columns:1fr;gap:24px}.vslide h2{font-size:30px}.vbg{display:none}}
@@ -759,6 +760,7 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 .form .ck{margin:0;font-weight:500;font-size:14px;display:flex;align-items:center;gap:10px;cursor:pointer;letter-spacing:.02em}
 .form .ck input{width:18px;height:18px;padding:0;border:1px solid var(--ink);accent-color:var(--accent);flex:none}
 .fld.bad input{border-bottom-color:#d33}
+.cf-ts:empty{display:none}.cf-ts{margin-top:8px}
 .fld.bad::before{content:attr(data-err);position:absolute;right:0;bottom:-22px;font-size:12px;color:#c62828}
 .dldone{grid-column:2;border:1px solid var(--line);border-radius:12px;padding:40px}
 .dldone b{font-size:22px}.dldone p{margin:12px 0 28px;color:var(--ink2)}
@@ -1371,8 +1373,8 @@ ${pageHead('Product','アプリ')}
   <div class="g">
     <div><div class="ic"><img src="${r}img/icon-portal.png" alt=""><h2>BIGLIGHT ポータル<small>Portal</small></h2></div>
       <p class="ds">在留資格・提出書類・連絡・定期面談・年末調整などの支援業務を、企業と本人がひとつの画面で。書類の期限管理、担当者とのメッセージ、在留カードのスキャン読み取りに対応。</p>
-      <div class="acts"><div>企業様・外国人材向け${pill('ポータルを開く','https://portal.biglight.jp/')}</div></div></div>
-    <div class="store" style="justify-content:flex-start;gap:40px;flex-wrap:wrap"><div class="devwrap">${dev(r,'desk-portal.jpg','shot-portal.jpg')}</div><div class="badges"><a href="https://apps.apple.com/jp/app/biglight/id6804992207"><img src="${r}img/badge-appstore.svg" alt="App Store"></a><a href="https://play.google.com/store/apps/details?id=jp.biglight.app"><img class="gp" src="${r}img/badge-googleplay.png" alt="Google Play"></a></div></div>
+      <div class="acts"><div>企業様・外国人材向け${pill('ポータルを開く','https://portal.biglight.jp/')}</div></div><div class="badges pb"><a href="https://apps.apple.com/jp/app/biglight/id6804992207"><img src="${r}img/badge-appstore.svg" alt="App Store"></a><a href="https://play.google.com/store/apps/details?id=jp.biglight.app"><img class="gp" src="${r}img/badge-googleplay.png" alt="Google Play"></a></div></div>
+    <div class="store" style="justify-content:flex-start;gap:40px;flex-wrap:wrap"><div class="devwrap">${dev(r,'desk-portal.jpg','shot-portal.jpg')}</div></div>
   </div>
 </div></section>
 
@@ -1381,8 +1383,8 @@ ${pageHead('Product','アプリ')}
   <div class="g">
     <div><div class="ic"><img src="${r}img/icon-academy.png" alt=""><h2>BIGLIGHT アカデミー<small>Academy</small></h2></div>
       <p class="ds">特定技能試験の対策アプリ。分野別の問題・単語・文法・模擬試験を、ベトナム語・インドネシア語・ミャンマー語・ネパール語で学べます。ふりがな付きで、スキマ時間に。</p>
-      <div class="acts"><div>外国人材向け${pill('アカデミーを開く','https://academy.biglight.jp/')}</div></div></div>
-    <div class="store" style="justify-content:flex-start;gap:40px;flex-wrap:wrap"><div class="devwrap">${dev(r,'desk-academy.jpg','shot-academy.jpg')}</div><div class="badges"><a href="https://apps.apple.com/jp/app/id6816712170"><img src="${r}img/badge-appstore.svg" alt="App Store"></a><a href="https://play.google.com/store/apps/details?id=jp.biglight.academy"><img class="gp" src="${r}img/badge-googleplay.png" alt="Google Play"></a></div></div>
+      <div class="acts"><div>外国人材向け${pill('アカデミーを開く','https://academy.biglight.jp/')}</div></div><div class="badges pb"><a href="https://apps.apple.com/jp/app/id6816712170"><img src="${r}img/badge-appstore.svg" alt="App Store"></a><a href="https://play.google.com/store/apps/details?id=jp.biglight.academy"><img class="gp" src="${r}img/badge-googleplay.png" alt="Google Play"></a></div></div>
+    <div class="store" style="justify-content:flex-start;gap:40px;flex-wrap:wrap"><div class="devwrap">${dev(r,'desk-academy.jpg','shot-academy.jpg')}</div></div>
   </div>
 </div></section>
 
@@ -1391,8 +1393,8 @@ ${pageHead('Product','アプリ')}
   <div class="g">
     <div><div class="ic"><img src="${r}img/icon-job.png" alt=""><h2>BIGLIGHT JOB<small>Job</small></h2></div>
       <p class="ds">特定技能専門の求人サイト。製造・建設・外食など全国の求人検索から、多言語の履歴書作成、面接練習、ビザ申請、入社後フォローまで。企業様は求人掲載・応募管理に。</p>
-      <div class="acts"><div>求職者・採用企業向け${pill('JOB を開く','https://job.biglight.jp/')}</div></div></div>
-    <div class="store" style="justify-content:flex-start;gap:40px;flex-wrap:wrap"><div class="devwrap">${dev(r,'desk-job.jpg','shot-job.jpg')}</div><div class="badges"><span class="soon"><img src="${r}img/badge-appstore.svg" alt="App Store 近日公開"><em>App Store：審査中・近日公開</em></span><a href="https://play.google.com/store/apps/details?id=jp.biglight.job"><img class="gp" src="${r}img/badge-googleplay.png" alt="Google Play"></a></div></div>
+      <div class="acts"><div>求職者・採用企業向け${pill('JOB を開く','https://job.biglight.jp/')}</div></div><div class="badges pb"><span class="soon"><img src="${r}img/badge-appstore.svg" alt="App Store 近日公開"><em>App Store：審査中・近日公開</em></span><a href="https://play.google.com/store/apps/details?id=jp.biglight.job"><img class="gp" src="${r}img/badge-googleplay.png" alt="Google Play"></a></div></div>
+    <div class="store" style="justify-content:flex-start;gap:40px;flex-wrap:wrap"><div class="devwrap">${dev(r,'desk-job.jpg','shot-job.jpg')}</div></div>
   </div>
 </div></section>
 ${contactBox(r)}
