@@ -7,6 +7,8 @@ const OUT = path.join(__dirname, 'news.json');
 
 // URL cũ trong bài → URL mới (trang ngành / dịch vụ đổi chỗ)
 const MAP = [
+  // link chết ngoài site (2026-10-10): trang 育成就労 của 出入国在留管理庁 đổi địa chỉ
+  [/https:\/\/www\.moj\.go\.jp\/isa\/policies\/policies\/ikusei\.html/g, 'https://www.moj.go.jp/isa/applications/index_00005.html'],
   [/\/service\/tokutei-ginou\/kogyo-seihin\/?/g, '/service/field/kogyo/'],
   [/\/service\/tokutei-ginou\/kensetsu\/?/g, '/service/field/kensetsu/'],
   [/\/service\/tokutei-ginou\/inshokuryohin\/?/g, '/service/field/inshoku/'],
