@@ -15,7 +15,7 @@ const copies = {
   'img/desk-academy.jpg':'img/desk-academy.jpg','img/desk-job.jpg':'img/desk-job.jpg','img/shot-portal-916.jpg':'img/shot-portal.jpg','img/shot-academy.jpg':'img/shot-academy.jpg','img/shot-job.jpg':'img/shot-job.jpg',
   'badges/apple-ja.svg':'img/badge-appstore.svg','badges/google-ja.png':'img/badge-googleplay.png',
 };
-Object.assign(copies,{'img/svc-ssw.jpg':'img/svc-ssw.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
+Object.assign(copies,{'img/logo-s.webp':'img/logo-s.webp','img/svc-ssw.jpg':'img/svc-ssw.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
 fs.mkdirSync(path.join(OUT,'img/sdg'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/sdg')).filter(f=>f.endsWith('.png')))fs.copyFileSync(path.join(__dirname,'src/img/sdg',f),path.join(OUT,'img/sdg',f));
 fs.mkdirSync(path.join(OUT,'img/people'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/people')).filter(f=>f.endsWith('.webp')))fs.copyFileSync(path.join(__dirname,'src/img/people',f),path.join(OUT,'img/people',f));
 { let out='';const N=34,S=80;const A=t=>330+110*Math.sin(t*Math.PI*1.9+0.2)-210*t, B=t=>330+110*Math.sin(t*Math.PI*1.9+2.9)-210*t+70*Math.sin(t*Math.PI);
@@ -109,7 +109,7 @@ body.menu-open{overflow:hidden}
 .hero{position:relative;height:766px;padding:0 80px;overflow:hidden}
 .hero .tx{position:absolute;left:80px;top:170px;z-index:2}
 .hero h1{font-size:68px;line-height:92px;letter-spacing:6px;font-weight:700;color:var(--ink);white-space:nowrap}
-.hero .sub{font-family:var(--en);font-weight:500;letter-spacing:.8px;color:#a5a5a5;font-size:20px;margin-top:40px;text-transform:uppercase}
+.hero .sub{font-family:var(--en);font-weight:500;letter-spacing:.8px;color:#6b7280;font-size:20px;margin-top:40px;text-transform:uppercase}
 .hero .dots{margin-top:40px;gap:40px}
 .hero .dots i{width:10px;height:10px;cursor:pointer;opacity:.25;transition:opacity .3s;animation:none!important}
 .hero .dots i.on{opacity:1}
@@ -142,17 +142,17 @@ body.menu-open{overflow:hidden}
 @keyframes op2{0.00%{transform:translate(-15px,32.0px)}6.25%{transform:translate(-15px,22.6px)}12.50%{transform:translate(-15px,0.0px)}18.75%{transform:translate(-15px,-22.0px)}25.00%{transform:translate(-15px,-30.2px)}31.25%{transform:translate(-15px,-20.5px)}37.50%{transform:translate(-15px,-0.0px)}43.75%{transform:translate(-15px,18.3px)}50.00%{transform:translate(-15px,23.7px)}56.25%{transform:translate(-15px,15.1px)}62.50%{transform:translate(-15px,0.0px)}68.75%{transform:translate(-15px,-10.8px)}75.00%{transform:translate(-15px,-11.8px)}81.25%{transform:translate(-15px,-5.6px)}87.50%{transform:translate(-15px,-0.0px)}93.75%{transform:translate(-15px,0.0px)}100.00%{transform:translate(-15px,0.0px)}}
 @keyframes op3{0.00%{transform:translate(15px,0.0px)}6.25%{transform:translate(15px,-22.6px)}12.50%{transform:translate(15px,-31.6px)}18.75%{transform:translate(15px,-22.0px)}25.00%{transform:translate(15px,-0.0px)}31.25%{transform:translate(15px,20.5px)}37.50%{transform:translate(15px,27.6px)}43.75%{transform:translate(15px,18.3px)}50.00%{transform:translate(15px,0.0px)}56.25%{transform:translate(15px,-15.1px)}62.50%{transform:translate(15px,-18.5px)}68.75%{transform:translate(15px,-10.8px)}75.00%{transform:translate(15px,-0.0px)}81.25%{transform:translate(15px,5.6px)}87.50%{transform:translate(15px,3.7px)}93.75%{transform:translate(15px,0.0px)}100.00%{transform:translate(15px,0.0px)}}
 @keyframes op4{0.00%{transform:translate(45px,-32.0px)}6.25%{transform:translate(45px,-22.6px)}12.50%{transform:translate(45px,-0.0px)}18.75%{transform:translate(45px,22.0px)}25.00%{transform:translate(45px,30.2px)}31.25%{transform:translate(45px,20.5px)}37.50%{transform:translate(45px,0.0px)}43.75%{transform:translate(45px,-18.3px)}50.00%{transform:translate(45px,-23.7px)}56.25%{transform:translate(45px,-15.1px)}62.50%{transform:translate(45px,-0.0px)}68.75%{transform:translate(45px,10.8px)}75.00%{transform:translate(45px,11.8px)}81.25%{transform:translate(45px,5.6px)}87.50%{transform:translate(45px,0.0px)}93.75%{transform:translate(45px,0.0px)}100.00%{transform:translate(45px,0.0px)}}
-html.js .opening{animation:opout .45s 2.05s ease forwards}
+html.js .opening{animation:opout .4s 1s ease forwards}
 @keyframes opout{to{opacity:0;visibility:hidden}}
 html:not(.js) .opening{display:none}
 /* mở trang: thứ tự thời gian như Guidable */
-html.js.home .hd{opacity:0;animation:pagein .8s 3.35s ease forwards}
+html.js.home .hd{opacity:0;animation:pagein .8s 2.3s ease forwards}
 html.js .hero .ch{display:inline-block;opacity:.02;transform:translateY(31px);animation:chin .75s cubic-bezier(.2,.6,.2,1) forwards}
 @keyframes chin{to{opacity:1;transform:none}}
-html.js .hero .sub{opacity:0;transform:translateY(15px);animation:leadin .7s 3.6s cubic-bezier(.2,.6,.2,1) forwards}
+html.js .hero .sub{opacity:0;transform:translateY(15px);animation:leadin .7s 2.55s cubic-bezier(.2,.6,.2,1) forwards}
 @keyframes leadin{to{opacity:1;transform:none}}
-html.js .hero .dots{opacity:0;animation:pagein .6s 4.1s ease forwards}
-html.js .hero .scrl{opacity:0;animation:pagein .6s 4.1s ease forwards}
+html.js .hero .dots{opacity:0;animation:pagein .6s 3.05s ease forwards}
+html.js .hero .scrl{opacity:0;animation:pagein .6s 3.05s ease forwards}
 @media (prefers-reduced-motion:reduce){.opening{display:none}html.js.home .hd,html.js .hero .sub,html.js .hero .dots,html.js .hero .scrl{opacity:1;animation:none;transform:none}}
 
 /* thiết bị: MacBook + iPhone */
@@ -718,6 +718,10 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 .fmap-ph p{font-size:11.5px;line-height:1.7;color:var(--grey)}
 .fmap-load{font:inherit;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--accent);background:#fff;border:1px solid var(--accent);border-radius:30px;padding:8px 22px;cursor:pointer}
 .fmap.on .fmap-ph{display:none}
+a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+.form input:focus-visible,.form textarea:focus-visible,.form select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.skip{position:absolute;left:8px;top:-60px;z-index:200;background:var(--accent);color:#fff;font-size:14px;font-weight:700;padding:10px 16px;border-radius:6px}
+.skip:focus{top:8px}
 .ck-link{font:inherit;background:none;border:0;padding:0;color:inherit;cursor:pointer;letter-spacing:inherit}
 .ck-link:hover{color:var(--accent)}
 /* Cookie同意バナー */
@@ -878,7 +882,7 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 .art .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:40px}
 .art .tags span{font-size:12px;color:var(--accent);border:1px solid var(--line);border-radius:64px;padding:4px 12px;font-weight:700}
 .art .share{display:flex;gap:18px;align-items:center;margin-top:24px;font-size:12px;letter-spacing:.06em;color:var(--grey)}
-.art .share a{font-family:var(--en);font-weight:700;color:var(--ink2)}
+.art .share a{font-family:var(--en);font-weight:700;color:var(--ink2);display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:0 4px}
 .art .share a:hover{color:var(--accent)}
 @media (max-width:860px){.art h1.art-h{font-size:21px}.art .body h2{font-size:18px}}
 .phh{margin:0;font-size:inherit;font-weight:inherit;line-height:inherit}
@@ -1010,7 +1014,7 @@ const js = `
   /* tách chữ: hero + tiêu đề mission */
   function split(el,base,step){var i=0;function chars(t,f){t.split('').forEach(function(ch){var sp=document.createElement('span');sp.className='ch';sp.textContent=ch===' '?'\u00a0':ch;sp.style.animationDelay=(base+i*step)+'ms';i++;f.appendChild(sp);});}
   function walk(n){[].slice.call(n.childNodes).forEach(function(c){if(c.nodeType===3){var f=document.createDocumentFragment();c.textContent.split(/( +)/).forEach(function(part){if(!part)return;if(/^ +$/.test(part)){chars(part,f);return;}var w=document.createElement('span');w.className='w';chars(part,w);f.appendChild(w);});n.replaceChild(f,c);}else if(c.nodeType===1&&c.tagName!=='BR'){walk(c);}});}walk(el);}
-  var h=document.querySelector('.hero h1'); if(h) split(h,2200,40);
+  var h=document.querySelector('.hero h1'); if(h) split(h,1150,40);
   document.querySelectorAll('.chars').forEach(function(e){split(e,0,40);});
   /* nút: nhân đôi chữ cho hiệu ứng trượt */
   document.querySelectorAll('.pill').forEach(function(p){var c=p.querySelector('.circ');var txt='';[].slice.call(p.childNodes).forEach(function(n){if(n.nodeType===3){txt+=n.textContent;p.removeChild(n);}});txt=txt.trim();if(!txt)return;var t=document.createElement('span');t.className='tx';t.innerHTML='<span>'+txt+'</span><span aria-hidden="true">'+txt+'</span>';p.insertBefore(t,c);});
@@ -1044,9 +1048,9 @@ const js = `
   var hs=document.querySelectorAll('.hero .sl'),hd=document.querySelectorAll('.hero .dots i');
   if(hs.length){var hc=0,ht;function hgo(n){var old=hs[hc];old.classList.remove('on');old.classList.add('out');hd[hc].classList.remove('on');hc=(n+hs.length)%hs.length;var nw=hs[hc];hd[hc].classList.add('on');setTimeout(function(){old.classList.remove('out');nw.classList.add('on');},1450);}
     /* lần đầu: ảnh vào lúc 3.4s như Guidable */
-    hs[0].classList.remove('on');setTimeout(function(){hs[0].classList.add('on');},matchMedia('(prefers-reduced-motion: reduce)').matches?0:3400);
+    hs[0].classList.remove('on');setTimeout(function(){hs[0].classList.add('on');},matchMedia('(prefers-reduced-motion: reduce)').matches?0:1800);
     hd.forEach(function(d,i){d.addEventListener('click',function(){hgo(i);clearInterval(ht);ht=setInterval(function(){hgo(hc+1);},4200);});});
-    if(!matchMedia('(prefers-reduced-motion: reduce)').matches) setTimeout(function(){ht=setInterval(function(){hgo(hc+1);},4200);},3400);}
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches) setTimeout(function(){ht=setInterval(function(){hgo(hc+1);},4200);},1800);}
   /* v8: parallax ảnh khi cuộn */
   var pars=[].slice.call(document.querySelectorAll('.cul .ph-col img, .pic .main img, .slant .s img, .msg-photo'));
   pars.forEach(function(e){e.classList.add('par');});
@@ -1063,7 +1067,7 @@ const js = `
     nf.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;e.preventDefault();fl(a.getAttribute('data-f'));history.replaceState(null,'',a.getAttribute('href')==='#'?location.pathname:a.getAttribute('href'));});
     var hh={'#oshirase':'お知らせ','#magazine':'HR Magazine'}[location.hash];if(hh)fl(hh);}
   [].forEach.call(document.querySelectorAll('.ft .fsite .tg'),function(t){t.addEventListener('click',function(){var o=t.parentNode.classList.toggle('open');t.setAttribute('aria-expanded',o);t.setAttribute('aria-label',o?'閉じる':'開く');});});
-  var b=document.querySelector('.burger'); if(b){var setM=function(o){document.body.classList.toggle('menu-open',o);b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');};b.addEventListener('click',function(){setM(!document.body.classList.contains('menu-open'));});[].forEach.call(document.querySelectorAll('.mnav a'),function(a){a.addEventListener('click',function(){setM(false);});});document.addEventListener('keydown',function(e){if(e.key==='Escape')setM(false);});}
+  var b=document.querySelector('.burger'); if(b){var setM=function(o){document.body.classList.toggle('menu-open',o);b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'MENU（メニューを閉じる）':'MENU（メニューを開く）');};b.addEventListener('click',function(){setM(!document.body.classList.contains('menu-open'));});[].forEach.call(document.querySelectorAll('.mnav a'),function(a){a.addEventListener('click',function(){setM(false);});});document.addEventListener('keydown',function(e){if(e.key==='Escape')setM(false);});}
   /* sóng kẻ mảnh (band) */
   /* dải ruy-băng xoắn: hai đường biên A,B cắt nhau, N đường nội suy ở giữa */
   document.querySelectorAll('svg.wave').forEach(function(svg){
@@ -1108,8 +1112,8 @@ function page({root, title, desc, body, active, home}) {
   const r = root;
   const nav = `
   <header class="hd">
-    <div class="brand"><a class="logo" href="${r}index.html"><img src="${r}img/logo.png" alt=""><img class="wm" src="${r}img/wordmark.png" alt="BIGLIGHT株式会社"></a>${sdgMark(r)}</div>
-    <nav>
+    <div class="brand"><a class="logo" href="${r}index.html"><img src="${r}img/logo-s.webp" alt="" width="44" height="44"><img class="wm" src="${r}img/wordmark.png" alt="BIGLIGHT株式会社"></a>${sdgMark(r)}</div>
+    <nav aria-label="メインメニュー">
       <div class="dd"><a href="${r}about/index.html">ABOUT <span class="chev"></span></a>
         <div class="menu"><div>
           <a href="${r}about/index.html#mission">Mission</a>
@@ -1126,7 +1130,7 @@ function page({root, title, desc, body, active, home}) {
       <a class="dl-btn" href="${r}download/index.html">DOWNLOAD</a>
       <a class="cta" href="${r}contact/index.html">CONTACT</a>
     </nav>
-    <button class="burger" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="mnav"><span class="sq"><i></i><i></i><i></i><i></i></span><span class="mt">MENU</span></button>
+    <button class="burger" type="button" aria-label="MENU（メニューを開く）" aria-expanded="false" aria-controls="mnav"><span class="sq"><i></i><i></i><i></i><i></i></span><span class="mt">MENU</span></button>
   </header>
   <div class="mnav" id="mnav">
     <details><summary><b>ABOUT</b><small>私たちについて</small><i></i></summary><div class="sub"><a href="${r}about/index.html">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div></details>
@@ -1140,13 +1144,13 @@ function page({root, title, desc, body, active, home}) {
   const footer = `
   <footer class="ft"><div class="wrap">
     <div class="top">
-      <div class="fb"><a class="logo" href="${r}index.html"><img src="${r}img/logo.png" alt=""><img class="wm" src="${r}img/wordmark.png" alt="BIGLIGHT"></a>
+      <div class="fb"><a class="logo" href="${r}index.html"><img src="${r}img/logo-s.webp" alt="" width="44" height="44"><img class="wm" src="${r}img/wordmark.png" alt="BIGLIGHT"></a>
         <p class="addr">〒462-0007 愛知県名古屋市北区如意一丁目112 A<span class="tel">　TEL 052-908-7944　FAX 052-908-7267</span></p></div>
-      <nav class="fsite"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}download/index.html">Download</a></div></nav>
+      <nav class="fsite" aria-label="サイトマップ"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}download/index.html">Download</a></div></nav>
       <div class="fmap"><div class="fmap-ph"><p>地図を表示すると、Google社のCookieが使用される場合があります。</p><button type="button" class="fmap-load">地図を表示</button></div><iframe data-src="https://www.google.com/maps?q=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA&hl=ja&z=16&output=embed" title="BIGLIGHT株式会社の地図（愛知県名古屋市北区如意一丁目112 A）" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="https://www.google.com/maps/search/?api=1&query=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA">Google マップで開く →</a></div>
     </div>
     <div class="bot">
-      <div class="links"><a href="${r}privacy/index.html">プライバシーポリシー</a><a href="${r}service/tokutei-ginou/index.html#faq">よくある質問</a><a href="${r}download/index.html">資料請求</a><button type="button" class="ck-link" data-cookie-settings>Cookie設定</button></div>
+      <div class="links"><a href="${r}privacy/index.html">プライバシーポリシー</a><a href="${r}service/tokutei-ginou/index.html#faq">よくある質問</a><a href="${r}download/index.html">資料請求</a><button type="button" class="ck-link" data-cookie-settings>Cookie設定</button><a href="https://www.facebook.com/biglight0812/">Facebook</a><a href="https://www.instagram.com/biglight0812/">Instagram</a></div>
       <div class="lic">有料職業紹介 23-ユ-302414 ／ 登録支援機関 21登-006596</div>
       <p class="copy">Copyright © BIGLIGHT Co., Ltd. All Rights Reserved.</p>
     </div>
@@ -1163,7 +1167,8 @@ function page({root, title, desc, body, active, home}) {
 <script>document.documentElement.classList.add('js'${home?",'home'":''});(function(){var s=null;try{s=JSON.parse(localStorage.getItem('bl_consent')||'null')}catch(e){}if(s&&(s.v!==1||!(Date.now()-s.t<31536e6)))s=null;window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){dataLayer.push(arguments)};var g=function(c){return c?'granted':'denied'};gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',functionality_storage:'granted',security_storage:'granted',wait_for_update:500});if(s)gtag('consent','update',{analytics_storage:g(s.a),ad_storage:g(s.m),ad_user_data:g(s.m),ad_personalization:g(s.m)});window.BLC={s:s,has:function(k){return!!(this.s&&this.s[k])}}})();</script>
 </head><body>
 ${nav}
-<main>
+<a class="skip" href="#main">本文へスキップ</a>
+<main id="main">
 ${body}
 </main>
 ${footer}

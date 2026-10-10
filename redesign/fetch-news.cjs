@@ -54,7 +54,8 @@ async function article(slug) {
   const date = ((ld && ld.datePublished) || '').slice(0, 10) || ((h.match(/公開 (\d{4}\.\d{2}\.\d{2})/) || [])[1] || '').replace(/\./g, '-');
   const img = (ld && [].concat(ld.image || [])[0]) || `${BASE}/assets/og-image.jpg`;
   const chars = strip(body).length;
-  return { slug, title, cat, date: date.replace(/-/g, '.'), desc: (ld && ld.description) || strip(body).slice(0, 110), img: img.startsWith('/') ? BASE + img : img, read: `約${Math.max(1, Math.round(chars / 500))}分`, tags, faq, body };
+  const mod = ((ld && ld.dateModified) || '').slice(0, 10);
+  return { slug, title, cat, date: date.replace(/-/g, '.'), mod: mod ? mod.replace(/-/g, '.') : '', desc: (ld && ld.description) || strip(body).slice(0, 110), img: img.startsWith('/') ? BASE + img : img, read: `約${Math.max(1, Math.round(chars / 500))}分`, tags, faq, body };
 }
 
 (async () => {

@@ -10,6 +10,7 @@ const ORG = {
   url: 'https://biglight.jp/',
   logo: 'https://biglight.jp/img/logo.png',
   image: 'https://biglight.jp/img/ogp.jpg',
+  sameAs: ['https://www.facebook.com/biglight0812/', 'https://www.instagram.com/biglight0812/'],
   telephone: '+81-52-908-7944',
   faxNumber: '+81-52-908-7267',
   foundingDate: '2021-08-12',
@@ -53,6 +54,7 @@ const META = {
   'news/': ['お知らせ・HR Magazine｜外国人採用コラム｜BIGLIGHT株式会社', 'BIGLIGHTからのお知らせと、特定技能・外国人採用に役立つHR Magazine。制度改正の最新情報、分野別の採用ノウハウ、定着支援の実務をわかりやすく解説します。'],
   'recruit/': ['採用情報｜外国人材と企業をつなぐ仕事｜BIGLIGHT株式会社（名古屋）', '外国人材と日本企業をつなぐ仕事を、BIGLIGHTで。法人営業・ルート営業・外国人管理支援スタッフを名古屋本社で募集しています。会社文化、先輩の声、募集要項をご紹介します。'],
   'contact/': ['お問い合わせ・無料相談｜BIGLIGHT株式会社', '特定技能・技人国の外国人材採用、登録支援機関への支援委託のご相談はこちら。採用人数や時期が未定でも無料でご相談いただけます。TEL 052-908-7944（平日9:00〜18:00）'],
+  'privacy/': ['プライバシーポリシー（個人情報保護方針）｜BIGLIGHT株式会社', 'BIGLIGHT株式会社の個人情報保護方針です。お問い合わせ・資料請求・採用応募・サービス提供で取得する個人情報の利用目的、第三者提供、安全管理、開示請求の窓口について定めています。'],
   'download/': ['会社資料のご請求｜BIGLIGHT株式会社', 'BIGLIGHTのサービス内容・料金体系・支援の流れ・導入事例をまとめた会社資料を無料でお送りします。特定技能・技人国の外国人材採用をご検討中の企業様へ。'],
 };
 const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
@@ -75,7 +77,7 @@ module.exports = function seo(pages, { OUT, SITE, ARTICLES, WEBP = {} }) {
     html = html.replace(/<title>[^<]*<\/title>/, '<title>' + esc(title) + '</title>').replace(/<meta name="description" content="[^"]*">/, '<meta name="description" content="' + esc(desc) + '">');
     const slug = (dir.match(/^news\/([^/]+)\/$/) || [])[1];
     const art = slug && ARTICLES[slug];
-    const ogImg = art ? `${SITE}/img/${art.img}` : `${SITE}/img/ogp.jpg`;
+    const ogImg = art ? (/^https?:\/\//.test(art.img) ? art.img : `${SITE}/img/${art.img}`) : `${SITE}/img/ogp.jpg`;
     // Link Preview (LINE / Slack / Facebook…): trang chủ dùng kiểu Guidable — tên công ty + câu giới thiệu
     const [ogT, ogD] = dir === '' ? [OG_HOME.title, OG_HOME.desc] : [title, desc];
 
@@ -89,7 +91,7 @@ module.exports = function seo(pages, { OUT, SITE, ARTICLES, WEBP = {} }) {
     const graph = [ORG, WEBSITE];
     const segs = dir.split('/').filter(Boolean);
     const page = { '@type': art ? 'Article' : 'WebPage', '@id': url + '#page', url, name: title, description: desc, inLanguage: 'ja', isPartOf: { '@id': 'https://biglight.jp/#website' }, publisher: { '@id': 'https://biglight.jp/#org' } };
-    if (art) Object.assign(page, { headline: art.title, image: ogImg, datePublished: art.date.replace(/\./g, '-'), author: { '@type': 'Organization', name: 'BIGLIGHT編集部' }, mainEntityOfPage: url });
+    if (art) Object.assign(page, { headline: art.title, image: ogImg, datePublished: art.date.replace(/\./g, '-'), dateModified: (art.mod > art.date ? art.mod : art.date).replace(/\./g, '-'), author: { '@type': 'Organization', name: 'BIGLIGHT編集部' }, mainEntityOfPage: url });
     graph.push(page);
     if (segs.length) {
       const items = [{ '@type': 'ListItem', position: 1, name: 'ホーム', item: SITE + '/' }];
@@ -130,12 +132,12 @@ module.exports = function seo(pages, { OUT, SITE, ARTICLES, WEBP = {} }) {
 
     fs.mkdirSync(path.dirname(path.join(OUT, f)), { recursive: true });
     fs.writeFileSync(path.join(OUT, f), html);
-    urls.push({ loc: url, pri: dir === '' ? '1.0' : (segs.length === 1 ? '0.8' : '0.6'), lastmod: art ? art.date.replace(/\./g, '-') : new Date().toISOString().slice(0, 10) });
+    urls.push({ loc: url, pri: dir === '' ? '1.0' : (segs.length === 1 ? '0.8' : '0.6'), lastmod: art ? (art.mod > art.date ? art.mod : art.date).replace(/\./g, '-') : '' });
   }
 
   // 5) sitemap + robots (bản chính thức; bản xem trước bị chặn bằng X-Robots-Tag ở Caddy)
   fs.writeFileSync(path.join(OUT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-    urls.map((u) => `  <url><loc>${u.loc}</loc><lastmod>${u.lastmod}</lastmod><priority>${u.pri}</priority></url>`).join('\n') + `\n</urlset>\n`);
+    urls.map((u) => `  <url><loc>${u.loc}</loc>${u.lastmod ? `<lastmod>${u.lastmod}</lastmod>` : ''}<priority>${u.pri}</priority></url>`).join('\n') + `\n</urlset>\n`);
   fs.writeFileSync(path.join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
   return urls.length;
 };
