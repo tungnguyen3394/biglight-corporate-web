@@ -43,7 +43,7 @@ jobs:
             if(!/<title>[^<]{8,}<\/title>/.test(h)){bad++;console.log("NO TITLE",p);}
             if(f!=="404.html"&&!/rel="canonical"/.test(h)){bad++;console.log("NO CANONICAL",p);}
             if((h.match(/<h1/g)||[]).length!==1){bad++;console.log("H1 != 1",p);}
-            for(const m of h.matchAll(/(?:href|src)="([^"#]+)/g)){const u=m[1];if(/^(https?:|mailto:|tel:|data:)/.test(u))continue;
+            for(const m of h.matchAll(/(?:href|src)="([^"#]+)/g)){const u=m[1].split("?")[0];if(/^(https?:|mailto:|tel:|data:)/.test(u))continue;
               let t=u.startsWith("/")?path.join(D,u):path.join(path.dirname(p),u);if(u.endsWith("/")||!path.extname(t))t=path.join(t,"index.html");
               if(!fs.existsSync(t)){bad++;console.log("BROKEN",p,u);}}}}})(D);
           console.log("html",n,"problems",bad);if(bad)process.exit(1);'
