@@ -348,6 +348,15 @@ html.js .hero .scrl{opacity:0;animation:pagein .6s 3.05s ease forwards}
 .pager{display:flex;gap:28px;justify-content:center;margin-top:60px;font-family:var(--en);font-weight:700;font-size:16px;letter-spacing:.06em;color:var(--grey)}
 .pager b{color:var(--ink)}.pager .ch{color:var(--accent)}
 
+.ctype{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:64px}
+.ctype button{font:inherit;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:22px 26px;cursor:pointer;color:var(--ink);transition:border-color .2s,background .2s}
+.ctype button b{display:block;font-size:17px;font-weight:700;letter-spacing:.06em}
+.ctype button small{display:block;font-size:13px;color:var(--grey);margin-top:6px}
+.ctype button:hover{border-color:var(--blue)}
+.ctype button.on{border-color:var(--accent);background:#f3f6fc;box-shadow:inset 0 0 0 1px var(--accent)}
+.ctype+*{margin-top:0}
+#p-cf .form,#p-dl .form,#p-cf.form{margin-top:48px}
+@media (max-width:860px){.ctype{grid-template-columns:1fr 1fr;gap:10px;margin-top:36px}.ctype button{padding:14px 14px;line-height:1.5}.ctype button b{font-size:14px;line-height:1.5}.ctype button small{font-size:11px;line-height:1.5;margin-top:4px}}
 .form{display:grid;grid-template-columns:270px 1fr;gap:40px;margin-top:80px}
 .form .info{font-size:14px;line-height:2;color:var(--ink2)}
 .form .info b{display:block;font-family:var(--en);font-size:28px;color:var(--ink);letter-spacing:.04em;text-transform:none}
@@ -1047,6 +1056,11 @@ const js = `
       if(href){el.addEventListener('click',function(e){if(e.target.closest('a'))return;location.href=href;});}
     });
   }
+  /* trang CONTACT: お問い合わせ / 資料請求 */
+  var ct=document.querySelector('.ctype');
+  if(ct){var tabs=ct.querySelectorAll('[role=tab]');var sel=function(id,push){[].forEach.call(tabs,function(t){var on=t.id===id;t.classList.toggle('on',on);t.setAttribute('aria-selected',on);document.getElementById(t.getAttribute('aria-controls')).hidden=!on;});if(push)history.replaceState(null,'',id==='t-dl'?'#request':location.pathname);};
+    [].forEach.call(tabs,function(t){t.addEventListener('click',function(){sel(t.id,true);});});
+    var fromHash=function(){if(location.hash==='#request')sel('t-dl');};fromHash();addEventListener('hashchange',fromHash);}
   /* hero slider */
   var hs=document.querySelectorAll('.hero .sl'),hd=document.querySelectorAll('.hero .dots i');
   if(hs.length){var hc=0,ht;function hgo(n){var old=hs[hc];old.classList.remove('on');old.classList.add('out');hd[hc].classList.remove('on');hc=(n+hs.length)%hs.length;var nw=hs[hc];hd[hc].classList.add('on');setTimeout(function(){old.classList.remove('out');nw.classList.add('on');},1450);}
@@ -1130,7 +1144,6 @@ function page({root, title, desc, body, active, home}) {
       <a href="${r}product/index.html">PRODUCT</a>
       <a href="${r}news/index.html">NEWS</a>
       <a href="${r}recruit/index.html">RECRUIT</a>
-      <a class="dl-btn" href="${r}download/index.html">DOWNLOAD</a>
       <a class="cta" href="${r}contact/index.html">CONTACT</a>
     </nav>
     <button class="burger" type="button" aria-label="MENU（メニューを開く）" aria-expanded="false" aria-controls="mnav"><span class="sq"><i></i><i></i><i></i><i></i></span><span class="mt">MENU</span></button>
@@ -1141,7 +1154,7 @@ function page({root, title, desc, body, active, home}) {
     <a class="mi" href="${r}product/index.html"><b>PRODUCT</b><small>アプリ</small></a>
     <a class="mi" href="${r}news/index.html"><b>NEWS</b><small>お知らせ</small></a>
     <a class="mi" href="${r}recruit/index.html"><b>RECRUIT</b><small>採用情報</small></a>
-    <div class="mbtn"><a class="dl-btn" href="${r}download/index.html">DOWNLOAD</a><a class="cta" href="${r}contact/index.html">CONTACT</a></div>
+    <div class="mbtn"><a class="cta" href="${r}contact/index.html">CONTACT</a></div>
     <p class="mtel">お電話でのご相談　<b>052-908-7944</b><br>平日 9:00–18:00　FAX 052-908-7267</p>
   </div>`;
   const footer = `
@@ -1150,11 +1163,11 @@ function page({root, title, desc, body, active, home}) {
       <div class="fb"><a class="logo" href="${r}index.html"><img src="${r}img/logo-s.webp" alt="" width="44" height="44"><img class="wm" src="${r}img/wordmark.png" alt="BIGLIGHT"></a>
         <p class="addr">〒462-0007 愛知県名古屋市北区如意一丁目112 A<span class="tel">　TEL 052-908-7944　FAX 052-908-7267</span></p>
         <div class="sns"><a href="https://www.facebook.com/biglight0812/" aria-label="BIGLIGHT公式 Facebook"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-1.56 19.88v-7H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v7A10 10 0 0 0 12 2z"/></svg></a><a href="https://www.instagram.com/biglight0812/" aria-label="BIGLIGHT公式 Instagram"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.4" cy="6.6" r="1.25" fill="currentColor"/></svg></a></div></div>
-      <nav class="fsite" aria-label="サイトマップ"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}download/index.html">Download</a></div></nav>
+      <nav class="fsite" aria-label="サイトマップ"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}contact/index.html#request">Request</a></div></nav>
       <div class="fmap"><div class="fmap-ph"><p>地図を表示すると、Google社のCookieが使用される場合があります。</p><button type="button" class="fmap-load">地図を表示</button></div><iframe data-src="https://www.google.com/maps?q=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA&hl=ja&z=16&output=embed" title="BIGLIGHT株式会社の地図（愛知県名古屋市北区如意一丁目112 A）" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="https://www.google.com/maps/search/?api=1&query=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA">Google マップで開く →</a></div>
     </div>
     <div class="bot">
-      <div class="links"><a href="${r}privacy/index.html">プライバシーポリシー</a><a href="${r}service/tokutei-ginou/index.html#faq">よくある質問</a><a href="${r}download/index.html">資料請求</a><button type="button" class="ck-link" data-cookie-settings>Cookie設定</button></div>
+      <div class="links"><a href="${r}privacy/index.html">プライバシーポリシー</a><a href="${r}service/tokutei-ginou/index.html#faq">よくある質問</a><a href="${r}contact/index.html#request">資料請求</a><button type="button" class="ck-link" data-cookie-settings>Cookie設定</button></div>
       <div class="lic">有料職業紹介 23-ユ-302414 ／ 登録支援機関 21登-006596</div>
       <p class="copy">Copyright © BIGLIGHT Co., Ltd. All Rights Reserved.</p>
     </div>
@@ -1545,7 +1558,7 @@ ${pageHead('Recruit','採用情報')}
     <div><dt>各種手当</dt><dd><ul><li>住宅手当：月20,000円</li><li>交通費全額支給（実費）</li><li>会社支給：ノートパソコン、携帯電話</li></ul></dd></div>
     <div><dt>応募条件</dt><dd><ul><li>Google Workspace（Docs, Sheets, Forms など）が使用できる方</li><li>責任感があり、チームワークを大切にできる方</li><li>外国籍の方：日本語N2以上、日本の専門学校または大学卒業（同等レベル可）</li></ul></dd></div>
     <div><dt>福利厚生</dt><dd><ul><li>社会保険・雇用保険・労災保険完備</li><li>日本の祝日および有給休暇制度</li><li>昇進・キャリアアップのチャンス</li></ul></dd></div>
-    <div><dt>応募方法</dt><dd>お電話またはお問い合わせフォームよりご連絡ください。担当者が対応いたします。<br><b style="font-family:var(--en);font-size:20px;letter-spacing:.04em">052-908-7944</b></dd></div>
+    <div><dt>応募方法</dt><dd>お電話またはお問い合わせフォームよりご連絡ください。担当者が対応いたします。<br><b style="font-family:var(--en);font-size:20px;letter-spacing:.04em">052-908-7944</b><br><small style="display:block;margin-top:10px;font-size:13px;color:var(--grey)">ご応募にあたりご提供いただいた個人情報は、<a href="${r}privacy/index.html" style="color:var(--accent);text-decoration:underline">プライバシーポリシー</a>に基づき、採用選考の目的にのみ利用します。</small></dd></div>
   </dl>
 </div></section>
 
@@ -1564,12 +1577,18 @@ ${contactBox(r)}
 `});}
 
 // ---------- CONTACT ----------
-function contact(){ const r='../'; return page({root:r,title:'お問い合わせ｜BIGLIGHT株式会社',desc:'無料相談・資料請求はこちら',body:`
-${pageHead('Contact','お問い合わせ・無料相談')}
-<section><div class="wrap form">
+function contact(){ const r='../'; return page({root:r,title:'お問い合わせ｜BIGLIGHT株式会社',desc:'外国人材の採用に関する無料相談・お問い合わせと、会社資料のご請求はこちら',body:`
+${pageHead('Contact','お問い合わせ・資料請求')}
+<section><div class="wrap">
+  <div class="ctype" role="tablist" aria-label="ご用件を選択">
+    <button type="button" role="tab" id="t-cf" aria-controls="p-cf" aria-selected="true" class="on"><b>お問い合わせ・無料相談</b><small>採用のご相談・ご質問はこちら</small></button>
+    <button type="button" role="tab" id="t-dl" aria-controls="p-dl" aria-selected="false"><b>資料請求</b><small>会社資料をメールでお送りします</small></button>
+  </div>
+</div></section>
+<section id="p-cf" role="tabpanel" aria-labelledby="t-cf"><div class="wrap form">
   <div class="info"><b>052-908-7944</b>平日 9:00–18:00　FAX 052-908-7267<br>採用人数・職種・時期が未定でも構いません。<br>登録支援機関として、制度の説明からお手伝いします。<br><br>〒462-0007<br>愛知県名古屋市北区如意一丁目112 A</div>
   <form id="cf" novalidate><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
-    <label for="cf-type">お問い合わせ種別<small>必須</small></label><select id="cf-type" name="type"><option>無料相談（採用について）</option><option>資料請求</option><option>アプリについて</option><option>採用について（求職者の方）</option><option>その他</option></select>
+    <label for="cf-type">お問い合わせ種別<small>必須</small></label><select id="cf-type" name="type"><option>無料相談（採用について）</option><option>アプリについて</option><option>採用について（求職者の方）</option><option>その他</option></select>
     <label for="cf-co">会社名<small>必須</small></label><div class="fld" data-err="入力してください"><input id="cf-co" name="company" type="text" autocomplete="organization" placeholder="株式会社〇〇" required></div>
     <label for="cf-nm">お名前<small>必須</small></label><div class="fld" data-err="入力してください"><input id="cf-nm" name="name" type="text" autocomplete="name" placeholder="山田 太郎" required></div>
     <label for="cf-em">メールアドレス<small>必須</small></label><div class="fld" data-err="正しいメールアドレスを入力してください"><input id="cf-em" name="email" type="email" autocomplete="email" placeholder="example@company.co.jp" required></div>
@@ -1580,6 +1599,19 @@ ${pageHead('Contact','お問い合わせ・無料相談')}
   </form>
   <div class="dldone" id="cf-done" hidden><b>送信ありがとうございました。</b><p>担当者より2営業日以内にご連絡いたします。お急ぎの場合はお電話（052-908-7944）でご連絡ください。</p></div>
 </div></section>
+<section id="p-dl" role="tabpanel" aria-labelledby="t-dl" hidden><div class="wrap form">
+  <div class="info"><b>会社資料</b>無料<br>サービス内容・料金体系・支援の流れ・導入事例をまとめた資料です。<br>ご請求いただいた内容を確認のうえ、担当者よりメールで資料をお送りし、ご連絡いたします。<br><br>お電話でのご相談<br>052-908-7944（平日 9:00–18:00）</div>
+  <form id="dlf" novalidate><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+    <label for="dl-co">会社名<small>必須</small></label><div class="fld" data-err="入力してください"><input id="dl-co" name="company" type="text" autocomplete="organization" placeholder="株式会社〇〇" required></div>
+    <label for="dl-nm">お名前<small>必須</small></label><div class="fld" data-err="入力してください"><input id="dl-nm" name="name" type="text" autocomplete="name" placeholder="山田 太郎" required></div>
+    <label for="dl-em">メールアドレス<small>必須</small></label><div class="fld" data-err="正しいメールアドレスを入力してください"><input id="dl-em" name="email" type="email" autocomplete="email" placeholder="example@company.co.jp" required></div>
+    <label for="dl-tel">電話番号<small>必須</small></label><div class="fld" data-err="入力してください"><input id="dl-tel" name="tel" type="tel" autocomplete="tel" placeholder="052-000-0000" required></div>
+    <label>ご興味のある内容</label><div class="checks">${DL_IN.map(x=>`<label class="ck"><input type="checkbox" name="interest" value="${x}"><span>${x}</span></label>`).join('')}</div>
+    <label for="dl-note">ご質問・ご要望</label><div class="fld" data-err="入力してください"><textarea id="dl-note" name="note" placeholder="気になる点があればご記入ください"></textarea></div>
+    <div class="send"><button class="pill" type="submit" style="cursor:pointer">資料を請求する<span class="circ">→</span></button></div>
+    <p class="note">送信いただいた個人情報は<a href="${r}privacy/index.html">プライバシーポリシー</a>に基づき取り扱います。</p>
+  </form>
+  <div class="dldone" id="dl-done" hidden><b>資料のご請求ありがとうございました。</b><p>ご入力いただいたメールアドレスに受付確認メールをお送りしました。内容を確認のうえ、担当者より2営業日以内に資料をお送りし、ご連絡いたします。お急ぎの場合はお電話（052-908-7944）でご連絡ください。</p></div></section>
 `});}
 
 // ---------- SERVICE DETAIL (v7) ----------
@@ -1995,24 +2027,8 @@ ${pageHead('Privacy Policy','プライバシーポリシー')}
 <section><div class="wrap"><div class="pv">${body}</div></div></section>
 `});}
 
-function download(){ const r='../'; const IN=['外国人材の採用を検討している','特定技能について知りたい','技人国（エンジニア・専門職）について','定着・生活支援について','まずは資料を見たい（情報収集）','その他'];
- return page({root:r,title:'資料請求｜BIGLIGHT株式会社',desc:'BIGLIGHTの会社資料のご請求',body:`
-${pageHead('Download','資料請求')}
-<section><div class="wrap form">
-  <div class="info"><b>会社資料</b>無料<br>サービス内容・料金体系・支援の流れ・導入事例をまとめた資料です。<br>ご請求いただいた内容を確認のうえ、担当者よりメールで資料をお送りし、ご連絡いたします。<br><br>お電話でのご相談<br>052-908-7944（平日 9:00–18:00）</div>
-  <form id="dlf" novalidate><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
-    <label for="dl-co">会社名<small>必須</small></label><div class="fld" data-err="入力してください"><input id="dl-co" name="company" type="text" autocomplete="organization" placeholder="株式会社〇〇" required></div>
-    <label for="dl-nm">お名前<small>必須</small></label><div class="fld" data-err="入力してください"><input id="dl-nm" name="name" type="text" autocomplete="name" placeholder="山田 太郎" required></div>
-    <label for="dl-em">メールアドレス<small>必須</small></label><div class="fld" data-err="正しいメールアドレスを入力してください"><input id="dl-em" name="email" type="email" autocomplete="email" placeholder="example@company.co.jp" required></div>
-    <label for="dl-tel">電話番号<small>必須</small></label><div class="fld" data-err="入力してください"><input id="dl-tel" name="tel" type="tel" autocomplete="tel" placeholder="052-000-0000" required></div>
-    <label>ご興味のある内容</label><div class="checks">${IN.map(x=>`<label class="ck"><input type="checkbox" name="interest" value="${x}"><span>${x}</span></label>`).join('')}</div>
-    <label for="dl-note">ご質問・ご要望</label><div class="fld" data-err="入力してください"><textarea id="dl-note" name="note" placeholder="気になる点があればご記入ください"></textarea></div>
-    <div class="send"><button class="pill" type="submit" style="cursor:pointer">資料を請求する<span class="circ">→</span></button></div>
-    <p class="note">送信いただいた個人情報は<a href="${r}privacy/index.html">プライバシーポリシー</a>に基づき取り扱います。</p>
-  </form>
-  <div class="dldone" id="dl-done" hidden><b>資料のご請求ありがとうございました。</b><p>ご入力いただいたメールアドレスに受付確認メールをお送りしました。内容を確認のうえ、担当者より2営業日以内に資料をお送りし、ご連絡いたします。お急ぎの場合はお電話（052-908-7944）でご連絡ください。</p></div>
-</div></section>
-`});}
+const DL_IN=['外国人材の採用を検討している','特定技能について知りたい','技人国（エンジニア・専門職）について','定着・生活支援について','まずは資料を見たい（情報収集）','その他'];
+
 
 
 // ---------- NEWS ARTICLE (demo: 2 bài thật từ biglight.jp/news/; bản thật do admin.biglight.jp sinh) ----------
@@ -2055,7 +2071,6 @@ const pages = {
   'contact/index.html': contact(),
   'about/strength/index.html': strength(),
   'case/index.html': cases(),
-  'download/index.html': download(),
   'privacy/index.html': privacy(),
 };
 FIELDS.forEach((f,i)=>{pages['service/field/'+f.slug+'/index.html']=fieldPage(f,i);});
