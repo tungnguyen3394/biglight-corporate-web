@@ -127,10 +127,10 @@ html:not(.js) .opening{display:none}
 html.js.home .hd{opacity:0;animation:pagein .8s 3.35s ease forwards}
 html.js .hero .ch{display:inline-block;opacity:.02;transform:translateY(31px);animation:chin .75s cubic-bezier(.2,.6,.2,1) forwards}
 @keyframes chin{to{opacity:1;transform:none}}
-html.js .hero .sub{opacity:0;transform:translateY(15px);animation:leadin .7s 2.8s cubic-bezier(.2,.6,.2,1) forwards}
+html.js .hero .sub{opacity:0;transform:translateY(15px);animation:leadin .7s 3.6s cubic-bezier(.2,.6,.2,1) forwards}
 @keyframes leadin{to{opacity:1;transform:none}}
-html.js .hero .dots{opacity:0;animation:pagein .6s 3.1s ease forwards}
-html.js .hero .scrl{opacity:0;animation:pagein .6s 3.1s ease forwards}
+html.js .hero .dots{opacity:0;animation:pagein .6s 4.1s ease forwards}
+html.js .hero .scrl{opacity:0;animation:pagein .6s 4.1s ease forwards}
 @media (prefers-reduced-motion:reduce){.opening{display:none}html.js.home .hd,html.js .hero .sub,html.js .hero .dots,html.js .hero .scrl{opacity:1;animation:none;transform:none}}
 
 /* thiết bị: MacBook + iPhone */
@@ -495,8 +495,8 @@ html.js .fx.in img.photo{transform:none}
 .badges a:hover img{transform:translateY(-3px)}
 html.js .hero .ch{display:inline-block;opacity:.02;transform:translateY(.35em);animation:chin .7s cubic-bezier(.2,.6,.2,1) forwards}
 @keyframes chin{to{opacity:1;transform:none}}
-html.js .hero .line,html.js .hero .sub,html.js .hero .btns{opacity:0;animation:pagein .9s ease forwards}
-html.js .hero .line{animation-delay:1.1s}html.js .hero .sub{animation-delay:1.3s}html.js .hero .btns{animation-delay:1.5s}
+html.js .hero .line,html.js .hero .btns{opacity:0;animation:pagein .9s ease forwards}
+html.js .hero .line{animation-delay:1.1s}html.js .hero .btns{animation-delay:1.5s}
 html.js .chars .ch{display:inline-block;opacity:0;transform:translateY(.3em)}
 html.js .chars.in .ch{animation:chin .6s cubic-bezier(.2,.6,.2,1) forwards}
 html.js .band svg path{stroke-dasharray:3200;stroke-dashoffset:3200}
@@ -805,16 +805,16 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 .crow .ck small{font-size:11px;color:var(--grey);font-weight:700}
 .crow:hover .circ40{transform:translateX(6px)}
 /* 2 dải ảnh chạy chéo */
-.people{position:relative;overflow:hidden;height:540px;margin-top:80px}
-.prow-s{position:absolute;left:-10%;width:120%;transform:rotate(-6deg)}
-.prow-s:first-child{top:70px}.prow-s.rev{top:270px}
-.people .ptrack{display:flex!important;flex-direction:row;flex-wrap:nowrap;gap:14px;width:max-content;animation:pslide 90s linear infinite}
-.prow-s.rev .ptrack{animation-direction:reverse;animation-duration:100s}
+.people{position:relative;overflow:hidden;margin-top:80px;padding:10px 0;display:flex;flex-direction:column;gap:14px}
+.prow-s{position:relative;width:100%;overflow:hidden}
+
+.people .ptrack{display:flex!important;flex-direction:row;flex-wrap:nowrap;gap:14px;width:max-content;animation:pslide 70s linear infinite}
+.prow-s.rev .ptrack{animation-direction:reverse;animation-duration:80s}
 .people .ptrack img{width:240px;height:160px;max-width:none;object-fit:cover;border-radius:8px;flex:none;display:block}
 @keyframes pslide{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.ptrack{animation:none}}
 @media (max-width:1100px){.crow{grid-template-columns:220px 1fr 40px}.crow .ck{grid-column:2}}
-@media (max-width:860px){.crow{grid-template-columns:1fr 40px;gap:14px;padding:30px 0}.crow .cno,.crow .ct,.crow .ck{grid-column:1}.crow .circ40{grid-column:2;grid-row:1/4}.crow .ct{font-size:17px}.people{height:300px;margin-top:60px}.prow-s:first-child{top:30px}.prow-s.rev{top:150px}.ptrack img{width:160px;height:106px}}
+@media (max-width:860px){.crow{grid-template-columns:1fr 40px;gap:14px;padding:30px 0}.crow .cno,.crow .ct,.crow .ck{grid-column:1}.crow .circ40{grid-column:2;grid-row:1/4}.crow .ct{font-size:17px}.people{margin-top:60px;gap:10px}.ptrack img{width:160px;height:106px}}
 /* responsive */
 @media (max-width:1360px) and (min-width:861px){
   .hero h1{font-size:clamp(48px,4.9vw,68px);line-height:1.35;letter-spacing:.09em}
@@ -933,8 +933,8 @@ const js = `
   if(hs.length){var hc=0,ht;function hgo(n){var old=hs[hc];old.classList.remove('on');old.classList.add('out');hd[hc].classList.remove('on');hc=(n+hs.length)%hs.length;var nw=hs[hc];hd[hc].classList.add('on');setTimeout(function(){old.classList.remove('out');nw.classList.add('on');},1450);}
     /* lần đầu: ảnh vào lúc 3.4s như Guidable */
     hs[0].classList.remove('on');setTimeout(function(){hs[0].classList.add('on');},matchMedia('(prefers-reduced-motion: reduce)').matches?0:3400);
-    hd.forEach(function(d,i){d.addEventListener('click',function(){hgo(i);clearInterval(ht);ht=setInterval(function(){hgo(hc+1);},5000);});});
-    if(!matchMedia('(prefers-reduced-motion: reduce)').matches) setTimeout(function(){ht=setInterval(function(){hgo(hc+1);},5200);},3400);}
+    hd.forEach(function(d,i){d.addEventListener('click',function(){hgo(i);clearInterval(ht);ht=setInterval(function(){hgo(hc+1);},4200);});});
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches) setTimeout(function(){ht=setInterval(function(){hgo(hc+1);},4200);},3400);}
   /* v8: parallax ảnh khi cuộn */
   var pars=[].slice.call(document.querySelectorAll('.cul .ph-col img, .pic .main img, .slant .s img, .msg-photo'));
   pars.forEach(function(e){e.classList.add('par');});
