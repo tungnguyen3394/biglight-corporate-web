@@ -716,6 +716,8 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 @media (max-width:860px){.flow.f4{grid-template-columns:1fr 1fr}.fstats{grid-template-columns:1fr}.fstats>div+div{border-left:0;padding-left:0;border-top:1px solid var(--line)}.fstats>div{padding:20px 0}.fstats b{font-size:36px}.froutes,.fwork,.frules{grid-template-columns:1fr}.fcareer{grid-template-columns:1fr}.fcareer>i{transform:rotate(90deg);padding:6px 0}.fnotice{padding:26px 22px}}
 /* footer gọn */
 .ft{margin-top:110px;padding:40px 0 22px}
+.ft>.wrap{max-width:1400px}
+@media (min-width:1181px){.ft .fsite{flex:1;justify-content:space-between;gap:0 32px;margin-right:64px}.ft .fmap{width:360px;margin-left:0}.ft .bot{padding-right:72px}}
 .ft .top{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
 .ft .logo img{height:38px}.ft .logo img.wm{height:14px}
 .ft .addr{font-size:12px;color:var(--ink2);line-height:1.7;margin-top:10px}
@@ -768,9 +770,10 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 .ft .fsite a.h{font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--ink);margin-bottom:5px}
 .ft .fsite a:hover{color:var(--accent)}
 .ft .fsite .tg{display:none}
-.ft .sns{display:flex;gap:4px;margin:10px 0 0 -11px}
-.ft .sns a{display:flex;align-items:center;justify-content:center;width:44px;height:44px;color:var(--accent);border-radius:50%;transition:color .2s,background .2s}
-.ft .sns a:hover{color:var(--blue);background:#f0f4fb}
+.ft .sns{display:flex;flex-wrap:wrap;gap:8px 28px;margin:16px 0 0}
+.ft .sns a{display:inline-flex;align-items:center;gap:9px;min-height:44px;color:var(--accent);transition:color .2s}
+.ft .sns a span{font-family:var(--en);font-size:17px;font-weight:700;letter-spacing:.02em}
+.ft .sns a:hover{color:var(--blue)}
 .ft .fnavl a{font-family:var(--en);font-size:13px;font-weight:700;letter-spacing:.1em}
 .ft .fnavl a:hover{color:var(--accent)}
 .ft .bot{border-top:1px solid var(--line);margin-top:26px;padding-top:18px;display:flex;justify-content:space-between;align-items:center;gap:12px 28px;flex-wrap:wrap;font-size:12px}
@@ -1162,12 +1165,12 @@ function page({root, title, desc, body, active, home}) {
     <div class="top">
       <div class="fb"><a class="logo" href="${r}index.html"><img src="${r}img/logo-s.webp" alt="" width="44" height="44"><img class="wm" src="${r}img/wordmark.png" alt="BIGLIGHT"></a>
         <p class="addr">〒462-0007 愛知県名古屋市北区如意一丁目112 A<span class="tel">　TEL 052-908-7944　FAX 052-908-7267</span></p>
-        <div class="sns"><a href="https://www.facebook.com/biglight0812/" aria-label="BIGLIGHT公式 Facebook"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-1.56 19.88v-7H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v7A10 10 0 0 0 12 2z"/></svg></a><a href="https://www.instagram.com/biglight0812/" aria-label="BIGLIGHT公式 Instagram"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.4" cy="6.6" r="1.25" fill="currentColor"/></svg></a></div></div>
+        <div class="sns"><a href="https://www.facebook.com/biglight0812/" aria-label="BIGLIGHT公式 Facebook" class="sn-fb"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-1.56 19.88v-7H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v7A10 10 0 0 0 12 2z"/></svg><span>Facebook</span></a><a href="https://www.instagram.com/biglight0812/" aria-label="BIGLIGHT公式 Instagram" class="sn-ig"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.4" cy="6.6" r="1.25" fill="currentColor"/></svg><span>Instagram</span></a></div></div>
       <nav class="fsite" aria-label="サイトマップ"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}contact/index.html#request">Request</a></div></nav>
       <div class="fmap"><div class="fmap-ph"><p>地図を表示すると、Google社のCookieが使用される場合があります。</p><button type="button" class="fmap-load">地図を表示</button></div><iframe data-src="https://www.google.com/maps?q=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA&hl=ja&z=16&output=embed" title="BIGLIGHT株式会社の地図（愛知県名古屋市北区如意一丁目112 A）" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="https://www.google.com/maps/search/?api=1&query=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA">Google マップで開く →</a></div>
     </div>
     <div class="bot">
-      <div class="links"><a href="${r}privacy/index.html">プライバシーポリシー</a><a href="${r}service/tokutei-ginou/index.html#faq">よくある質問</a><a href="${r}contact/index.html#request">資料請求</a><button type="button" class="ck-link" data-cookie-settings>Cookie設定</button></div>
+      <div class="links"><a href="${r}privacy/index.html">プライバシーポリシー</a><a href="${r}contact/index.html#request">資料請求</a><button type="button" class="ck-link" data-cookie-settings>Cookie設定</button></div>
       <div class="lic">有料職業紹介 23-ユ-302414 ／ 登録支援機関 21登-006596</div>
       <p class="copy">Copyright © BIGLIGHT Co., Ltd. All Rights Reserved.</p>
     </div>
