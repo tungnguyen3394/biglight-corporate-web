@@ -15,7 +15,8 @@ const copies = {
   'img/desk-academy.jpg':'img/desk-academy.jpg','img/desk-job.jpg':'img/desk-job.jpg','img/shot-portal-916.jpg':'img/shot-portal.jpg','img/shot-academy.jpg':'img/shot-academy.jpg','img/shot-job.jpg':'img/shot-job.jpg',
   'badges/apple-ja.svg':'img/badge-appstore.svg','badges/google-ja.png':'img/badge-googleplay.png',
 };
-Object.assign(copies,{'img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
+Object.assign(copies,{'img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
+fs.mkdirSync(path.join(OUT,'img/sdg'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/sdg')).filter(f=>f.endsWith('.png')))fs.copyFileSync(path.join(__dirname,'src/img/sdg',f),path.join(OUT,'img/sdg',f));
 fs.mkdirSync(path.join(OUT,'img/people'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/people')).filter(f=>f.endsWith('.webp')))fs.copyFileSync(path.join(__dirname,'src/img/people',f),path.join(OUT,'img/people',f));
 { let out='';const N=34,S=80;const A=t=>330+110*Math.sin(t*Math.PI*1.9+0.2)-210*t, B=t=>330+110*Math.sin(t*Math.PI*1.9+2.9)-210*t+70*Math.sin(t*Math.PI);
   const mix=(a,b,k)=>a.map((v,i)=>Math.round(v+(b[i]-v)*k));const navy=[11,61,145],blue=[30,111,214],gold=[245,166,35];
@@ -353,6 +354,31 @@ html.js .hero .scrl{opacity:0;animation:pagein .6s 4.1s ease forwards}
 .form .send{margin-top:48px}
 .form .note{font-size:12px;color:var(--grey);margin-top:16px}
 
+.sg-h{font-size:15px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin-bottom:10px}
+.sg-all{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin-top:56px;padding:0}
+.sg-all img{width:92px;height:92px;display:block}
+.sg-area{padding:96px 0 0}
+.sg-area .wrap>*{border-top:0}
+.sg-head{display:grid;grid-template-columns:80px 1fr auto;align-items:end;gap:24px;border-bottom:1px solid var(--ink);padding-bottom:28px}
+.sg-head .no{font-family:var(--en);font-size:40px;font-weight:700;color:var(--gold);line-height:1}
+.sg-head h2{font-size:22px;font-weight:700;letter-spacing:.08em;line-height:1.3}
+.sg-head h2 .en{display:block;font-family:var(--en);font-size:44px;letter-spacing:.06em;margin-bottom:6px}
+.sg-goals small{display:block;font-size:12px;font-weight:700;color:var(--grey);letter-spacing:.08em;margin-bottom:10px}
+.sg-goals div{display:flex;gap:8px}
+.sg-goals img{width:84px;height:84px;display:block}
+.sg-body{display:grid;grid-template-columns:1fr 1.25fr;gap:64px;padding-top:40px}
+.sg-body h3{font-size:15px;font-weight:700;letter-spacing:.08em;margin-bottom:18px}
+.sg-act ol{list-style:none;counter-reset:a;padding:0;margin:0}
+.sg-act li{counter-increment:a;position:relative;padding:14px 0 14px 40px;border-bottom:1px solid var(--line);font-size:15px;line-height:1.8}
+.sg-act li::before{content:counter(a);position:absolute;left:0;top:14px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-family:var(--en);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.sg-kpi .kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0}
+.sg-kpi .kp>div{padding:6px 24px 18px 0;margin-bottom:18px}
+.sg-kpi .kp>div+div{padding-left:24px;border-left:1px solid var(--line)}
+.sg-kpi b{display:block;font-family:var(--en);font-size:48px;font-weight:700;color:var(--accent);line-height:1.1;letter-spacing:.01em}
+.sg-kpi b small{font-family:var(--jp);font-size:15px;margin-left:4px;letter-spacing:.02em}
+.sg-kpi p{font-size:14px;font-weight:700;line-height:1.6;margin-top:10px}
+.sg-kpi span{display:inline-block;font-size:12px;color:var(--grey);margin-top:6px}
+@media (max-width:860px){.sg-all img{width:60px;height:60px}.sg-all{gap:6px;margin-top:36px}.sg-area{padding-top:64px}.sg-head{grid-template-columns:1fr;gap:14px}.sg-head .no{font-size:28px}.sg-head h2 .en{font-size:32px}.sg-goals img{width:64px;height:64px}.sg-body{grid-template-columns:1fr;gap:36px;padding-top:28px}.sg-kpi .kp{grid-template-columns:1fr 1fr}.sg-kpi .kp>div{padding:4px 12px 14px 0}.sg-kpi .kp>div+div{padding-left:0;border-left:0}.sg-kpi .kp>div:nth-child(even){padding-left:14px;border-left:1px solid var(--line)}.sg-kpi b{font-size:36px}}
 .sdg{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:60px}
 .sdg div{border-top:1px solid var(--ink);padding-top:22px}
 .sdg b{font-family:var(--en);font-size:40px;color:var(--accent);line-height:1}
@@ -1066,13 +1092,13 @@ function page({root, title, desc, body, active, home}) {
     <a class="mi" href="${r}news/index.html"><b>NEWS</b><small>お知らせ</small></a>
     <a class="mi" href="${r}recruit/index.html"><b>RECRUIT</b><small>採用情報</small></a>
     <div class="mbtn"><a class="dl-btn" href="${r}download/index.html">DOWNLOAD</a><a class="cta" href="${r}contact/index.html">CONTACT</a></div>
-    <p class="mtel">お電話でのご相談　<b>052-908-7944</b><br>平日 9:00–18:00</p>
+    <p class="mtel">お電話でのご相談　<b>052-908-7944</b><br>平日 9:00–18:00　FAX 052-908-7267</p>
   </div>`;
   const footer = `
   <footer class="ft"><div class="wrap">
     <div class="top">
       <div class="fb"><a class="logo" href="${r}index.html"><img src="${r}img/logo.png" alt=""><img class="wm" src="${r}img/wordmark.png" alt="BIGLIGHT"></a>
-        <p class="addr">〒462-0007 愛知県名古屋市北区如意一丁目112 A<span class="tel">　TEL 052-908-7944</span></p></div>
+        <p class="addr">〒462-0007 愛知県名古屋市北区如意一丁目112 A<span class="tel">　TEL 052-908-7944　FAX 052-908-7267</span></p></div>
       <nav class="fsite"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}download/index.html">Download</a></div></nav>
     </div>
     <div class="bot">
@@ -1116,7 +1142,7 @@ const contactBox = (r) => `
     <div><div class="en">Contact</div><div class="ja-lb">お問い合わせ</div></div>
     <span class="circ">→</span>
   </a>
-  <p class="ctel">お電話でのご相談　<b>052-908-7944</b>　平日 9:00–18:00</p>
+  <p class="ctel">お電話でのご相談　<b>052-908-7944</b>　平日 9:00–18:00　FAX 052-908-7267</p>
 </div></section>`;
 
 const pageHead = (en, ja, tabs='') => `
@@ -1303,17 +1329,34 @@ ${pageHead('We are','私たちについて',aboutTabs(r,'company'))}
 </div></section>
 `});}
 
+// SDGs — nội dung theo 取組方針・分野別取組 (CEO gửi 2026-10-10). Icon: 国連広報センター (src/img/sdg/SOURCE.txt)
+const SDG_AREAS = [
+  {en:'Economy',ja:'経済',goals:['08','09'],
+   act:['多言語で雇用条件・生活情報を提供する。','相談窓口を整備し、問題や人権侵害の早期把握に努める。','日本語学習・技能向上を支援する。','受入企業の労務管理・職場環境改善を支援する。'],
+   kpi:[['100','%','重要事項の多言語提供率','2030年まで毎年'],['年1','回以上','支援品質向上のための社内研修','2030年まで毎年']]},
+  {en:'Society',ja:'社会',goals:['04','10','16'],
+   act:['外国人材に適切な就職機会を提供する。','定着確認と早期離職防止を支援する。'],
+   kpi:[['100','%','労働条件・支援内容の説明率','2030年まで毎年'],['100','%','定期フォロー率','2030年まで毎年'],['90','%以上','紹介後12か月の定着率','2030年まで']]},
+  {en:'Environment',ja:'環境',goals:['12','13'],
+   act:['契約書・支援記録・申請書類を電子化する。','電子署名とオンライン提出を活用する。','面談・会議のオンライン化を推進する。'],
+   kpi:[['30','%削減','紙使用量（2026年度比・毎年度確認）','2030年度まで'],['90','%','対象書類の電子化率','2030年度まで'],['70','%以上','オンライン活用率','2030年度まで']]},
+];
+const SDG_NAME={ '04':'質の高い教育をみんなに','08':'働きがいも経済成長も','09':'産業と技術革新の基盤をつくろう','10':'人や国の不平等をなくそう','12':'つくる責任 つかう責任','13':'気候変動に具体的な対策を','16':'平和と公正をすべての人に' };
 function sdgs(){ const r='../../'; return page({root:r,title:'SDGsへの取り組み｜BIGLIGHT株式会社',desc:'BIGLIGHTのSDGsへの取り組み',body:`
 ${pageHead('We are','私たちについて',aboutTabs(r,'sdgs'))}
 <section class="blk"><div class="wrap">
   <div class="lbl">SDGs</div>
-  <div class="two"><h2 style="font-size:40px">事業を通じて、<br>持続可能な社会へ。</h2><div class="txt"><p>外国人材と企業をつなぐ事業そのものが、働きがいと経済成長、不平等の是正につながると考えています。3つの重点取り組みを定めています。</p></div></div>
-  <div class="sdg">
-    <div><b>08</b><h3>安定した雇用と<br>企業の成長支援</h3><p>完全成功報酬・最長1年保証で、企業が安心して外国人材を採用できる環境をつくります。</p></div>
-    <div><b>10</b><h3>外国人材が安心して暮らし、<br>働ける環境づくり</h3><p>母国語での相談、住まいと行政手続きの支援、定期面談で、不平等と孤立をなくします。</p></div>
-    <div><b>13</b><h3>デジタル化による<br>環境負荷の低減</h3><p>書類・連絡・学習をアプリに集約し、紙と移動を減らします。</p></div>
-  </div>
+  <div class="two"><h2 style="font-size:40px">事業を通じて、<br>持続可能な社会へ。</h2><div class="txt"><h3 class="sg-h">取組方針</h3><p>BIGLIGHT株式会社は、外国人材と受入企業をつなぐ人材紹介及び登録支援機関として、国籍や文化の違いを越えて、誰もが安心して働き、能力を発揮できる社会の実現を目指します。</p></div></div>
+  <ul class="sg-all">${['04','08','09','10','12','13','16'].map(g=>`<li><img src="${r}img/sdg/sdg-${g}.png" alt="SDGs目標${+g} ${SDG_NAME[g]}" width="290" height="290"></li>`).join('')}</ul>
 </div></section>
+${SDG_AREAS.map((A,i)=>`<section class="sg-area"><div class="wrap">
+  <div class="sg-head"><span class="no">0${i+1}</span><h2><span class="en">${A.en}</span>${A.ja}</h2>
+    <div class="sg-goals"><small>目指すゴール</small><div>${A.goals.map(g=>`<img src="${r}img/sdg/sdg-${g}.png" alt="SDGs目標${+g} ${SDG_NAME[g]}" width="290" height="290">`).join('')}</div></div></div>
+  <div class="sg-body">
+    <div class="sg-act"><h3>取組内容</h3><ol>${A.act.map(t=>`<li>${t}</li>`).join('')}</ol></div>
+    <div class="sg-kpi"><h3>目標年次及び数値目標</h3><div class="kp">${A.kpi.map(k=>`<div><b>${k[0]}<small>${k[1]}</small></b><p>${k[2]}</p><span>${k[3]}</span></div>`).join('')}</div></div>
+  </div>
+</div></section>`).join('')}
 `});}
 
 // ---------- SERVICE ----------
@@ -1472,7 +1515,7 @@ ${contactBox(r)}
 function contact(){ const r='../'; return page({root:r,title:'お問い合わせ｜BIGLIGHT株式会社',desc:'無料相談・資料請求はこちら',body:`
 ${pageHead('Contact','お問い合わせ・無料相談')}
 <section><div class="wrap form">
-  <div class="info"><b>052-908-7944</b>平日 9:00–18:00<br>採用人数・職種・時期が未定でも構いません。<br>登録支援機関として、制度の説明からお手伝いします。<br><br>〒462-0007<br>愛知県名古屋市北区如意一丁目112 A</div>
+  <div class="info"><b>052-908-7944</b>平日 9:00–18:00　FAX 052-908-7267<br>採用人数・職種・時期が未定でも構いません。<br>登録支援機関として、制度の説明からお手伝いします。<br><br>〒462-0007<br>愛知県名古屋市北区如意一丁目112 A</div>
   <form id="cf" novalidate><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
     <label for="cf-type">お問い合わせ種別<small>必須</small></label><select id="cf-type" name="type"><option>無料相談（採用について）</option><option>資料請求</option><option>アプリについて</option><option>採用について（求職者の方）</option><option>その他</option></select>
     <label for="cf-co">会社名<small>必須</small></label><div class="fld" data-err="入力してください"><input id="cf-co" name="company" type="text" autocomplete="organization" placeholder="株式会社〇〇" required></div>
@@ -1815,7 +1858,7 @@ const REASONS = [
   ['ワンストップ・低コスト','募集から手続き、定着支援まで全工程をワンストップで完結。中間業者を介さないから、圧倒的な低コストを実現します。',['採用〜定着まで一気通貫','中間マージンゼロ','東海エリア密着 × ベトナム直結']],
 ];
 const CASES = [
-  {slug:'welding',ind:'製造業（溶接・鉄骨加工）',area:'愛知県',size:'従業員 約50名',photo:'field/kogyo.jpg',
+  {slug:'welding',ind:'製造業（溶接・鉄骨加工）',area:'愛知県',size:'従業員 約50名',photo:'case-welding.jpg',
    h:'溶接工程の人手不足を解消し、安定した受注対応へ',
    before:'若手日本人の採用が難しく、慢性的な人手不足が続いていました。特に溶接工程では経験者の確保が困難で、受注増加に対して生産体制が追いつかない状況でした。',
    plan:'ベトナム人特定技能人材3名をご紹介。面接から入社手続き、生活支援までワンストップでサポートしました。',
