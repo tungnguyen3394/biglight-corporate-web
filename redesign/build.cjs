@@ -133,7 +133,7 @@ body.menu-open{overflow:hidden}
 @keyframes scrl{0%{transform:translateY(0);opacity:1}100%{transform:translateY(74px);opacity:0}}
 /* opening overlay: 4 chấm bay rồi xếp hàng */
 .opening{position:fixed;inset:0;background:#fff;z-index:100;display:flex;align-items:center;justify-content:center}
-.opening i{position:absolute;width:8px;height:8px;border-radius:50%;left:50%;top:50%;margin:-4px 0 0 -4px}
+.opening i{position:absolute;width:10px;height:10px;border-radius:50%;left:50%;top:50%;margin:-5px 0 0 -5px}
 .opening i:nth-child(1){background:var(--gold-l);animation:op1 2s linear forwards}
 .opening i:nth-child(2){background:var(--gold);animation:op2 2s linear forwards}
 .opening i:nth-child(3){background:var(--blue);animation:op3 2s linear forwards}
