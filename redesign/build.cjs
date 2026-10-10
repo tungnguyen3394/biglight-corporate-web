@@ -16,6 +16,7 @@ const copies = {
   'badges/apple-ja.svg':'img/badge-appstore.svg','badges/google-ja.png':'img/badge-googleplay.png',
 };
 Object.assign(copies,{'img/og-image.jpg':'img/og-image.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
+fs.mkdirSync(path.join(OUT,'img/people'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/people')).filter(f=>f.endsWith('.webp')))fs.copyFileSync(path.join(__dirname,'src/img/people',f),path.join(OUT,'img/people',f));
 // ảnh chụp: dùng bản WebP (src/img/*.webp) nếu có — tên đích đổi .jpg → .webp, tham chiếu được thay ở bước SEO
 const WEBP = {};
 for (const [s,d] of Object.entries(copies)) {
@@ -791,6 +792,29 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 .art .afaq{margin-top:56px}
 .art .afaq h2{font-size:20px;margin-bottom:20px;padding-left:16px;border-left:3px solid var(--accent)}
 .filters a{cursor:pointer}
+/* CASE dạng dòng (trang chủ) */
+.crows{margin-top:60px}
+.crow{display:grid;grid-template-columns:300px 1fr auto 40px;gap:36px;align-items:center;padding:44px 0;border-bottom:1px solid var(--line);transition:background .25s}
+.crow:hover{background:#fafbfc}
+.crow .cno{font-family:var(--en);font-size:13px;font-weight:700;letter-spacing:.14em;color:var(--accent)}
+.crow .cno small{display:block;font-family:var(--jp);font-size:13px;letter-spacing:.04em;color:var(--grey);font-weight:500;margin-top:8px}
+.crow .ct{font-size:20px;font-weight:700;letter-spacing:.04em;line-height:1.7}
+.crow .ck{display:flex;gap:28px}
+.crow .ck b{display:block;font-family:var(--en);font-size:30px;color:var(--accent);line-height:1.1;white-space:nowrap}
+.crow .ck b i{font-style:normal;font-family:var(--jp);font-size:13px;margin-left:2px;color:var(--ink)}
+.crow .ck small{font-size:11px;color:var(--grey);font-weight:700}
+.crow:hover .circ40{transform:translateX(6px)}
+/* 2 dải ảnh chạy chéo */
+.people{position:relative;overflow:hidden;height:540px;margin-top:80px}
+.prow-s{position:absolute;left:-10%;width:120%;transform:rotate(-6deg)}
+.prow-s:first-child{top:70px}.prow-s.rev{top:270px}
+.ptrack{display:flex;gap:14px;width:max-content;animation:pslide 90s linear infinite}
+.prow-s.rev .ptrack{animation-direction:reverse;animation-duration:100s}
+.ptrack img{width:240px;height:160px;object-fit:cover;border-radius:8px;flex:none;display:block}
+@keyframes pslide{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ptrack{animation:none}}
+@media (max-width:1100px){.crow{grid-template-columns:220px 1fr 40px}.crow .ck{grid-column:2}}
+@media (max-width:860px){.crow{grid-template-columns:1fr 40px;gap:14px;padding:30px 0}.crow .cno,.crow .ct,.crow .ck{grid-column:1}.crow .circ40{grid-column:2;grid-row:1/4}.crow .ct{font-size:17px}.people{height:300px;margin-top:60px}.prow-s:first-child{top:30px}.prow-s.rev{top:150px}.ptrack img{width:160px;height:106px}}
 /* responsive */
 @media (max-width:1360px) and (min-width:861px){
   .hero h1{font-size:clamp(48px,4.9vw,68px);line-height:1.35;letter-spacing:.09em}
@@ -865,7 +889,7 @@ const js = `
   if('IntersectionObserver' in window){var wio=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target._wipe.classList.add('in');wio.unobserve(x.target);}});},{rootMargin:'0px 0px -10% 0px'});
     wipes.forEach(function(e){e.parentNode._wipe=e;wio.observe(e.parentNode);});} else wipes.forEach(function(e){e.classList.add('in');});
   /* fade-in khi cuộn */
-  var sel='.art>*, .reasons .rs, .sysck li, .vcat>div, .ctable-wrap, .kstats>div, .ccard, .ckpi>div, .chead>*, .cvoice, .illu, .sec-head>*, .fstats>div, .froutes>div, .fwork>div, .frules>div, .fcareer>div, .fnotice, .row, .prow, .nitem, .blk .lbl, .two>*, .vals>div, .flow>div, .sdg>div, .svc .num, .svc .g>*, .dl>div, .cbox, .ph .en, .ph .ja-lb, .ph .dots, .tabs, .lead28, .lead16, .message>.wrap>*, .band, .msg-body, .form>*, .filters, .pager, .more-r, .vs, .vlbl, .chars, .slant, .ftile, .sup10>div, .jobs4>div, .faq, .fnav, .pic, .cul>*, .voice>*, .steps>div, .strip img, .req>div';
+  var sel='.crow, .art>*, .reasons .rs, .sysck li, .vcat>div, .ctable-wrap, .kstats>div, .ccard, .ckpi>div, .chead>*, .cvoice, .illu, .sec-head>*, .fstats>div, .froutes>div, .fwork>div, .frules>div, .fcareer>div, .fnotice, .row, .prow, .nitem, .blk .lbl, .two>*, .vals>div, .flow>div, .sdg>div, .svc .num, .svc .g>*, .dl>div, .cbox, .ph .en, .ph .ja-lb, .ph .dots, .tabs, .lead28, .lead16, .message>.wrap>*, .band, .msg-body, .form>*, .filters, .pager, .more-r, .vs, .vlbl, .chars, .slant, .ftile, .sup10>div, .jobs4>div, .faq, .fnav, .pic, .cul>*, .voice>*, .steps>div, .strip img, .req>div';
   var els=[].slice.call(document.querySelectorAll(sel));
   els.forEach(function(e){e.classList.add('fx');});
   if('IntersectionObserver' in window){
@@ -1143,8 +1167,10 @@ ${homeStats(r)}
 <section class="sec recruit"><div class="wrap">
   <div class="sec-head"><div><h2 class="en">Recruit</h2><div class="ja-lb">採用情報</div></div>
     <div class="lead"><b>日本と世界をつなぐ仕事を、一緒に。</b>BIGLIGHTは「日本の成長を、もっとグローバルに。」というミッションのもと、ベトナム・インドネシア・ミャンマー・ネパールなど、さまざまな国の人材と企業の未来を本気で支える仲間を求めています。<div style="margin-top:40px">${pill('採用情報を見る', r+'recruit/index.html')}</div></div></div>
-  <div class="strip"><img src="${r}img/team.jpg" alt=""><img src="${r}img/staff-1.jpg" alt="" style="object-position:top"><img src="${r}img/office-hcm.jpg" alt=""></div>
 </div></section>
+<div class="people" aria-label="日本の現場で働く人たち">
+  ${[["p01","p02","p03","p04","p05","p06","p07","p08","p09","p10","p11","p12","p13","p14","p15","p16","p17"],["p18","p19","p20","p21","p22","p23","p24","p25","p26","p27","p28","p29","p30","p31","p32","p33","p34"]].map((row,k)=>`<div class="prow-s${k?' rev':''}"><div class="ptrack">${row.concat(row).map((p,j)=>`<img src="${r}img/people/${p}.webp" alt="${j<row.length?'現場で働く人':''}" width="240" height="160">`).join('')}</div></div>`).join('')}
+</div>
 
 <section class="band">
   <svg class="wave" viewBox="0 0 900 520" aria-hidden="true"></svg>
@@ -1773,7 +1799,11 @@ const homeStats = (r) => `
 </div></section>
 <section class="sec"><div class="wrap">
   <div class="sec-head"><div><h2 class="en">Case</h2><div class="ja-lb">導入事例</div></div></div>
-  <div class="ccards">${CASES.map(c=>caseCard(r,c)).join('')}</div>
+  <div class="rows crows">${CASES.map((c,i)=>`<a class="crow" href="${r}case/index.html#${c.slug}">
+    <div class="cno">CASE ${String(i+1).padStart(2,'0')}<small>${c.ind}・${c.area}</small></div>
+    <div class="ct">${c.h}</div>
+    <div class="ck">${c.kpi.slice(0,2).map(([n,u,l])=>`<span><b>${n}<i>${u}</i></b><small>${l}</small></span>`).join('')}</div>
+    ${circ()}</a>`).join('')}</div>
   <div class="more-r"><a href="${r}case/index.html">導入事例を見る <span class="ar">→</span></a></div>
 </div></section>`;
 function strength(){ const r='../../'; return page({root:r,title:'選ばれる理由｜BIGLIGHT株式会社',desc:'BIGLIGHTが選ばれる3つの理由と数字で見る実績',body:`
