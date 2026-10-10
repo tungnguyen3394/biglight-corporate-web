@@ -1,0 +1,112 @@
+# new.biglight.jp — bản xem trước giao diện mới. Chỉ chạy trên nhánh `redesign`.
+# KHÔNG đụng biglight.jp: thư mục /root/biglight-web-new, web root /var/www/biglight-new, container biglight-web-new.
+#
+#   1. build trên runner (node redesign/build.cjs → redesign/dist) + kiểm link nội bộ + nginx -t
+#   2. chép bản build vào thư mục tạm trên VPS, rsync --delete sang web root (giữ nguyên thư mục → bind mount không lệch)
+#   3. compose up, đo tại VPS (curl vào IP container) rồi đo HTTPS thật từ runner
+#   4. sai → trả bản trước (_prev) và ĐỎ
+name: Deploy new.biglight.jp (redesign preview)
+
+on:
+  push:
+    branches: [redesign]
+    paths:
+      - 'redesign/**'
+      - 'deploy/biglight-web-new/**'
+      - '.github/workflows/deploy-new.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: biglight-web-new
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+
+      - name: Build
+        run: node redesign/build.cjs
+
+      - name: Kiểm bản build (link nội bộ, title/description/canonical, h1)
+        run: |
+          node -e '
+          const fs=require("fs"),path=require("path");const D="redesign/dist";let bad=0,n=0;
+          (function w(d){for(const f of fs.readdirSync(d)){const p=path.join(d,f);if(fs.statSync(p).isDirectory())w(p);else if(f.endsWith(".html")){n++;const h=fs.readFileSync(p,"utf8");
+            if(!/<title>[^<]{8,}<\/title>/.test(h)){bad++;console.log("NO TITLE",p);}
+            if(f!=="404.html"&&!/rel="canonical"/.test(h)){bad++;console.log("NO CANONICAL",p);}
+            if((h.match(/<h1/g)||[]).length!==1){bad++;console.log("H1 != 1",p);}
+            for(const m of h.matchAll(/(?:href|src)="([^"#]+)/g)){const u=m[1];if(/^(https?:|mailto:|tel:|data:)/.test(u))continue;
+              let t=u.startsWith("/")?path.join(D,u):path.join(path.dirname(p),u);if(u.endsWith("/")||!path.extname(t))t=path.join(t,"index.html");
+              if(!fs.existsSync(t)){bad++;console.log("BROKEN",p,u);}}}}})(D);
+          console.log("html",n,"problems",bad);if(bad)process.exit(1);'
+          docker run --rm -v "$PWD/deploy/biglight-web-new/nginx:/etc/nginx/conf.d:ro" nginx:alpine nginx -t
+
+      - name: Chuẩn bị thư mục trên VPS
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          script: |
+            set -e
+            mkdir -p /root/biglight-web-new/nginx /var/www/biglight-new /var/www/biglight-new-prev
+            rm -rf /root/biglight-web-new/_incoming && mkdir -p /root/biglight-web-new/_incoming
+            # _prev = bản đang phục vụ (để lùi)
+            rsync -a --delete /var/www/biglight-new/ /var/www/biglight-new-prev/ 2>/dev/null || cp -a /var/www/biglight-new/. /var/www/biglight-new-prev/
+            command -v rsync >/dev/null || (apt-get update -qq && apt-get install -y -qq rsync)
+
+      - name: Chép bản build + cấu hình
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          source: "redesign/dist/,deploy/biglight-web-new/docker-compose.yml,deploy/biglight-web-new/nginx/"
+          target: /root/biglight-web-new/_incoming
+          overwrite: true
+
+      - name: Đưa lên + kiểm chứng, hỏng thì lùi
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          command_timeout: 10m
+          script: |
+            set -e
+            IN=/root/biglight-web-new/_incoming
+            cd /root/biglight-web-new
+            cp -a $IN/deploy/biglight-web-new/docker-compose.yml ./docker-compose.yml
+            rsync -a --delete $IN/deploy/biglight-web-new/nginx/ ./nginx/
+            rsync -a --delete $IN/redesign/dist/ /var/www/biglight-new/
+            docker compose up -d
+            docker compose exec -T biglight-web-new nginx -s reload || true
+            sleep 2
+            IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' biglight-web-new)
+            fail=0
+            chk(){ c=$(curl -s -o /dev/null -w '%{http_code}' "http://$IP$1"); echo "$1 -> $c (want $2)"; [ "$c" = "$2" ] || fail=1; }
+            chk / 200; chk /about/ 200; chk /service/tokutei-ginou/ 200; chk /news/website-renewal/ 200
+            chk /about/index.html 301; chk /sitemap.xml 200; chk /robots.txt 200; chk /khong-co/ 404; chk /.git/HEAD 404
+            if [ "$fail" = 1 ]; then
+              echo "!! LÙI VỀ BẢN TRƯỚC"; rsync -a --delete /var/www/biglight-new-prev/ /var/www/biglight-new/; exit 1
+            fi
+            rm -rf $IN
+
+      - name: Đo HTTPS thật từ ngoài (Caddy cấp chứng chỉ có thể mất vài chục giây lần đầu)
+        run: |
+          for i in $(seq 1 18); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' https://new.biglight.jp/ || true)
+            [ "$code" = "200" ] && break; echo "chờ HTTPS ($code)…"; sleep 10
+          done
+          curl -sI https://new.biglight.jp/ | tee /tmp/h.txt
+          grep -qi '^HTTP/.* 200' /tmp/h.txt
+          grep -qi '^x-robots-tag: noindex' /tmp/h.txt
+          [ "$(curl -s -o /dev/null -w '%{http_code}' https://biglight.jp/)" = "200" ]   # web chính vẫn sống
