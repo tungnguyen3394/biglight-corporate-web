@@ -519,6 +519,7 @@ html.js .hero .ch{display:inline-block;opacity:.02;transform:translateY(.35em);a
 @keyframes chin{to{opacity:1;transform:none}}
 html.js .hero .line,html.js .hero .btns{opacity:0;animation:pagein .9s ease forwards}
 html.js .hero .line{animation-delay:1.1s}html.js .hero .btns{animation-delay:1.5s}
+html.js .chars .w,html.js .hero h1 .w{display:inline-block;white-space:nowrap}
 html.js .chars .ch{display:inline-block;opacity:0;transform:translateY(.3em)}
 html.js .chars.in .ch{animation:chin .6s cubic-bezier(.2,.6,.2,1) forwards}
 html.js .band svg path{stroke-dasharray:3200;stroke-dashoffset:3200}
@@ -758,7 +759,7 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 .form .ck{margin:0;font-weight:500;font-size:14px;display:flex;align-items:center;gap:10px;cursor:pointer;letter-spacing:.02em}
 .form .ck input{width:18px;height:18px;padding:0;border:1px solid var(--ink);accent-color:var(--accent);flex:none}
 .fld.bad input{border-bottom-color:#d33}
-.fld.bad::before{content:"入力してください";position:absolute;right:0;bottom:-22px;font-size:12px;color:#c62828}
+.fld.bad::before{content:attr(data-err);position:absolute;right:0;bottom:-22px;font-size:12px;color:#c62828}
 .dldone{grid-column:2;border:1px solid var(--line);border-radius:12px;padding:40px}
 .dldone b{font-size:22px}.dldone p{margin:12px 0 28px;color:var(--ink2)}
 @media (max-width:860px){.kstats{grid-template-columns:1fr 1fr}.kstats>div{padding:22px 0 20px 16px}.kstats>div:nth-child(3){border-left:0}.kstats>div:nth-child(n+3){border-top:1px solid var(--line)}.ccards{grid-template-columns:1fr}.reasons .rs{grid-template-columns:1fr;gap:14px;padding:36px 0}.reasons h3{font-size:21px}.case .chead{grid-template-columns:1fr}.case .chead h2{font-size:24px}.ckpi>div,.ckpi>div+div{padding:18px 20px 16px 0;margin-right:20px;border-left:0}.checks{grid-template-columns:1fr}.dldone{grid-column:1}.cvoice{padding:24px 20px}}
@@ -768,7 +769,8 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 .sysck li::before{content:"";position:absolute;left:4px;top:26px;width:14px;height:8px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
 .sysck b{color:var(--accent)}
 .ctitle{font-size:24px;letter-spacing:.06em;margin-top:80px}
-.ctable-wrap{overflow-x:auto;margin-top:28px}
+.ctable-wrap{overflow-x:auto;margin-top:28px;-webkit-overflow-scrolling:touch}
+@media (max-width:860px){.ctable-wrap{position:relative;background:linear-gradient(90deg,#fff 30%,rgba(255,255,255,0)),linear-gradient(90deg,rgba(255,255,255,0),#fff 70%) 100% 0,radial-gradient(farthest-side at 0 50%,rgba(0,0,0,.14),rgba(0,0,0,0)),radial-gradient(farthest-side at 100% 50%,rgba(0,0,0,.14),rgba(0,0,0,0)) 100% 0;background-repeat:no-repeat;background-size:40px 100%,40px 100%,14px 100%,14px 100%;background-attachment:local,local,scroll,scroll}.ctable-wrap::before{content:"← 横にスクロールできます →";display:block;font-size:11px;color:var(--grey);text-align:right;margin-bottom:6px;letter-spacing:.04em}}
 .ctable{width:100%;min-width:720px;border-collapse:collapse;font-size:14px;line-height:1.7}
 .ctable th,.ctable td{border:1px solid var(--line);padding:16px 18px;text-align:center;vertical-align:middle}
 .ctable thead th{background:#f4f6f9;font-weight:700;letter-spacing:.04em}
@@ -935,7 +937,8 @@ const js = `
     els.forEach(function(e){io.observe(e);});
   } else { els.forEach(function(e){e.classList.add('in');}); }
   /* tách chữ: hero + tiêu đề mission */
-  function split(el,base,step){var i=0;function walk(n){[].slice.call(n.childNodes).forEach(function(c){if(c.nodeType===3){var f=document.createDocumentFragment();c.textContent.split('').forEach(function(ch){var sp=document.createElement('span');sp.className='ch';sp.textContent=ch===' '?'\u00a0':ch;sp.style.animationDelay=(base+i*step)+'ms';i++;f.appendChild(sp);});n.replaceChild(f,c);}else if(c.nodeType===1&&c.tagName!=='BR'){walk(c);}});}walk(el);}
+  function split(el,base,step){var i=0;function chars(t,f){t.split('').forEach(function(ch){var sp=document.createElement('span');sp.className='ch';sp.textContent=ch===' '?'\u00a0':ch;sp.style.animationDelay=(base+i*step)+'ms';i++;f.appendChild(sp);});}
+  function walk(n){[].slice.call(n.childNodes).forEach(function(c){if(c.nodeType===3){var f=document.createDocumentFragment();c.textContent.split(/( +)/).forEach(function(part){if(!part)return;if(/^ +$/.test(part)){chars(part,f);return;}var w=document.createElement('span');w.className='w';chars(part,w);f.appendChild(w);});n.replaceChild(f,c);}else if(c.nodeType===1&&c.tagName!=='BR'){walk(c);}});}walk(el);}
   var h=document.querySelector('.hero h1'); if(h) split(h,2200,40);
   document.querySelectorAll('.chars').forEach(function(e){split(e,0,40);});
   /* nút: nhân đôi chữ cho hiệu ứng trượt */
@@ -1470,11 +1473,11 @@ ${pageHead('Contact','お問い合わせ・無料相談')}
   <div class="info"><b>052-908-7944</b>平日 9:00–18:00<br>採用人数・職種・時期が未定でも構いません。<br>登録支援機関として、制度の説明からお手伝いします。<br><br>〒462-0007<br>愛知県名古屋市北区如意一丁目112 A</div>
   <form id="cf" novalidate><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
     <label for="cf-type">お問い合わせ種別<small>必須</small></label><select id="cf-type" name="type"><option>無料相談（採用について）</option><option>資料請求</option><option>アプリについて</option><option>採用について（求職者の方）</option><option>その他</option></select>
-    <label for="cf-co">会社名<small>必須</small></label><div class="fld"><input id="cf-co" name="company" type="text" autocomplete="organization" placeholder="BIGLIGHT株式会社" required></div>
-    <label for="cf-nm">お名前<small>必須</small></label><div class="fld"><input id="cf-nm" name="name" type="text" autocomplete="name" placeholder="山田 太郎" required></div>
-    <label for="cf-em">メールアドレス<small>必須</small></label><div class="fld"><input id="cf-em" name="email" type="email" autocomplete="email" placeholder="example@company.co.jp" required></div>
-    <label for="cf-tel">電話番号<small>必須</small></label><div class="fld"><input id="cf-tel" name="tel" type="tel" autocomplete="tel" placeholder="052-000-0000" required></div>
-    <label for="cf-msg">お問い合わせ内容<small>必須</small></label><div class="fld"><textarea id="cf-msg" name="message" placeholder="採用したい職種・人数・時期など" required></textarea></div>
+    <label for="cf-co">会社名<small>必須</small></label><div class="fld" data-err="入力してください"><input id="cf-co" name="company" type="text" autocomplete="organization" placeholder="株式会社〇〇" required></div>
+    <label for="cf-nm">お名前<small>必須</small></label><div class="fld" data-err="入力してください"><input id="cf-nm" name="name" type="text" autocomplete="name" placeholder="山田 太郎" required></div>
+    <label for="cf-em">メールアドレス<small>必須</small></label><div class="fld" data-err="正しいメールアドレスを入力してください"><input id="cf-em" name="email" type="email" autocomplete="email" placeholder="example@company.co.jp" required></div>
+    <label for="cf-tel">電話番号<small>必須</small></label><div class="fld" data-err="入力してください"><input id="cf-tel" name="tel" type="tel" autocomplete="tel" placeholder="052-000-0000" required></div>
+    <label for="cf-msg">お問い合わせ内容<small>必須</small></label><div class="fld" data-err="入力してください"><textarea id="cf-msg" name="message" placeholder="採用したい職種・人数・時期など" required></textarea></div>
     <div class="send"><button class="pill" type="submit" style="cursor:pointer">送信する<span class="circ">→</span></button></div>
     <p class="note">送信いただいた個人情報は<a href="${r}privacy/index.html">プライバシーポリシー</a>に基づき取り扱います。</p>
   </form>
@@ -1901,11 +1904,11 @@ ${pageHead('Download','資料ダウンロード')}
 <section><div class="wrap form">
   <div class="info"><b>会社資料</b>PDF ／ 無料<br>サービス内容・料金体系・支援の流れ・導入事例をまとめた資料です。<br>ご入力後、すぐにダウンロードいただけます。<br><br>お電話でのご相談<br>052-908-7944（平日 9:00–18:00）</div>
   <form id="dlf" novalidate><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
-    <label for="dl-co">会社名<small>必須</small></label><div class="fld"><input id="dl-co" name="company" type="text" autocomplete="organization" placeholder="BIGLIGHT株式会社" required></div>
-    <label for="dl-nm">お名前<small>必須</small></label><div class="fld"><input id="dl-nm" name="name" type="text" autocomplete="name" placeholder="山田 太郎" required></div>
-    <label for="dl-em">メールアドレス<small>必須</small></label><div class="fld"><input id="dl-em" name="email" type="email" autocomplete="email" placeholder="example@company.co.jp" required></div>
+    <label for="dl-co">会社名<small>必須</small></label><div class="fld" data-err="入力してください"><input id="dl-co" name="company" type="text" autocomplete="organization" placeholder="株式会社〇〇" required></div>
+    <label for="dl-nm">お名前<small>必須</small></label><div class="fld" data-err="入力してください"><input id="dl-nm" name="name" type="text" autocomplete="name" placeholder="山田 太郎" required></div>
+    <label for="dl-em">メールアドレス<small>必須</small></label><div class="fld" data-err="正しいメールアドレスを入力してください"><input id="dl-em" name="email" type="email" autocomplete="email" placeholder="example@company.co.jp" required></div>
     <label>ご興味のある内容</label><div class="checks">${IN.map(x=>`<label class="ck"><input type="checkbox" name="interest" value="${x}"><span>${x}</span></label>`).join('')}</div>
-    <label for="dl-note">ご質問・ご要望</label><div class="fld"><textarea id="dl-note" name="note" placeholder="気になる点があればご記入ください"></textarea></div>
+    <label for="dl-note">ご質問・ご要望</label><div class="fld" data-err="入力してください"><textarea id="dl-note" name="note" placeholder="気になる点があればご記入ください"></textarea></div>
     <div class="send"><button class="pill" type="submit" style="cursor:pointer">資料をダウンロードする<span class="circ">↓</span></button></div>
     <p class="note">送信いただいた個人情報は<a href="${r}privacy/index.html">プライバシーポリシー</a>に基づき取り扱います。</p>
   </form>

@@ -106,7 +106,7 @@ var BLF=(function(){
   if(cf){var cg=BLF.mount(cf,cf.querySelector('.send')),btn=cf.querySelector('button[type=submit]');
     cf.addEventListener('submit',function(e){e.preventDefault();if(!check(cf)||btn.disabled)return;
       var v=vals(cf),g=cg.fields(),msg=v.message||'';var src=BLT.src();if(src)msg+='\n\n――\n参照した記事: https://biglight.jp'+src;
-      var old=btn.innerHTML;btn.disabled=true;btn.firstChild.nodeValue='送信中…';
+      var old=btn.innerHTML;btn.disabled=true;[].forEach.call(btn.querySelectorAll('.tx span'),function(x){x.textContent='送信中…';});if(!btn.querySelector('.tx'))btn.firstChild.nodeValue='送信中…';
       fetch(API+'inquiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({company:v.company||'',name:v.name||'',email:v.email||'',tel:v.tel||'',kind:v.type||'',message:msg,website:v.website||'',ft:g.ft,turnstile:g.turnstile})})
         .then(function(r){return r.json().catch(function(){return {};}).then(function(j){if(!r.ok){var er=new Error(j.error||'failed');er.code=j.code;er.msg=j.error;throw er;}return j;});})
         .then(function(){BLT.conv('form');done(cf,document.getElementById('cf-done'));})
