@@ -1510,7 +1510,7 @@ ${pageHead('Recruit','採用情報')}
   <div class="two" style="margin-top:24px"><h2 style="font-size:40px">BIGLIGHTのチームが<br>大切にしている、3つの文化。</h2><div class="txt"><p>名古屋とホーチミン、2つの拠点が毎日つながって働いています。</p></div></div>
   <div class="cul"><div><div class="num">CULTURE-01</div><h2>挑戦<small>Challenge</small></h2><p>変化を恐れず、新しい挑戦を続ける。失敗を学びに変え、一歩先へ進み続けます。若い会社だからこそ、一人ひとりの提案がすぐにかたちになります。</p></div><div class="illu cul-illu"><img src="${r}img/illu-culture-1.svg" alt="一段ずつ上へ登る人のイラスト"><i class="fl a"></i><i class="fl b"></i><i class="fl d"></i></div></div>
   <div class="cul rev"><div><div class="num">CULTURE-02</div><h2>チームワーク<small>Teamwork</small></h2><p>仲間と協力し、より大きな成果を創る。一人ではなく、チームで勝つ組織です。困ったときはお互いに助け合い、努力と成果をきちんと評価します。</p></div><div class="illu cul-illu"><img src="${r}img/illu-culture-2.svg" alt="ホワイトボードに一緒に書き込む二人のイラスト"><i class="fl a"></i><i class="fl c"></i><i class="fl d"></i></div></div>
-  <div class="cul"><div><div class="num">CULTURE-03</div><h2>革新<small>Innovation</small></h2><p>現状に満足せず、常に改善を追求する。昨日より良い仕組みを、今日つくります。支援業務・学習・求人にアプリを導入し、現場の声をすぐに仕組みに変えます。</p></div><div class="illu cul-illu"><img src="${r}img/illu-culture-3.svg" alt="大きな電球を見上げる人のイラスト"><i class="fl a"></i><i class="fl b"></i><i class="fl c"></i></div></div>
+  <div class="cul"><div><div class="num">CULTURE-03</div><h2>革新<small>Innovation</small></h2><p>現状に満足せず、常に改善を追求する。昨日より良い仕組みを、今日つくります。</p></div><div class="illu cul-illu"><img src="${r}img/illu-culture-3.svg" alt="大きな電球を見上げる人のイラスト"><i class="fl a"></i><i class="fl b"></i><i class="fl c"></i></div></div>
 </div></section>
 
 <section class="blk" id="voice"><div class="wrap">
