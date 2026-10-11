@@ -2025,7 +2025,12 @@ ${pageHead('We are','私たちについて',aboutTabs(r,'strength'))}
 <section class="blk"><div class="wrap">
   <div class="lbl">Case</div>
   <div class="two" style="margin-top:24px"><h2 style="font-size:40px">導入事例</h2><div class="txt"><p>実際にご支援した企業様の声をご紹介します。</p></div></div>
-  <div class="ccards">${CASES.map(c=>caseCard(r,c)).join('')}</div>
+  <div class="rows crows" style="margin-top:40px">${CASES.map((c,i)=>`<a class="crow" href="${r}case/index.html#${c.slug}">
+    <div class="cno">CASE ${String(i+1).padStart(2,'0')}<small>${c.ind}・${c.area}</small></div>
+    <div class="ct">${c.h}</div>
+    <div class="ck">${c.kpi.slice(0,2).map(([n,u,l])=>`<span><b>${n}<i>${u}</i></b><small>${l}</small></span>`).join('')}</div>
+    ${circ()}</a>`).join('')}</div>
+  <div class="more-r"><a href="${r}case/index.html">導入事例を見る <span class="ar">→</span></a></div>
 </div></section>
 ${contactBox(r)}
 `});}
