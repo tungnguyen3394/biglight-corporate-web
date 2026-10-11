@@ -3,7 +3,7 @@ const fs = require('fs'); const path = require('path');
 const OUT = path.join(__dirname, 'dist');
 const SITE = 'https://biglight.jp'; // URL chính thức (canonical). Bản xem trước new.biglight.jp bị chặn index ở tầng Caddy.
 fs.rmSync(OUT, { recursive: true, force: true });
-for (const d of ['antisocial','css','js','img','about','about/message','about/company','about/sdgs','service','service/tokutei-ginou','service/engineer','img/field','product','news','recruit','contact']) fs.mkdirSync(path.join(OUT,d),{recursive:true});
+for (const d of ['antisocial','optout','css','js','img','about','about/message','about/company','about/sdgs','service','service/tokutei-ginou','service/engineer','img/field','product','news','recruit','contact']) fs.mkdirSync(path.join(OUT,d),{recursive:true});
 
 // ---------- assets ----------
 const copies = {
@@ -461,8 +461,9 @@ html.js .pic .fl.b{animation-duration:6.2s;animation-delay:.6s}html.js .pic .fl.
 .voice .q{font-size:15px;line-height:2.1;margin-top:14px;color:var(--ink2)}
 .req dt{font-weight:700;color:var(--ink)}
 .req ul{margin:0;padding-left:18px}
-.req .pos{display:flex;flex-direction:column;gap:6px}
-.req .pos small{color:var(--grey);margin-left:10px}
+.req .pos{display:flex;flex-direction:column;gap:14px}
+.req .pos span{line-height:1.6}
+.req .pos small{display:block;color:var(--grey);font-size:13px;margin-top:2px}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:60px}
 .steps div{border-top:1px solid var(--ink);padding-top:20px}
 .steps b{font-family:var(--en);font-size:13px;letter-spacing:.14em;color:var(--accent);font-weight:700}
@@ -1544,13 +1545,13 @@ function recruit(){ const r='../'; return page({root:r,title:'採用情報｜BIG
 ${pageHead('Recruit','採用情報')}
 <section><div class="wrap lead-end">
   <p class="lead28">日本と世界をつなぐ仕事を、<br>一緒に。</p>
-  <p class="lead16">ベトナム・インドネシア・ミャンマー・ネパールなど、さまざまな国の人材と企業をつなぐ仕事を、BIGLIGHTで。若く、国際的なチームで成長できる環境です。法人営業・ルート営業・外国人管理支援スタッフを募集しています。</p>
+  <p class="lead16">ベトナム・インドネシア・ミャンマー・ネパールなど、さまざまな国の人材と企業をつなぐ仕事を、BIGLIGHTで。若く、国際的なチームで成長できる環境です。3つの職種で、一緒に働く仲間を募集しています。</p>
   <div style="margin-top:40px;display:flex;gap:20px;flex-wrap:wrap">${pill('募集要項を見る','#req')}${pill('先輩の声を見る','#voice')}</div>
 </div></section>
 
 <section class="blk" id="culture"><div class="wrap">
   <div class="lbl">Culture</div>
-  <div class="two" style="margin-top:24px"><h2 style="font-size:40px">BIGLIGHTのチームが<br>大切にしている、3つの文化。</h2><div class="txt"><p>名古屋とホーチミン、2つの拠点が毎日つながって働いています。</p></div></div>
+  <div class="two" style="margin-top:24px"><h2 style="font-size:40px">BIGLIGHTのチームが<br>大切にしている、3つの文化。</h2><div class="txt"><p>名古屋・関東・ホーチミンの拠点が、毎日つながって働いています。</p></div></div>
   <div class="cul"><div><div class="num">CULTURE-01</div><h2>挑戦<small>Challenge</small></h2><p>変化を恐れず、新しい挑戦を続ける。失敗を学びに変え、一歩先へ進み続けます。若い会社だからこそ、一人ひとりの提案がすぐにかたちになります。</p></div><div class="illu cul-illu"><img src="${r}img/illu-culture-1.svg" alt="一段ずつ上へ登る人のイラスト"><i class="fl a"></i><i class="fl b"></i><i class="fl d"></i></div></div>
   <div class="cul rev"><div><div class="num">CULTURE-02</div><h2>チームワーク<small>Teamwork</small></h2><p>仲間と協力し、より大きな成果を創る。一人ではなく、チームで勝つ組織です。困ったときはお互いに助け合い、努力と成果をきちんと評価します。</p></div><div class="illu cul-illu"><img src="${r}img/illu-culture-2.svg" alt="ホワイトボードに一緒に書き込む二人のイラスト"><i class="fl a"></i><i class="fl c"></i><i class="fl d"></i></div></div>
   <div class="cul"><div><div class="num">CULTURE-03</div><h2>革新<small>Innovation</small></h2><p>現状に満足せず、常に改善を追求する。昨日より良い仕組みを、今日つくります。</p></div><div class="illu cul-illu"><img src="${r}img/illu-culture-3.svg" alt="大きな電球を見上げる人のイラスト"><i class="fl a"></i><i class="fl b"></i><i class="fl c"></i></div></div>
@@ -1561,18 +1562,18 @@ ${pageHead('Recruit','採用情報')}
   <div class="two" style="margin-top:24px"><h2 style="font-size:40px">先輩の声</h2><div class="txt"><p>BIGLIGHTで働くメンバーが、仕事への想いをお話しします。</p></div></div>
   <div class="voices">
     <div class="voice"><div class="vph"><img src="${r}img/staff-2.jpg" alt="ノン タン フン"></div>
-      <div class="vtx"><div class="num">INTERVIEW-01<span>入社4年目</span></div><h3>ノン タン フン<small>マネージャー</small></h3><p class="ld">BIGLIGHTでは、企業様への提案や人材紹介、入社後のフォローを担当しています。</p><p class="q">幅広い業務に挑戦でき、自分の成長を実感できることがこの仕事の魅力です。社内は若く活気があり、困ったときにはお互いに助け合える環境があります。努力や成果をきちんと評価してもらえるため、やりがいを持って働けます。新しいことに挑戦したい方、責任を持って仕事に取り組める方にぴったりの会社です。私たちと一緒に成長し、BIGLIGHTの未来をつくっていきましょう。</p></div></div>
+      <div class="vtx"><div class="num">INTERVIEW-01<span>入社4年目</span></div><h3>ノン タン フン<small>Manager</small></h3><p class="ld">BIGLIGHTでは、企業様への提案や人材紹介、入社後のフォローを担当しています。</p><p class="q">幅広い業務に挑戦でき、自分の成長を実感できることがこの仕事の魅力です。社内は若く活気があり、困ったときにはお互いに助け合える環境があります。努力や成果をきちんと評価してもらえるため、やりがいを持って働けます。新しいことに挑戦したい方、責任を持って仕事に取り組める方にぴったりの会社です。私たちと一緒に成長し、BIGLIGHTの未来をつくっていきましょう。</p></div></div>
     <div class="voice rev"><div class="vph"><img src="${r}img/staff-1.jpg" alt="マイ ラン リン"></div>
-      <div class="vtx"><div class="num">INTERVIEW-02<span>入社5年目</span></div><h3>マイ ラン リン<small>営業職</small></h3><p class="ld">企業様への人材提案や採用支援、入社後のフォローなどを担当しています。</p><p class="q">企業様と求職者の双方から感謝の言葉をいただけることが、大きなやりがいです。BIGLIGHTでは、自分の経験を活かしながら新しい仕事にも挑戦できます。分からないことがあっても相談しやすく、仲間と協力しながら成長できる環境です。人と接することが好きで、相手のために行動できる方に向いている仕事だと思います。一緒に経験を積み、多くの方の新しい一歩を支えていきましょう。</p></div></div>
+      <div class="vtx"><div class="num">INTERVIEW-02<span>入社5年目</span></div><h3>マイ ラン リン<small>Sales</small></h3><p class="ld">企業様への人材提案や採用支援、入社後のフォローなどを担当しています。</p><p class="q">企業様と求職者の双方から感謝の言葉をいただけることが、大きなやりがいです。BIGLIGHTでは、自分の経験を活かしながら新しい仕事にも挑戦できます。分からないことがあっても相談しやすく、仲間と協力しながら成長できる環境です。人と接することが好きで、相手のために行動できる方に向いている仕事だと思います。一緒に経験を積み、多くの方の新しい一歩を支えていきましょう。</p></div></div>
     <div class="voice"><div class="vph"><img src="${r}img/staff-3.jpg" alt="レ テ クアン"></div>
-      <div class="vtx"><div class="num">INTERVIEW-03<span>新卒入社1年目</span></div><h3>レ テ クアン<small>営業職</small></h3><p class="ld">特定技能人材やエンジニアの生活支援、企業様との連絡・調整を担当しています。</p><p class="q">外国人の方が日本で安心して働く姿を見ると、この仕事の意義を実感します。入社後は先輩から丁寧に教えてもらえるため、安心して仕事を覚えられました。若い社員が多く、意見や相談を伝えやすい明るい職場です。人を支えることが好きな方や、日本語を活かして成長したい方におすすめです。私たちと一緒に学びながら、新しいことへ積極的に挑戦していきましょう。</p></div></div>
+      <div class="vtx"><div class="num">INTERVIEW-03<span>新卒入社1年目</span></div><h3>レ テ クアン<small>Sales</small></h3><p class="ld">特定技能人材やエンジニアの生活支援、企業様との連絡・調整を担当しています。</p><p class="q">外国人の方が日本で安心して働く姿を見ると、この仕事の意義を実感します。入社後は先輩から丁寧に教えてもらえるため、安心して仕事を覚えられました。若い社員が多く、意見や相談を伝えやすい明るい職場です。人を支えることが好きな方や、日本語を活かして成長したい方におすすめです。私たちと一緒に学びながら、新しいことへ積極的に挑戦していきましょう。</p></div></div>
   </div>
 </div></section>
 
 <section class="blk" id="req"><div class="wrap side" style="margin-top:0">
   <h2 class="en long">Requirements<small style="display:block;font-family:var(--jp);font-size:14px;letter-spacing:.1em;color:var(--accent);margin-top:14px;text-transform:none">募集要項</small></h2>
   <dl class="dl req">
-    <div><dt>募集職種</dt><dd class="pos"><span><b>① 法人営業（BtoBセールス）</b><small>日本企業への人材サービス提案営業</small></span><span><b>② ルート営業（既存顧客フォロー）</b><small>既存取引先へのフォロー・関係構築</small></span><span><b>③ 外国人管理・支援スタッフ</b><small>外国人スタッフの生活・就労サポート</small></span></dd></div>
+    <div><dt>募集職種</dt><dd class="pos"><span><b>① Corporate Sales</b><small>法人営業｜日本企業への人材サービスの提案</small></span><span><b>② Account Manager</b><small>ルート営業｜既存取引先へのフォロー・関係構築</small></span><span><b>③ Support Coordinator</b><small>外国人支援｜外国人スタッフの生活・就労サポート</small></span></dd></div>
     <div><dt>雇用形態</dt><dd>正社員（フルタイム）<br>契約期間：期間の定めなし</dd></div>
     <div><dt>試用期間</dt><dd>3か月（期間中の労働条件の変更なし）</dd></div>
     <div><dt>勤務地</dt><dd>愛知県名古屋市北区如意一丁目112 A（本社）<br>（変更の範囲）会社の定める事業所</dd></div>
@@ -1912,7 +1913,7 @@ const FIELDS = [
   req:[['特定技能1号','「外食業特定技能1号技能測定試験」＋ 日本語試験（JFT-Basic A2 または JLPT N4以上）に合格。在留期間は通算最長5年。※2026年4月13日以降、海外からの新規呼び寄せ・他分野からの変更は原則停止中（転職・移行ルートは可）。'],['特定技能2号（2023年〜対象・上限なし）','「外食業特定技能2号技能測定試験」＋ 複数の従業員を指導・監督する店舗管理の実務経験（おおむね2年以上）が要件。在留期間の上限なし、家族帯同も可能です。']],
   career:CAREER('現場で調理・接客・日本語を習得。特定技能への移行を前提に育成','試験合格済みの即戦力。調理・接客・店舗運営を一人で担う','店長候補。店舗管理・スタッフ指導を担い、上限規制の外で長期確保できる。家族帯同も可能'),
   flow:[['お問い合わせ・ルート判定','採用したい人数・時期を伺い、転職／移行／2号のどれで採れるかを判定します。'],['ニーズ整理・ご提案','現場要件と予算を整理し、最適な採用・確保プランをご提案します。'],['候補者のご紹介・面接','転職希望者や移行対象者を紹介し、オンライン等で面接を実施します。'],['内定・雇用契約','日本人と同等以上の待遇を満たす雇用条件で契約を締結します。'],['在留資格の申請・協議会加入','在留資格の変更等を申請し、受入れ後4ヶ月以内の協議会加入まで代行します。'],['受入れ準備','住居・生活インフラの手配、事前ガイダンスを実施します。'],['受入れ・定着支援','配属後も10項目支援と定期面談で長期定着・2号化をサポートします。']],
-  faq:[['外食業はもう特定技能で採用できないのですか？','「海外からの新規呼び寄せ」と「他分野・留学からの切替」は2026年4月13日以降、原則停止です。ただし①外食業内での転職受入れ、②技能実習（給食製造など）からの移行、③特定技能2号への移行は引き続き可能です。御社の状況で使えるルートを無料で判定します。'],['今いる特定技能1号の在留期間の更新はできますか？','はい。更新申請は上限規制の対象外で、通常どおり審査されます。既存人材の継続雇用に影響はありません。'],['2号にすると何が変わりますか？','特定技能2号は在留期間の上限がなく（更新を続ければ実質的に長期就労が可能）、家族帯同も認められます。上限規制の影響も受けません。店舗管理の実務経験と2号試験が要件です。'],['協議会への加入は必要ですか？','必要です。外食業では受入れ開始後4ヶ月以内の「食品産業特定技能協議会」加入が義務で、未加入だと在留更新が不許可になるリスクがあります。加入手続きはBIGLIGHTが代行します。'],['対応エリアは？費用の目安は？','名古屋を拠点に全国の飲食店・給食施設に対応します。支援委託費は月2〜3万円程度が目安で、人数・支援範囲により異なります。まずは無料相談・無料見積りをご利用ください。']]},
+  faq:[['外食業はもう特定技能で採用できないのですか？','「海外からの新規呼び寄せ」と「他分野・留学からの切替」は2026年4月13日以降、原則停止です。ただし①外食業内での転職受入れ、②技能実習（給食製造など）からの移行、③特定技能2号への移行は引き続き可能です。御社の状況で使えるルートを無料で判定します。'],['今いる特定技能1号の在留期間の更新はできますか？','はい。更新申請は上限規制の対象外で、通常どおり審査されます。既存人材の継続雇用に影響はありません。'],['2号にすると何が変わりますか？','特定技能2号は在留期間の上限がなく（更新を続ければ実質的に長期就労が可能）、家族帯同も認められます。上限規制の影響も受けません。店舗管理の実務経験と2号試験が要件です。'],['協議会への加入は必要ですか？','必要です。外食業では受入れ開始後4ヶ月以内の「食品産業特定技能協議会」加入が義務で、未加入だと在留更新が不許可になるリスクがあります。加入手続きはBIGLIGHTが代行します。'],['対応エリアは？費用の目安は？','名古屋を拠点に全国の飲食店・給食施設に対応します。費用は人数・支援範囲により異なり、無料でお見積りします。まずは無料相談をご利用ください。']]},
 ];
 const n2 = k => String(k+1).padStart(2,'0');
 const card4 = list => `<div class="flow f4">${list.map(([h,a,b],k)=>`<div><b>${n2(k)}</b><h3>${h}</h3><p>${a}<br>${b}</p></div>`).join('')}</div>`;
@@ -2148,6 +2149,45 @@ function article(slug){ const A=ARTICLES[slug]; const r='../../'; const others=n
 ${contactBox(r)}
 `});}
 
+// ---------- OPTOUT (配信停止: フォーム営業の手紙のリンク ?bl=BL-XXXXXX から。CRM formbot/optout に送る。noindex・サイトマップ外) ----------
+function optout(){ const r='../'; return page({root:r,title:'配信停止｜BIGLIGHT株式会社',desc:'BIGLIGHT株式会社からのご案内の配信停止を受け付けます。',body:`
+<section class="ph"><div class="wrap"><h1 class="phh"><span class="en">Unsubscribe</span><span class="ja-lb">ご案内の配信停止</span></h1>${dots}</div></section>
+<section><div class="wrap form" style="margin-top:0">
+  <div class="info">BIGLIGHT株式会社からのご案内（メール・お問い合わせフォームでのご連絡）を停止します。<br><br>ご不明な点は<br><b>052-908-7944</b>平日 9:00–18:00</div>
+  <div>
+    <p id="oo-load" class="lead16">読み込んでいます…</p>
+    <form id="oo-ask" hidden novalidate>
+      <p class="lead16"><b id="oo-co"></b> 様</p>
+      <p style="margin-top:12px;color:var(--ink2)">下のボタンを押すと、以後ご連絡いたしません。</p>
+      <label for="oo-why">よろしければ理由をお聞かせください<small style="color:var(--grey)">任意</small></label><select id="oo-why"><option value="">選ばない</option><option>外国人の採用予定がない</option><option>すでに他社に依頼している</option><option>営業のご連絡はお断りしている</option><option>担当部署ではない</option><option>その他</option></select>
+      <div id="oo-nw" hidden><label for="oo-note">その他<small style="color:var(--grey)">任意</small></label><textarea id="oo-note" maxlength="150" placeholder="ご自由にお書きください"></textarea></div>
+      <div class="send"><button class="pill" type="submit" id="oo-go" style="cursor:pointer">配信を停止する<span class="circ">→</span></button></div>
+      <p class="note" id="oo-err" role="alert"></p>
+    </form>
+    <div class="dldone" id="oo-done" hidden style="grid-column:auto"><b>配信を停止しました。</b><p>以後、ご案内はお送りいたしません。行き違いでご案内が届いた場合は、恐れ入りますがご容赦ください。お手数をおかけしました。</p></div>
+    <div class="dldone" id="oo-none" hidden style="grid-column:auto"><b>リンクを確認できませんでした。</b><p>お手数ですが、届いたメールに「配信不要」とご返信いただくか、<a href="${r}contact/index.html">お問い合わせ</a>からご連絡ください。以後ご連絡いたしません。</p></div>
+  </div>
+</div></section>
+<script>
+(function(){
+  var API='https://api-crm.biglight.jp/formbot/optout',bl='';
+  try{bl=(new URLSearchParams(location.search).get('bl')||'').toUpperCase();}catch(e){}
+  function $(i){return document.getElementById(i);}
+  function show(id){['oo-load','oo-ask','oo-done','oo-none'].forEach(function(x){$(x).hidden=x!==id;});}
+  if(!/^BL-[A-Z0-9]{6}$/.test(bl)){show('oo-none');return;}
+  $('oo-why').addEventListener('change',function(){$('oo-nw').hidden=this.value!=='その他';});
+  fetch(API+'?bl='+encodeURIComponent(bl),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json();})
+    .then(function(j){$('oo-co').textContent=j.name||'';show(j.done?'oo-done':'oo-ask');}).catch(function(){show('oo-none');});
+  $('oo-ask').addEventListener('submit',function(e){e.preventDefault();var b=$('oo-go'),w=$('oo-why').value;
+    b.disabled=true;$('oo-err').textContent='';
+    var reason=w==='その他'?('その他: '+$('oo-note').value.trim()).slice(0,150):w;
+    fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({r:bl,reason:reason})})
+      .then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(){show('oo-done');})
+      .catch(function(){b.disabled=false;$('oo-err').textContent='停止できませんでした。時間をおいてもう一度お試しいただくか、メールに「配信不要」とご返信ください。';});
+  });
+})();
+</script>`});}
+
 const pages = {
   'index.html': home(),
   'about/index.html': about(),
@@ -2165,6 +2205,7 @@ const pages = {
   'case/index.html': cases(),
   'privacy/index.html': privacy(),
   'antisocial/index.html': antisocial(),
+  'optout/index.html': optout(),
 };
 FIELDS.forEach((f,i)=>{pages['service/field/'+f.slug+'/index.html']=fieldPage(f,i);});
 NEWS.forEach(n=>{pages['news/'+n.slug+'/index.html']=article(n.slug);});
