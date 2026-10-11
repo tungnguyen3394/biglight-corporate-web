@@ -81,6 +81,7 @@ module.exports = function seo(pages, { OUT, SITE, ARTICLES, WEBP = {} }) {
     // Link Preview (LINE / Slack / Facebook…): trang chủ dùng kiểu Guidable — tên công ty + câu giới thiệu
     const [ogT, ogD] = dir === '' ? [OG_HOME.title, OG_HOME.desc] : [title, desc];
 
+    html = html.replace(/<!--(?!SEO)[\s\S]*?-->/g, '').replace(/(<script>[^<]*?)\/\*[\s\S]*?\*\//g, '$1');
     html = webp(html).replace('__CSSV__', ver['css/site.css']).replace('__JSV__', ver['js/site.js']);
     // link ngoài → tab mới
     html = html.replace(/<a ([^>]*?)href="(https?:\/\/(?!(?:new\.)?biglight\.jp)[^"]+)"(?![^>]*target=)/g, '<a $1href="$2" target="_blank" rel="noopener"');

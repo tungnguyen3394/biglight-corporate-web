@@ -1130,7 +1130,9 @@ const js = `
   });
 })();
 `;
-fs.writeFileSync(path.join(OUT,'js/site.js'), fs.readFileSync(path.join(__dirname,'src/js/consent.js'),'utf8')+'\n'+fs.readFileSync(path.join(__dirname,'src/js/bl-track.js'),'utf8')+'\n'+js);
+/* bản công khai: bỏ mọi chú thích (ghi chú nội bộ không được lộ ra ngoài) */
+const stripJs = (t) => t.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/[^\n]*$/gm, '').replace(/\n\s*\n+/g, '\n');
+fs.writeFileSync(path.join(OUT,'js/site.js'), stripJs(fs.readFileSync(path.join(__dirname,'src/js/consent.js'),'utf8')+'\n'+fs.readFileSync(path.join(__dirname,'src/js/bl-track.js'),'utf8')+'\n'+js));
 
 // ---------- helpers ----------
 const SDG_COLORS=['#E5243B','#DDA63A','#4C9F38','#C5192D','#FF3A21','#26BDE2','#FCC30B','#A21942','#FD6925','#DD1367','#FD9D24','#BF8B2E','#3F7E44','#0A97D9','#56C02B','#00689D','#19486A'];
@@ -1277,7 +1279,6 @@ function home(){ const r='./'; return page({root:r,home:true,title:'BIGLIGHT株�
   <div class="vis">
     ${heroSlide('<img class="full" src="'+r+'img/office-hcm.jpg" alt="BIGLIGHTのオフィス">', true)}
     ${heroSlide(dev(r,'desk-job.jpg','shot-job.jpg'), false, 'devs')}
-    <!-- ảnh 4 người tạm ẩn (CEO 10-10): ${'hero-team.jpg'} -->
     ${heroSlide(dev(r,'desk-academy.jpg','shot-academy.jpg'), false, 'devs')}
   </div>
   <div class="scrl"></div>
