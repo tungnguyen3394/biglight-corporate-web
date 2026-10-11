@@ -67,7 +67,7 @@ module.exports = function seo(pages, { OUT, SITE, ARTICLES, WEBP = {} }) {
   const urls = [];
   for (const [f, raw] of Object.entries(pages)) {
     let html = raw;
-    if (f === '404.html' || f === 'optout/index.html') { html = webp(html).replace('<!--SEO-->', '<meta name="robots" content="noindex">').replace('__CSSV__', ver['css/site.css']).replace('__JSV__', ver['js/site.js']).replace(/<!--[\s\S]*?-->/g, ''); fs.writeFileSync(path.join(OUT, f), html); continue; }
+    if (f === '404.html' || f === 'optout/index.html') { html = webp(html).replace('<!--SEO-->', '<meta name="robots" content="noindex">' + (f === '404.html' ? '' : '<link rel="canonical" href="' + SITE + '/' + f.replace(/index\.html$/, '') + '">')).replace('__CSSV__', ver['css/site.css']).replace('__JSV__', ver['js/site.js']).replace(/<!--[\s\S]*?-->/g, ''); fs.writeFileSync(path.join(OUT, f), html); continue; }
     const dir = f.replace(/index\.html$/, '');
     const url = SITE + '/' + dir;
     let title = (html.match(/<title>([^<]*)<\/title>/) || [])[1] || 'BIGLIGHT株式会社';
