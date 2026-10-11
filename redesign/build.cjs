@@ -1449,7 +1449,7 @@ ${SDG_AREAS.map((A,i)=>`<section class="sg-area"><div class="wrap">
 function service(){ const r='../'; return page({root:r,title:'事業内容｜BIGLIGHT株式会社',desc:'特定技能 採用支援・技人国 人材紹介',body:`
 ${pageHead('Service','事業内容')}
 <section><div class="wrap lead-end">
-  <p class="lead28">採用から定着まで、ワンストップで。<br>完全成功報酬・最長1年保証。</p>
+  <p class="lead28">採用から定着まで、ワンストップで。<br>完全成功報酬でご支援します。</p>
   <p class="lead16">BIGLIGHTは、名古屋を拠点に、特定技能・技人国の外国人材の紹介と、登録支援機関としての定着支援を自社で一貫して行っています。</p>
 </div></section>
 
@@ -1671,7 +1671,7 @@ const FAQ_EN = [
   ['日本語力はどの程度ありますか？','N2以上の人材が中心です。ビジネス会話や社内コミュニケーションに対応できる人材をご紹介します。'],
   ['学歴の条件はありますか？','原則として大学卒業が必要です。専門学校卒業の人材もご紹介しています。学んだ分野と業務内容の関連性も審査されるため、採用前に業務内容を一緒に整理します。'],
   ['在留資格の手続きもお願いできますか？','はい。在留資格の申請・変更手続きを専門スタッフが代行します。'],
-  ['費用はいつ発生しますか？','完全成功報酬のため、採用が決まるまで費用は一切かかりません。さらに最長1年の保証が付きます。'],
+  ['費用はいつ発生しますか？','完全成功報酬のため、採用が決まるまで費用は一切かかりません。'],
 ];
 const faq = (list) => `<div class="faq">${list.map(([q,a])=>`<details><summary><b>Q</b><span>${q}</span><i></i></summary><div class="ans"><b>A</b><div>${a.startsWith('<p>')?a:'<p>'+a+'</p>'}</div></div></details>`).join('')}</div>`;
 const faqSec = (list) => `<section class="blk faq-sec" id="faq"><div class="wrap side" style="margin-top:0">
@@ -1682,7 +1682,7 @@ const faqSec = (list) => `<section class="blk faq-sec" id="faq"><div class="wrap
 function serviceTop(){ const r='../'; return page({root:r,title:'事業内容｜BIGLIGHT株式会社',desc:'特定技能 採用支援・技人国 人材紹介。製造・建設・食品・外食の4分野を中心に対応。',body:`
 ${pageHead('Service','事業内容',serviceTabs(r,'overview'))}
 <section><div class="wrap lead-end">
-  <p class="lead28">採用から定着まで、ワンストップで。<br>完全成功報酬・最長1年保証。</p>
+  <p class="lead28">採用から定着まで、ワンストップで。<br>完全成功報酬でご支援します。</p>
   <p class="lead16">BIGLIGHTは名古屋の登録支援機関として、特定技能・技人国の外国人材の紹介と、入社後の定着支援を自社で一貫して行っています。</p>
 </div></section>
 <section class="svc" id="s1"><div class="wrap">
@@ -1832,7 +1832,7 @@ ${pageHead('Engineer','技人国 人材紹介',serviceTabs(r,'en'))}
   <dl class="dl">
     <div><dt>学歴・経験</dt><dd>原則として、業務に関連する大学・専門学校の卒業、または一定の実務経験が必要です。</dd></div>
     <div><dt>業務内容</dt><dd>学んだ専門分野と業務内容の関連性が審査されます。採用前に業務内容を一緒に整理します。</dd></div>
-    <div><dt>費用</dt><dd>完全成功報酬。入社後は最長1年の保証付きです。</dd></div>
+    <div><dt>費用</dt><dd>完全成功報酬。採用が決まるまで費用はかかりません。</dd></div>
   </dl>
 </div></section>
 ${faqSec(FAQ_EN)}
@@ -1964,8 +1964,8 @@ const STATS = [['2021','','設立'],['500','+','人材紹介実績（名）'],['
 const statsRow = () => `<div class="kstats">${STATS.map(([n,u,l])=>`<div><b>${n}<i>${u}</i></b><span>${l}</span></div>`).join('')}</div><p class="kstats-note">※人材紹介実績・取引企業数は2026年6月時点</p>`;
 const REASONS = [
   ['高精度マッチング','ニーズに合う人材と、スピーディーに出会える。経験豊富なチームが、企業のニーズと人材を丁寧にマッチングします。',['経験豊富な専任チーム','自社プラットフォームの母集団','スキル・人柄まで見極め']],
-  ['完全成功報酬 × 1年保証','採用が決まるまで費用はかかりません。入社後も最長1年の保証があり、安心してご依頼いただけます。',['初期費用・着手金なし','採用成功時のみのお支払い','最長1年の安心保証']],
-  ['ワンストップ・低コスト','募集から手続き、定着支援まで全工程をワンストップで完結。中間業者を介さないため、そのぶん費用を抑えたご提案が可能です。',['採用〜定着まで一気通貫','自社で一貫対応（再委託なし）','東海エリア密着 × ベトナム直結']],
+  ['完全成功報酬','採用が決まるまで費用はかかりません。初期費用・着手金なしで、採用計画の段階から安心してご相談いただけます。',['初期費用・着手金なし','採用成功時のみのお支払い','採用前のご相談は無料']],
+  ['ワンストップ対応','募集・面接から在留資格の手続き、入社後の生活支援・定着まで、すべての工程を自社で一貫して対応します。窓口はひとつ、担当者が最後まで伴走します。',['採用〜定着まで一気通貫','自社で一貫対応（再委託なし）','東海エリア密着 × ベトナム直結']],
 ];
 const CASES = [
   {slug:'welding',ind:'製造業（溶接・鉄骨加工）',area:'愛知県',size:'従業員 約50名',photo:'case-welding.jpg',
