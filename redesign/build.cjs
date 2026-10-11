@@ -1572,13 +1572,17 @@ ${pageHead('Recruit','採用情報')}
   <h2 class="en long">Requirements<small style="display:block;font-family:var(--jp);font-size:14px;letter-spacing:.1em;color:var(--accent);margin-top:14px;text-transform:none">募集要項</small></h2>
   <dl class="dl req">
     <div><dt>募集職種</dt><dd class="pos"><span><b>① 法人営業（BtoBセールス）</b><small>日本企業への人材サービス提案営業</small></span><span><b>② ルート営業（既存顧客フォロー）</b><small>既存取引先へのフォロー・関係構築</small></span><span><b>③ 外国人管理・支援スタッフ</b><small>外国人スタッフの生活・就労サポート</small></span></dd></div>
-    <div><dt>雇用形態</dt><dd>正社員（フルタイム）</dd></div>
-    <div><dt>勤務地</dt><dd>愛知県名古屋市北区如意一丁目112 A（本社）</dd></div>
+    <div><dt>雇用形態</dt><dd>正社員（フルタイム）<br>契約期間：期間の定めなし</dd></div>
+    <div><dt>試用期間</dt><dd>3か月（期間中の労働条件の変更なし）</dd></div>
+    <div><dt>勤務地</dt><dd>愛知県名古屋市北区如意一丁目112 A（本社）<br>（変更の範囲）会社の定める事業所</dd></div>
+    <div><dt>業務内容の変更の範囲</dt><dd>会社の定める業務</dd></div>
     <div><dt>勤務時間</dt><dd>9:00〜18:00（休憩1時間）</dd></div>
+    <div><dt>休日・休暇</dt><dd>土日祝休み（週休2日制）<br>年次有給休暇</dd></div>
+    <div><dt>受動喫煙対策</dt><dd>屋内禁煙</dd></div>
     <div><dt>給与</dt><dd>月給 210,000〜350,000円（経験・能力により決定）<br>年2回の賞与あり</dd></div>
     <div><dt>各種手当</dt><dd><ul><li>住宅手当：月20,000円</li><li>交通費全額支給（実費）</li><li>会社支給：ノートパソコン、携帯電話</li></ul></dd></div>
     <div><dt>応募条件</dt><dd><ul><li>Google Workspace（Docs, Sheets, Forms など）が使用できる方</li><li>責任感があり、チームワークを大切にできる方</li><li>外国籍の方：日本語N2以上、日本の専門学校または大学卒業（同等レベル可）</li></ul></dd></div>
-    <div><dt>福利厚生</dt><dd><ul><li>社会保険・雇用保険・労災保険完備</li><li>日本の祝日および有給休暇制度</li><li>昇進・キャリアアップのチャンス</li></ul></dd></div>
+    <div><dt>福利厚生</dt><dd><ul><li>社会保険・雇用保険・労災保険完備</li><li>昇進・キャリアアップのチャンス</li></ul></dd></div>
     <div><dt>応募方法</dt><dd>お電話またはお問い合わせフォームよりご連絡ください。担当者が対応いたします。<br><b style="font-family:var(--en);font-size:20px;letter-spacing:.04em">052-908-7944</b><br><small style="display:block;margin-top:10px;font-size:13px;color:var(--grey)">ご応募にあたりご提供いただいた個人情報は、<a href="${r}privacy/index.html" style="color:var(--accent);text-decoration:underline">プライバシーポリシー</a>に基づき、採用選考の目的にのみ利用します。</small></dd></div>
   </dl>
 </div></section>
