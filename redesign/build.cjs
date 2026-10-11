@@ -321,6 +321,8 @@ html.js .hero .scrl{opacity:0;animation:pagein 1.2s 2.7s ease forwards}
 .msg-body{margin-top:80px;font-size:16px;line-height:2}
 .msg-body p+p{margin-top:32px}
 .msg-sign{text-align:right;margin-top:56px;font-weight:700}
+.msg-sign .sig{display:block;font-family:"Mrs Saint Delafield",cursive;font-weight:400;font-size:54px;line-height:1.15;color:var(--ink);letter-spacing:0;margin-top:4px}
+@media (max-width:860px){.msg-sign .sig{font-size:44px}}
 .msg-sign small{display:block;font-weight:500;color:var(--grey);font-size:13px;font-family:var(--en);letter-spacing:.1em;text-transform:none}
 
 .svc{padding:100px 0 0}
@@ -811,11 +813,12 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 .ft .bot .lic{font-size:11px;color:var(--grey)}
 .ft .copy{text-align:center;margin-top:14px;font-size:10.5px;letter-spacing:.02em;padding:0 64px 0 0}}
 /* v17: số liệu / lý do / 事例 / download */
-.kstats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.kstats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:56px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .kstats>div{padding:34px 0 30px 28px}
 .kstats>div+div{border-left:1px solid var(--line)}
 .kstats b{display:block;font-family:var(--en);font-size:clamp(44px,4.6vw,64px);line-height:1;font-weight:700;color:var(--accent);letter-spacing:.02em}
 .kstats b i{font-style:normal;font-size:.5em;margin-left:4px}
+.kstats-note{margin-top:12px;font-size:12px;color:var(--grey);text-align:right}
 .kstats span{display:block;margin-top:14px;font-size:13px;font-weight:700;color:var(--ink2);letter-spacing:.06em}
 .reasons{margin-top:60px;border-top:1px solid var(--line)}
 .reasons .rs{display:grid;grid-template-columns:360px 1fr;gap:32px;padding:52px 0;border-bottom:1px solid var(--line);align-items:start}
@@ -863,6 +866,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 .dldone{grid-column:2;border:1px solid var(--line);border-radius:12px;padding:40px}
 .dldone b{font-size:22px}.dldone p{margin:12px 0 28px;color:var(--ink2)}
 @media (max-width:860px){.kstats{grid-template-columns:1fr 1fr}.kstats>div{padding:22px 0 20px 16px}.kstats>div:nth-child(3){border-left:0}.kstats>div:nth-child(n+3){border-top:1px solid var(--line)}.ccards{grid-template-columns:1fr}.reasons .rs{grid-template-columns:1fr;gap:14px;padding:36px 0}.reasons h3{font-size:21px}.case .chead{grid-template-columns:1fr}.case .chead h2{font-size:24px}.ckpi>div,.ckpi>div+div{padding:18px 20px 16px 0;margin-right:20px;border-left:0}.checks{grid-template-columns:1fr}.dldone{grid-column:1}.cvoice{padding:24px 20px}}
+@media (max-width:860px){.kstats{grid-template-columns:repeat(3,1fr)}.kstats>div{padding:20px 0 18px 12px!important;border-top:0!important;border-left:1px solid var(--line)!important}.kstats>div:first-child{border-left:0!important;padding-left:0!important}.kstats b{font-size:clamp(28px,8.5vw,40px)!important}.kstats span{font-size:11px!important;letter-spacing:0!important;margin-top:8px!important}.kstats-note{font-size:11px}}
 /* v19: giải thích chế độ */
 .sysck{list-style:none;padding:0;margin:44px 0 0;border-top:1px solid var(--line)}
 .sysck li{position:relative;padding:18px 0 18px 34px;border-bottom:1px solid var(--line);font-size:15px;line-height:1.9}
@@ -1375,7 +1379,7 @@ ${pageHead('We are','私たちについて',aboutTabs(r,'message'))}
       <p>まだ若い会社ではありますが、お客様への感謝を忘れず、迅速・誠実・責任を持って行動し、信頼されるパートナーであり続けたいと考えています。</p>
       <p>これからも企業様と外国人材の未来に少しでも貢献できるよう努力してまいります。</p>
       <p>今後ともBIGLIGHT株式会社をよろしくお願い申し上げます。</p>
-      <div class="msg-sign">代表取締役　グエン・タン・トゥン<small>Nguyen Thanh Tung</small></div>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap&text=NguyenThanhTung%20"><div class="msg-sign">代表取締役　グエン・タン・トゥン<span class="sig">Nguyen Thanh Tung</span></div>
     </div>
   </div>
 </div></section>
@@ -1851,7 +1855,7 @@ const FIELDS = [
   flow:[['お問い合わせ','まずはお気軽にご相談ください。採用のお悩みを伺います。'],['ヒアリング','必要な人材像・業務区分・条件を丁寧にヒアリングします。'],['候補者のご紹介','経験・日本語力・専門性を考慮した最適な人材をご提案します。'],['面接','企業様と候補者の面接を実施。通訳・日程調整もサポートします。'],['内定','双方合意のうえ内定。雇用条件・入社時期を確定します。'],['在留資格手続き','在留資格の申請・変更手続きを専門スタッフが代行します。'],['入社・定着支援','入社後も定期訪問・面談でフォローし、長期定着を支えます。']],
   faq:[['最短でどのくらいで入社できますか？','候補者の状況により異なりますが、選考から在留資格手続きを経て入社まで、目安として数か月程度です。'],['技能実習生からの切替はできますか？','可能です。同分野であれば技能試験・日本語試験が免除され、特定技能へスムーズに移行できます。'],['費用はどのくらいかかりますか？','人材紹介・支援委託の費用は、受入れ人数やご要望により異なります。お見積り・ご相談は無料です。'],['対応エリアはどこまでですか？','名古屋を拠点に、全国の製造現場に対応しています。']]},
  {slug:'kensetsu',en:'Construction',ja:'建設業',photo:'../field-kensetsu.jpg',
-  lead:'建設現場の担い手不足を、<br>特定技能で確実に埋める。',
+  lead:'建設現場の担い手不足を、<br>特定技能で着実に補う。',
   desc:'土木・建築・ライフライン設備。試験に合格した即戦力人材を、JAC加入・受入計画認定・入管手続き・定着支援までワンストップで。名古屋の登録支援機関BIGLIGHTが、採用のリスクと手間をまとめて引き受けます。',
   stats:[['約3.8','万人','建設分野で働く特定技能外国人（16分野中4位）'],['8.0','万人','建設分野の5年間受入れ見込数（2024〜2028年度）'],['69.6','%','建設業就業者はピーク（1997年）比約7割まで減少']],
   src1:'出典：国土交通省「建設業就業者数」／出入国在留管理庁「特定技能在留外国人数」（令和7年12月末）・「特定技能の受入れ見込数」（令和6年3月29日閣議決定）',
@@ -1951,12 +1955,12 @@ ${contactBox(r)}
 `});}
 
 // ---------- v17: Strength / 数字 / 導入事例 / Download (nội dung từ biglight.jp hiện tại) ----------
-const STATS = [['2021','','設立'],['500','+','人材紹介実績（名）'],['80','+','取引企業（社）'],['90','%','定着率']];
-const statsRow = () => `<div class="kstats">${STATS.map(([n,u,l])=>`<div><b>${n}<i>${u}</i></b><span>${l}</span></div>`).join('')}</div>`;
+const STATS = [['2021','','設立'],['500','+','人材紹介実績（名）'],['80','+','取引企業（社）']];
+const statsRow = () => `<div class="kstats">${STATS.map(([n,u,l])=>`<div><b>${n}<i>${u}</i></b><span>${l}</span></div>`).join('')}</div><p class="kstats-note">※人材紹介実績・取引企業数は2026年6月時点</p>`;
 const REASONS = [
-  ['高精度マッチング','最適な人材に、最短で出会える。経験豊富なチームが、企業のニーズと人材を丁寧にマッチングします。',['経験豊富な専任チーム','自社プラットフォームの母集団','スキル・人柄まで見極め']],
-  ['完全成功報酬 × 1年保証','採用が決まるまで費用は一切ゼロ。さらに最長1年の保証付きで、業界トップクラスの安心をお約束します。',['初期費用・着手金なし','採用成功時のみのお支払い','最長1年の安心保証']],
-  ['ワンストップ・低コスト','募集から手続き、定着支援まで全工程をワンストップで完結。中間業者を介さないから、圧倒的な低コストを実現します。',['採用〜定着まで一気通貫','中間マージンゼロ','東海エリア密着 × ベトナム直結']],
+  ['高精度マッチング','ニーズに合う人材と、スピーディーに出会える。経験豊富なチームが、企業のニーズと人材を丁寧にマッチングします。',['経験豊富な専任チーム','自社プラットフォームの母集団','スキル・人柄まで見極め']],
+  ['完全成功報酬 × 1年保証','採用が決まるまで費用はかかりません。入社後も最長1年の保証があり、安心してご依頼いただけます。',['初期費用・着手金なし','採用成功時のみのお支払い','最長1年の安心保証']],
+  ['ワンストップ・低コスト','募集から手続き、定着支援まで全工程をワンストップで完結。中間業者を介さないため、そのぶん費用を抑えたご提案が可能です。',['採用〜定着まで一気通貫','自社で一貫対応（再委託なし）','東海エリア密着 × ベトナム直結']],
 ];
 const CASES = [
   {slug:'welding',ind:'製造業（溶接・鉄骨加工）',area:'愛知県',size:'従業員 約50名',photo:'case-welding.jpg',
@@ -2069,11 +2073,35 @@ ${pageHead('Policy','反社会的勢力に対する基本方針')}
 </div></div></section>
 `});}
 
+/* 2026-10-11: 個人情報保護法 第32条（安全管理措置の公表）・第28条（外国にある第三者への提供） */
+const SAFE_SEC = `<h2>6. 安全管理措置</h2>
+      <p class="pv-safe">当社は、個人情報の漏えい、滅失またはき損の防止その他の安全管理のため、次の措置を講じています。</p>
+      <ul>
+        <li>基本方針・規程の整備：個人情報の取扱いに関する基本方針および取扱規程を定めています。</li>
+        <li>組織的安全管理措置：個人情報の取扱責任者を定め、取扱状況を定期的に点検しています。漏えい等の事案が発生した場合の報告・対応体制を整備しています。</li>
+        <li>人的安全管理措置：従業員に対し、個人情報の取扱いに関する教育を定期的に行い、秘密保持に関する誓約を得ています。</li>
+        <li>物理的安全管理措置：個人情報を取り扱う区域の入退室を管理し、書類・機器の盗難や紛失を防ぐ措置を講じています。</li>
+        <li>技術的安全管理措置：アクセス権限の管理、通信の暗号化、不正アクセスを防止する仕組みを導入しています。</li>
+        <li>外的環境の把握：外国において個人情報を取り扱う場合は、当該国の個人情報保護に関する制度を把握したうえで、安全管理措置を講じています（次項参照）。</li>
+      </ul>`;
+const FOREIGN_SEC = `<h2>7. 外国にある第三者への提供</h2>
+      <p class="pv-foreign">当社は、外国人材の紹介および登録支援業務の一部（応募・求人情報の整理、通訳・翻訳、外国人材への連絡など）を、ベトナム社会主義共和国にある当社の子会社 BIGLIGHT HR JOINT STOCK COMPANY に委託し、その範囲で個人情報を提供する場合があります。</p>
+      <ul>
+        <li>提供先の国：ベトナム社会主義共和国</li>
+        <li>当該国の個人情報保護制度：ベトナムでは、個人データ保護に関する政令（Decree 13/2023/ND-CP）をはじめとする個人データ保護法令が定められています。詳しくは、個人情報保護委員会が公表している「外国における個人情報の保護に関する制度等の調査」をご参照ください。</li>
+        <li>提供先が講ずる措置：当社は委託先との契約により、日本の個人情報保護法に基づく措置に準じた安全管理措置を義務付け、取扱状況を定期的に確認しています。</li>
+      </ul>`;
 function privacy(){ const r='../'; const src=fs.readFileSync(path.join(__dirname,'../privacy/index.html'),'utf8');
   const a=src.indexOf('<div class="pbox reveal">'), b=src.indexOf('</div>\n</div></section>',a); if(a<0||b<0) throw new Error('privacy: không tách được nội dung /privacy/');
   const body=src.slice(a+'<div class="pbox reveal">'.length,b).replace(/<h4>/g,'<h2>').replace(/<\/h4>/g,'</h2>').replace(/ class="plist"/g,'').replace(/<p class="prev">/,'<p class="pv-date">')
     .replace(/<h2>8\. クッキー（Cookie）等の取扱い<\/h2>\s*<p>[\s\S]*?<\/p>/, COOKIE_SEC)
+    .replace(/<h2>6\. 安全管理措置<\/h2>\s*<p>[\s\S]*?<\/p>/, SAFE_SEC)
+    .replace(/(<h2>7\. 個人情報の開示・訂正・削除<\/h2>\s*<p>[\s\S]*?)<\/p>/, '$1開示等のご請求は、下記「お問い合わせ窓口」までご連絡ください。手続きの詳細をご案内いたします。</p>')
+    .replace(/<h2>(\d+)\. /g, (m,n)=>'<h2>'+(+n>=7?+n+1:+n)+'. ')
+    .replace('<h2>8. 個人情報の開示', '<h2>8. 個人情報の開示')
+    .replace(/(<h2>8\. 個人情報の開示)/, FOREIGN_SEC+'\n      $1')
     .replace(/改定日：\d{4}年\d{1,2}月\d{1,2}日/, '改定日：2026年10月11日');
+  if(!body.includes('pv-foreign')||!body.includes('pv-safe')) throw new Error('privacy: không thêm được mục 安全管理 / 外国');
   if(!body.includes('pv-ext')) throw new Error('privacy: không thay được mục 8 (Cookie)');
   return page({root:r,title:'プライバシーポリシー｜BIGLIGHT株式会社',desc:'BIGLIGHT株式会社の個人情報保護方針（プライバシーポリシー）です。',body:`
 ${pageHead('Privacy Policy','プライバシーポリシー')}
