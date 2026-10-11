@@ -461,9 +461,8 @@ html.js .pic .fl.b{animation-duration:6.2s;animation-delay:.6s}html.js .pic .fl.
 .voice .q{font-size:15px;line-height:2.1;margin-top:14px;color:var(--ink2)}
 .req dt{font-weight:700;color:var(--ink)}
 .req ul{margin:0;padding-left:18px}
-.req .pos{display:flex;flex-direction:column;gap:14px}
-.req .pos span{line-height:1.6}
-.req .pos small{display:block;color:var(--grey);font-size:13px;margin-top:2px}
+.req .pos{display:flex;flex-direction:column;gap:6px}
+.req .pos small{color:var(--grey);margin-left:10px}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:60px}
 .steps div{border-top:1px solid var(--ink);padding-top:20px}
 .steps b{font-family:var(--en);font-size:13px;letter-spacing:.14em;color:var(--accent);font-weight:700}
@@ -1545,7 +1544,7 @@ function recruit(){ const r='../'; return page({root:r,title:'採用情報｜BIG
 ${pageHead('Recruit','採用情報')}
 <section><div class="wrap lead-end">
   <p class="lead28">日本と世界をつなぐ仕事を、<br>一緒に。</p>
-  <p class="lead16">ベトナム・インドネシア・ミャンマー・ネパールなど、さまざまな国の人材と企業をつなぐ仕事を、BIGLIGHTで。若く、国際的なチームで成長できる環境です。3つの職種で、一緒に働く仲間を募集しています。</p>
+  <p class="lead16">ベトナム・インドネシア・ミャンマー・ネパールなど、さまざまな国の人材と企業をつなぐ仕事を、BIGLIGHTで。若く、国際的なチームで成長できる環境です。法人営業・ルート営業・外国人管理支援スタッフを募集しています。</p>
   <div style="margin-top:40px;display:flex;gap:20px;flex-wrap:wrap">${pill('募集要項を見る','#req')}${pill('先輩の声を見る','#voice')}</div>
 </div></section>
 
@@ -1573,7 +1572,7 @@ ${pageHead('Recruit','採用情報')}
 <section class="blk" id="req"><div class="wrap side" style="margin-top:0">
   <h2 class="en long">Requirements<small style="display:block;font-family:var(--jp);font-size:14px;letter-spacing:.1em;color:var(--accent);margin-top:14px;text-transform:none">募集要項</small></h2>
   <dl class="dl req">
-    <div><dt>募集職種</dt><dd class="pos"><span><b>① Corporate Sales</b><small>法人営業｜日本企業への人材サービスの提案</small></span><span><b>② Account Manager</b><small>ルート営業｜既存取引先へのフォロー・関係構築</small></span><span><b>③ Support Coordinator</b><small>外国人支援｜外国人スタッフの生活・就労サポート</small></span></dd></div>
+    <div><dt>募集職種</dt><dd class="pos"><span><b>① 法人営業（BtoBセールス）</b><small>日本企業への人材サービス提案営業</small></span><span><b>② ルート営業（既存顧客フォロー）</b><small>既存取引先へのフォロー・関係構築</small></span><span><b>③ 外国人管理・支援スタッフ</b><small>外国人スタッフの生活・就労サポート</small></span></dd></div>
     <div><dt>雇用形態</dt><dd>正社員（フルタイム）<br>契約期間：期間の定めなし</dd></div>
     <div><dt>試用期間</dt><dd>3か月（期間中の労働条件の変更なし）</dd></div>
     <div><dt>勤務地</dt><dd>愛知県名古屋市北区如意一丁目112 A（本社）<br>（変更の範囲）会社の定める事業所</dd></div>
