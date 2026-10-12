@@ -15,7 +15,7 @@ const copies = {
   'img/desk-academy.jpg':'img/desk-academy.jpg','img/desk-job.jpg':'img/desk-job.jpg','img/shot-portal-916.jpg':'img/shot-portal.jpg','img/shot-academy.jpg':'img/shot-academy.jpg','img/shot-job.jpg':'img/shot-job.jpg',
   'badges/apple-ja.svg':'img/badge-appstore.svg','badges/google-ja.png':'img/badge-googleplay.png',
 };
-Object.assign(copies,{'img/logo-s.webp':'img/logo-s.webp','img/hero-meeting3.jpg':'img/hero-meeting3.jpg','img/recruit-team.jpg':'img/recruit-team.jpg','img/svc-ssw2.jpg':'img/svc-ssw2.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
+Object.assign(copies,{'img/logo-s.webp':'img/logo-s.webp','img/hero-meeting4.jpg':'img/hero-meeting4.jpg','img/recruit-team.jpg':'img/recruit-team.jpg','img/svc-ssw2.jpg':'img/svc-ssw2.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
 fs.mkdirSync(path.join(OUT,'img/sdg'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/sdg')).filter(f=>f.endsWith('.png')))fs.copyFileSync(path.join(__dirname,'src/img/sdg',f),path.join(OUT,'img/sdg',f));
 fs.mkdirSync(path.join(OUT,'img/people'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/people')).filter(f=>f.endsWith('.webp')))fs.copyFileSync(path.join(__dirname,'src/img/people',f),path.join(OUT,'img/people',f));
 { let out='';const N=34,S=80;const A=t=>330+110*Math.sin(t*Math.PI*1.9+0.2)-210*t, B=t=>330+110*Math.sin(t*Math.PI*1.9+2.9)-210*t+70*Math.sin(t*Math.PI);
@@ -125,7 +125,7 @@ body.menu-open{overflow:hidden}
 .hero .strip:nth-child(2) .inner{left:-222px}.hero .strip:nth-child(3) .inner{left:-444px}
 .hero .inner img.full{width:100%;height:100%;object-fit:cover;display:block}
 /* ảnh họp: ảnh gốc cỡ theo chiều cao khung, trọng tâm chị trình bày + anh kính; chấp nhận mất phần hai bên (CEO 10-12) */
-.hero .inner img.mt{position:absolute;left:-410px;top:0;width:1366px;max-width:none;height:766px;display:block}
+.hero .inner img.mt{position:absolute;left:0;top:0;width:1374px;max-width:none;height:766px;display:block}
 .hero .inner.devs{background:transparent}
 /* slide thiết bị kiểu Guidable (10-12): điện thoại và laptop TÁCH RỜI. Vị trí = 4 góc đo trên ảnh mv_img_3 của Guidable, quy về khung 929×766:
  laptop màn [409,345][699,278][692,575][409,567], điện thoại [180,262][277,250][337,452][250,492] → matrix3d (scratchpad gd/homo.cjs) */
@@ -1305,7 +1305,7 @@ function home(){ const r='./'; return page({root:r,home:true,title:'BIGLIGHT株�
     <div class="dots"><i class="on"></i><i></i><i></i></div>
   </div>
   <div class="vis">
-    ${heroSlide('<img class="mt" src="'+r+'img/hero-meeting3.jpg" width="1675" height="939" alt="経営計画を共有するBIGLIGHTの社内会議">', true)}
+    ${heroSlide('<img class="mt" src="'+r+'img/hero-meeting4.jpg" width="1600" height="892" alt="経営計画を共有するBIGLIGHTの社内会議">', true)}
     ${heroSlide(heroDev(r,'desk-job.jpg','shot-job.jpg','BIGLIGHT JOB の画面'), false, 'devs')}
     ${heroSlide(heroDev(r,'desk-academy.jpg','shot-academy.jpg','BIGLIGHT Academy の画面'), false, 'devs')}
   </div>
