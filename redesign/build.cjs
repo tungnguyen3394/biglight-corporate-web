@@ -30,6 +30,22 @@ for (const [s,d] of Object.entries(copies)) {
   else fs.copyFileSync(path.join(__dirname,'src',s), path.join(OUT,d));
 }
 
+// ---------- SNS (chân trang) ----------
+// Địa chỉ mạng xã hội. Để trống = nút đó KHÔNG hiện (tránh link chết). X: https://x.com/<tên>, WhatsApp: https://wa.me/<số quốc tế không dấu +>
+const SNS = [
+  { k:'fb', name:'Facebook',  url:'https://www.facebook.com/biglight0812/' },
+  { k:'ig', name:'Instagram', url:'https://www.instagram.com/biglight0812/' },
+  { k:'x',  name:'X',         url:'' },
+  { k:'wa', name:'WhatsApp',  url:'' },
+];
+const SNS_ICON = {
+  fb:'<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="16" fill="#1877F2"/><path fill="#fff" d="M22.2 20.6l.7-4.6h-4.4v-3c0-1.3.6-2.5 2.6-2.5h2V6.6s-1.8-.3-3.6-.3c-3.6 0-6 2.2-6 6.2V16h-4v4.6h4V32a16 16 0 0 0 5 0V20.6z"/></svg>',
+  ig:'<svg viewBox="0 0 32 32" aria-hidden="true"><defs><radialGradient id="igg" cx="30%" cy="107%" r="150%"><stop offset="0" stop-color="#fdf497"/><stop offset=".05" stop-color="#fdf497"/><stop offset=".45" stop-color="#fd5949"/><stop offset=".6" stop-color="#d6249f"/><stop offset=".9" stop-color="#285AEB"/></radialGradient></defs><rect width="32" height="32" rx="8" fill="url(#igg)"/><rect x="7" y="7" width="18" height="18" rx="5.5" fill="none" stroke="#fff" stroke-width="2.2"/><circle cx="16" cy="16" r="4.4" fill="none" stroke="#fff" stroke-width="2.2"/><circle cx="21.4" cy="10.6" r="1.4" fill="#fff"/></svg>',
+  x:'<svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#000"/><path fill="#fff" d="M18.2 14.6 25.5 6h-1.7l-6.4 7.4L12.3 6H6.5l7.7 11.2L6.5 26h1.7l6.8-7.8 5.4 7.8h5.8zm-2.4 2.7-.8-1.1L8.9 7.3h2.7l5 7.1.8 1.1 6.5 9.2h-2.7z"/></svg>',
+  wa:'<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="16" fill="#25D366"/><path fill="#fff" d="M16 6.4a9.6 9.6 0 0 0-8.3 14.4L6.4 25.6l4.9-1.3A9.6 9.6 0 1 0 16 6.4zm0 17.5a7.9 7.9 0 0 1-4-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A7.9 7.9 0 1 1 16 23.9zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg>',
+};
+const snsHtml = () => '<div class="sns">'+SNS.filter(s=>s.url).map(s=>`<a href="${s.url}" class="sn sn-${s.k}" aria-label="BIGLIGHT公式 ${s.name}">${SNS_ICON[s.k]}<span>${s.name}</span></a>`).join('')+'</div>';
+
 // ---------- CSS ----------
 const css = `
 /* BIGLIGHT corporate prototype — bố cục theo guidable.co.jp, màu theo BIGLIGHT */
@@ -812,10 +828,13 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 .ft .fsite a.h{font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--ink);margin-bottom:5px}
 .ft .fsite a:hover{color:var(--accent)}
 .ft .fsite .tg{display:none}
-.ft .sns{display:flex;flex-wrap:wrap;gap:8px 28px;margin:16px 0 0}
-.ft .sns a{display:inline-flex;align-items:center;gap:9px;min-height:44px;color:var(--accent);transition:color .2s}
-.ft .sns a span{font-family:var(--en);font-size:17px;font-weight:700;letter-spacing:.02em}
-.ft .sns a:hover{color:var(--blue)}
+.ft .sns{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0}
+/* nút mạng xã hội: logo màu đặc trưng + tên, xếp ngang, có khung (10-12) */
+.ft .sns a{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:8px 18px 8px 10px;border:1px solid #dfe3ea;border-radius:12px;background:#fff;color:#1f2937;transition:border-color .2s,box-shadow .2s,transform .2s}
+.ft .sns a svg{width:28px;height:28px;flex:none;display:block}
+.ft .sns a span{font-family:var(--en);font-size:15px;font-weight:700;letter-spacing:.02em}
+.ft .sns a:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(11,42,102,.10)}
+.ft .sns .sn-fb:hover{border-color:#1877F2}.ft .sns .sn-ig:hover{border-color:#d6249f}.ft .sns .sn-x:hover{border-color:#000}.ft .sns .sn-wa:hover{border-color:#25D366}
 .ft .fnavl a{font-family:var(--en);font-size:13px;font-weight:700;letter-spacing:.1em}
 .ft .fnavl a:hover{color:var(--accent)}
 .ft .bot{border-top:1px solid var(--line);margin-top:26px;padding-top:18px;display:flex;justify-content:space-between;align-items:center;gap:12px 28px;flex-wrap:wrap;font-size:12px}
@@ -1213,7 +1232,7 @@ function page({root, title, desc, body, active, home}) {
     <div class="top">
       <div class="fb"><a class="logo" href="${r}index.html"><img src="${r}img/logo-s.webp" alt="" width="44" height="44"><img class="wm" src="${r}img/wordmark.png" alt="BIGLIGHT"></a>
         <p class="addr">〒462-0007 愛知県名古屋市北区如意一丁目112 A<span class="tel">　TEL 052-908-7944　FAX 052-908-7267</span></p>
-        <div class="sns"><a href="https://www.facebook.com/biglight0812/" aria-label="BIGLIGHT公式 Facebook" class="sn-fb"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-1.56 19.88v-7H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v7A10 10 0 0 0 12 2z"/></svg><span>Facebook</span></a><a href="https://www.instagram.com/biglight0812/" aria-label="BIGLIGHT公式 Instagram" class="sn-ig"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.4" cy="6.6" r="1.25" fill="currentColor"/></svg><span>Instagram</span></a></div></div>
+        ${snsHtml()}</div>
       <nav class="fsite" aria-label="サイトマップ"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}contact/index.html#request">Request</a></div></nav>
       <div class="fmap"><div class="fmap-ph"><p>地図を表示すると、Google社のCookieが使用される場合があります。</p><button type="button" class="fmap-load">地図を表示</button></div><iframe data-src="https://www.google.com/maps?q=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA&hl=ja&z=16&output=embed" title="BIGLIGHT株式会社の地図（愛知県名古屋市北区如意一丁目112 A）" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="https://www.google.com/maps/search/?api=1&query=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA">Google マップで開く →</a></div>
     </div>
