@@ -132,11 +132,21 @@ body.menu-open{overflow:hidden}
 .hero .hd2{position:absolute;inset:0}
 .hero .hd2 .ph2{position:absolute;left:0;top:0;width:120px;height:250px;transform-origin:0 0;transform:matrix3d(1.13608107,0.19580121,0,0.0011832,0.29702213,0.95349955,0,0.00006809,0,0,1,0,180,262,0,1)}
 .hero .hd2 .pf{width:100%;height:100%;box-sizing:border-box;border-radius:20px;border:5px solid #16181d;box-shadow:0 0 0 2px #c3c7ce,-5px 4px 0 1px #9aa0a8;overflow:hidden;background:#000}
-.hero .hd2 .lp2{position:absolute;left:0;top:0;width:320px;height:200px;transform-origin:0 0;transform:matrix3d(0.35355303,-0.42918867,0,-0.0007907,0.03778437,1.16238078,0,0.00009238,0,0,1,0,409,345,0,1)}
-.hero .hd2 .sc2{width:100%;height:100%;box-sizing:border-box;border:7px solid #111;border-bottom-width:10px;border-radius:9px 9px 2px 2px;box-shadow:0 0 0 2px #c3c7ce;overflow:hidden;background:#000}
 .hero .hd2 img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;border-radius:0}
+/* MacBook: nắp nhôm bạc mỏng + viền đen mảnh + cằm đen; cạnh nắp bên phải lộ nhôm */
+.hero .hd2 .lp2{position:absolute;left:0;top:0;width:320px;height:200px;transform-origin:0 0;transform:matrix3d(0.35355303,-0.42918867,0,-0.0007907,0.03778437,1.16238078,0,0.00009238,0,0,1,0,409,345,0,1)}
+.hero .hd2 .sc2{position:relative;width:100%;height:100%;box-sizing:border-box;border:3px solid #0b0b0c;border-bottom-width:9px;border-radius:7px 7px 1px 1px;overflow:hidden;background:#000;
+ box-shadow:0 0 0 1.5px #c2c6cc,1.5px 0 0 1.5px #b9bec5,3px .5px 0 1.5px #aeb3ba,4.5px 1px 0 1.5px #9da2aa}
 .hero .hd2 .sc2 img{object-position:top left}
-.hero .hd2 .bs2{position:absolute;left:210px;top:575px;width:482px;height:20px;border-radius:2px 4px 12px 12px;background:linear-gradient(#e8eaee,#c4c8cf 55%,#9da3ad);box-shadow:0 16px 26px rgba(0,0,0,.12)}
+/* đế: thanh nhôm nhìn ngang, rãnh mở nắp, cổng bên phải */
+.hero .hd2 .bs2{position:absolute;left:210px;top:574px;width:484px;height:19px;border-radius:3px 9px 9px 7px/3px 9px 10px 8px;
+ background:linear-gradient(#f4f5f7 0,#dcdfe3 22%,#c3c7cd 55%,#a9aeb5 82%,#8d929a 100%)}
+.hero .hd2 .bs2 .sh{position:absolute;left:2%;right:0;top:100%;height:16px;margin-top:-4px;background:radial-gradient(50% 60% at 55% 30%,rgba(0,0,0,.16),rgba(0,0,0,0));filter:blur(2px)}
+.hero .hd2 .bs2 .nt{position:absolute;left:84px;width:78px;top:0;height:8px;border-radius:0 0 7px 7px;background:linear-gradient(#bfc3c9,#d9dce0 70%,#e9ebee);box-shadow:inset 0 1px 1px rgba(0,0,0,.18)}
+.hero .hd2 .bs2 .ud{position:absolute;left:199px;right:0;top:0;bottom:0;border-radius:0 9px 9px 0;background:linear-gradient(#e9ebee 0,#d3d6db 30%,#bfc3c9 60%,#a3a8b0 100%);box-shadow:-1px 0 0 rgba(255,255,255,.35)}
+.hero .hd2 .bs2 .pt{position:absolute;right:16px;top:6px;display:flex;gap:6px;align-items:center}
+.hero .hd2 .bs2 .pt b{display:block;height:4px;width:11px;border-radius:3px;background:#2a2c31;box-shadow:inset 0 1px 1px #000,0 1px 0 rgba(255,255,255,.5)}
+.hero .hd2 .bs2 .pt b:first-child{width:4px;border-radius:50%}
 .hero .inner.devs .dev{position:absolute;left:110px;top:150px;width:600px;aspect-ratio:auto;height:480px;perspective:1400px}
 .hero .inner.devs .dev .lap{right:20px;top:110px;width:400px;transform:rotateY(-22deg) rotateX(6deg) rotateZ(1.5deg);transform-origin:50% 60%;transform-style:preserve-3d}
 .hero .inner.devs .dev .iph{left:120px;top:20px;bottom:auto;width:118px;z-index:2;transform:rotate(-14deg) rotateY(16deg);transform-origin:50% 50%;box-shadow:none}
@@ -1160,7 +1170,7 @@ const sdgMark = (r) => `<a class="sdgs-mark" href="${r}about/sdgs/index.html" ar
 const circ = (cls='circ40') => `<span class="${cls}"><i></i><i></i><i></i>→</span>`;
 const pill = (txt, href='#') => `<a class="pill" href="${href}">${txt}<span class="circ">→</span></a>`;
 const dots = `<div class="dots"><i></i><i></i><i></i><i></i></div>`;
-const heroDev = (r,lap,ph,alt) => `<div class="hd2"><div class="ph2"><div class="pf"><img src="${r}img/${ph}" alt=""></div></div><div class="lp2"><div class="sc2"><img src="${r}img/${lap}" alt="${alt}"></div></div><div class="bs2"></div></div>`;
+const heroDev = (r,lap,ph,alt) => `<div class="hd2"><div class="ph2"><div class="pf"><img src="${r}img/${ph}" alt=""></div></div><div class="lp2"><div class="sc2"><img src="${r}img/${lap}" alt="${alt}"></div></div><div class="bs2"><i class="sh"></i><i class="nt"></i><i class="ud"></i><i class="pt"><b></b><b></b><b></b></i></div></div>`;
 const dev = (r,lap,ph) => `<div class="dev"><div class="lap"><div class="scr"><img src="${r}img/${lap}" alt=""></div><div class="base"></div></div><div class="iph"><img src="${r}img/${ph}" alt=""></div></div>`;
 const heroSlide = (inner,on,cls) => `<div class="sl${on?' on':''}">${[0,1,2].map(()=>`<div class="strip"><div class="inner${cls==='devs'?' devs':''}">${inner}</div></div>`).join('')}</div>`;
 const phone = (r,ph) => `<div class="iph solo"><img src="${r}img/${ph}" alt=""></div>`;
