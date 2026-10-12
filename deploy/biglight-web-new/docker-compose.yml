@@ -22,6 +22,9 @@ services:
       caddy.header.?X-Content-Type-Options: nosniff
       caddy.header.?X-Frame-Options: SAMEORIGIN
       caddy.header.?Referrer-Policy: strict-origin-when-cross-origin
+      # 2026-10-12: chính sách bảo mật nội dung (đã thử 37 trang + form/bản đồ/Turnstile, không vi phạm). Thêm nguồn mới (vd. YouTube nhúng) thì sửa ở đây. Giá trị PHẢI bọc "\"…\"".
+      caddy.header.?Content-Security-Policy: "\"default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://admin.biglight.jp https://api-crm.biglight.jp https://challenges.cloudflare.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; frame-src https://www.google.com https://challenges.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self' https://admin.biglight.jp; frame-ancestors 'self'; upgrade-insecure-requests\""
+      caddy.header.?Permissions-Policy: "\"camera=(), microphone=(), geolocation=(), payment=(), usb=()\""
       caddy_1: new.biglight.jp www.biglight.jp   # tên miền phụ → 301 về biglight.jp (một URL cho Google)
       caddy_1.redir: "https://biglight.jp{uri} 301"
     networks: [web]

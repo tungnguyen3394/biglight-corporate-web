@@ -18,6 +18,11 @@ const MAP = [
   [/href="\/sdgs\/?"/g, 'href="/about/sdgs/"'],
   [/href="\/flow\/?"/g, 'href="/service/"'],
   [/href="\/faq\/?"/g, 'href="/service/tokutei-ginou/#faq"'],
+  // 2026-10-12 bài 外食 (gaishoku-tokutei-ginou-teishi-daitaisaku): chữ giữ chỗ trong admin → nội dung thật. Admin vẫn còn chữ cũ (khoá API chưa có ext.admin.write).
+  [/<td>製造寄りの業務がある<\/td><td>【担当者が確認】<\/td>/g, '<td>製造寄りの業務がある</td><td>業務内容が受入れ分野の対象業務に当たるか</td>'],
+  [/<td>通訳・企画など<\/td><td>【担当者が確認】<\/td>/g, '<td>通訳・企画など</td><td>学歴・職歴と業務内容の関連性</td>'],
+  [/<h2 id="toc-5">5\. 事例<\/h2><p>【事例: 担当者が記入】<\/p><h2 id="toc-6">6\. FAQ<\/h2>/g, '<h2 id="toc-5">5. FAQ</h2>'],
+  [/Q4 2号は？ 【担当者が確認】/g, 'Q4 2号は？ 取扱いは農林水産省の最新の発表をご確認ください。個別のケースは無料相談でお調べします。'],
 ];
 const dec = (s) => s.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
 const strip = (h) => dec(h.replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
@@ -42,6 +47,7 @@ async function article(slug) {
   let body = a > 0 ? h.slice(a + '<div class="nbody">'.length, end).trim().replace(/<\/div>\s*$/, '') : '';
   body = body.replace(/ contenteditable="false"/g, '').replace(/(src|href)="\/assets\//g, `$1="${BASE}/assets/`);
   for (const [re, to] of MAP) body = body.replace(re, to);
+  if (/【[^】]*(担当者|記入|要確認)[^】]*】/.test(body)) console.warn('⚠ còn chữ giữ chỗ trong bài:', slug);
   // dọn: đoạn trống <p><br></p>, và dòng tiêu đề trơn lặp lại ngay sau mục lục
   body = body.replace(/<p>(?:\s|<br\s*\/?>|&nbsp;)*<\/p>/g, '');
   const reEsc = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, '\\  for (const [re, to] of MAP) body = body.replace(re, to);');
