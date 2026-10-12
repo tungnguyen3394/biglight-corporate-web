@@ -124,8 +124,8 @@ body.menu-open{overflow:hidden}
 .hero .strip .inner{position:absolute;top:0;left:0;width:1230px;height:766px}
 .hero .strip:nth-child(2) .inner{left:-320px}.hero .strip:nth-child(3) .inner{left:-640px}
 .hero .inner img.full{width:100%;height:100%;object-fit:cover;display:block}
-/* ảnh họp: ảnh gốc nguyên bản (cỡ gốc theo chiều cao khung, không kéo méo), vị trí tính để thấy đầu 4 người + 5/6 thiết bị (iPad phải bị cắt 1/3) — scratchpad fit.cjs */
-.hero .inner img.mt{position:absolute;left:-80px;top:0;width:1366px;max-width:none;height:766px;display:block}
+/* ảnh họp: ảnh gốc nguyên bản (cỡ gốc theo chiều cao khung, không kéo méo), vị trí tính để khung cỡ thật: màn ~1470 thấy anh trái + chị + anh kính, màn ≥1600 thấy thêm anh phải — scratchpad fit.cjs */
+.hero .inner img.mt{position:absolute;left:-130px;top:0;width:1366px;max-width:none;height:766px;display:block}
 .hero .inner.devs{background:transparent}
 .hero .inner.devs .dev{position:absolute;left:210px;top:150px;width:600px;aspect-ratio:auto;height:480px;perspective:1400px}
 .hero .inner.devs .dev .lap{right:20px;top:110px;width:400px;transform:rotateY(-22deg) rotateX(6deg) rotateZ(1.5deg);transform-origin:50% 60%;transform-style:preserve-3d}
@@ -1293,8 +1293,8 @@ function home(){ const r='./'; return page({root:r,home:true,title:'BIGLIGHT株�
   </div>
   <div class="scrl"></div>
   <script>(function(){var d=document.documentElement;function f(){var w=d.clientWidth;d.style.setProperty('--hs',Math.min(1,w/1230));
-  /* 861–1740px: đặt khung sát chữ (mép chéo trái cách chữ 28px), giữ cỡ thật; mặt anh ngồi bên phải (x≈1095,y≈277 trong khung) phải nằm trong màn hình — chỉ thu khi không đủ chỗ (10-12, kiểu Guidable) */
-  if(w>860&&w<=1740){var hero=document.querySelector('.hero'),top=hero.getBoundingClientRect().top,M=0;[].forEach.call(document.querySelectorAll('.hero h1,.hero .sub'),function(e){var r=document.createRange();r.selectNodeContents(e);[].forEach.call(r.getClientRects(),function(q){var y=q.top+q.height/2-top;M=Math.max(M,q.right+28+.3525*y);});});var s=Math.max(.48,Math.min(1,(w-M)/870));d.style.setProperty('--hl',s.toFixed(3));d.style.setProperty('--hx',Math.max(M-270*s,Math.min(w-1270,w/2-150)).toFixed(0)+'px');}}
+  /* 861–1740px: đặt khung sát chữ (mép chéo trái cách chữ 28px), giữ cỡ thật; giữ cỡ thật như Guidable; chỉ thu khi hàng dưới cùng không lọt màn hình — chỉ thu khi không đủ chỗ (10-12, kiểu Guidable) */
+  if(w>860&&w<=1740){var hero=document.querySelector('.hero'),top=hero.getBoundingClientRect().top,M=0;[].forEach.call(document.querySelectorAll('.hero h1,.hero .sub'),function(e){var r=document.createRange();r.selectNodeContents(e);[].forEach.call(r.getClientRects(),function(q){var y=q.top+q.height/2-top;M=Math.max(M,q.right+28+.3525*y);});});var s=Math.max(.48,Math.min(1,(w-M)/600));d.style.setProperty('--hl',s.toFixed(3));d.style.setProperty('--hx',Math.max(M-270*s,Math.min(w-1270,w/2-150)).toFixed(0)+'px');}}
   f();addEventListener('resize',f);if(document.fonts)document.fonts.ready.then(f);})();</script>
 </section>
 
