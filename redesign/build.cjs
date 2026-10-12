@@ -1009,17 +1009,17 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
   .mnav{padding-left:max(24px,6vw);padding-right:max(24px,6vw)}
   .hd nav,.hd .cta{display:none}
   .hd .burger{display:flex}
-  /* ảnh hero = nguyên khối PC 929×766 thu nhỏ theo bề ngang (--hs do JS đặt) */
+  /* ảnh hero điện thoại/iPad dọc: khung 1373×766 thu theo w/1120 (cao hơn ~23%), cắt bớt 130px mép trái + phần mép phải (CEO 10-12: ảnh dài ra) */
   .hero{height:auto;padding:28px 20px 0;overflow:hidden}
   .hero .tx{position:static}
   .hero h1{white-space:nowrap;font-size:min(9.6vw,58px);line-height:1.32;letter-spacing:.08em}
   .hero .sub{font-size:min(3.3vw,16px);margin-top:16px}
   .hero .dots{margin-top:22px;gap:30px}
-  .hero .vis{position:relative;left:auto;top:auto;width:1373px;height:766px;margin:24px 0 0 -20px;transform:scale(var(--hs,.42));transform-origin:0 0;margin-bottom:calc(766px * (var(--hs,.42) - 1))}
+  .hero .vis{position:relative;left:auto;top:auto;width:1373px;height:766px;margin:24px 0 0 calc(-20px - 130px * var(--hs,.35));transform:scale(var(--hs,.42));transform-origin:0 0;margin-bottom:calc(766px * (var(--hs,.42) - 1))}
   .hero .scrl{display:none}
   /* điện thoại + iPad dọc: cả khung thu nhỏ nên cụm thiết bị phóng 1.75 và đặt giữa khung (10-12) */
   .hero .hd2{left:236px;transform:scale(1.75);transform-origin:440px 420px}
-  .message{padding-top:110px}
+  .message{padding-top:56px}
   .message p{font-size:20px;letter-spacing:.06em}
   .message .t.tag{font-size:16px;letter-spacing:.08em}
   .loop span{font-size:56px;line-height:110px}
@@ -1312,7 +1312,7 @@ function home(){ const r='./'; return page({root:r,home:true,title:'BIGLIGHT株�
     ${heroSlide(heroDev(r,'desk-academy.jpg','shot-academy.jpg','BIGLIGHT Academy の画面'), false, 'devs')}
   </div>
   <div class="scrl"></div>
-  <script>(function(){var d=document.documentElement;function f(){var w=d.clientWidth;d.style.setProperty('--hs',Math.min(1,w/1373));
+  <script>(function(){var d=document.documentElement;function f(){var w=d.clientWidth;d.style.setProperty('--hs',Math.min(1,w/1120));
   /* PC: như Guidable — cỡ thật từ 1440px, hẹp hơn thì thu theo w/1440 */
   var g=w>860?Math.min(1,w/1440):1;d.style.setProperty('--gs',g.toFixed(4));
   /* 10-12: khung nới sang trái tới sát chữ (mép chéo cách chữ 28px) để thấy nhiều người hơn; thiết bị dời +174 nên vẫn đúng chỗ Guidable */
