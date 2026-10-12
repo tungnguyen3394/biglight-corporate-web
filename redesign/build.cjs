@@ -2163,8 +2163,8 @@ const FOREIGN_SEC = `<h2>7. 外国にある第三者への提供</h2>
       <p class="pv-foreign">当社は、外国人材の紹介および登録支援業務の一部（応募・求人情報の整理、通訳・翻訳、外国人材への連絡など）を、ベトナム社会主義共和国にある当社の子会社 BIGLIGHT HR JOINT STOCK COMPANY に委託し、その範囲で個人情報を提供する場合があります。</p>
       <ul>
         <li>提供先の国：ベトナム社会主義共和国</li>
-        <li>当該国の個人情報保護制度：ベトナムでは、個人データ保護に関する政令（Decree 13/2023/ND-CP）をはじめとする個人データ保護法令が定められています。詳しくは、個人情報保護委員会が公表している「外国における個人情報の保護に関する制度等の調査」をご参照ください。</li>
-        <li>提供先が講ずる措置：当社は委託先との契約により、日本の個人情報保護法に基づく措置に準じた安全管理措置を義務付け、取扱状況を定期的に確認しています。</li>
+        <li>当該国の個人情報保護制度：ベトナムでは、個人データ保護法（Law No. 91/2025/QH15、2026年1月1日施行）および個人データ保護に関する政令（Decree 13/2023/ND-CP）などの法令が定められています。詳しくは、個人情報保護委員会が公表している「外国における個人情報の保護に関する制度等の調査」をご参照ください。</li>
+        <li>提供先が講ずる措置：当社は委託先との契約により、日本の個人情報保護法に基づく措置に準じた安全管理措置を義務付け、取扱状況を定期的に確認しています。ご本人から求めがあった場合には、当該措置の概要その他必要な情報を、下記「お問い合わせ窓口」を通じて提供いたします。</li>
       </ul>`;
 function privacy(){ const r='../'; const src=fs.readFileSync(path.join(__dirname,'../privacy/index.html'),'utf8');
   const a=src.indexOf('<div class="pbox reveal">'), b=src.indexOf('</div>\n</div></section>',a); if(a<0||b<0) throw new Error('privacy: không tách được nội dung /privacy/');
@@ -2175,7 +2175,7 @@ function privacy(){ const r='../'; const src=fs.readFileSync(path.join(__dirname
     .replace(/<h2>(\d+)\. /g, (m,n)=>'<h2>'+(+n>=7?+n+1:+n)+'. ')
     .replace('<h2>8. 個人情報の開示', '<h2>8. 個人情報の開示')
     .replace(/(<h2>8\. 個人情報の開示)/, FOREIGN_SEC+'\n      $1')
-    .replace(/改定日：\d{4}年\d{1,2}月\d{1,2}日/, '改定日：2026年10月11日');
+    .replace(/改定日：\d{4}年\d{1,2}月\d{1,2}日/, '改定日：2026年10月12日');
   if(!body.includes('pv-foreign')||!body.includes('pv-safe')) throw new Error('privacy: không thêm được mục 安全管理 / 外国');
   if(!body.includes('pv-ext')) throw new Error('privacy: không thay được mục 8 (Cookie)');
   return page({root:r,title:'プライバシーポリシー｜BIGLIGHT株式会社',desc:'BIGLIGHT株式会社の個人情報保護方針（プライバシーポリシー）です。',body:`
