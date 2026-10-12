@@ -2075,7 +2075,6 @@ ${pageHead('We are','私たちについて',aboutTabs(r,'strength'))}
   <dl class="dl">
     <div><dt>有料職業紹介事業</dt><dd>許可番号 23-ユ-302414</dd></div>
     <div><dt>登録支援機関</dt><dd>登録番号 21登-006596</dd></div>
-    <div><dt>海外拠点</dt><dd>ベトナム・ホーチミン市に自社子会社（BIGLIGHT HR JOINT STOCK COMPANY）</dd></div>
   </dl>
 </div></section>
 <section class="blk"><div class="wrap">
