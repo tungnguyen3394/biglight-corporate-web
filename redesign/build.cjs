@@ -35,8 +35,8 @@ for (const [s,d] of Object.entries(copies)) {
 const SNS = [
   { k:'fb', name:'Facebook',  url:'https://www.facebook.com/biglight0812/' },
   { k:'ig', name:'Instagram', url:'https://www.instagram.com/biglight0812/' },
-  { k:'x',  name:'X',         url:'' },
-  { k:'wa', name:'WhatsApp',  url:'' },
+  { k:'x',  name:'X',         url:'https://x.com/biglight_jp' },
+  { k:'wa', name:'WhatsApp',  url:'https://wa.me/message/SUQMJ5KHTSQVA1' },
 ];
 const SNS_ICON = {
   fb:'<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="16" fill="#1877F2"/><path fill="#fff" d="M22.2 20.6l.7-4.6h-4.4v-3c0-1.3.6-2.5 2.6-2.5h2V6.6s-1.8-.3-3.6-.3c-3.6 0-6 2.2-6 6.2V16h-4v4.6h4V32a16 16 0 0 0 5 0V20.6z"/></svg>',
