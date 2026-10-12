@@ -988,6 +988,16 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 .art .afaq{margin-top:56px}
 .art .afaq h2{font-size:20px;margin-bottom:20px;padding-left:16px;border-left:3px solid var(--accent)}
 .filters a{cursor:pointer}
+/* rà soát 10-12: chống tràn ngang (chấm trang trí /about/), số điện thoại bấm gọi được, vùng chạm ≥44px trên máy cảm ứng */
+html,body{overflow-x:clip}
+a.telk{color:inherit;text-decoration:none}
+@media (pointer:coarse){
+  .ft .links a,.ft .links button,.ft .fsite a,.fmap a{display:inline-flex;align-items:center;min-height:44px}
+  .filters a{display:flex;align-items:center;min-height:44px}
+  .vdots button{position:relative}.vdots button::after{content:"";position:absolute;inset:-16px}
+  .hd .dd a{padding-top:10px;padding-bottom:10px}
+  .hd nav>a,.hd nav>div>a{min-height:44px;display:inline-flex;align-items:center}
+}
 /* CASE dạng dòng (trang chủ) */
 .crows{margin-top:60px}
 .crow{display:grid;grid-template-columns:300px 1fr auto 40px;gap:36px;align-items:center;padding:44px 0;border-bottom:1px solid var(--line);transition:background .25s}
@@ -1225,13 +1235,13 @@ function page({root, title, desc, body, active, home}) {
     <a class="mi" href="${r}news/index.html"><b>NEWS</b><small>お知らせ</small></a>
     <a class="mi" href="${r}recruit/index.html"><b>RECRUIT</b><small>採用情報</small></a>
     <div class="mbtn"><a class="cta" href="${r}contact/index.html">CONTACT</a></div>
-    <p class="mtel">お電話でのご相談　<b>052-908-7944</b><br>平日 9:00–18:00　FAX 052-908-7267</p>
+    <p class="mtel">お電話でのご相談　<a class="telk" href="tel:0529087944"><b>052-908-7944</b></a><br>平日 9:00–18:00　FAX 052-908-7267</p>
   </div>`;
   const footer = `
   <footer class="ft"><div class="wrap">
     <div class="top">
       <div class="fb"><a class="logo" href="${r}index.html"><img src="${r}img/logo-s.webp" alt="" width="44" height="44"><img class="wm" src="${r}img/wordmark.png" alt="BIGLIGHT"></a>
-        <p class="addr">〒462-0007 愛知県名古屋市北区如意一丁目112 A<span class="tel">　TEL 052-908-7944　FAX 052-908-7267</span></p>
+        <p class="addr">〒462-0007 愛知県名古屋市北区如意一丁目112 A<span class="tel">　TEL <a class="telk" href="tel:0529087944">052-908-7944</a>　FAX 052-908-7267</span></p>
         ${snsHtml()}</div>
       <nav class="fsite" aria-label="サイトマップ"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}contact/index.html#request">Request</a></div></nav>
       <div class="fmap"><div class="fmap-ph"><p>地図を表示すると、Google社のCookieが使用される場合があります。</p><button type="button" class="fmap-load">地図を表示</button></div><iframe data-src="https://www.google.com/maps?q=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA&hl=ja&z=16&output=embed" title="BIGLIGHT株式会社の地図（愛知県名古屋市北区如意一丁目112 A）" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="https://www.google.com/maps/search/?api=1&query=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA">Google マップで開く →</a></div>
@@ -1277,7 +1287,7 @@ const contactBox = (r) => `
     <div><div class="en">Contact</div><div class="ja-lb">お問い合わせ</div></div>
     <span class="circ">→</span>
   </a>
-  <p class="ctel">お電話でのご相談　<b>052-908-7944</b>　平日 9:00–18:00　FAX 052-908-7267</p>
+  <p class="ctel">お電話でのご相談　<a class="telk" href="tel:0529087944"><b>052-908-7944</b></a>　平日 9:00–18:00　FAX 052-908-7267</p>
 </div></section>`;
 
 const pageHead = (en, ja, tabs='') => `
@@ -1445,7 +1455,7 @@ ${pageHead('We are','私たちについて',aboutTabs(r,'company'))}
     <div><dt>会社名</dt><dd>BIGLIGHT株式会社</dd></div>
     <div><dt>代表取締役</dt><dd>グエン・タン・トゥン</dd></div>
     <div><dt>所在地</dt><dd>〒462-0007<br>愛知県名古屋市北区如意一丁目112 A</dd></div>
-    <div><dt>電話番号</dt><dd>052-908-7944（FAX 052-908-7267）</dd></div>
+    <div><dt>電話番号</dt><dd><a class="telk" href="tel:0529087944">052-908-7944</a>（FAX 052-908-7267）</dd></div>
     <div><dt>設立年月日</dt><dd>2021年8月12日</dd></div>
     <div><dt>資本金</dt><dd>5,000,000円</dd></div>
     <div><dt>事業内容</dt><dd>特定技能外国人支援事業<br>外国人高度人材紹介事業<br>支援アプリの導入・提供（BIGLIGHT ポータル／アカデミー／JOB）</dd></div>
@@ -1640,7 +1650,7 @@ ${pageHead('Recruit','採用情報')}
     <div><dt>各種手当</dt><dd><ul><li>住宅手当：月20,000円</li><li>交通費全額支給（実費）</li><li>会社支給：ノートパソコン、携帯電話</li></ul></dd></div>
     <div><dt>応募条件</dt><dd><ul><li>Google Workspace（Docs, Sheets, Forms など）が使用できる方</li><li>責任感があり、チームワークを大切にできる方</li><li>外国籍の方：日本語N2以上、日本の専門学校または大学卒業（同等レベル可）</li></ul></dd></div>
     <div><dt>福利厚生</dt><dd><ul><li>社会保険・雇用保険・労災保険完備</li><li>昇進・キャリアアップのチャンス</li></ul></dd></div>
-    <div><dt>応募方法</dt><dd>お電話またはお問い合わせフォームよりご連絡ください。担当者が対応いたします。<br><b style="font-family:var(--en);font-size:20px;letter-spacing:.04em">052-908-7944</b><br><small style="display:block;margin-top:10px;font-size:13px;color:var(--grey)">ご応募にあたりご提供いただいた個人情報は、<a href="${r}privacy/index.html" style="color:var(--accent);text-decoration:underline">プライバシーポリシー</a>に基づき、採用選考の目的にのみ利用します。</small></dd></div>
+    <div><dt>応募方法</dt><dd>お電話またはお問い合わせフォームよりご連絡ください。担当者が対応いたします。<br><a class="telk" href="tel:0529087944"><b style="font-family:var(--en);font-size:20px;letter-spacing:.04em">052-908-7944</b></a><br><small style="display:block;margin-top:10px;font-size:13px;color:var(--grey)">ご応募にあたりご提供いただいた個人情報は、<a href="${r}privacy/index.html" style="color:var(--accent);text-decoration:underline">プライバシーポリシー</a>に基づき、採用選考の目的にのみ利用します。</small></dd></div>
   </dl>
 </div></section>
 
@@ -1668,7 +1678,7 @@ ${pageHead('Contact','お問い合わせ・資料請求')}
   </div>
 </div></section>
 <section id="p-cf" role="tabpanel" aria-labelledby="t-cf"><div class="wrap form">
-  <div class="info"><b>052-908-7944</b>平日 9:00–18:00　FAX 052-908-7267<br>採用人数・職種・時期が未定でも構いません。<br>登録支援機関として、制度の説明からお手伝いします。<br><br>〒462-0007<br>愛知県名古屋市北区如意一丁目112 A</div>
+  <div class="info"><a class="telk" href="tel:0529087944"><b>052-908-7944</b></a>平日 9:00–18:00　FAX 052-908-7267<br>採用人数・職種・時期が未定でも構いません。<br>登録支援機関として、制度の説明からお手伝いします。<br><br>〒462-0007<br>愛知県名古屋市北区如意一丁目112 A</div>
   <form id="cf" novalidate><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
     <label for="cf-type">お問い合わせ種別<small>必須</small></label><select id="cf-type" name="type"><option>無料相談（採用について）</option><option>アプリについて</option><option>採用について（求職者の方）</option><option>その他</option></select>
     <label for="cf-co">会社名<small>必須</small></label><div class="fld" data-err="入力してください"><input id="cf-co" name="company" type="text" autocomplete="organization" placeholder="株式会社〇〇" required></div>
