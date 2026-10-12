@@ -15,7 +15,7 @@ const copies = {
   'img/desk-academy.jpg':'img/desk-academy.jpg','img/desk-job.jpg':'img/desk-job.jpg','img/shot-portal-916.jpg':'img/shot-portal.jpg','img/shot-academy.jpg':'img/shot-academy.jpg','img/shot-job.jpg':'img/shot-job.jpg',
   'badges/apple-ja.svg':'img/badge-appstore.svg','badges/google-ja.png':'img/badge-googleplay.png',
 };
-Object.assign(copies,{'img/logo-s.webp':'img/logo-s.webp','img/hero-meeting.jpg':'img/hero-meeting.jpg','img/svc-ssw2.jpg':'img/svc-ssw2.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
+Object.assign(copies,{'img/logo-s.webp':'img/logo-s.webp','img/hero-meeting2.jpg':'img/hero-meeting2.jpg','img/recruit-team.jpg':'img/recruit-team.jpg','img/svc-ssw2.jpg':'img/svc-ssw2.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
 fs.mkdirSync(path.join(OUT,'img/sdg'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/sdg')).filter(f=>f.endsWith('.png')))fs.copyFileSync(path.join(__dirname,'src/img/sdg',f),path.join(OUT,'img/sdg',f));
 fs.mkdirSync(path.join(OUT,'img/people'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/people')).filter(f=>f.endsWith('.webp')))fs.copyFileSync(path.join(__dirname,'src/img/people',f),path.join(OUT,'img/people',f));
 { let out='';const N=34,S=80;const A=t=>330+110*Math.sin(t*Math.PI*1.9+0.2)-210*t, B=t=>330+110*Math.sin(t*Math.PI*1.9+2.9)-210*t+70*Math.sin(t*Math.PI);
@@ -124,6 +124,8 @@ body.menu-open{overflow:hidden}
 .hero .strip .inner{position:absolute;top:0;left:0;width:1012px;height:766px}
 .hero .strip:nth-child(2) .inner{left:-247px}.hero .strip:nth-child(3) .inner{left:-494px}
 .hero .inner img.full{width:100%;height:100%;object-fit:cover;display:block}
+/* ảnh họp: ảnh gốc, không ghép nền — khung nghiêng thấp hơn (426px), canh giữa theo chữ; trái/phải khớp đúng 2 cạnh nghiêng */
+.hero .inner img.mt{position:absolute;left:60px;top:170px;width:892px;height:426px;object-fit:cover;display:block}
 .hero .inner.devs{background:transparent}
 .hero .inner.devs .dev{position:absolute;left:150px;top:150px;width:600px;aspect-ratio:auto;height:480px;perspective:1400px}
 .hero .inner.devs .dev .lap{right:20px;top:110px;width:400px;transform:rotateY(-22deg) rotateX(6deg) rotateZ(1.5deg);transform-origin:50% 60%;transform-style:preserve-3d}
@@ -421,6 +423,12 @@ html.js .circ40 i{animation:bounce 2.8s ease-in-out infinite}
 html.js .circ40 i:nth-child(2){animation-delay:.15s}html.js .circ40 i:nth-child(3){animation-delay:.3s}
 /* ảnh thực có chuyển động (mission/vision) */
 .pic{position:relative;margin-top:60px}
+/* RECRUIT: ảnh tập thể — tĩnh (không zoom/parallax để không cắt người ở mép) */
+.teamph-s{padding-top:160px}
+.teamph{margin:0}
+.teamph .tp{border-radius:8px;overflow:hidden;aspect-ratio:3/2}
+.teamph .tp img{width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:860px){.teamph-s{padding-top:80px}}
 .pic .main{position:relative;overflow:hidden;border-radius:8px;aspect-ratio:4/3}
 .pic .main img{width:100%;height:100%;object-fit:cover;display:block;border-radius:0}
 html.js .pic .main{clip-path:inset(0 100% 0 0);transition:clip-path 1.3s cubic-bezier(.7,0,.2,1)}
@@ -1032,7 +1040,7 @@ const js = `
   var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
   [].forEach.call(document.querySelectorAll('.sec-head .en, .side>.en, .ph .phh .en, .cbox .en'),function(e){e.classList.add('chars');});
   /* ảnh hé mở: phần tử bị clip-path che kín thì IntersectionObserver không thấy → quan sát phần tử cha */
-  var wipes=[].slice.call(document.querySelectorAll('.cul .ph-col, .msg-ph, .svc img.photo, .voice .vph'));
+  var wipes=[].slice.call(document.querySelectorAll('.cul .ph-col, .msg-ph, .svc img.photo, .voice .vph, .teamph .tp'));
   wipes.forEach(function(e){e.classList.add('wipe');});
   if('IntersectionObserver' in window){var wio=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target._wipe.classList.add('in');wio.unobserve(x.target);}});},{rootMargin:'0px 0px -10% 0px'});
     wipes.forEach(function(e){e.parentNode._wipe=e;wio.observe(e.parentNode);});} else wipes.forEach(function(e){e.classList.add('in');});
@@ -1278,7 +1286,7 @@ function home(){ const r='./'; return page({root:r,home:true,title:'BIGLIGHT株�
     <div class="dots"><i class="on"></i><i></i><i></i></div>
   </div>
   <div class="vis">
-    ${heroSlide('<img class="full" src="'+r+'img/hero-meeting.jpg" alt="経営計画を共有するBIGLIGHTの社内会議">', true)}
+    ${heroSlide('<img class="mt" src="'+r+'img/hero-meeting2.jpg" width="1675" height="799" alt="経営計画を共有するBIGLIGHTの社内会議">', true)}
     ${heroSlide(dev(r,'desk-job.jpg','shot-job.jpg'), false, 'devs')}
     ${heroSlide(dev(r,'desk-academy.jpg','shot-academy.jpg'), false, 'devs')}
   </div>
@@ -1555,6 +1563,10 @@ ${pageHead('Recruit','採用情報')}
   <div class="cul"><div><div class="num">CULTURE-01</div><h2>挑戦<small>Challenge</small></h2><p>変化を恐れず、新しい挑戦を続ける。失敗を学びに変え、一歩先へ進み続けます。若い会社だからこそ、一人ひとりの提案がすぐにかたちになります。</p></div><div class="illu cul-illu"><img src="${r}img/illu-culture-1.svg" alt="一段ずつ上へ登る人のイラスト"><i class="fl a"></i><i class="fl b"></i><i class="fl d"></i></div></div>
   <div class="cul rev"><div><div class="num">CULTURE-02</div><h2>チームワーク<small>Teamwork</small></h2><p>仲間と協力し、より大きな成果を創る。一人ではなく、チームで勝つ組織です。困ったときはお互いに助け合い、努力と成果をきちんと評価します。</p></div><div class="illu cul-illu"><img src="${r}img/illu-culture-2.svg" alt="ホワイトボードに一緒に書き込む二人のイラスト"><i class="fl a"></i><i class="fl c"></i><i class="fl d"></i></div></div>
   <div class="cul"><div><div class="num">CULTURE-03</div><h2>革新<small>Innovation</small></h2><p>現状に満足せず、常に改善を追求する。昨日より良い仕組みを、今日つくります。</p></div><div class="illu cul-illu"><img src="${r}img/illu-culture-3.svg" alt="大きな電球を見上げる人のイラスト"><i class="fl a"></i><i class="fl b"></i><i class="fl c"></i></div></div>
+</div></section>
+
+<section class="teamph-s"><div class="wrap">
+  <figure class="teamph"><div class="tp"><img src="${r}img/recruit-team.jpg" width="2000" height="1333" alt="BIGLIGHTのメンバー集合写真" loading="lazy"></div></figure>
 </div></section>
 
 <section class="blk" id="voice"><div class="wrap">
