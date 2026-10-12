@@ -44,6 +44,9 @@ const SNS_ICON = {
   x:'<svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#000"/><path fill="#fff" d="M18.2 14.6 25.5 6h-1.7l-6.4 7.4L12.3 6H6.5l7.7 11.2L6.5 26h1.7l6.8-7.8 5.4 7.8h5.8zm-2.4 2.7-.8-1.1L8.9 7.3h2.7l5 7.1.8 1.1 6.5 9.2h-2.7z"/></svg>',
   wa:'<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="16" fill="#25D366"/><path fill="#fff" d="M16 6.4a9.6 9.6 0 0 0-8.3 14.4L6.4 25.6l4.9-1.3A9.6 9.6 0 1 0 16 6.4zm0 17.5a7.9 7.9 0 0 1-4-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A7.9 7.9 0 1 1 16 23.9zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg>',
 };
+// Web seminar cho người lao động (repo biglight-vietnam, một mã nguồn hai tên miền) — 2026-10-12
+const GLB = [ { lang:'vi', label:'Tiếng Việt', url:'https://vn.biglight.jp/' }, { lang:'id', label:'Bahasa Indonesia', url:'https://id.biglight.jp/' } ];
+const glbHtml = () => '<p class="glb"><span>外国人材向けサイト</span>'+GLB.map(g=>`<a href="${g.url}" hreflang="${g.lang}" lang="${g.lang}">${g.label}<i aria-hidden="true">↗</i></a>`).join('')+'</p>';
 const snsHtml = () => '<div class="sns">'+SNS.filter(s=>s.url).map(s=>`<a href="${s.url}" class="sn sn-${s.k}" aria-label="BIGLIGHT公式 ${s.name}">${SNS_ICON[s.k]}<span>${s.name}</span></a>`).join('')+'</div>';
 
 // ---------- CSS ----------
@@ -829,6 +832,18 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 .ft .fsite a:hover{color:var(--accent)}
 .ft .fsite .tg{display:none}
 .ft .sns{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0}
+/* web seminar VN/ID — tối giản: chữ nhỏ + mũi tên (10-12) */
+.ft .glb{display:flex;flex-wrap:wrap;align-items:center;gap:6px 20px;margin:14px 0 0;font-size:13px;line-height:1.6;color:var(--grey)}
+.ft .glb a{display:inline-flex;align-items:center;gap:4px;min-height:32px;color:var(--ink);font-weight:500}
+.ft .glb a i{font-style:normal;font-size:11px;color:var(--grey)}
+.ft .glb a:hover{color:var(--accent)}
+.chn{margin-top:40px;border-top:1px solid var(--line)}
+.chn a{display:grid;grid-template-columns:220px 1fr 24px;align-items:center;gap:20px;padding:22px 4px;border-bottom:1px solid var(--line);transition:color .2s}
+.chn .l{font-family:var(--en);font-size:18px;font-weight:700;letter-spacing:.02em}
+.chn .d{font-family:var(--en);font-size:14px;color:var(--grey)}
+.chn i{font-style:normal;color:var(--grey);text-align:right;transition:transform .2s}
+.chn a:hover{color:var(--accent)}.chn a:hover i{transform:translate(2px,-2px);color:var(--accent)}
+@media (max-width:860px){.ft .glb{justify-content:center;gap:0 18px}.ft .glb span{flex-basis:100%;text-align:center}.chn a{grid-template-columns:1fr 24px;gap:2px 12px;padding:18px 2px}.chn .d{grid-column:1;grid-row:2;font-size:13px}.chn i{grid-column:2;grid-row:1/3}}
 /* nút mạng xã hội: logo màu đặc trưng + tên, xếp ngang, có khung (10-12) */
 .ft .sns a{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:8px 18px 8px 10px;border:1px solid #dfe3ea;border-radius:12px;background:#fff;color:#1f2937;transition:border-color .2s,box-shadow .2s,transform .2s}
 .ft .sns a svg{width:28px;height:28px;flex:none;display:block}
@@ -1242,7 +1257,7 @@ function page({root, title, desc, body, active, home}) {
     <div class="top">
       <div class="fb"><a class="logo" href="${r}index.html"><img src="${r}img/logo-s.webp" alt="" width="44" height="44"><img class="wm" src="${r}img/wordmark.png" alt="BIGLIGHT"></a>
         <p class="addr">〒462-0007 愛知県名古屋市北区如意一丁目112 A<span class="tel">　TEL <a class="telk" href="tel:0529087944">052-908-7944</a>　FAX 052-908-7267</span></p>
-        ${snsHtml()}</div>
+        ${snsHtml()}${glbHtml()}</div>
       <nav class="fsite" aria-label="サイトマップ"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}contact/index.html#request">Request</a></div></nav>
       <div class="fmap"><div class="fmap-ph"><p>地図を表示すると、Google社のCookieが使用される場合があります。</p><button type="button" class="fmap-load">地図を表示</button></div><iframe data-src="https://www.google.com/maps?q=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA&hl=ja&z=16&output=embed" title="BIGLIGHT株式会社の地図（愛知県名古屋市北区如意一丁目112 A）" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="https://www.google.com/maps/search/?api=1&query=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA">Google マップで開く →</a></div>
     </div>
@@ -1837,6 +1852,11 @@ ${pageHead('Specified Skilled Worker','特定技能 採用支援',serviceTabs(r,
   <div class="sup10">
     ${['事前ガイダンス','出入国時の送迎','住居確保・生活に必要な契約の支援','生活オリエンテーション','公的手続き等への同行','日本語学習の機会の提供','相談・苦情への対応','日本人との交流促進','転職支援（人員整理等の場合）','定期的な面談・行政機関への通報'].map((t,i)=>`<div><b>${String(i+1).padStart(2,'0')}</b><span>${t}</span></div>`).join('')}
   </div>
+</div></section>
+<section class="blk"><div class="wrap">
+  <div class="lbl">Channel</div>
+  <div class="two" style="margin-top:24px"><h2 style="font-size:40px">独自の採用チャネル</h2><div class="txt"><p>ベトナム・インドネシア出身の方に向けて、母国語のサイトと無料セミナーを運営しています。特定技能2号を目指す人材と直接つながり、企業様にご紹介しています。</p></div></div>
+  <div class="chn">${GLB.map(g=>`<a href="${g.url}" hreflang="${g.lang}"><span class="l" lang="${g.lang}">${g.label}</span><span class="d">${g.url.replace('https://','').replace(/\/$/,'')}</span><i aria-hidden="true">↗</i></a>`).join('')}</div>
 </div></section>
 <section class="blk" id="fields"><div class="wrap">
   <div class="lbl">Fields</div>
