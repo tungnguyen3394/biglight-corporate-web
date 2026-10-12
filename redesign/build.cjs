@@ -15,7 +15,7 @@ const copies = {
   'img/desk-academy.jpg':'img/desk-academy.jpg','img/desk-job.jpg':'img/desk-job.jpg','img/shot-portal-916.jpg':'img/shot-portal.jpg','img/shot-academy.jpg':'img/shot-academy.jpg','img/shot-job.jpg':'img/shot-job.jpg',
   'badges/apple-ja.svg':'img/badge-appstore.svg','badges/google-ja.png':'img/badge-googleplay.png',
 };
-Object.assign(copies,{'img/logo-s.webp':'img/logo-s.webp','img/hero-meeting2.jpg':'img/hero-meeting2.jpg','img/recruit-team.jpg':'img/recruit-team.jpg','img/svc-ssw2.jpg':'img/svc-ssw2.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
+Object.assign(copies,{'img/logo-s.webp':'img/logo-s.webp','img/hero-meeting3.jpg':'img/hero-meeting3.jpg','img/recruit-team.jpg':'img/recruit-team.jpg','img/svc-ssw2.jpg':'img/svc-ssw2.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
 fs.mkdirSync(path.join(OUT,'img/sdg'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/sdg')).filter(f=>f.endsWith('.png')))fs.copyFileSync(path.join(__dirname,'src/img/sdg',f),path.join(OUT,'img/sdg',f));
 fs.mkdirSync(path.join(OUT,'img/people'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/people')).filter(f=>f.endsWith('.webp')))fs.copyFileSync(path.join(__dirname,'src/img/people',f),path.join(OUT,'img/people',f));
 { let out='';const N=34,S=80;const A=t=>330+110*Math.sin(t*Math.PI*1.9+0.2)-210*t, B=t=>330+110*Math.sin(t*Math.PI*1.9+2.9)-210*t+70*Math.sin(t*Math.PI);
@@ -113,21 +113,21 @@ body.menu-open{overflow:hidden}
 .hero .dots{margin-top:40px;gap:40px}
 .hero .dots i{width:10px;height:10px;cursor:pointer;opacity:.25;transition:opacity .3s;animation:none!important}
 .hero .dots i.on{opacity:1}
-/* khung ảnh = 3 dải nghiêng 270px, mỗi dải lộ 248px → tổng lộ 742px mỗi hàng (2026-10-12: nới từ 643 để ảnh họp 5 người vừa khung) */
-.hero .vis{position:absolute;left:calc(50% - 150px);top:0;width:1012px;height:766px;z-index:1}
+/* khung ảnh = 3 dải nghiêng 270px, mỗi dải lộ 290px → tổng lộ 870px mỗi hàng (2026-10-12: 643→742→870 để ảnh họp cao hết khung vẫn thấy 3–4 người) */
+.hero .vis{position:absolute;left:min(calc(50% - 150px),calc(100% - 1180px));top:0;width:1140px;height:766px;z-index:1}
 .hero .sl{position:absolute;inset:0}
-.hero .strip{position:absolute;top:0;margin:0;width:518px;height:766px;overflow:hidden;clip-path:polygon(270px 0,518px 0,248px 100%,0 100%);opacity:0;transform:translateX(30px);transition:opacity 1.3s cubic-bezier(.2,.6,.2,1),transform 1.3s cubic-bezier(.2,.6,.2,1)}
-.hero .strip:nth-child(1){left:0}.hero .strip:nth-child(2){left:247px;transition-delay:.15s}.hero .strip:nth-child(3){left:494px;transition-delay:.3s}
+.hero .strip{position:absolute;top:0;margin:0;width:560px;height:766px;overflow:hidden;clip-path:polygon(270px 0,561.5px 0,291.5px 100%,0 100%);opacity:0;transform:translateX(30px);transition:opacity 1.3s cubic-bezier(.2,.6,.2,1),transform 1.3s cubic-bezier(.2,.6,.2,1)}
+.hero .strip:nth-child(1){left:0}.hero .strip:nth-child(2){left:290px;transition-delay:.15s}.hero .strip:nth-child(3){left:580px;transition-delay:.3s}
 .hero .sl.on .strip{opacity:1;transform:none}
 .hero .sl.out .strip{opacity:0;transform:translateX(-30px);transition-duration:1.2s;transition-timing-function:cubic-bezier(.4,0,.6,1)}
 .hero .sl.out .strip:nth-child(1){transition-delay:0s}.hero .sl.out .strip:nth-child(2){transition-delay:.12s}.hero .sl.out .strip:nth-child(3){transition-delay:.24s}
-.hero .strip .inner{position:absolute;top:0;left:0;width:1012px;height:766px}
-.hero .strip:nth-child(2) .inner{left:-247px}.hero .strip:nth-child(3) .inner{left:-494px}
+.hero .strip .inner{position:absolute;top:0;left:0;width:1140px;height:766px}
+.hero .strip:nth-child(2) .inner{left:-290px}.hero .strip:nth-child(3) .inner{left:-580px}
 .hero .inner img.full{width:100%;height:100%;object-fit:cover;display:block}
-/* ảnh họp: ảnh gốc, không ghép nền — khung nghiêng thấp hơn (426px), canh giữa theo chữ; trái/phải khớp đúng 2 cạnh nghiêng */
-.hero .inner img.mt{position:absolute;left:60px;top:170px;width:892px;height:426px;object-fit:cover;display:block}
+/* ảnh họp: ảnh gốc nguyên bản, cao hết khung 766 như Guidable (rộng 1366, dời ngang để giữ mặt người) */
+.hero .inner img.mt{position:absolute;left:-226px;top:0;width:1366px;max-width:none;height:766px;display:block}
 .hero .inner.devs{background:transparent}
-.hero .inner.devs .dev{position:absolute;left:150px;top:150px;width:600px;aspect-ratio:auto;height:480px;perspective:1400px}
+.hero .inner.devs .dev{position:absolute;left:210px;top:150px;width:600px;aspect-ratio:auto;height:480px;perspective:1400px}
 .hero .inner.devs .dev .lap{right:20px;top:110px;width:400px;transform:rotateY(-22deg) rotateX(6deg) rotateZ(1.5deg);transform-origin:50% 60%;transform-style:preserve-3d}
 .hero .inner.devs .dev .iph{left:120px;top:20px;bottom:auto;width:118px;z-index:2;transform:rotate(-14deg) rotateY(16deg);transform-origin:50% 50%;box-shadow:none}
 .hero .inner.devs .dev .iph{box-shadow:0 30px 50px rgba(0,0,0,.25)}
@@ -991,13 +991,13 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
   .mnav{padding-left:max(24px,6vw);padding-right:max(24px,6vw)}
   .hd nav,.hd .cta{display:none}
   .hd .burger{display:flex}
-  /* ảnh hero = nguyên khối PC 1012×766 thu nhỏ theo bề ngang (--hs do JS đặt) */
+  /* ảnh hero = nguyên khối PC 1140×766 thu nhỏ theo bề ngang (--hs do JS đặt) */
   .hero{height:auto;padding:28px 20px 0;overflow:hidden}
   .hero .tx{position:static}
   .hero h1{white-space:nowrap;font-size:min(9.6vw,58px);line-height:1.32;letter-spacing:.08em}
   .hero .sub{font-size:min(3.3vw,16px);margin-top:16px}
   .hero .dots{margin-top:22px;gap:30px}
-  .hero .vis{position:relative;left:auto;top:auto;width:1012px;height:766px;margin:24px 0 0 -20px;transform:scale(var(--hs,.42));transform-origin:0 0;margin-bottom:calc(766px * (var(--hs,.42) - 1))}
+  .hero .vis{position:relative;left:auto;top:auto;width:1140px;height:766px;margin:24px 0 0 -20px;transform:scale(var(--hs,.42));transform-origin:0 0;margin-bottom:calc(766px * (var(--hs,.42) - 1))}
   .hero .scrl{display:none}
   .message{padding-top:110px}
   .message p{font-size:20px;letter-spacing:.06em}
@@ -1286,14 +1286,14 @@ function home(){ const r='./'; return page({root:r,home:true,title:'BIGLIGHT株�
     <div class="dots"><i class="on"></i><i></i><i></i></div>
   </div>
   <div class="vis">
-    ${heroSlide('<img class="mt" src="'+r+'img/hero-meeting2.jpg" width="1675" height="799" alt="経営計画を共有するBIGLIGHTの社内会議">', true)}
+    ${heroSlide('<img class="mt" src="'+r+'img/hero-meeting3.jpg" width="1675" height="939" alt="経営計画を共有するBIGLIGHTの社内会議">', true)}
     ${heroSlide(dev(r,'desk-job.jpg','shot-job.jpg'), false, 'devs')}
     ${heroSlide(dev(r,'desk-academy.jpg','shot-academy.jpg'), false, 'devs')}
   </div>
   <div class="scrl"></div>
-  <script>(function(){var d=document.documentElement;function f(){var w=d.clientWidth;d.style.setProperty('--hs',Math.min(1,w/1012));
-  /* 861–1740px (iPad ngang, laptop): khung canh phải, thu vừa đủ để mép chéo bên trái không đè lên chữ (2026-10-11; 10-12 nới tới 1740 vì khung rộng 1012) */
-  if(w>860&&w<=1740){var hero=document.querySelector('.hero'),top=hero.getBoundingClientRect().top,s=1;[].forEach.call(document.querySelectorAll('.hero h1,.hero .sub'),function(e){var r=document.createRange();r.selectNodeContents(e);[].forEach.call(r.getClientRects(),function(q){var y=q.top+q.height/2-top;s=Math.min(s,(w-.3525*y-q.right-28)/742);});});d.style.setProperty('--hl',Math.max(.48,Math.min(.94,s)).toFixed(3));}}
+  <script>(function(){var d=document.documentElement;function f(){var w=d.clientWidth;d.style.setProperty('--hs',Math.min(1,w/1140));
+  /* 861–1740px (iPad ngang, laptop): khung canh phải, thu vừa đủ để mép chéo bên trái không đè lên chữ (2026-10-11; 10-12 nới tới 1740; khung nay rộng 1140, lộ 870) */
+  if(w>860&&w<=1740){var hero=document.querySelector('.hero'),top=hero.getBoundingClientRect().top,s=1;[].forEach.call(document.querySelectorAll('.hero h1,.hero .sub'),function(e){var r=document.createRange();r.selectNodeContents(e);[].forEach.call(r.getClientRects(),function(q){var y=q.top+q.height/2-top;s=Math.min(s,(w-.3525*y-q.right-28)/870);});});d.style.setProperty('--hl',Math.max(.48,Math.min(.94,s)).toFixed(3));}}
   f();addEventListener('resize',f);if(document.fonts)document.fonts.ready.then(f);})();</script>
 </section>
 
@@ -1574,11 +1574,11 @@ ${pageHead('Recruit','採用情報')}
   <div class="two" style="margin-top:24px"><h2 style="font-size:40px">先輩の声</h2><div class="txt"><p>BIGLIGHTで働くメンバーが、仕事への想いをお話しします。</p></div></div>
   <div class="voices">
     <div class="voice"><div class="vph"><img src="${r}img/staff-2.jpg" alt="ノン タン フン"></div>
-      <div class="vtx"><div class="num">INTERVIEW-01<span>入社4年目</span></div><h3>ノン タン フン<small>Manager</small></h3><p class="ld">BIGLIGHTでは、企業様への提案や人材紹介、入社後のフォローを担当しています。</p><p class="q">幅広い業務に挑戦でき、自分の成長を実感できることがこの仕事の魅力です。社内は若く活気があり、困ったときにはお互いに助け合える環境があります。努力や成果をきちんと評価してもらえるため、やりがいを持って働けます。新しいことに挑戦したい方、責任を持って仕事に取り組める方にぴったりの会社です。私たちと一緒に成長し、BIGLIGHTの未来をつくっていきましょう。</p></div></div>
+      <div class="vtx"><div class="num">INTERVIEW-01<span>入社5年目</span></div><h3>ノン タン フン<small>Manager</small></h3><p class="ld">BIGLIGHTでは、企業様への提案や人材紹介、入社後のフォローを担当しています。</p><p class="q">幅広い業務に挑戦でき、自分の成長を実感できることがこの仕事の魅力です。社内は若く活気があり、困ったときにはお互いに助け合える環境があります。努力や成果をきちんと評価してもらえるため、やりがいを持って働けます。新しいことに挑戦したい方、責任を持って仕事に取り組める方にぴったりの会社です。私たちと一緒に成長し、BIGLIGHTの未来をつくっていきましょう。</p></div></div>
     <div class="voice rev"><div class="vph"><img src="${r}img/staff-1.jpg" alt="マイ ラン リン"></div>
-      <div class="vtx"><div class="num">INTERVIEW-02<span>入社5年目</span></div><h3>マイ ラン リン<small>Sales</small></h3><p class="ld">企業様への人材提案や採用支援、入社後のフォローなどを担当しています。</p><p class="q">企業様と求職者の双方から感謝の言葉をいただけることが、大きなやりがいです。BIGLIGHTでは、自分の経験を活かしながら新しい仕事にも挑戦できます。分からないことがあっても相談しやすく、仲間と協力しながら成長できる環境です。人と接することが好きで、相手のために行動できる方に向いている仕事だと思います。一緒に経験を積み、多くの方の新しい一歩を支えていきましょう。</p></div></div>
+      <div class="vtx"><div class="num">INTERVIEW-02<span>入社6年目</span></div><h3>マイ ラン リン<small>Sales</small></h3><p class="ld">企業様への人材提案や採用支援、入社後のフォローなどを担当しています。</p><p class="q">企業様と求職者の双方から感謝の言葉をいただけることが、大きなやりがいです。BIGLIGHTでは、自分の経験を活かしながら新しい仕事にも挑戦できます。分からないことがあっても相談しやすく、仲間と協力しながら成長できる環境です。人と接することが好きで、相手のために行動できる方に向いている仕事だと思います。一緒に経験を積み、多くの方の新しい一歩を支えていきましょう。</p></div></div>
     <div class="voice"><div class="vph"><img src="${r}img/staff-3.jpg" alt="レ テ クアン"></div>
-      <div class="vtx"><div class="num">INTERVIEW-03<span>新卒入社1年目</span></div><h3>レ テ クアン<small>Sales</small></h3><p class="ld">特定技能人材やエンジニアの生活支援、企業様との連絡・調整を担当しています。</p><p class="q">外国人の方が日本で安心して働く姿を見ると、この仕事の意義を実感します。入社後は先輩から丁寧に教えてもらえるため、安心して仕事を覚えられました。若い社員が多く、意見や相談を伝えやすい明るい職場です。人を支えることが好きな方や、日本語を活かして成長したい方におすすめです。私たちと一緒に学びながら、新しいことへ積極的に挑戦していきましょう。</p></div></div>
+      <div class="vtx"><div class="num">INTERVIEW-03<span>新卒入社2年目</span></div><h3>レ テ クアン<small>Sales</small></h3><p class="ld">特定技能人材やエンジニアの生活支援、企業様との連絡・調整を担当しています。</p><p class="q">外国人の方が日本で安心して働く姿を見ると、この仕事の意義を実感します。入社後は先輩から丁寧に教えてもらえるため、安心して仕事を覚えられました。若い社員が多く、意見や相談を伝えやすい明るい職場です。人を支えることが好きな方や、日本語を活かして成長したい方におすすめです。私たちと一緒に学びながら、新しいことへ積極的に挑戦していきましょう。</p></div></div>
   </div>
 </div></section>
 
