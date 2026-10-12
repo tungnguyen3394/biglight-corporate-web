@@ -125,7 +125,7 @@ body.menu-open{overflow:hidden}
 .hero .strip:nth-child(2) .inner{left:-222px}.hero .strip:nth-child(3) .inner{left:-444px}
 .hero .inner img.full{width:100%;height:100%;object-fit:cover;display:block}
 /* ảnh họp: ảnh gốc cỡ theo chiều cao khung, trọng tâm chị trình bày + anh kính; chấp nhận mất phần hai bên (CEO 10-12) */
-.hero .inner img.mt{position:absolute;left:-340px;top:0;width:1366px;max-width:none;height:766px;display:block}
+.hero .inner img.mt{position:absolute;left:-437px;top:0;width:1366px;max-width:none;height:766px;display:block}
 .hero .inner.devs{background:transparent}
 /* slide thiết bị kiểu Guidable (10-12): điện thoại và laptop TÁCH RỜI. Vị trí = 4 góc đo trên ảnh mv_img_3 của Guidable, quy về khung 929×766:
  laptop màn [409,345][699,278][692,575][409,567], điện thoại [180,262][277,250][337,452][250,492] → matrix3d (scratchpad gd/homo.cjs) */
