@@ -124,8 +124,8 @@ body.menu-open{overflow:hidden}
 .hero .strip .inner{position:absolute;top:0;left:0;width:1230px;height:766px}
 .hero .strip:nth-child(2) .inner{left:-320px}.hero .strip:nth-child(3) .inner{left:-640px}
 .hero .inner img.full{width:100%;height:100%;object-fit:cover;display:block}
-/* ảnh họp: ảnh gốc nguyên bản (cỡ gốc theo chiều cao khung, không kéo méo), vị trí tính để khung cỡ thật: màn ~1470 thấy anh trái + chị + anh kính, màn ≥1600 thấy thêm anh phải — scratchpad fit.cjs */
-.hero .inner img.mt{position:absolute;left:-130px;top:0;width:1366px;max-width:none;height:766px;display:block}
+/* ảnh họp: ảnh gốc nguyên bản (cỡ gốc theo chiều cao khung, không kéo méo), vị trí tính để phóng đều 1.2 (CEO: mặt người phải to) — trọng tâm chị trình bày + anh kính — scratchpad fit.cjs */
+.hero .inner img.mt{position:absolute;left:-410px;top:-80px;width:1640px;max-width:none;height:919px;display:block}
 .hero .inner.devs{background:transparent}
 .hero .inner.devs .dev{position:absolute;left:210px;top:150px;width:600px;aspect-ratio:auto;height:480px;perspective:1400px}
 .hero .inner.devs .dev .lap{right:20px;top:110px;width:400px;transform:rotateY(-22deg) rotateX(6deg) rotateZ(1.5deg);transform-origin:50% 60%;transform-style:preserve-3d}
