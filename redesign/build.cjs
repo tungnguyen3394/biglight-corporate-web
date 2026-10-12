@@ -3,7 +3,7 @@ const fs = require('fs'); const path = require('path');
 const OUT = path.join(__dirname, 'dist');
 const SITE = 'https://biglight.jp'; // URL chính thức (canonical). Bản xem trước new.biglight.jp bị chặn index ở tầng Caddy.
 fs.rmSync(OUT, { recursive: true, force: true });
-for (const d of ['antisocial','optout','css','js','img','about','about/message','about/company','about/sdgs','service','service/tokutei-ginou','service/engineer','img/field','product','news','recruit','contact']) fs.mkdirSync(path.join(OUT,d),{recursive:true});
+for (const d of ['terms','antisocial','optout','css','js','img','about','about/message','about/company','about/sdgs','service','service/tokutei-ginou','service/engineer','img/field','product','news','recruit','contact']) fs.mkdirSync(path.join(OUT,d),{recursive:true});
 
 // ---------- assets ----------
 const copies = {
@@ -1247,7 +1247,7 @@ function page({root, title, desc, body, active, home}) {
       <div class="fmap"><div class="fmap-ph"><p>地図を表示すると、Google社のCookieが使用される場合があります。</p><button type="button" class="fmap-load">地図を表示</button></div><iframe data-src="https://www.google.com/maps?q=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA&hl=ja&z=16&output=embed" title="BIGLIGHT株式会社の地図（愛知県名古屋市北区如意一丁目112 A）" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="https://www.google.com/maps/search/?api=1&query=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA">Google マップで開く →</a></div>
     </div>
     <div class="bot">
-      <div class="links"><a href="${r}privacy/index.html">プライバシーポリシー</a><a href="${r}antisocial/index.html">反社会的勢力に対する基本方針</a><button type="button" class="ck-link" data-cookie-settings>Cookie設定</button></div>
+      <div class="links"><a href="${r}privacy/index.html">プライバシーポリシー</a><a href="${r}antisocial/index.html">反社会的勢力に対する基本方針</a><a href="${r}terms/index.html">サイトご利用にあたって</a><button type="button" class="ck-link" data-cookie-settings>Cookie設定</button></div>
       <p class="copy">Copyright © BIGLIGHT Co., Ltd. All Rights Reserved.</p>
     </div>
   </div></footer>
@@ -2130,6 +2130,53 @@ const COOKIE_SEC = `<h2>8. Cookie・外部送信について</h2>
         </tbody>
       </table></div>
       <p>同意の内容はお客様のブラウザ（保存期間1年）に、閲覧した記事の情報はブラウザのタブを閉じるまでの間に限り保存します。各外部サービスにおける情報の取扱いは、各社のプライバシーポリシーをご確認ください。</p>`;
+/* 2026-10-12: サイト利用規約（コーポレートサイト用。JOB・Academy の利用規約とは別物） */
+function terms(){ const r='../'; return page({root:r,title:'サイトご利用にあたって（利用規約）｜BIGLIGHT株式会社',desc:'BIGLIGHT株式会社のウェブサイトをご利用いただく際の利用条件（著作権・免責事項・リンク・禁止事項など）です。',body:`
+${pageHead('Terms of Use','サイトご利用にあたって')}
+<section><div class="wrap"><div class="pv">
+  <p>本ウェブサイト（https://biglight.jp/ 以下「本サイト」）は、BIGLIGHT株式会社（以下「当社」）が運営しています。本サイトをご利用いただく前に、以下の利用条件（以下「本規約」）をご確認ください。本サイトをご利用いただいた場合、本規約に同意いただいたものとみなします。</p>
+  <p>なお、当社の有料職業紹介・登録支援機関としての支援その他のサービスについては、別途お客様と締結する契約の内容が本規約に優先して適用されます。</p>
+  <h2>1. 著作権・商標</h2>
+  <p>本サイトに掲載されている文章、写真、画像、イラスト、ロゴ、デザインその他の情報（以下「コンテンツ」）に関する著作権その他の権利は、当社または正当な権利を有する第三者に帰属します。私的使用その他法令により認められる範囲を超えて、当社の事前の許諾なくコンテンツを複製、転載、改変、配布、公衆送信等することはできません。</p>
+  <p>本サイトに表示される当社の商号、ロゴ、サービス名等を、当社の許諾なく使用することはできません。</p>
+  <h2>2. 掲載情報について（免責事項）</h2>
+  <p>当社は、本サイトに正確な情報を掲載するよう努めていますが、その正確性、完全性、最新性、有用性等を保証するものではありません。</p>
+  <p>特に、在留資格、特定技能、育成就労その他の制度に関する情報は、法令の改正や行政の運用変更により内容が変わる場合があります。最新の情報は、出入国在留管理庁その他の公的機関の発表をご確認いただくか、当社までお問い合わせください。</p>
+  <p>本サイトのご利用、または本サイトをご利用いただけなかったことにより生じた損害について、当社は、当社の故意または重大な過失による場合を除き、責任を負いません。</p>
+  <h2>3. 本サイトの変更・中断</h2>
+  <p>当社は、予告なく、本サイトの内容を変更し、または本サイトの公開を中断もしくは終了することがあります。</p>
+  <h2>4. リンクについて</h2>
+  <p>本サイトへのリンクは、原則として自由に設定していただけます。ただし、次のいずれかに該当するリンクはお断りします。</p>
+  <ul>
+    <li>当社や当社のサービスの信用・名誉を損なうおそれのあるサイトからのリンク</li>
+    <li>法令または公序良俗に反する内容を含むサイトからのリンク</li>
+    <li>フレーム内での表示など、当社のサイトであることが分からない形でのリンク</li>
+  </ul>
+  <p>本サイトからリンクしている外部のウェブサイトは、当社が管理するものではありません。外部サイトの内容やご利用により生じた損害について、当社は責任を負いません。</p>
+  <h2>5. 禁止事項</h2>
+  <p>本サイトのご利用にあたり、次の行為を禁止します。</p>
+  <ul>
+    <li>法令または公序良俗に反する行為</li>
+    <li>当社または第三者の著作権、商標権、プライバシーその他の権利・利益を侵害する行為</li>
+    <li>不正アクセス、過度な負荷をかける行為、プログラム等による大量の自動取得など、本サイトの運営を妨げる行為</li>
+    <li>お問い合わせフォーム等への虚偽の情報、他人の情報の入力</li>
+    <li>当社や第三者を誹謗中傷し、または名誉・信用を傷つける行為</li>
+    <li>その他、当社が不適切と判断する行為</li>
+  </ul>
+  <h2>6. 個人情報・Cookie</h2>
+  <p>本サイトにおける個人情報およびCookieの取扱いについては、<a href="${r}privacy/index.html">プライバシーポリシー</a>をご確認ください。Cookieの設定は、各ページ下部の「Cookie設定」からいつでも変更できます。</p>
+  <h2>7. 推奨環境</h2>
+  <p>本サイトを快適にご利用いただくため、Google Chrome、Safari、Microsoft Edge、Mozilla Firefox の最新版でのご利用をおすすめします。また、JavaScript を有効にしてご利用ください。推奨環境以外では、一部の機能が正しく動作しない、または正しく表示されない場合があります。</p>
+  <h2>8. 準拠法・管轄裁判所</h2>
+  <p>本規約は日本法に準拠し、解釈されるものとします。本サイトに関して紛争が生じた場合は、名古屋地方裁判所を第一審の専属的合意管轄裁判所とします。</p>
+  <h2>9. 本規約の改定</h2>
+  <p>当社は、必要に応じて本規約を改定することがあります。改定後の本規約は、本サイトに掲載した時点から効力を生じるものとします。</p>
+  <h2>お問い合わせ</h2>
+  <p>本規約に関するお問い合わせは、<a href="${r}contact/index.html">お問い合わせフォーム</a>またはお電話（<a class="telk" href="tel:0529087944">052-908-7944</a>、平日 9:00–18:00）までご連絡ください。</p>
+  <p class="pv-date">制定日：2026年10月12日<br>BIGLIGHT株式会社</p>
+</div></div></section>
+`});}
+
 function antisocial(){ const r='../'; return page({root:r,title:'反社会的勢力に対する基本方針｜BIGLIGHT株式会社',desc:'BIGLIGHT株式会社は、反社会的勢力との一切の関係を遮断し、不当要求には組織として毅然と対応します。当社の反社会的勢力に対する基本方針です。',body:`
 ${pageHead('Policy','反社会的勢力に対する基本方針')}
 <section><div class="wrap"><div class="pv">
@@ -2268,6 +2315,7 @@ const pages = {
   'case/index.html': cases(),
   'privacy/index.html': privacy(),
   'antisocial/index.html': antisocial(),
+  'terms/index.html': terms(),
   'optout/index.html': optout(),
 };
 FIELDS.forEach((f,i)=>{pages['service/field/'+f.slug+'/index.html']=fieldPage(f,i);});
