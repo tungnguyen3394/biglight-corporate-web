@@ -1017,6 +1017,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
   .hero .dots{margin-top:22px;gap:30px}
   .hero .vis{position:relative;left:auto;top:auto;width:1373px;height:766px;margin:24px 0 0 -20px;transform:scale(var(--hs,.42));transform-origin:0 0;margin-bottom:calc(766px * (var(--hs,.42) - 1))}
   .hero .scrl{display:none}
+  /* điện thoại + iPad dọc: cả khung thu nhỏ nên cụm thiết bị phóng 1.75 và đặt giữa khung (10-12) */
+  .hero .hd2{left:236px;transform:scale(1.75);transform-origin:440px 420px}
   .message{padding-top:110px}
   .message p{font-size:20px;letter-spacing:.06em}
   .message .t.tag{font-size:16px;letter-spacing:.08em}
