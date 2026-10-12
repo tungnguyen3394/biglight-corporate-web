@@ -15,7 +15,7 @@ const copies = {
   'img/desk-academy.jpg':'img/desk-academy.jpg','img/desk-job.jpg':'img/desk-job.jpg','img/shot-portal-916.jpg':'img/shot-portal.jpg','img/shot-academy.jpg':'img/shot-academy.jpg','img/shot-job.jpg':'img/shot-job.jpg',
   'badges/apple-ja.svg':'img/badge-appstore.svg','badges/google-ja.png':'img/badge-googleplay.png',
 };
-Object.assign(copies,{'img/logo-s.webp':'img/logo-s.webp','img/hero-meeting4.jpg':'img/hero-meeting4.jpg','img/recruit-team.jpg':'img/recruit-team.jpg','img/svc-ssw2.jpg':'img/svc-ssw2.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
+Object.assign(copies,{'img/logo-s.webp':'img/logo-s.webp','img/hero-meeting5.jpg':'img/hero-meeting5.jpg','img/recruit-team.jpg':'img/recruit-team.jpg','img/svc-ssw2.jpg':'img/svc-ssw2.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
 fs.mkdirSync(path.join(OUT,'img/sdg'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/sdg')).filter(f=>f.endsWith('.png')))fs.copyFileSync(path.join(__dirname,'src/img/sdg',f),path.join(OUT,'img/sdg',f));
 fs.mkdirSync(path.join(OUT,'img/people'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/people')).filter(f=>f.endsWith('.webp')))fs.copyFileSync(path.join(__dirname,'src/img/people',f),path.join(OUT,'img/people',f));
 { let out='';const N=34,S=80;const A=t=>330+110*Math.sin(t*Math.PI*1.9+0.2)-210*t, B=t=>330+110*Math.sin(t*Math.PI*1.9+2.9)-210*t+70*Math.sin(t*Math.PI);
@@ -113,23 +113,23 @@ body.menu-open{overflow:hidden}
 .hero .dots{margin-top:40px;gap:40px}
 .hero .dots i{width:10px;height:10px;cursor:pointer;opacity:.25;transition:opacity .3s;animation:none!important}
 .hero .dots i.on{opacity:1}
-/* khung ảnh = ĐÚNG số đo Guidable (đo 10-12 ở 1470/1920/1352): 3 dải 485×766, cách nhau 222, nghiêng 263 → lộ 666/hàng; khung bắt đầu ở 100%−816px (tràn phải ~114px); màn <1440 thu theo w/1440 */
-.hero .vis{position:absolute;left:calc(100% - 816px * var(--gs,1));top:0;width:929px;height:766px;z-index:1;transform:scale(var(--gs,1));transform-origin:0 0}
+/* khung ảnh: cao 766 + nghiêng 263 như Guidable; 10-12 CEO cho nới ngang: 3 dải lộ 370 (inner 1373 = bề ngang ảnh). JS đặt --hx = max(sát chữ, ảnh chạm mép phải màn), --dx giữ slide thiết bị đúng chỗ Guidable */
+.hero .vis{position:absolute;left:var(--hx,calc(100% - 990px * var(--gs,1)));top:0;width:1373px;height:766px;z-index:1;transform:scale(var(--gs,1));transform-origin:0 0}
 .hero .sl{position:absolute;inset:0}
-.hero .strip{position:absolute;top:0;margin:0;width:485px;height:766px;overflow:hidden;clip-path:polygon(263px 0,486.5px 0,223.5px 100%,0 100%);opacity:0;transform:translateX(30px);transition:opacity 1.3s cubic-bezier(.2,.6,.2,1),transform 1.3s cubic-bezier(.2,.6,.2,1)}
-.hero .strip:nth-child(1){left:0}.hero .strip:nth-child(2){left:222px;transition-delay:.15s}.hero .strip:nth-child(3){left:444px;transition-delay:.3s}
+.hero .strip{position:absolute;top:0;margin:0;width:633px;height:766px;overflow:hidden;clip-path:polygon(263px 0,634.5px 0,371.5px 100%,0 100%);opacity:0;transform:translateX(30px);transition:opacity 1.3s cubic-bezier(.2,.6,.2,1),transform 1.3s cubic-bezier(.2,.6,.2,1)}
+.hero .strip:nth-child(1){left:0}.hero .strip:nth-child(2){left:370px;transition-delay:.15s}.hero .strip:nth-child(3){left:740px;transition-delay:.3s}
 .hero .sl.on .strip{opacity:1;transform:none}
 .hero .sl.out .strip{opacity:0;transform:translateX(-30px);transition-duration:1.2s;transition-timing-function:cubic-bezier(.4,0,.6,1)}
 .hero .sl.out .strip:nth-child(1){transition-delay:0s}.hero .sl.out .strip:nth-child(2){transition-delay:.12s}.hero .sl.out .strip:nth-child(3){transition-delay:.24s}
-.hero .strip .inner{position:absolute;top:0;left:0;width:929px;height:766px}
-.hero .strip:nth-child(2) .inner{left:-222px}.hero .strip:nth-child(3) .inner{left:-444px}
+.hero .strip .inner{position:absolute;top:0;left:0;width:1373px;height:766px}
+.hero .strip:nth-child(2) .inner{left:-370px}.hero .strip:nth-child(3) .inner{left:-740px}
 .hero .inner img.full{width:100%;height:100%;object-fit:cover;display:block}
 /* ảnh họp: ảnh gốc cỡ theo chiều cao khung, trọng tâm chị trình bày + anh kính; chấp nhận mất phần hai bên (CEO 10-12) */
 .hero .inner img.mt{position:absolute;left:0;top:0;width:1374px;max-width:none;height:766px;display:block}
 .hero .inner.devs{background:transparent}
 /* slide thiết bị kiểu Guidable (10-12): điện thoại và laptop TÁCH RỜI. Vị trí = 4 góc đo trên ảnh mv_img_3 của Guidable, quy về khung 929×766:
  laptop màn [409,345][699,278][692,575][409,567], điện thoại [180,262][277,250][337,452][250,492] → matrix3d (scratchpad gd/homo.cjs) */
-.hero .hd2{position:absolute;inset:0}
+.hero .hd2{position:absolute;left:var(--dx,174px);top:0;width:929px;height:766px}
 .hero .hd2 .ph2{position:absolute;left:0;top:0;width:120px;height:250px;transform-origin:0 0;transform:matrix3d(1.13608107,0.19580121,0,0.0011832,0.29702213,0.95349955,0,0.00006809,0,0,1,0,180,262,0,1)}
 .hero .hd2 .pf{width:100%;height:100%;box-sizing:border-box;border-radius:20px;border:5px solid #16181d;box-shadow:0 0 0 2px #c3c7ce,-5px 4px 0 1px #9aa0a8;overflow:hidden;background:#000}
 .hero .hd2 img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;border-radius:0}
@@ -1015,7 +1015,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
   .hero h1{white-space:nowrap;font-size:min(9.6vw,58px);line-height:1.32;letter-spacing:.08em}
   .hero .sub{font-size:min(3.3vw,16px);margin-top:16px}
   .hero .dots{margin-top:22px;gap:30px}
-  .hero .vis{position:relative;left:auto;top:auto;width:929px;height:766px;margin:24px 0 0 -20px;transform:scale(var(--hs,.42));transform-origin:0 0;margin-bottom:calc(766px * (var(--hs,.42) - 1))}
+  .hero .vis{position:relative;left:auto;top:auto;width:1373px;height:766px;margin:24px 0 0 -20px;transform:scale(var(--hs,.42));transform-origin:0 0;margin-bottom:calc(766px * (var(--hs,.42) - 1))}
   .hero .scrl{display:none}
   .message{padding-top:110px}
   .message p{font-size:20px;letter-spacing:.06em}
@@ -1305,14 +1305,16 @@ function home(){ const r='./'; return page({root:r,home:true,title:'BIGLIGHT株�
     <div class="dots"><i class="on"></i><i></i><i></i></div>
   </div>
   <div class="vis">
-    ${heroSlide('<img class="mt" src="'+r+'img/hero-meeting4.jpg" width="1600" height="892" alt="経営計画を共有するBIGLIGHTの社内会議">', true)}
+    ${heroSlide('<img class="mt" src="'+r+'img/hero-meeting5.jpg" width="1600" height="892" alt="経営計画を共有するBIGLIGHTの社内会議">', true)}
     ${heroSlide(heroDev(r,'desk-job.jpg','shot-job.jpg','BIGLIGHT JOB の画面'), false, 'devs')}
     ${heroSlide(heroDev(r,'desk-academy.jpg','shot-academy.jpg','BIGLIGHT Academy の画面'), false, 'devs')}
   </div>
   <div class="scrl"></div>
-  <script>(function(){var d=document.documentElement;function f(){var w=d.clientWidth;d.style.setProperty('--hs',Math.min(1,w/929));
+  <script>(function(){var d=document.documentElement;function f(){var w=d.clientWidth;d.style.setProperty('--hs',Math.min(1,w/1373));
   /* PC: như Guidable — cỡ thật từ 1440px, hẹp hơn thì thu theo w/1440 */
-  d.style.setProperty('--gs',w>860?Math.min(1,w/1440).toFixed(4):1);}
+  var g=w>860?Math.min(1,w/1440):1;d.style.setProperty('--gs',g.toFixed(4));
+  /* 10-12: khung nới sang trái tới sát chữ (mép chéo cách chữ 28px) để thấy nhiều người hơn; thiết bị dời +174 nên vẫn đúng chỗ Guidable */
+  if(w>860){var hero=document.querySelector('.hero'),top=hero.getBoundingClientRect().top,L=w-1374*g;[].forEach.call(document.querySelectorAll('.hero h1,.hero .sub'),function(e){var r=document.createRange();r.selectNodeContents(e);[].forEach.call(r.getClientRects(),function(q){var y=q.top+q.height/2-top;L=Math.max(L,q.right+28-263*g+.3433*y);});});d.style.setProperty('--hx',L.toFixed(0)+'px');d.style.setProperty('--dx',Math.min(400,(w-816*g-L)/g).toFixed(0)+'px');}}
   f();addEventListener('resize',f);if(document.fonts)document.fonts.ready.then(f);})();</script>
 </section>
 
