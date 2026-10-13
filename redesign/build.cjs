@@ -1695,7 +1695,7 @@ function recruitHcmc(){ const r='../../'; return page({root:r,title:'ホーチ�
 ${pageHead('Recruit','採用情報｜ホーチミン')}
 <section><div class="wrap lead-end">
   <p class="lead28">ホーチミンから、<br>日本で働く外国人材の未来をつくる。</p>
-  <p class="lead16">特定技能の人材と日本企業をつなぐ採用の仕事です。日本語とベトナム語、両方がわかるあなただからこそ、候補者にも企業にも信頼される存在になれます。</p>
+  <p class="lead16">特定技能の人材と日本企業をつなぐ採用の仕事です。日本語と国際感覚を活かして、候補者にも企業にも信頼される存在になれます。リーダー・チーム管理へのキャリアアップも目指せます。</p>
   <div style="margin-top:40px;display:flex;gap:20px;flex-wrap:wrap">${pill('募集要項を見る','#req')}${pill('応募する','#flow')}</div>
 </div></section>
 
@@ -1704,7 +1704,7 @@ ${pageHead('Recruit','採用情報｜ホーチミン')}
   <div class="two" style="margin-top:24px"><h2 style="font-size:40px">仕事内容</h2><div class="txt"><p>BIGLIGHTグループと提携企業のために、日本国内に住む特定技能人材の採用をサポートしていただきます。勤務地はホーチミンです。</p></div></div>
   <div class="steps">
     <div><b>01</b><h3>候補者の募集</h3><p>日本在住の外国人を対象に、SNS・求人媒体・BIGLIGHT JOB を使って候補者を集めます。</p></div>
-    <div><b>02</b><h3>面談とフォロー</h3><p>ベトナム語・日本語でのオンライン面談。希望や経験を聞き、入社まで寄り添います。</p></div>
+    <div><b>02</b><h3>面談とフォロー</h3><p>日本語・母国語でのオンライン面談。希望や経験を聞き、入社まで寄り添います。</p></div>
     <div><b>03</b><h3>日程調整・書類</h3><p>面接日程の調整や、応募・在留資格の書類準備をサポートします。</p></div>
     <div><b>04</b><h3>日本企業との連携</h3><p>受入企業や名古屋本社の採用チームと、日本語でやり取りします。</p></div>
   </div>
@@ -1722,9 +1722,10 @@ ${pageHead('Recruit','採用情報｜ホーチミン')}
     <div><dt>休日・休暇</dt><dd>土日休み（会社カレンダーによる）<br>ベトナムの祝日（テト休暇を含む）<br>年次有給休暇</dd></div>
     <div><dt>給与</dt><dd>月給 <b>20,000,000 VND</b><br><small style="color:var(--grey)">税・社会保険料を控除する前の金額です。</small></dd></div>
     <div><dt>試用期間</dt><dd>最長2か月（期間中の月給 17,000,000 VND）</dd></div>
-    <div><dt>昇給</dt><dd>入社6か月後に評価を行い、能力に応じて <b>最大 月給30,000,000 VND</b> まで昇給の可能性あり</dd></div>
+    <div><dt>昇給</dt><dd>入社6か月後に評価を行い、能力に応じて <b>最大 月給30,000,000 VND</b> まで昇給の可能性あり<br>以降、<b>毎年4月に昇給</b>（評価による）</dd></div>
+    <div><dt>キャリアパス</dt><dd>リーダーへの登用あり。チームを管理するリーダーは <b>月給 35,000,000〜50,000,000 VND</b><br><small style="color:var(--grey)">役割と実績により決定します。</small></dd></div>
     <div><dt>賞与</dt><dd>年2回（6月・12月）<br><small style="color:var(--grey)">会社の業績と個人の評価により支給します。</small></dd></div>
-    <div><dt>応募条件</dt><dd><ul><li>日本語能力試験（JLPT）N2以上</li><li>大学卒業（日本またはベトナムの大学）</li><li>ベトナム語ネイティブレベル</li></ul></dd></div>
+    <div><dt>応募条件</dt><dd><ul><li>日本語能力試験（JLPT）N2以上</li><li>大学卒業（日本またはベトナムの大学）</li></ul></dd></div>
     <div><dt>求める人物像</dt><dd><ul><li>人と話すことが好きな方</li><li>明るく、自分から動ける方</li><li>日本とベトナムの架け橋になりたい方</li><li>目標に向かって、粘り強く取り組める方</li></ul></dd></div>
     <div><dt>歓迎条件</dt><dd><ul><li>日本での留学・就労経験がある方</li><li>営業・人材紹介・採用業務の経験がある方</li><li>Google Workspace（Docs, Sheets など）が使える方</li></ul></dd></div>
     <div><dt>福利厚生</dt><dd><ul><li>社会保険（BHXH）・健康保険（BHYT）・失業保険（BHTN）完備</li><li>業務用ノートパソコン支給</li><li>日本への出張の可能性あり</li><li>昇進・キャリアアップのチャンス</li></ul></dd></div>
@@ -1733,12 +1734,12 @@ ${pageHead('Recruit','採用情報｜ホーチミン')}
 
 <section class="blk" id="salary"><div class="wrap">
   <div class="lbl">Salary</div>
-  <div class="two" style="margin-top:24px"><h2 style="font-size:40px">給与のステップ</h2><div class="txt"><p>評価の基準（面談数・入社決定数・日本語での対応品質など）は、入社時にお伝えします。</p></div></div>
+  <div class="two" style="margin-top:24px"><h2 style="font-size:40px">給与のステップ</h2><div class="txt"><p>毎年4月に昇給、賞与は6月・12月の年2回。評価の基準（面談数・入社決定数・日本語での対応品質など）は、入社時にお伝えします。</p></div></div>
   <div class="steps">
     <div><b>STEP 01</b><h3>試用期間</h3><p>最長2か月<br>月給 17,000,000 VND</p></div>
     <div><b>STEP 02</b><h3>正式採用</h3><p>月給 20,000,000 VND</p></div>
     <div><b>STEP 03</b><h3>入社6か月後の評価</h3><p>能力に応じて<br>最大 月給 30,000,000 VND</p></div>
-    <div><b>BONUS</b><h3>賞与 年2回</h3><p>6月・12月</p></div>
+    <div><b>STEP 04</b><h3>リーダー・チーム管理</h3><p>月給 35,000,000〜<br>50,000,000 VND</p></div>
   </div>
 </div></section>
 
@@ -1788,6 +1789,7 @@ ${pageHead('Recruit','採用情報｜ホーチミン')}
   <div class="two" style="margin-top:24px"><h2 style="font-size:40px">よくある質問</h2><div class="txt"><p></p></div></div>
   <div style="margin-top:40px">${faq([
     ['日本に住んでいますが、応募できますか？','はい、できます。面接はすべてオンラインです。入社後はホーチミンの拠点での勤務となります。'],
+    ['リーダーになれますか？','はい。実績と役割に応じてリーダーに登用します。チームを管理するリーダーの月給は 35,000,000〜50,000,000 VND です。'],
     ['営業や採用の経験がなくても大丈夫ですか？','大丈夫です。名古屋本社のチームと一緒に、面談の進め方や特定技能の制度から覚えていただけます。'],
     ['給与は手取りの金額ですか？','いいえ。税・社会保険料を控除する前の金額（グロス）です。'],
     ['日本へ行くことはありますか？','業務はホーチミンからのオンライン対応が中心ですが、日本への出張の可能性があります。'],

@@ -53,7 +53,7 @@ const META = {
   'product/': ['アプリ（BIGLIGHT ポータル・アカデミー・JOB）｜BIGLIGHT株式会社', '企業と外国人材の手続き・連絡をひとつにまとめる「BIGLIGHT ポータル」、特定技能試験対策の「アカデミー」、特定技能専門の求人サイト「JOB」。App Store・Google Playで配信中です。'],
   'news/': ['お知らせ・HR Magazine｜外国人採用コラム｜BIGLIGHT株式会社', 'BIGLIGHTからのお知らせと、特定技能・外国人採用に役立つHR Magazine。制度改正の最新情報、分野別の採用ノウハウ、定着支援の実務をわかりやすく解説します。'],
   'recruit/': ['採用情報｜外国人材と企業をつなぐ仕事｜BIGLIGHT株式会社（名古屋）', '外国人材と日本企業をつなぐ仕事を、BIGLIGHTで。法人営業・ルート営業・外国人管理支援スタッフを名古屋本社で募集しています。会社文化、先輩の声、募集要項をご紹介します。'],
-  'recruit/hcmc/': ['ホーチミン拠点 採用スタッフ募集（日本語N2以上）｜BIGLIGHT株式会社', 'ホーチミンから、日本で働く特定技能人材の採用を支える仕事。日本語N2以上・大学卒の方を募集。月給20,000,000 VND、6か月後の評価で最大30,000,000 VND、賞与年2回、社会保険完備。'],
+  'recruit/hcmc/': ['ホーチミン拠点 採用スタッフ募集（日本語N2以上）｜BIGLIGHT株式会社', 'ホーチミンから、日本で働く特定技能人材の採用を支える仕事。日本語N2以上・大学卒の方を募集。月給20,000,000 VND、毎年4月昇給、リーダーは最大50,000,000 VND、賞与年2回、社会保険完備。'],
   'contact/': ['お問い合わせ・無料相談｜BIGLIGHT株式会社', '特定技能・技人国の外国人材採用、登録支援機関への支援委託のご相談はこちら。採用人数や時期が未定でも無料でご相談いただけます。TEL 052-908-7944（平日9:00〜18:00）'],
   'terms/': ['サイトご利用にあたって（利用規約）｜BIGLIGHT株式会社', 'BIGLIGHT株式会社のウェブサイトの利用条件です。著作権・商標、掲載情報の免責事項、リンク、禁止事項、Cookie、推奨環境、準拠法・管轄裁判所について定めています。'],
   'antisocial/': ['反社会的勢力に対する基本方針｜BIGLIGHT株式会社', 'BIGLIGHT株式会社は、反社会的勢力との取引を含めた一切の関係を遮断し、不当要求には組織として毅然と対応します。警察・弁護士等と連携し、裏取引や資金提供は一切行いません。'],
@@ -63,11 +63,11 @@ const META = {
 const JOBS = {
   'recruit/hcmc/': {
     '@type': 'JobPosting', title: 'ホーチミン拠点 採用スタッフ（特定技能人材の採用支援）',
-    description: '<p>BIGLIGHTグループと提携企業のために、日本国内に住む特定技能人材の採用をサポートする仕事です。勤務地はホーチミン。</p><ul><li>候補者の募集（SNS・求人媒体・BIGLIGHT JOB）</li><li>ベトナム語・日本語でのオンライン面談とフォロー</li><li>面接日程の調整・書類準備のサポート</li><li>日本企業・名古屋本社との連携</li></ul><p>応募条件：JLPT N2以上、大学卒業（日本またはベトナム）。月給20,000,000 VND（控除前）、入社6か月後の評価で最大30,000,000 VND、賞与年2回（6月・12月）、社会保険完備。</p>',
+    description: '<p>BIGLIGHTグループと提携企業のために、日本国内に住む特定技能人材の採用をサポートする仕事です。勤務地はホーチミン。</p><ul><li>候補者の募集（SNS・求人媒体・BIGLIGHT JOB）</li><li>ベトナム語・日本語でのオンライン面談とフォロー</li><li>面接日程の調整・書類準備のサポート</li><li>日本企業・名古屋本社との連携</li></ul><p>応募条件：JLPT N2以上、大学卒業（日本またはベトナム）。月給20,000,000 VND（控除前）、入社6か月後の評価で最大30,000,000 VND、毎年4月昇給、リーダー（チーム管理）は月給35,000,000〜50,000,000 VND、賞与年2回（6月・12月）、社会保険完備。</p>',
     datePosted: '2026-10-13', employmentType: 'FULL_TIME',
     hiringOrganization: { '@type': 'Organization', name: 'BIGLIGHT HR JOINT STOCK COMPANY', sameAs: 'https://biglight.jp/', logo: 'https://biglight.jp/img/logo.png' },
     jobLocation: { '@type': 'Place', address: { '@type': 'PostalAddress', streetAddress: '2nd Floor, THINH PHAT Building, 88 Bach Dang Street, Tan Son Hoa Ward', addressLocality: 'Ho Chi Minh City', addressCountry: 'VN' } },
-    baseSalary: { '@type': 'MonetaryAmount', currency: 'VND', value: { '@type': 'QuantitativeValue', minValue: 20000000, maxValue: 30000000, unitText: 'MONTH' } },
+    baseSalary: { '@type': 'MonetaryAmount', currency: 'VND', value: { '@type': 'QuantitativeValue', minValue: 20000000, maxValue: 50000000, unitText: 'MONTH' } },
     qualifications: '日本語能力試験 N2以上、大学卒業', directApply: false,
   },
 };
