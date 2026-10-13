@@ -64,7 +64,7 @@ const JOBS = {
   'recruit/hcmc/': {
     '@type': 'JobPosting', title: 'ホーチミン拠点 採用スタッフ（特定技能人材の採用支援）',
     description: '<p>BIGLIGHTグループと提携企業のために、日本国内に住む特定技能人材の採用をサポートする仕事です。勤務地はホーチミン。</p><ul><li>候補者の募集（SNS・求人媒体・BIGLIGHT JOB）</li><li>ベトナム語・日本語でのオンライン面談とフォロー</li><li>面接日程の調整・書類準備のサポート</li><li>日本企業・名古屋本社との連携</li></ul><p>応募条件：JLPT N2以上、大学卒業（日本またはベトナム）。月給20,000,000 VND（控除前）、入社6か月後の評価で最大30,000,000 VND、賞与年2回（6月・12月）、社会保険完備。</p>',
-    datePosted: '2026-10-13', validThrough: '2027-03-31T23:59', employmentType: 'FULL_TIME',
+    datePosted: '2026-10-13', employmentType: 'FULL_TIME',
     hiringOrganization: { '@type': 'Organization', name: 'BIGLIGHT HR JOINT STOCK COMPANY', sameAs: 'https://biglight.jp/', logo: 'https://biglight.jp/img/logo.png' },
     jobLocation: { '@type': 'Place', address: { '@type': 'PostalAddress', streetAddress: '2nd Floor, THINH PHAT Building, 88 Bach Dang Street, Tan Son Hoa Ward', addressLocality: 'Ho Chi Minh City', addressCountry: 'VN' } },
     baseSalary: { '@type': 'MonetaryAmount', currency: 'VND', value: { '@type': 'QuantitativeValue', minValue: 20000000, maxValue: 30000000, unitText: 'MONTH' } },

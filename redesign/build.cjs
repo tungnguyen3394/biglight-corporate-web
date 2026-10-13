@@ -1716,9 +1716,10 @@ ${pageHead('Recruit','採用情報｜ホーチミン')}
     <div><dt>募集職種</dt><dd><b>ホーチミン拠点 採用スタッフ</b><br><small style="color:var(--grey)">特定技能人材の採用支援（日本国内）</small></dd></div>
     <div><dt>雇用主</dt><dd>BIGLIGHT HR JOINT STOCK COMPANY<br><small style="color:var(--grey)">BIGLIGHT株式会社（日本）のグループ会社</small></dd></div>
     <div><dt>雇用形態</dt><dd>正社員（フルタイム）</dd></div>
+    <div><dt>募集期間</dt><dd>通年採用（随時募集）</dd></div>
     <div><dt>勤務地</dt><dd>2nd Floor, THINH PHAT Building, 88 Bach Dang Street, Tan Son Hoa Ward, Ho Chi Minh City, Vietnam</dd></div>
     <div><dt>勤務時間</dt><dd>7:30〜16:30（ベトナム時間・休憩1時間）<br><small style="color:var(--grey)">日本時間 9:30〜18:30。日本企業の営業時間に合わせています。</small></dd></div>
-    <div><dt>休日・休暇</dt><dd>土日休み<br>ベトナムの祝日（テト休暇を含む）<br>年次有給休暇</dd></div>
+    <div><dt>休日・休暇</dt><dd>土日休み（会社カレンダーによる）<br>ベトナムの祝日（テト休暇を含む）<br>年次有給休暇</dd></div>
     <div><dt>給与</dt><dd>月給 <b>20,000,000 VND</b><br><small style="color:var(--grey)">税・社会保険料を控除する前の金額です。</small></dd></div>
     <div><dt>試用期間</dt><dd>最長2か月（期間中の月給 17,000,000 VND）</dd></div>
     <div><dt>昇給</dt><dd>入社6か月後に評価を行い、能力に応じて <b>最大 月給30,000,000 VND</b> まで昇給の可能性あり</dd></div>
@@ -1745,12 +1746,12 @@ ${pageHead('Recruit','採用情報｜ホーチミン')}
   <div class="lbl">Flow</div>
   <div class="two" style="margin-top:24px"><h2 style="font-size:40px">選考の流れ</h2><div class="txt"><p>面接はすべてオンラインです。日本にお住まいの方も応募できます。</p></div></div>
   <div class="steps">
-    <div><b>STEP 01</b><h3>ご応募</h3><p>お問い合わせフォームで「採用について（求職者の方）」を選び、「ホーチミン採用スタッフ希望」とご記入ください。</p></div>
-    <div><b>STEP 02</b><h3>書類選考</h3><p>履歴書とJLPTの合格証をお送りいただきます。1週間以内にご連絡します。</p></div>
+    <div><b>STEP 01</b><h3>ご応募</h3><p>応募フォームに、お名前・連絡先・自己紹介をご記入ください。採用担当より直接ご連絡します。</p></div>
+    <div><b>STEP 02</b><h3>書類選考</h3><p>担当者からのご連絡後、履歴書とJLPTの合格証をメールでお送りください。</p></div>
     <div><b>STEP 03</b><h3>面接</h3><p>一次面接（日本語・ベトナム語）と、代表との最終面接。</p></div>
     <div><b>STEP 04</b><h3>内定・入社</h3><p>条件のご案内と入社日のご相談。</p></div>
   </div>
-  <div style="margin-top:60px">${pill('応募する', r+'contact/index.html')}</div>
+  <div style="margin-top:60px">${pill('応募する', r+'contact/?type=hcmc')}</div>
   <p style="margin-top:24px;font-size:13px;color:var(--grey);line-height:1.9">ご提供いただいた個人情報は、BIGLIGHT株式会社（日本）およびBIGLIGHT HR JOINT STOCK COMPANY（ベトナム）で採用選考のためにのみ利用します。詳しくは<a href="${r}privacy/index.html" style="color:var(--accent);text-decoration:underline">プライバシーポリシー</a>をご覧ください。</p>
 </div></section>
 
@@ -1794,7 +1795,7 @@ ${pageHead('Recruit','採用情報｜ホーチミン')}
 </div></section>
 <section class="blk"><div class="wrap lead-end" style="border-bottom:0">
   <p class="lead28">あなたの日本語を、<br>誰かの未来のために。</p>
-  <div style="margin-top:40px">${pill('この求人に応募する', r+'contact/index.html')}</div>
+  <div style="margin-top:40px">${pill('この求人に応募する', r+'contact/?type=hcmc')}</div>
 </div></section>
 `});}
 
@@ -1810,8 +1811,8 @@ ${pageHead('Contact','お問い合わせ・資料請求')}
 <section id="p-cf" role="tabpanel" aria-labelledby="t-cf"><div class="wrap form">
   <div class="info"><a class="telk" href="tel:0529087944"><b>052-908-7944</b></a>平日 9:00–18:00　FAX 052-908-7267<br>採用人数・職種・時期が未定でも構いません。<br>登録支援機関として、制度の説明からお手伝いします。<br><br>〒462-0007<br>愛知県名古屋市北区如意一丁目112 A</div>
   <form id="cf" novalidate><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
-    <label for="cf-type">お問い合わせ種別<small>必須</small></label><select id="cf-type" name="type"><option>無料相談（採用について）</option><option>アプリについて</option><option>採用について（求職者の方）</option><option>その他</option></select>
-    <label for="cf-co">会社名<small>必須</small></label><div class="fld" data-err="入力してください"><input id="cf-co" name="company" type="text" autocomplete="organization" placeholder="株式会社〇〇" required></div>
+    <label for="cf-type">お問い合わせ種別<small>必須</small></label><select id="cf-type" name="type"><option>無料相談（採用について）</option><option>アプリについて</option><option>採用について（求職者の方）</option><option value="ホーチミン採用スタッフへの応募">ホーチミン採用スタッフへの応募</option><option>その他</option></select>
+    <label for="cf-co" id="cf-co-l">会社名<small>必須</small></label><div class="fld" data-err="入力してください"><input id="cf-co" name="company" type="text" autocomplete="organization" placeholder="株式会社〇〇" required></div>
     <label for="cf-nm">お名前<small>必須</small></label><div class="fld" data-err="入力してください"><input id="cf-nm" name="name" type="text" autocomplete="name" placeholder="山田 太郎" required></div>
     <label for="cf-em">メールアドレス<small>必須</small></label><div class="fld" data-err="正しいメールアドレスを入力してください"><input id="cf-em" name="email" type="email" autocomplete="email" placeholder="example@company.co.jp" required></div>
     <label for="cf-tel">電話番号<small>必須</small></label><div class="fld" data-err="入力してください"><input id="cf-tel" name="tel" type="tel" autocomplete="tel" placeholder="052-000-0000" required></div>
@@ -1819,6 +1820,16 @@ ${pageHead('Contact','お問い合わせ・資料請求')}
     <div class="send"><button class="pill" type="submit" style="cursor:pointer">送信する<span class="circ">→</span></button></div>
     <p class="note">送信いただいた個人情報は<a href="${r}privacy/index.html">プライバシーポリシー</a>に基づき取り扱います。</p>
   </form>
+  <script>
+  /* 2026-10-13: ?type=hcmc → loại「ホーチミン採用スタッフへの応募」(mail về người phụ trách ở admin.biglight.jp). 応募者には会社名は任意。 */
+  (function(){var t=document.getElementById('cf-type'),co=document.getElementById('cf-co'),l=document.getElementById('cf-co-l'),m=document.getElementById('cf-msg'),H='ホーチミン採用スタッフへの応募';
+    var m0=m.placeholder,c0=co.placeholder;
+    function sync(){var on=t.value===H;l.innerHTML=on?'現在の所属・学校名<small style="background:var(--grey)">任意</small>':'会社名<small>必須</small>';
+      if(on)co.removeAttribute('required');else co.setAttribute('required','');co.closest('.fld').classList.remove('bad');
+      co.placeholder=on?'〇〇大学 ／ 株式会社〇〇':c0;m.placeholder=on?'自己紹介、JLPTの級、卒業した大学、希望の入社時期など':m0;}
+    try{if(new URLSearchParams(location.search).get('type')==='hcmc')t.value=H;}catch(e){}
+    t.addEventListener('change',sync);sync();})();
+  </script>
   <div class="dldone" id="cf-done" hidden><b>送信ありがとうございました。</b><p>担当者より2営業日以内にご連絡いたします。お急ぎの場合はお電話（052-908-7944）でご連絡ください。</p></div>
 </div></section>
 <section id="p-dl" role="tabpanel" aria-labelledby="t-dl" hidden><div class="wrap form">
