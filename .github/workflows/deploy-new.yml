@@ -21,7 +21,8 @@ on:
       - '.github/workflows/deploy-new.yml'
   workflow_dispatch:
   schedule:
-    - cron: '17 * * * *'
+    # 2026-10-13: marketing の「公開する」から 10 分以内に一覧へ（新しい記事が無ければ 20 秒で終わる）
+    - cron: '*/10 * * * *'
 
 concurrency:
   group: biglight-web-new
