@@ -30,7 +30,7 @@ const CRUMB = {
   about: '私たちについて', message: '代表メッセージ', company: '会社概要', sdgs: 'SDGsへの取り組み', strength: '選ばれる理由',
   service: '事業内容', 'tokutei-ginou': '特定技能 採用支援', engineer: '技人国 人材紹介', field: '対応分野',
   kogyo: '工業製品製造業', kensetsu: '建設業', inshoku: '飲食料品製造業', gaishoku: '外食業',
-  product: 'アプリ', news: 'お知らせ', recruit: '採用情報', contact: 'お問い合わせ', download: '資料ダウンロード', case: '導入事例',
+  product: 'アプリ', news: 'お知らせ', recruit: '採用情報', hcmc: 'ホーチミン拠点 採用スタッフ', contact: 'お問い合わせ', download: '資料ダウンロード', case: '導入事例',
 };
 
 
@@ -53,10 +53,23 @@ const META = {
   'product/': ['アプリ（BIGLIGHT ポータル・アカデミー・JOB）｜BIGLIGHT株式会社', '企業と外国人材の手続き・連絡をひとつにまとめる「BIGLIGHT ポータル」、特定技能試験対策の「アカデミー」、特定技能専門の求人サイト「JOB」。App Store・Google Playで配信中です。'],
   'news/': ['お知らせ・HR Magazine｜外国人採用コラム｜BIGLIGHT株式会社', 'BIGLIGHTからのお知らせと、特定技能・外国人採用に役立つHR Magazine。制度改正の最新情報、分野別の採用ノウハウ、定着支援の実務をわかりやすく解説します。'],
   'recruit/': ['採用情報｜外国人材と企業をつなぐ仕事｜BIGLIGHT株式会社（名古屋）', '外国人材と日本企業をつなぐ仕事を、BIGLIGHTで。法人営業・ルート営業・外国人管理支援スタッフを名古屋本社で募集しています。会社文化、先輩の声、募集要項をご紹介します。'],
+  'recruit/hcmc/': ['ホーチミン拠点 採用スタッフ募集（日本語N2以上）｜BIGLIGHT株式会社', 'ホーチミンから、日本で働く特定技能人材の採用を支える仕事。日本語N2以上・大学卒の方を募集。月給20,000,000 VND、6か月後の評価で最大30,000,000 VND、賞与年2回、社会保険完備。'],
   'contact/': ['お問い合わせ・無料相談｜BIGLIGHT株式会社', '特定技能・技人国の外国人材採用、登録支援機関への支援委託のご相談はこちら。採用人数や時期が未定でも無料でご相談いただけます。TEL 052-908-7944（平日9:00〜18:00）'],
   'terms/': ['サイトご利用にあたって（利用規約）｜BIGLIGHT株式会社', 'BIGLIGHT株式会社のウェブサイトの利用条件です。著作権・商標、掲載情報の免責事項、リンク、禁止事項、Cookie、推奨環境、準拠法・管轄裁判所について定めています。'],
   'antisocial/': ['反社会的勢力に対する基本方針｜BIGLIGHT株式会社', 'BIGLIGHT株式会社は、反社会的勢力との取引を含めた一切の関係を遮断し、不当要求には組織として毅然と対応します。警察・弁護士等と連携し、裏取引や資金提供は一切行いません。'],
   'privacy/': ['プライバシーポリシー（個人情報保護方針）｜BIGLIGHT株式会社', 'BIGLIGHT株式会社の個人情報保護方針です。お問い合わせ・資料請求・採用応募・サービス提供で取得する個人情報の利用目的、第三者提供、安全管理、開示請求の窓口について定めています。'],
+};
+// Google しごと検索（JobPosting）
+const JOBS = {
+  'recruit/hcmc/': {
+    '@type': 'JobPosting', title: 'ホーチミン拠点 採用スタッフ（特定技能人材の採用支援）',
+    description: '<p>BIGLIGHTグループと提携企業のために、日本国内に住む特定技能人材の採用をサポートする仕事です。勤務地はホーチミン。</p><ul><li>候補者の募集（SNS・求人媒体・BIGLIGHT JOB）</li><li>ベトナム語・日本語でのオンライン面談とフォロー</li><li>面接日程の調整・書類準備のサポート</li><li>日本企業・名古屋本社との連携</li></ul><p>応募条件：JLPT N2以上、大学卒業（日本またはベトナム）。月給20,000,000 VND（控除前）、入社6か月後の評価で最大30,000,000 VND、賞与年2回（6月・12月）、社会保険完備。</p>',
+    datePosted: '2026-10-13', validThrough: '2027-03-31T23:59', employmentType: 'FULL_TIME',
+    hiringOrganization: { '@type': 'Organization', name: 'BIGLIGHT HR JOINT STOCK COMPANY', sameAs: 'https://biglight.jp/', logo: 'https://biglight.jp/img/logo.png' },
+    jobLocation: { '@type': 'Place', address: { '@type': 'PostalAddress', streetAddress: '2nd Floor, THINH PHAT Building, 88 Bach Dang Street, Tan Son Hoa Ward', addressLocality: 'Ho Chi Minh City', addressCountry: 'VN' } },
+    baseSalary: { '@type': 'MonetaryAmount', currency: 'VND', value: { '@type': 'QuantitativeValue', minValue: 20000000, maxValue: 30000000, unitText: 'MONTH' } },
+    qualifications: '日本語能力試験 N2以上、大学卒業', directApply: false,
+  },
 };
 const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const strip = (h) => h.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
@@ -109,6 +122,7 @@ module.exports = function seo(pages, { OUT, SITE, ARTICLES, WEBP = {} }) {
     // FAQ có trên trang → FAQPage
     const qa = [...html.matchAll(/<details><summary><b>Q<\/b><span>([\s\S]*?)<\/span><i><\/i><\/summary><div class="ans"><b>A<\/b><div>([\s\S]*?)<\/div><\/div><\/details>/g)];
     if (qa.length) graph.push({ '@type': 'FAQPage', mainEntity: qa.map(([, q, a]) => ({ '@type': 'Question', name: strip(q), acceptedAnswer: { '@type': 'Answer', text: strip(a) } })) });
+    if (JOBS[dir]) graph.push(JOBS[dir]);
     const ld = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
 
     // 3) thẻ head

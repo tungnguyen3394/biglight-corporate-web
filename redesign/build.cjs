@@ -1258,7 +1258,7 @@ function page({root, title, desc, body, active, home}) {
       <div class="fb"><a class="logo" href="${r}index.html"><img src="${r}img/logo-s.webp" alt="" width="44" height="44"><img class="wm" src="${r}img/wordmark.png" alt="BIGLIGHT"></a>
         <p class="addr">〒462-0007 愛知県名古屋市北区如意一丁目112 A<span class="tel">　TEL <a class="telk" href="tel:0529087944">052-908-7944</a>　FAX 052-908-7267</span></p>
         ${snsHtml()}${glbHtml()}</div>
-      <nav class="fsite" aria-label="サイトマップ"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}contact/index.html#request">Request</a></div></nav>
+      <nav class="fsite" aria-label="サイトマップ"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a><a href="${r}recruit/hcmc/index.html">Ho Chi Minh</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}contact/index.html#request">Request</a></div></nav>
       <div class="fmap"><div class="fmap-ph"><p>地図を表示すると、Google社のCookieが使用される場合があります。</p><button type="button" class="fmap-load">地図を表示</button></div><iframe data-src="https://www.google.com/maps?q=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA&hl=ja&z=16&output=embed" title="BIGLIGHT株式会社の地図（愛知県名古屋市北区如意一丁目112 A）" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="https://www.google.com/maps/search/?api=1&query=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA">Google マップで開く →</a></div>
     </div>
     <div class="bot">
@@ -1669,6 +1669,13 @@ ${pageHead('Recruit','採用情報')}
   </dl>
 </div></section>
 
+<section class="blk" id="group"><div class="wrap side" style="margin-top:0">
+  <h2 class="en long">Group<small style="display:block;font-family:var(--jp);font-size:14px;letter-spacing:.1em;color:var(--accent);margin-top:14px;text-transform:none">グループ会社の募集</small></h2>
+  <dl class="dl req">
+    <div><dt>BIGLIGHT HR JOINT STOCK COMPANY<br><small style="color:var(--grey);font-weight:400">ベトナム・ホーチミン</small></dt><dd><b>ホーチミン拠点 採用スタッフ</b><small style="display:block;color:var(--grey)">特定技能人材の採用支援・月給 20,000,000 VND〜</small><span style="display:block;margin-top:20px">${pill('募集要項を見る', r+'recruit/hcmc/index.html')}</span></dd></div>
+  </dl>
+</div></section>
+
 <section class="blk"><div class="wrap">
   <div class="lbl">Flow</div>
   <div class="two" style="margin-top:24px"><h2 style="font-size:40px">選考の流れ</h2><div class="txt"><p>ご応募から入社まで、約2〜4週間が目安です。</p></div></div>
@@ -1681,6 +1688,114 @@ ${pageHead('Recruit','採用情報')}
   <div style="margin-top:60px">${pill('応募・お問い合わせ', r+'contact/index.html')}</div>
 </div></section>
 ${contactBox(r)}
+`});}
+
+// ---------- RECRUIT / HCMC（グループ会社 BIGLIGHT HR JSC の募集。雇用主はベトナム法人 → ベトナム労働法: 試用は最長60日・給与は本給の85%以上） ----------
+function recruitHcmc(){ const r='../../'; return page({root:r,title:'ホーチミン拠点 採用スタッフ募集｜BIGLIGHT株式会社',desc:'ホーチミンから、日本で働く特定技能人材の採用を支える仕事。日本語N2以上・大学卒。月給20,000,000 VND。',body:`
+${pageHead('Recruit','採用情報｜ホーチミン')}
+<section><div class="wrap lead-end">
+  <p class="lead28">ホーチミンから、<br>日本で働く外国人材の未来をつくる。</p>
+  <p class="lead16">特定技能の人材と日本企業をつなぐ採用の仕事です。日本語とベトナム語、両方がわかるあなただからこそ、候補者にも企業にも信頼される存在になれます。</p>
+  <div style="margin-top:40px;display:flex;gap:20px;flex-wrap:wrap">${pill('募集要項を見る','#req')}${pill('応募する','#flow')}</div>
+</div></section>
+
+<section class="blk" id="job"><div class="wrap">
+  <div class="lbl">Job</div>
+  <div class="two" style="margin-top:24px"><h2 style="font-size:40px">仕事内容</h2><div class="txt"><p>BIGLIGHTグループと提携企業のために、日本国内に住む特定技能人材の採用をサポートしていただきます。勤務地はホーチミンです。</p></div></div>
+  <div class="steps">
+    <div><b>01</b><h3>候補者の募集</h3><p>日本在住の外国人を対象に、SNS・求人媒体・BIGLIGHT JOB を使って候補者を集めます。</p></div>
+    <div><b>02</b><h3>面談とフォロー</h3><p>ベトナム語・日本語でのオンライン面談。希望や経験を聞き、入社まで寄り添います。</p></div>
+    <div><b>03</b><h3>日程調整・書類</h3><p>面接日程の調整や、応募・在留資格の書類準備をサポートします。</p></div>
+    <div><b>04</b><h3>日本企業との連携</h3><p>受入企業や名古屋本社の採用チームと、日本語でやり取りします。</p></div>
+  </div>
+</div></section>
+
+<section class="blk" id="req"><div class="wrap side" style="margin-top:0">
+  <h2 class="en long">Requirements<small style="display:block;font-family:var(--jp);font-size:14px;letter-spacing:.1em;color:var(--accent);margin-top:14px;text-transform:none">募集要項</small></h2>
+  <dl class="dl req">
+    <div><dt>募集職種</dt><dd><b>ホーチミン拠点 採用スタッフ</b><br><small style="color:var(--grey)">特定技能人材の採用支援（日本国内）</small></dd></div>
+    <div><dt>雇用主</dt><dd>BIGLIGHT HR JOINT STOCK COMPANY<br><small style="color:var(--grey)">BIGLIGHT株式会社（日本）のグループ会社</small></dd></div>
+    <div><dt>雇用形態</dt><dd>正社員（フルタイム）</dd></div>
+    <div><dt>勤務地</dt><dd>2nd Floor, THINH PHAT Building, 88 Bach Dang Street, Tan Son Hoa Ward, Ho Chi Minh City, Vietnam</dd></div>
+    <div><dt>勤務時間</dt><dd>7:30〜16:30（ベトナム時間・休憩1時間）<br><small style="color:var(--grey)">日本時間 9:30〜18:30。日本企業の営業時間に合わせています。</small></dd></div>
+    <div><dt>休日・休暇</dt><dd>土日休み<br>ベトナムの祝日（テト休暇を含む）<br>年次有給休暇</dd></div>
+    <div><dt>給与</dt><dd>月給 <b>20,000,000 VND</b><br><small style="color:var(--grey)">税・社会保険料を控除する前の金額です。</small></dd></div>
+    <div><dt>試用期間</dt><dd>最長2か月（期間中の月給 17,000,000 VND）</dd></div>
+    <div><dt>昇給</dt><dd>入社6か月後に評価を行い、能力に応じて <b>最大 月給30,000,000 VND</b> まで昇給の可能性あり</dd></div>
+    <div><dt>賞与</dt><dd>年2回（6月・12月）<br><small style="color:var(--grey)">会社の業績と個人の評価により支給します。</small></dd></div>
+    <div><dt>応募条件</dt><dd><ul><li>日本語能力試験（JLPT）N2以上</li><li>大学卒業（日本またはベトナムの大学）</li><li>ベトナム語ネイティブレベル</li></ul></dd></div>
+    <div><dt>求める人物像</dt><dd><ul><li>人と話すことが好きな方</li><li>明るく、自分から動ける方</li><li>日本とベトナムの架け橋になりたい方</li><li>目標に向かって、粘り強く取り組める方</li></ul></dd></div>
+    <div><dt>歓迎条件</dt><dd><ul><li>日本での留学・就労経験がある方</li><li>営業・人材紹介・採用業務の経験がある方</li><li>Google Workspace（Docs, Sheets など）が使える方</li></ul></dd></div>
+    <div><dt>福利厚生</dt><dd><ul><li>社会保険（BHXH）・健康保険（BHYT）・失業保険（BHTN）完備</li><li>業務用ノートパソコン支給</li><li>日本への出張の可能性あり</li><li>昇進・キャリアアップのチャンス</li></ul></dd></div>
+  </dl>
+</div></section>
+
+<section class="blk" id="salary"><div class="wrap">
+  <div class="lbl">Salary</div>
+  <div class="two" style="margin-top:24px"><h2 style="font-size:40px">給与のステップ</h2><div class="txt"><p>評価の基準（面談数・入社決定数・日本語での対応品質など）は、入社時にお伝えします。</p></div></div>
+  <div class="steps">
+    <div><b>STEP 01</b><h3>試用期間</h3><p>最長2か月<br>月給 17,000,000 VND</p></div>
+    <div><b>STEP 02</b><h3>正式採用</h3><p>月給 20,000,000 VND</p></div>
+    <div><b>STEP 03</b><h3>入社6か月後の評価</h3><p>能力に応じて<br>最大 月給 30,000,000 VND</p></div>
+    <div><b>BONUS</b><h3>賞与 年2回</h3><p>6月・12月</p></div>
+  </div>
+</div></section>
+
+<section class="blk" id="flow"><div class="wrap">
+  <div class="lbl">Flow</div>
+  <div class="two" style="margin-top:24px"><h2 style="font-size:40px">選考の流れ</h2><div class="txt"><p>面接はすべてオンラインです。日本にお住まいの方も応募できます。</p></div></div>
+  <div class="steps">
+    <div><b>STEP 01</b><h3>ご応募</h3><p>お問い合わせフォームで「採用について（求職者の方）」を選び、「ホーチミン採用スタッフ希望」とご記入ください。</p></div>
+    <div><b>STEP 02</b><h3>書類選考</h3><p>履歴書とJLPTの合格証をお送りいただきます。1週間以内にご連絡します。</p></div>
+    <div><b>STEP 03</b><h3>面接</h3><p>一次面接（日本語・ベトナム語）と、代表との最終面接。</p></div>
+    <div><b>STEP 04</b><h3>内定・入社</h3><p>条件のご案内と入社日のご相談。</p></div>
+  </div>
+  <div style="margin-top:60px">${pill('応募する', r+'contact/index.html')}</div>
+  <p style="margin-top:24px;font-size:13px;color:var(--grey);line-height:1.9">ご提供いただいた個人情報は、BIGLIGHT株式会社（日本）およびBIGLIGHT HR JOINT STOCK COMPANY（ベトナム）で採用選考のためにのみ利用します。詳しくは<a href="${r}privacy/index.html" style="color:var(--accent);text-decoration:underline">プライバシーポリシー</a>をご覧ください。</p>
+</div></section>
+
+<section class="blk" id="company"><div class="wrap side" style="margin-top:0">
+  <h2 class="en">Company<small style="display:block;font-family:var(--jp);font-size:14px;letter-spacing:.1em;color:var(--accent);margin-top:14px;text-transform:none">会社情報</small></h2>
+  <div>
+    <dl class="dl">
+      <div><dt>日本本社</dt><dd><b>BIGLIGHT株式会社</b><br>〒462-0007 愛知県名古屋市北区如意一丁目112 A</dd></div>
+      <div><dt>代表取締役</dt><dd>グエン・タン・トゥン</dd></div>
+      <div><dt>設立</dt><dd>2021年8月12日</dd></div>
+      <div><dt>事業内容</dt><dd>特定技能外国人支援事業<br>外国人高度人材紹介事業<br>支援アプリの提供（BIGLIGHT ポータル／アカデミー／JOB）</dd></div>
+      <div><dt>許可番号</dt><dd>有料職業紹介事業許可番号 / 23-ユ-302414<br>登録支援機関登録番号 / 21登-006596</dd></div>
+      <div><dt>ベトナム拠点</dt><dd><b>BIGLIGHT HR JOINT STOCK COMPANY</b><br>2nd Floor, THINH PHAT Building, 88 Bach Dang Street, Tan Son Hoa Ward, Ho Chi Minh City, Vietnam</dd></div>
+    </dl>
+    <div style="margin-top:40px">${pill('会社概要を見る', r+'about/company/index.html')}</div>
+  </div>
+</div></section>
+
+<section class="blk" id="culture"><div class="wrap">
+  <div class="lbl">Culture</div>
+  <div class="two" style="margin-top:24px"><h2 style="font-size:40px">日本の成長を、<br>もっとグローバルに。</h2><div class="txt"><p>名古屋・関東・ホーチミンの拠点が、毎日つながって働いています。私たちが大切にしているのは、5つの行動指針 F.I.R.S.T. です。</p></div></div>
+  <dl class="dl req" style="margin-top:60px">
+    <div><dt>F – Fast（迅速）</dt><dd>迷わず、すぐに行動しよう。スピードは成果を生む。</dd></div>
+    <div><dt>I – Insight（本質）</dt><dd>本質を見抜き、大事な部分に集中しよう。</dd></div>
+    <div><dt>R – Responsibility（責任）</dt><dd>任されたことは、最後まで責任を持ってやり抜こう。</dd></div>
+    <div><dt>S – Spirit（挑戦）</dt><dd>失敗を恐れず、新しいことにチャレンジしよう。</dd></div>
+    <div><dt>T – Thankful（感謝）</dt><dd>当たり前と思わず、感謝の気持ちを行動で示そう。</dd></div>
+  </dl>
+  <div style="margin-top:40px;display:flex;gap:20px;flex-wrap:wrap">${pill('会社文化・先輩の声', r+'recruit/index.html#culture')}${pill('ミッション・ビジョン', r+'about/index.html')}</div>
+</div></section>
+
+<section class="blk"><div class="wrap">
+  <div class="lbl">FAQ</div>
+  <div class="two" style="margin-top:24px"><h2 style="font-size:40px">よくある質問</h2><div class="txt"><p></p></div></div>
+  <div style="margin-top:40px">${faq([
+    ['日本に住んでいますが、応募できますか？','はい、できます。面接はすべてオンラインです。入社後はホーチミンの拠点での勤務となります。'],
+    ['営業や採用の経験がなくても大丈夫ですか？','大丈夫です。名古屋本社のチームと一緒に、面談の進め方や特定技能の制度から覚えていただけます。'],
+    ['給与は手取りの金額ですか？','いいえ。税・社会保険料を控除する前の金額（グロス）です。'],
+    ['日本へ行くことはありますか？','業務はホーチミンからのオンライン対応が中心ですが、日本への出張の可能性があります。'],
+  ])}</div>
+</div></section>
+<section class="blk"><div class="wrap lead-end" style="border-bottom:0">
+  <p class="lead28">あなたの日本語を、<br>誰かの未来のために。</p>
+  <div style="margin-top:40px">${pill('この求人に応募する', r+'contact/index.html')}</div>
+</div></section>
 `});}
 
 // ---------- CONTACT ----------
@@ -2330,6 +2445,7 @@ const pages = {
   'product/index.html': product(),
   'news/index.html': newsPage(),
   'recruit/index.html': recruit(),
+  'recruit/hcmc/index.html': recruitHcmc(),
   'contact/index.html': contact(),
   'about/strength/index.html': strength(),
   'case/index.html': cases(),
