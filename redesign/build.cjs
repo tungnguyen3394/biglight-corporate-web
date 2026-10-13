@@ -1824,7 +1824,7 @@ ${pageHead('Contact','お問い合わせ・資料請求')}
   /* 2026-10-13: ?type=hcmc → loại「ホーチミン採用スタッフへの応募」(mail về người phụ trách ở admin.biglight.jp). 応募者には会社名は任意。 */
   (function(){var t=document.getElementById('cf-type'),co=document.getElementById('cf-co'),l=document.getElementById('cf-co-l'),m=document.getElementById('cf-msg'),H='ホーチミン採用スタッフへの応募';
     var m0=m.placeholder,c0=co.placeholder;
-    function sync(){var on=t.value===H;l.innerHTML=on?'現在の所属・学校名<small style="background:var(--grey)">任意</small>':'会社名<small>必須</small>';
+    function sync(){var on=t.value===H;l.innerHTML=on?'現在の所属・学校名<small style="color:var(--grey)">任意</small>':'会社名<small>必須</small>';
       if(on)co.removeAttribute('required');else co.setAttribute('required','');co.closest('.fld').classList.remove('bad');
       co.placeholder=on?'〇〇大学 ／ 株式会社〇〇':c0;m.placeholder=on?'自己紹介、JLPTの級、卒業した大学、希望の入社時期など':m0;}
     try{if(new URLSearchParams(location.search).get('type')==='hcmc')t.value=H;}catch(e){}
