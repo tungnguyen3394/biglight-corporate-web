@@ -1719,7 +1719,7 @@ ${pageHead('Recruit','採用情報｜ホーチミン')}
     <div><dt>募集期間</dt><dd>通年採用（随時募集）</dd></div>
     <div><dt>勤務地</dt><dd>2nd Floor, THINH PHAT Building, 88 Bach Dang Street, Tan Son Hoa Ward, Ho Chi Minh City, Vietnam</dd></div>
     <div><dt>勤務時間</dt><dd>7:30〜16:30（ベトナム時間・休憩1時間）</dd></div>
-    <div><dt>休日・休暇</dt><dd>土日休み（会社カレンダーによる）<br>ベトナムの祝日（テト休暇を含む）<br>年次有給休暇</dd></div>
+    <div><dt>休日・休暇</dt><dd>土日休み（会社カレンダーによる）<br>ベトナムの祝日（テト休暇を含む）</dd></div>
     <div><dt>給与</dt><dd>月給 <b>20,000,000 VND</b><br><small style="color:var(--grey)">税・社会保険料を控除する前の金額です。</small></dd></div>
     <div><dt>試用期間</dt><dd>最長2か月（期間中の月給 17,000,000 VND）</dd></div>
     <div><dt>昇給</dt><dd>入社6か月後に評価を行い、能力に応じて <b>最大 月給30,000,000 VND</b> まで昇給の可能性あり<br>以降、<b>毎年4月に昇給</b>（評価による）</dd></div>
