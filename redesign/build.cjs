@@ -1475,7 +1475,7 @@ ${pageHead('We are','私たちについて',aboutTabs(r,'company'))}
     <div><dt>資本金</dt><dd>5,000,000円</dd></div>
     <div><dt>事業内容</dt><dd>特定技能外国人支援事業<br>外国人高度人材紹介事業<br>支援アプリの導入・提供（BIGLIGHT ポータル／アカデミー／JOB）</dd></div>
     <div><dt>許可番号</dt><dd>有料職業紹介事業許可番号 / 23-ユ-302414<br>登録支援機関登録番号 / 21登-006596</dd></div>
-    <div><dt>取引銀行</dt><dd>あいち銀行</dd></div>
+    <div><dt>取引銀行</dt><dd>三井住友銀行<br>あいち銀行</dd></div>
     <div><dt>関連会社</dt><dd>BIGLIGHT HR JOINT STOCK COMPANY<br>2nd Floor, THINH PHAT Building, 88 Bach Dang Street, Tan Son Hoa Ward, Ho Chi Minh City, Vietnam</dd></div>
   </dl>
 </div></section>
