@@ -30,7 +30,18 @@ var BLT=(function(){
     window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};window.gtag('js',new Date());window.gtag('config',GA4_ID);
   }
   loadGA();
-  if(isArticle)later(function(){store('bl_src',path);post({e:'view',p:path});});
+  /* 2026-10-15: SNS の投稿から来たか（utm_source=チャンネル・utm_content=p<投稿>・utm_campaign=c<キャンペーン>）。タブの間は覚えておく */
+  var UTM_OK=['facebook','instagram','threads','x','whatsapp','zalo','tiktok'];
+  function utm(){
+    var o={};
+    try{var q=new URLSearchParams(location.search),u=q.get('utm_source')||'',c=q.get('utm_content')||'',g=q.get('utm_campaign')||'';
+      if(UTM_OK.indexOf(u)>=0){store('bl_utm',u);store('bl_utmc',/^p\d{1,9}$/.test(c)?c:'');store('bl_utmg',/^c\d{1,9}$/.test(g)?g:'');}
+    }catch(e){}
+    var u2=store('bl_utm'),c2=store('bl_utmc'),g2=store('bl_utmg');
+    if(u2)o.u=u2;if(c2)o.c=c2;if(g2)o.g=g2;return o;
+  }
+  function withUtm(o){var t=utm();for(var k in t)o[k]=t[k];return o;}
+  if(isArticle)later(function(){store('bl_src',path);post(withUtm({e:'view',p:path}));});
   /* フォーム営業のリンク（?bl=BL-XXXXXX）から来たら、どの会社が開いたかを CRM に知らせる（2026-10-07）。
      番号だけを送り、すぐにアドレス欄から消す（共有・ブックマークに残さない） */
   try{
@@ -58,14 +69,14 @@ var BLT=(function(){
     if(!isArticle)return;
     var el=e.target&&e.target.closest?e.target.closest('a,button'):null;if(!el)return;
     var l=ctaLabel(el);if(!l)return;
-    send({e:'cta',p:path,l:l});
+    send(withUtm({e:'cta',p:path,l:l}));
     ga('cta_click',{cta_label:l,page_path:path,source_article:store('bl_src')});
   },true);
   return {
     /** 直前に読んだ記事のパス（無ければ ''） */
     src:function(){return store('bl_src');},
     /** 送信が成功したときに呼ぶ。kind = form（無料相談）/ download（資料） */
-    conv:function(kind){var src=store('bl_src');send({e:'conv',p:path,k:kind,s:sid(),src:src});ga('generate_lead',{method:kind,source_article:src});}
+    conv:function(kind){var src=store('bl_src');send(withUtm({e:'conv',p:path,k:kind,s:sid(),src:src}));ga('generate_lead',{method:kind,source_article:src});}
   };
 })();
 /* ===== フォームのボット対策（2026-10-08・admin.biglight.jp /api/form-config）=====
