@@ -15,7 +15,7 @@ const copies = {
   'img/desk-academy.jpg':'img/desk-academy.jpg','img/desk-job.jpg':'img/desk-job.jpg','img/shot-portal-916.jpg':'img/shot-portal.jpg','img/shot-academy.jpg':'img/shot-academy.jpg','img/shot-job.jpg':'img/shot-job.jpg',
   'badges/apple-ja.svg':'img/badge-appstore.svg','badges/google-ja.png':'img/badge-googleplay.png',
 };
-Object.assign(copies,{'img/logo-s.webp':'img/logo-s.webp','img/hero-meeting5.jpg':'img/hero-meeting5.jpg','img/recruit-team.jpg':'img/recruit-team.jpg','img/svc-ssw2.jpg':'img/svc-ssw2.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
+Object.assign(copies,{'img/logo-s.webp':'img/logo-s.webp','img/hero-meeting5.jpg':'img/hero-meeting5.jpg','img/recruit-team.jpg':'img/recruit-team.jpg','img/svc-ssw2.jpg':'img/svc-ssw2.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','img/aichi-sdgs-partners.jpg':'img/aichi-sdgs-partners.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
 fs.mkdirSync(path.join(OUT,'img/sdg'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/sdg')).filter(f=>f.endsWith('.png')))fs.copyFileSync(path.join(__dirname,'src/img/sdg',f),path.join(OUT,'img/sdg',f));
 fs.mkdirSync(path.join(OUT,'img/people'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/people')).filter(f=>f.endsWith('.webp')))fs.copyFileSync(path.join(__dirname,'src/img/people',f),path.join(OUT,'img/people',f));
 { let out='';const N=34,S=80;const A=t=>330+110*Math.sin(t*Math.PI*1.9+0.2)-210*t, B=t=>330+110*Math.sin(t*Math.PI*1.9+2.9)-210*t+70*Math.sin(t*Math.PI);
@@ -422,6 +422,16 @@ html.js .hero .scrl{opacity:0;animation:pagein 1.2s 2.7s ease forwards}
 .sg-h{font-size:15px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin-bottom:10px}
 .sg-all{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin-top:56px;padding:0}
 .sg-all img{width:92px;height:92px;display:block}
+.sg-pt{display:grid;grid-template-columns:minmax(0,560px) 1fr;gap:48px;align-items:center;margin-top:64px;padding:36px 40px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.sg-pt .bn{display:block;transition:opacity .2s}.sg-pt .bn:hover{opacity:.85}
+.sg-pt .bn img{display:block;width:100%;height:auto}
+.sg-pt small{display:block;font-family:var(--en);font-size:12px;font-weight:700;letter-spacing:.16em;color:var(--gold);margin-bottom:8px}
+.sg-pt h3{font-size:20px;font-weight:700;letter-spacing:.06em;line-height:1.5}
+.sg-pt p{font-size:14px;line-height:1.9;margin-top:12px}
+.sg-pt .lk{display:inline-flex;align-items:center;gap:6px;min-height:44px;margin-top:6px;font-size:14px;font-weight:700;color:var(--accent)}
+.sg-pt .lk i{font-style:normal}
+.ft .sdgp{display:inline-block;margin:16px 0 0;line-height:0}
+.ft .sdgp img{height:44px;width:auto;display:block}
 .sg-area{padding:96px 0 0}
 .sg-area .wrap>*{border-top:0}
 .sg-head{display:grid;grid-template-columns:80px 1fr auto;align-items:end;gap:24px;border-bottom:1px solid var(--ink);padding-bottom:28px}
@@ -443,7 +453,7 @@ html.js .hero .scrl{opacity:0;animation:pagein 1.2s 2.7s ease forwards}
 .sg-kpi b small{font-family:var(--jp);font-size:15px;margin-left:4px;letter-spacing:.02em}
 .sg-kpi p{font-size:14px;font-weight:700;line-height:1.6;margin-top:10px}
 .sg-kpi span{display:inline-block;font-size:12px;color:var(--grey);margin-top:6px}
-@media (max-width:860px){.sg-all img{width:60px;height:60px}.sg-all{gap:6px;margin-top:36px}.sg-area{padding-top:64px}.sg-head{grid-template-columns:1fr;gap:14px}.sg-head .no{font-size:28px}.sg-head h2 .en{font-size:32px}.sg-goals img{width:64px;height:64px}.sg-body{grid-template-columns:1fr;gap:36px;padding-top:28px}.sg-kpi .kp{grid-template-columns:1fr 1fr}.sg-kpi .kp>div{padding:4px 12px 14px 0}.sg-kpi .kp>div+div{padding-left:0;border-left:0}.sg-kpi .kp>div:nth-child(even){padding-left:14px;border-left:1px solid var(--line)}.sg-kpi b{font-size:36px}}
+@media (max-width:860px){.sg-pt{grid-template-columns:1fr;gap:20px;padding:22px 18px;margin-top:40px}.sg-pt h3{font-size:17px}.ft .sdgp img{height:40px}.sg-all img{width:60px;height:60px}.sg-all{gap:6px;margin-top:36px}.sg-area{padding-top:64px}.sg-head{grid-template-columns:1fr;gap:14px}.sg-head .no{font-size:28px}.sg-head h2 .en{font-size:32px}.sg-goals img{width:64px;height:64px}.sg-body{grid-template-columns:1fr;gap:36px;padding-top:28px}.sg-kpi .kp{grid-template-columns:1fr 1fr}.sg-kpi .kp>div{padding:4px 12px 14px 0}.sg-kpi .kp>div+div{padding-left:0;border-left:0}.sg-kpi .kp>div:nth-child(even){padding-left:14px;border-left:1px solid var(--line)}.sg-kpi b{font-size:36px}}
 .sdg{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:60px}
 .sdg div{border-top:1px solid var(--ink);padding-top:22px}
 .sdg b{font-family:var(--en);font-size:40px;color:var(--accent);line-height:1}
@@ -1257,7 +1267,7 @@ function page({root, title, desc, body, active, home}) {
     <div class="top">
       <div class="fb"><a class="logo" href="${r}index.html"><img src="${r}img/logo-s.webp" alt="" width="44" height="44"><img class="wm" src="${r}img/wordmark.png" alt="BIGLIGHT"></a>
         <p class="addr">〒462-0007 愛知県名古屋市北区如意一丁目112 A<span class="tel">　TEL <a class="telk" href="tel:0529087944">052-908-7944</a>　FAX 052-908-7267</span></p>
-        ${snsHtml()}${glbHtml()}</div>
+        ${snsHtml()}${glbHtml()}<a class="sdgp" href="${AICHI_SDGS.url}"><img src="${r}img/aichi-sdgs-partners.jpg" alt="${AICHI_SDGS.alt}" width="1195" height="219" loading="lazy"></a></div>
       <nav class="fsite" aria-label="サイトマップ"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a><a href="${r}recruit/hcmc/index.html">Ho Chi Minh</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}contact/index.html#request">Request</a></div></nav>
       <div class="fmap"><div class="fmap-ph"><p>地図を表示すると、Google社のCookieが使用される場合があります。</p><button type="button" class="fmap-load">地図を表示</button></div><iframe data-src="https://www.google.com/maps?q=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA&hl=ja&z=16&output=embed" title="BIGLIGHT株式会社の地図（愛知県名古屋市北区如意一丁目112 A）" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="https://www.google.com/maps/search/?api=1&query=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA">Google マップで開く →</a></div>
     </div>
@@ -1475,6 +1485,7 @@ ${pageHead('We are','私たちについて',aboutTabs(r,'company'))}
     <div><dt>資本金</dt><dd>5,000,000円</dd></div>
     <div><dt>事業内容</dt><dd>特定技能外国人支援事業<br>外国人高度人材紹介事業<br>支援アプリの導入・提供（BIGLIGHT ポータル／アカデミー／JOB）</dd></div>
     <div><dt>許可番号</dt><dd>有料職業紹介事業許可番号 / 23-ユ-302414<br>登録支援機関登録番号 / 21登-006596</dd></div>
+    <div><dt>認定・登録</dt><dd>愛知県SDGs登録制度「あいちSDGsパートナーズ」登録（2026年10月）</dd></div>
     <div><dt>取引銀行</dt><dd>三井住友銀行<br>あいち銀行</dd></div>
     <div><dt>関連会社</dt><dd>BIGLIGHT HR JOINT STOCK COMPANY<br>2nd Floor, THINH PHAT Building, 88 Bach Dang Street, Tan Son Hoa Ward, Ho Chi Minh City, Vietnam</dd></div>
   </dl>
@@ -1488,6 +1499,7 @@ ${pageHead('We are','私たちについて',aboutTabs(r,'company'))}
     <div><dt>2024.8</dt><dd>ベトナム・ホーチミン市に子会社を設立、HR専門部署を立ち上げ</dd></div>
     <div><dt>2026.3</dt><dd>関東方面に出張所を開設</dd></div>
     <div><dt>2026.9</dt><dd>BIGLIGHT ポータル／アカデミー／JOB のアプリ提供を開始（App Store・Google Play）</dd></div>
+    <div><dt>2026.10</dt><dd>愛知県SDGs登録制度「あいちSDGsパートナーズ」に登録</dd></div>
   </dl>
 </div></section>
 `});}
@@ -1504,6 +1516,8 @@ const SDG_AREAS = [
    act:['契約書・支援記録・申請書類を電子化する。','電子署名とオンライン提出を活用する。','面談・会議のオンライン化を推進する。'],
    kpi:[['30','%削減','紙使用量（2026年度比・毎年度確認）','2030年度まで'],['90','%','対象書類の電子化率','2030年度まで'],['70','%以上','オンライン活用率','2030年度まで']]},
 ];
+// あいちSDGsパートナーズ（愛知県SDGs登録制度）2026-10-15 登録。ロゴ・バナーは使用基準により改変禁止（縦横比・色・切り抜き不可、カラーのみ）、バナーは公式サイトへのリンク専用
+const AICHI_SDGS = { url:'https://aichi-sdgs-partners.jp/', since:'2026年10月', alt:'愛知県SDGs登録制度 あいちSDGsパートナーズ（AICHI SDGs PARTNERS）' };
 const SDG_NAME={ '04':'質の高い教育をみんなに','08':'働きがいも経済成長も','09':'産業と技術革新の基盤をつくろう','10':'人や国の不平等をなくそう','12':'つくる責任 つかう責任','13':'気候変動に具体的な対策を','16':'平和と公正をすべての人に' };
 function sdgs(){ const r='../../'; return page({root:r,title:'SDGsへの取り組み｜BIGLIGHT株式会社',desc:'BIGLIGHTのSDGsへの取り組み',body:`
 ${pageHead('We are','私たちについて',aboutTabs(r,'sdgs'))}
@@ -1511,6 +1525,10 @@ ${pageHead('We are','私たちについて',aboutTabs(r,'sdgs'))}
   <div class="lbl">SDGs</div>
   <div class="two"><h2 style="font-size:40px">事業を通じて、<br>持続可能な社会へ。</h2><div class="txt"><h3 class="sg-h">取組方針</h3><p>BIGLIGHT株式会社は、外国人材と受入企業をつなぐ人材紹介及び登録支援機関として、国籍や文化の違いを越えて、誰もが安心して働き、能力を発揮できる社会の実現を目指します。</p></div></div>
   <ul class="sg-all">${['04','08','09','10','12','13','16'].map(g=>`<li><img src="${r}img/sdg/sdg-${g}.png" alt="SDGs目標${+g} ${SDG_NAME[g]}" width="290" height="290"></li>`).join('')}</ul>
+  <div class="sg-pt" id="aichi-sdgs-partners">
+    <a class="bn" href="${AICHI_SDGS.url}"><img src="${r}img/aichi-sdgs-partners.jpg" alt="${AICHI_SDGS.alt}" width="1195" height="219" loading="lazy"></a>
+    <div class="tx"><small>Certified</small><h3>あいちSDGsパートナーズに登録されました</h3><p>${AICHI_SDGS.since}、BIGLIGHT株式会社は愛知県SDGs登録制度「あいちSDGsパートナーズ」に登録されました。上記の取組方針と数値目標に基づき、外国人材と受入企業の双方が安心して働ける環境づくりを進めます。</p><a class="lk" href="${AICHI_SDGS.url}">あいちSDGsパートナーズ公式サイト<i>↗</i></a></div>
+  </div>
 </div></section>
 ${SDG_AREAS.map((A,i)=>`<section class="sg-area"><div class="wrap">
   <div class="sg-head"><span class="no">0${i+1}</span><h2><span class="en">${A.en}</span>${A.ja}</h2>
