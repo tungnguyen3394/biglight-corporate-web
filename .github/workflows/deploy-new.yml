@@ -7,7 +7,7 @@
 #      container web cũ biglight-web vẫn chạy nhưng bỏ nhãn Caddy (ẩn, không xoá)
 #   4. đo tại VPS + HTTPS thật; sai → trả compose/nginx/bản build trước (_prev) cho CẢ HAI container và ĐỎ
 # Bài mới admin đăng: lịch mỗi giờ (bản sao file này trên nhánh main — lịch chỉ chạy từ nhánh mặc định) lấy lại /news/,
-# CHỈ deploy khi news.json đổi. Giữa hai lần, bài mới vẫn mở được (nginx lấy từ web cũ).
+# CHỈ deploy khi news.json đổi (hoặc nội dung hẹn ngày trong redesign/gates.cjs vừa tới ngày). Giữa hai lần, bài mới vẫn mở được (nginx lấy từ web cũ).
 # ⚠ Sửa file này thì chép y nguyên sang nhánh main.
 name: Deploy biglight.jp (giao diện mới, nhánh redesign)
 
@@ -49,11 +49,14 @@ jobs:
         run: |
           mkdir -p ~/.ssh && printf '%s\n' "$KEY" > ~/.ssh/vps && chmod 600 ~/.ssh/vps
           mkdir -p /tmp/oldsite
+          : > redesign/deploy.sha256
           if ssh -i ~/.ssh/vps -p "${PORT:-22}" -o StrictHostKeyChecking=no -o ConnectTimeout=20 "$USR@$HOST" 'tar -C /var/www/biglight -cz news' > /tmp/news.tgz && tar -C /tmp/oldsite -xzf /tmp/news.tgz; then
             NEWS_DIR=/tmp/oldsite node redesign/fetch-news.cjs
             # so với bản ĐANG CHẠY (mã băm ghi lúc deploy thành công), không so với git
             old=$(ssh -i ~/.ssh/vps -p "${PORT:-22}" -o StrictHostKeyChecking=no "$USR@$HOST" 'cat /root/biglight-web-new/news.sha256 2>/dev/null' || true)
-            new=$(sha256sum redesign/news.json | cut -d' ' -f1)
+            # + nội dung hẹn ngày đang bật (redesign/gates.cjs) → sang ngày bật là lịch tự deploy lại
+            new=$( { cat redesign/news.json; echo "gates:$(node redesign/gates.cjs)"; } | sha256sum | cut -d' ' -f1)
+            echo "$new" > redesign/deploy.sha256
             [ "$old" = "$new" ] && echo "changed=0" >> $GITHUB_OUTPUT || echo "changed=1" >> $GITHUB_OUTPUT
             echo "news.json: đang chạy=$old  mới=$new"
           else
@@ -110,7 +113,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           port: ${{ secrets.VPS_PORT || 22 }}
-          source: "redesign/news.json,redesign/dist/,deploy/biglight-web-new/docker-compose.yml,deploy/biglight-web-new/nginx/,deploy/biglight-web/docker-compose.yml"
+          source: "redesign/news.json,redesign/deploy.sha256,redesign/dist/,deploy/biglight-web-new/docker-compose.yml,deploy/biglight-web-new/nginx/,deploy/biglight-web/docker-compose.yml"
           target: /root/biglight-web-new/_incoming
           overwrite: true
 
@@ -154,7 +157,8 @@ jobs:
             chk /faq/ 301; chk /sdgs/ 301; chk /service/jinzai-shoukai/ 301; chk /tuyen-dung.html 410; chk /blog.html 301
             docker ps --format '{{.Names}} {{.Status}}' | grep -E '^biglight-web(-new)? ' || fail=1
             [ "$fail" = 1 ] && rollback
-            sha256sum $IN/redesign/news.json | cut -d" " -f1 > /root/biglight-web-new/news.sha256
+            if [ -s $IN/redesign/deploy.sha256 ]; then cp $IN/redesign/deploy.sha256 /root/biglight-web-new/news.sha256
+            else sha256sum $IN/redesign/news.json | cut -d" " -f1 > /root/biglight-web-new/news.sha256; fi
             rm -rf $IN
             echo "✓ VPS OK"
 
