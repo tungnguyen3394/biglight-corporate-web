@@ -870,6 +870,15 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 .ft .fsite a.h{font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--ink);margin-bottom:5px}
 .ft .fsite a:hover{color:var(--accent)}
 .ft .fsite .tg{display:none}
+/* PC: thông tin công ty trái + bản đồ phải cùng hàng (thẳng mép trên/dưới), sitemap 6 cột trải đều bên dưới (CEO chọn bản E 2026-10-17) */
+@media (min-width:1181px){
+  .ft .top{display:grid;grid-template-columns:1fr 520px;gap:40px 72px;align-items:stretch}
+  .ft .fb{grid-column:1;grid-row:1;flex-basis:auto}
+  .ft .fmap{grid-column:2;grid-row:1;width:auto;margin:0;display:flex;flex-direction:column}
+  .ft .fmap .fmap-ph{flex:1;height:auto;min-height:200px}
+  .ft .fmap iframe{width:100%;flex:1;height:auto;min-height:200px}
+  .ft .fsite{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(6,1fr);gap:0 36px;margin:0;padding-top:36px;border-top:1px solid var(--line)}
+}
 .ft .sns{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0}
 /* web seminar VN/ID — tối giản: chữ nhỏ + mũi tên (10-12) */
 .ft .glb{display:flex;flex-wrap:wrap;align-items:center;gap:6px 20px;margin:14px 0 0;font-size:13px;line-height:1.6;color:var(--grey)}
