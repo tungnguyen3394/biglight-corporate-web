@@ -15,7 +15,7 @@ const copies = {
   'img/desk-academy.jpg':'img/desk-academy.jpg','img/desk-job.jpg':'img/desk-job.jpg','img/shot-portal-916.jpg':'img/shot-portal.jpg','img/shot-academy.jpg':'img/shot-academy.jpg','img/shot-job.jpg':'img/shot-job.jpg',
   'badges/apple-ja.svg':'img/badge-appstore.svg','badges/google-ja.png':'img/badge-googleplay.png',
 };
-Object.assign(copies,{'img/logo-s.webp':'img/logo-s.webp','img/hero-meeting5.jpg':'img/hero-meeting5.jpg','img/recruit-team.jpg':'img/recruit-team.jpg','img/svc-ssw2.jpg':'img/svc-ssw2.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','img/aichi-sdgs-partners.jpg':'img/aichi-sdgs-partners.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
+Object.assign(copies,{'img/logo-s.webp':'img/logo-s.webp','img/hero-meeting5.jpg':'img/hero-meeting5.jpg','img/recruit-team.jpg':'img/recruit-team.jpg','img/svc-ssw2.jpg':'img/svc-ssw2.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/field-unso.jpg':'img/field-unso.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','img/aichi-sdgs-partners.jpg':'img/aichi-sdgs-partners.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
 fs.mkdirSync(path.join(OUT,'img/sdg'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/sdg')).filter(f=>f.endsWith('.png')))fs.copyFileSync(path.join(__dirname,'src/img/sdg',f),path.join(OUT,'img/sdg',f));
 fs.mkdirSync(path.join(OUT,'img/people'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/people')).filter(f=>f.endsWith('.webp')))fs.copyFileSync(path.join(__dirname,'src/img/people',f),path.join(OUT,'img/people',f));
 { let out='';const N=34,S=80;const A=t=>330+110*Math.sin(t*Math.PI*1.9+0.2)-210*t, B=t=>330+110*Math.sin(t*Math.PI*1.9+2.9)-210*t+70*Math.sin(t*Math.PI);
@@ -784,6 +784,35 @@ html.js .en.chars .ch{transform:translateY(.6em)}
 .fcareer b{display:block;font-size:13px;color:var(--ink2);margin-top:4px}
 .fcareer p{font-size:14px;line-height:1.9;margin-top:14px}
 @media (max-width:860px){.flow.f4{grid-template-columns:1fr 1fr}.fstats{grid-template-columns:1fr}.fstats>div+div{border-left:0;padding-left:0;border-top:1px solid var(--line)}.fstats>div{padding:20px 0}.fstats b{font-size:36px}.froutes,.fwork,.frules{grid-template-columns:1fr}.fcareer{grid-template-columns:1fr}.fcareer>i{transform:rotate(90deg);padding:6px 0}.fnotice{padding:26px 22px}}
+/* ngành mới: 1 hàng kẻ ngang dưới lưới 4 ô */
+.fnews{margin-top:56px;border-top:1px solid var(--line)}
+.fnew{display:grid;grid-template-columns:280px 1fr 40px;gap:40px;align-items:center;padding:36px 0;border-bottom:1px solid var(--line);transition:background .25s}
+.fnew:hover{background:#fafbfc}
+.fnew .im{overflow:hidden;border-radius:8px;aspect-ratio:4/3;background:#eef2f8}
+.fnew .im img{width:100%;height:100%;object-fit:cover;border-radius:0;transition:transform .8s cubic-bezier(.2,.6,.2,1)}
+.fnew:hover .im img{transform:scale(1.06)}
+.fnew .tx{min-width:0}
+.fnew .lb{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 14px;font-family:var(--en);font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--accent)}
+.fnew .lb small{font-family:var(--jp);font-size:12px;letter-spacing:.04em;color:var(--grey);font-weight:500}
+.fnew .tx>b{display:block;font-size:22px;letter-spacing:.06em;line-height:1.5;margin-top:10px}
+.fnew .tx>b small{display:block;font-family:var(--en);font-size:11px;letter-spacing:.14em;color:var(--grey);text-transform:uppercase}
+.fnew p{font-size:14px;line-height:1.95;color:var(--ink2);margin-top:12px;max-width:640px}
+.fnew:hover .circ40{transform:translateX(6px)}
+/* lộ trình tới ngày lái xe (đường nối 1px + chấm) */
+.froad{margin-top:56px;border-top:1px solid var(--line)}
+.froad .ln{display:grid;grid-template-columns:200px 1fr;gap:28px;padding:36px 0;border-bottom:1px solid var(--line)}
+.froad .rh h3{font-size:18px;letter-spacing:.06em}
+.froad .rh small{display:block;font-size:13px;font-weight:700;color:var(--accent);margin-top:6px}
+.froad ol{list-style:none;margin:0;padding:0;display:grid;grid-auto-flow:column;grid-auto-columns:1fr}
+.froad li{position:relative;padding:22px 14px 0 0;border-top:1px solid var(--line);min-width:0}
+.froad li::before{content:"";position:absolute;left:0;top:-4px;width:7px;height:7px;border-radius:50%;background:#b9c3d3}
+.froad li.end::before{background:var(--accent)}
+.froad li b{display:block;font-family:var(--en);font-size:11px;letter-spacing:.12em;color:var(--grey)}
+.froad li.end b{color:var(--accent)}
+.froad li span{display:block;font-size:14px;font-weight:700;line-height:1.7;margin-top:6px}
+.froad li small{display:inline-block;font-size:12px;font-weight:700;color:var(--accent);background:#eef2f8;border-radius:64px;padding:2px 10px;margin-top:8px}
+.fnote{font-size:14px;line-height:1.95;margin-top:32px;padding:20px 24px;background:#f6f7f9;border-radius:8px}
+@media (max-width:860px){.fnew{grid-template-columns:1fr;gap:20px}.fnew .circ40{display:none}.froad .ln{grid-template-columns:1fr;gap:18px}.froad ol{grid-auto-flow:row}.froad li{border-top:0;border-left:1px solid var(--line);padding:0 0 22px 22px}.froad li:last-child{padding-bottom:0}.froad li::before{left:-4px;top:6px}}
 /* footer gọn */
 .ft{margin-top:110px;padding:40px 0 22px}
 .ft>.wrap{max-width:1400px}
@@ -1119,7 +1148,7 @@ const js = `
   if('IntersectionObserver' in window){var wio=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target._wipe.classList.add('in');wio.unobserve(x.target);}});},{rootMargin:'0px 0px -10% 0px'});
     wipes.forEach(function(e){e.parentNode._wipe=e;wio.observe(e.parentNode);});} else wipes.forEach(function(e){e.classList.add('in');});
   /* fade-in khi cuộn */
-  var sel='.crow, .art>*, .reasons .rs, .sysck li, .vcat>div, .ctable-wrap, .kstats>div, .ccard, .ckpi>div, .chead>*, .cvoice, .illu, .sec-head>*, .fstats>div, .froutes>div, .fwork>div, .frules>div, .fcareer>div, .fnotice, .row, .prow, .nitem, .blk .lbl, .two>*, .vals>div, .flow>div, .sdg>div, .svc .num, .svc .g>*, .dl>div, .cbox, .ph .en, .ph .ja-lb, .ph .dots, .tabs, .lead28, .lead16, .message>.wrap>*, .band, .msg-body, .form>*, .filters, .pager, .more-r, .vs, .vlbl, .chars, .slant, .ftile, .sup10>div, .jobs4>div, .faq, .fnav, .pic, .cul>*, .voice>*, .steps>div, .strip img, .req>div';
+  var sel='.crow, .art>*, .reasons .rs, .sysck li, .vcat>div, .ctable-wrap, .kstats>div, .ccard, .ckpi>div, .chead>*, .cvoice, .illu, .sec-head>*, .fstats>div, .froutes>div, .fwork>div, .frules>div, .fcareer>div, .fnotice, .fnew, .froad .ln, .fnote,.row, .prow, .nitem, .blk .lbl, .two>*, .vals>div, .flow>div, .sdg>div, .svc .num, .svc .g>*, .dl>div, .cbox, .ph .en, .ph .ja-lb, .ph .dots, .tabs, .lead28, .lead16, .message>.wrap>*, .band, .msg-body, .form>*, .filters, .pager, .more-r, .vs, .vlbl, .chars, .slant, .ftile, .sup10>div, .jobs4>div, .faq, .fnav, .pic, .cul>*, .voice>*, .steps>div, .strip img, .req>div';
   var els=[].slice.call(document.querySelectorAll(sel));
   els.forEach(function(e){e.classList.add('fx');});
   if('IntersectionObserver' in window){
@@ -1268,7 +1297,7 @@ function page({root, title, desc, body, active, home}) {
       <div class="fb"><a class="logo" href="${r}index.html"><img src="${r}img/logo-s.webp" alt="" width="44" height="44"><img class="wm" src="${r}img/wordmark.png" alt="BIGLIGHT"></a>
         <p class="addr">〒462-0007 愛知県名古屋市北区如意一丁目112 A<span class="tel">　TEL <a class="telk" href="tel:0529087944">052-908-7944</a>　FAX 052-908-7267</span></p>
         ${snsHtml()}${glbHtml()}${AICHI_SDGS.on?`<a class="sdgp" href="${AICHI_SDGS.url}"><img src="${r}img/aichi-sdgs-partners.jpg" alt="${AICHI_SDGS.alt}" width="1195" height="219" loading="lazy"></a>`:''}</div>
-      <nav class="fsite" aria-label="サイトマップ"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a><a href="${r}recruit/hcmc/index.html">Ho Chi Minh</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}contact/index.html#request">Request</a></div></nav>
+      <nav class="fsite" aria-label="サイトマップ"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}service/field/unso/index.html">Transportation</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a><a href="${r}recruit/hcmc/index.html">Ho Chi Minh</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}contact/index.html#request">Request</a></div></nav>
       <div class="fmap"><div class="fmap-ph"><p>地図を表示すると、Google社のCookieが使用される場合があります。</p><button type="button" class="fmap-load">地図を表示</button></div><iframe data-src="https://www.google.com/maps?q=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA&hl=ja&z=16&output=embed" title="BIGLIGHT株式会社の地図（愛知県名古屋市北区如意一丁目112 A）" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="https://www.google.com/maps/search/?api=1&query=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA">Google マップで開く →</a></div>
     </div>
     <div class="bot">
@@ -1868,13 +1897,17 @@ const serviceTabs = (r,on) => `<div class="tabs">
   <a href="${r}case/index.html" class="${on==='case'?'on':''}">CASE <span class="ch">›</span></a>
 </div>`;
 const slant = (src,alt) => `<div class="slant"><div class="s"><img src="${src}" alt="${alt||''}"></div><div class="s"><img src="${src}" alt=""></div><div class="s"><img src="${src}" alt=""></div></div>`;
-const fieldTiles = (r,list) => `<div class="ftiles">${list.map(f=>`<a class="ftile" href="${r}service/field/${f.slug}/index.html"><div class="im"><img src="${fieldImg(r,f)}" alt="${f.ja}"></div><div class="nm"><span>${f.ja}</span><small>${f.en}</small></div>${circ()}</a>`).join('')}</div>`;
+// 主力4分野 = lưới ô ảnh; ngành mới (isNew) = 1 hàng kẻ ngang riêng bên dưới
+const fieldTiles = (r,all) => { const list = all.filter(f=>!f.isNew), nw = all.filter(f=>f.isNew);
+  return `<div class="ftiles">${list.map(f=>`<a class="ftile" href="${r}service/field/${f.slug}/index.html"><div class="im"><img src="${fieldImg(r,f)}" alt="${f.ja}"></div><div class="nm"><span>${f.ja}</span><small>${f.en}</small></div>${circ()}</a>`).join('')}</div>`
+  + (nw.length ? `<div class="fnews">${nw.map(f=>`<a class="fnew" href="${r}service/field/${f.slug}/index.html"><div class="im"><img src="${fieldImg(r,f)}" alt="${f.ja}"></div><div class="tx"><span class="lb">NEW FIELD<small>${f.newLabel}</small></span><b>${f.ja}<small>${f.en}</small></b><p>${f.newText}</p></div>${circ()}</a>`).join('')}</div>` : ''); };
 // よくある質問 — 特定技能は biglight.jp/faq/ の文面そのまま、技人国は biglight.jp/service/jinzai-shoukai/ の記載から
 const FAQ_TG = [
   ['技能実習と特定技能の違いは何ですか？','<p>技能実習は、外国人が日本で技能や知識を学ぶことを目的とした制度です。一方、特定技能は人手不足分野において即戦力となる外国人材を受け入れるための制度です。</p><p>また、現在は技能実習制度に代わる新制度として「育成就労制度」が創設され、育成就労から特定技能へとステップアップできる仕組みへ移行しています。</p><div class="fpath"><span>育成就労（最大3年）</span><i>→</i><span>特定技能1号（最大5年）</span><i>→</i><span class="hl">特定技能2号（更新制限なし）</span></div><p>特定技能2号へ移行した場合は、長期的な就労が可能となり、配偶者や子どもの帯同も認められます。</p><p>企業様にとっては、長期的な人材育成と安定した人材確保につながる制度です。</p>'],
   ['特定技能外国人を採用するにはどのくらい時間がかかりますか？','国内在住者の場合は約1～3ヶ月、海外からの採用の場合は約3～6ヶ月が一般的です。職種や在留資格の状況によって異なります。'],
   ['日本語能力はどの程度ありますか？','特定技能外国人は、日本語試験および技能試験に合格した人材です。日常業務に必要なコミュニケーション能力を有しています。'],
-  ['どのような業種で採用できますか？','製造業、建設業、食品製造業、外食業など、特定技能制度で認められている分野で採用が可能です。'],
+  ['どのような業種で採用できますか？','製造業、建設業、食品製造業、外食業、自動車運送業など、特定技能制度で認められている19分野で採用が可能です。'],
+  ['トラックなどのドライバーも特定技能で採用できますか？','はい。2024年に「自動車運送業」が特定技能の対象に加わり、トラック・タクシー・バスのドライバーを採用できるようになりました。日本の運転免許の取得や受入れ企業の認証など、他の分野にはない要件があります。BIGLIGHTはトラックドライバーの採用を中心にご支援しています。<a href="../field/unso/index.html">自動車運送業の詳細はこちら</a>'],
   ['特定技能外国人は何年間働くことができますか？','特定技能1号は最長5年間就労可能です。さらに要件を満たした場合は特定技能2号へ移行することができます。'],
   ['特定技能2号になるとどうなりますか？','在留期間の更新回数に制限がなくなり、長期的な就労が可能となります。また、配偶者や子どもの帯同も認められています。'],
   ['採用後の生活サポートは必要ですか？','はい。特定技能外国人を受け入れる企業には支援義務があります。BIGLIGHTでは生活支援や各種手続きもサポートしております。'],
@@ -1897,7 +1930,7 @@ const faqSec = (list) => `<section class="blk faq-sec" id="faq"><div class="wrap
   ${faq(list)}
 </div></section>`;
 
-function serviceTop(){ const r='../'; return page({root:r,title:'事業内容｜BIGLIGHT株式会社',desc:'特定技能 採用支援・技人国 人材紹介。製造・建設・食品・外食の4分野を中心に対応。',body:`
+function serviceTop(){ const r='../'; return page({root:r,title:'事業内容｜BIGLIGHT株式会社',desc:'特定技能 採用支援・技人国 人材紹介。製造・建設・食品・外食の4分野を中心に、自動車運送業（トラック）にも対応。',body:`
 ${pageHead('Service','事業内容',serviceTabs(r,'overview'))}
 <section><div class="wrap lead-end">
   <p class="lead28">採用から定着まで、ワンストップで。<br>完全成功報酬でご支援します。</p>
@@ -1907,7 +1940,7 @@ ${pageHead('Service','事業内容',serviceTabs(r,'overview'))}
   <div class="num">SERVICE-01</div>
   <div class="g">
     <div><h2><span class="nm-en">Specified Skilled Worker</span><small>特定技能 採用支援</small></h2>
-      <p class="ds">人手不足の16分野に、即戦力の外国人材を。募集・面接から在留資格の手続き、登録支援機関としての義務的支援まで一貫して対応します。</p>
+      <p class="ds">人手不足の19分野に、即戦力の外国人材を。募集・面接から在留資格の手続き、登録支援機関としての義務的支援まで一貫して対応します。</p>
       <div class="acts"><div>詳しく知りたい${pill('特定技能 採用支援', r+'service/tokutei-ginou/index.html')}</div></div></div>
     <img class="photo" src="${r}img/svc-ssw2.jpg" alt="特定技能人材が働く建設現場">
   </div>
@@ -1923,7 +1956,7 @@ ${pageHead('Service','事業内容',serviceTabs(r,'overview'))}
 </div></section>
 <section class="blk" id="fields"><div class="wrap">
   <div class="lbl">Fields</div>
-  <div class="two" style="margin-top:24px"><h2 style="font-size:40px">BIGLIGHTが強い、<br>4つの主力分野</h2><div class="txt"><p>分野ごとに、現場の課題・対象業務・取得要件・支援内容をまとめています。その他の分野もお気軽にご相談ください。</p></div></div>
+  <div class="two" style="margin-top:24px"><h2 style="font-size:40px">BIGLIGHTが強い、<br>4つの主力分野</h2><div class="txt"><p>分野ごとに、現場の課題・対象業務・取得要件・支援内容をまとめています。新たに自動車運送業（トラックドライバー）の採用支援も始めました。その他の分野もお気軽にご相談ください。</p></div></div>
   ${fieldTiles(r,FIELDS)}
 </div></section>
 <section class="blk"><div class="wrap">
@@ -1946,13 +1979,13 @@ ${pageHead('Specified Skilled Worker','特定技能 採用支援',serviceTabs(r,
 <section class="blk" style="padding-top:140px"><div class="wrap side" style="margin-top:0">
   <h2 class="en">About</h2>
   <div><p class="lead28" style="margin-top:0">人手不足の現場に、<br>即戦力の外国人材を。</p>
-  <p class="lead16">特定技能は、人手不足が深刻な16分野で、一定の技能と日本語力を持つ外国人材が働くための在留資格です。BIGLIGHTは人材の紹介から在留資格の手続き、入社後の支援までを一貫してお任せいただけます。</p></div>
+  <p class="lead16">特定技能は、人手不足が深刻な19分野で、一定の技能と日本語力を持つ外国人材が働くための在留資格です。BIGLIGHTは人材の紹介から在留資格の手続き、入社後の支援までを一貫してお任せいただけます。</p></div>
 </div></section>
 <section class="blk"><div class="wrap">
   <div class="lbl">System</div>
   <div class="two" style="margin-top:24px"><h2 style="font-size:40px">特定技能とは</h2><div class="txt"><p>2019年4月に始まった、人手不足の現場で即戦力として働く外国人材のための在留資格です。</p></div></div>
   <ul class="sysck">
-    <li>人手不足が深刻な<b>16分野</b>（介護・建設・工業製品製造業・飲食料品製造業・外食業など）で就労できる在留資格</li>
+    <li>人手不足が深刻な<b>19分野</b>（介護・建設・工業製品製造業・飲食料品製造業・外食業・自動車運送業など）で就労できる在留資格</li>
     <li><b>特定技能1号</b>：技能試験と日本語試験に合格した即戦力。通算で最長5年就労可能</li>
     <li><b>特定技能2号</b>：熟練した技能を持つ人材。在留期間の更新に上限がなく、要件を満たせば家族の帯同も可能</li>
     <li>技能実習2号を良好に修了した方は試験免除で移行でき、帰国した元技能実習生の呼び戻しも可能</li>
@@ -1997,7 +2030,7 @@ ${pageHead('Specified Skilled Worker','特定技能 採用支援',serviceTabs(r,
 </div></section>
 <section class="blk" id="fields"><div class="wrap">
   <div class="lbl">Fields</div>
-  <div class="two" style="margin-top:24px"><h2 style="font-size:40px">主力分野</h2><div class="txt"><p>BIGLIGHTが強い4つの分野です。分野を選ぶと、課題・対象業務・取得要件をご覧いただけます。その他の分野もご相談ください。</p></div></div>
+  <div class="two" style="margin-top:24px"><h2 style="font-size:40px">主力分野</h2><div class="txt"><p>BIGLIGHTが強い4つの分野と、新たに対応を始めた自動車運送業です。分野を選ぶと、課題・対象業務・取得要件をご覧いただけます。その他の分野もご相談ください。</p></div></div>
   ${fieldTiles(r,FIELDS)}
 </div></section>
 ${faqSec(FAQ_TG)}
@@ -2085,7 +2118,7 @@ const FIELDS = [
  {slug:'kensetsu',en:'Construction',ja:'建設業',photo:'../field-kensetsu.jpg',
   lead:'建設現場の担い手不足を、<br>特定技能で着実に補う。',
   desc:'土木・建築・ライフライン設備。試験に合格した即戦力人材を、JAC加入・受入計画認定・入管手続き・定着支援までワンストップで。名古屋の登録支援機関BIGLIGHTが、採用のリスクと手間をまとめて引き受けます。',
-  stats:[['約3.8','万人','建設分野で働く特定技能外国人（16分野中4位）'],['8.0','万人','建設分野の5年間受入れ見込数（2024〜2028年度）'],['69.6','%','建設業就業者はピーク（1997年）比約7割まで減少']],
+  stats:[['約3.8','万人','建設分野で働く特定技能外国人（全分野中4位）'],['8.0','万人','建設分野の5年間受入れ見込数（2024〜2028年度）'],['69.6','%','建設業就業者はピーク（1997年）比約7割まで減少']],
   src1:'出典：国土交通省「建設業就業者数」／出入国在留管理庁「特定技能在留外国人数」（令和7年12月末）・「特定技能の受入れ見込数」（令和6年3月29日閣議決定）',
   issuesH:'建設現場が直面する4つの課題',issuesP:'人手不足は「一時的」ではなく「構造的」です。担い手の減少と高齢化が同時に進み、2024年問題が拍車をかけています。',
   issues:[['就業者数の長期減少','2024年は477万人（ピーク比69.6%）','1997年ピーク685万人から減少が継続'],['深刻な高齢化','55歳以上が約37%、29歳以下は約12%','ベテランの大量離職期が迫る'],['2024年問題','時間外労働の上限規制が建設業にも適用','一人あたり労働時間が減り必要人員増'],['技能承継の断絶','30〜49歳の中核層が238万→177万人へ','ノウハウを継ぐ次世代が不足']],
@@ -2102,8 +2135,8 @@ const FIELDS = [
   faq:[['採用決定から就労開始まで、最短でどのくらい？','建設分野は「受入計画認定（標準約2ヶ月）」が必要なため、選考から就労開始まで概ね4〜6ヶ月を見込みます。技能実習からの移行で短縮できる場合もあります。逆算スケジュールはBIGLIGHTが設計します。'],['JACには必ず加入が必要ですか？費用は？','建設分野では加入が必須です。賛助会員として直接加入する場合の年会費は24万円。加えて受入負担金が月額・1人あたりで発生します（海外試験合格者25,000円、国内試験合格者13,500円、技能実習2号修了者12,500円など）。手続きはBIGLIGHTが代行します。'],['技能実習生を特定技能に切り替えられますか？','はい。建設職種の技能実習2号を良好に修了していれば、技能試験・日本語試験が免除され、スムーズに特定技能へ移行できます。雇用中の実習生の継続雇用にも有効です。'],['給与は日給でもよいですか？','建設分野は月給制が必須で、日給・時給制は認められません。同等技能の日本人と同等以上の報酬とし、技能習熟に応じた昇給を雇用契約に明記する必要があります。'],['何人まで受け入れられますか？','特定技能外国人と外国人建設就労者の合計が、御社の常勤職員数を超えない範囲となります（技能実習生は含みません）。人数計画のご相談も承ります。'],['対応エリアは？費用の目安は？','名古屋を拠点に全国の建設現場に対応します。費用は職種・人数・支援範囲により異なり、無料でお見積りします。まずは無料相談をご利用ください。']]},
  {slug:'inshoku',en:'Food Manufacturing',ja:'飲食料品製造業',photo:'../field-inshoku.jpg',
   lead:'食品工場の人手不足を、<br>特定技能で安定させる。',
-  desc:'全16分野で受入れ「最多」、そして最も需要が旺盛な分野。コンビニ弁当・惣菜・パン・飲料まで、24時間稼働する現場の即戦力を、採用から入管手続き・生活支援・定着まで、名古屋の登録支援機関BIGLIGHTがワンストップでお届けします。',
-  stats:[['約6.8','万人','飲食料品製造業で働く特定技能外国人（全16分野で第1位）'],['13.9','万人','5年間の受入れ見込数（2024〜2028年度）＝全分野で最大枠'],['2.19','倍','飲食料品製造業の有効求人倍率（全産業平均1.16倍の約2倍）']],
+  desc:'全分野で受入れ「最多」、そして最も需要が旺盛な分野。コンビニ弁当・惣菜・パン・飲料まで、24時間稼働する現場の即戦力を、採用から入管手続き・生活支援・定着まで、名古屋の登録支援機関BIGLIGHTがワンストップでお届けします。',
+  stats:[['約6.8','万人','飲食料品製造業で働く特定技能外国人（全分野で第1位）'],['13.9','万人','5年間の受入れ見込数（2024〜2028年度）＝全分野で最大枠'],['2.19','倍','飲食料品製造業の有効求人倍率（全産業平均1.16倍の約2倍）']],
   src1:'出典：出入国在留管理庁「特定技能在留外国人数」（令和7年12月末）・「特定技能の受入れ見込数」（令和6年3月29日閣議決定）／厚生労働省「一般職業紹介状況」',
   issuesH:'食品製造現場が直面する4つの課題',issuesP:'需要は最大、でも人が採れない。食品工場の人手不足は、他業種より一段深刻です。',
   issues:[['慢性的な採用難','有効求人倍率 2.19倍（全産業平均1.16倍）','募集しても応募が集まらない'],['夜勤・交替制の担い手不足','弁当・惣菜工場は24時間フル稼働','交替制を安定して回す人員が不足'],['若手の減少と高齢化','製造業の34歳以下は20年で約121万人減','65歳以上は33万人増、構造が限界に'],['需要に供給が追いつかない','受入れ見込13.9万人に対し充足率は約49%','制度枠の半分しか埋まっていない']],
@@ -2135,8 +2168,34 @@ const FIELDS = [
   career:CAREER('現場で調理・接客・日本語を習得。特定技能への移行を前提に育成','試験合格済みの即戦力。調理・接客・店舗運営を一人で担う','店長候補。店舗管理・スタッフ指導を担い、上限規制の外で長期確保できる。家族帯同も可能'),
   flow:[['お問い合わせ・ルート判定','採用したい人数・時期を伺い、転職／移行／2号のどれで採れるかを判定します。'],['ニーズ整理・ご提案','現場要件と予算を整理し、最適な採用・確保プランをご提案します。'],['候補者のご紹介・面接','転職希望者や移行対象者を紹介し、オンライン等で面接を実施します。'],['内定・雇用契約','日本人と同等以上の待遇を満たす雇用条件で契約を締結します。'],['在留資格の申請・協議会加入','在留資格の変更等を申請し、受入れ後4ヶ月以内の協議会加入まで代行します。'],['受入れ準備','住居・生活インフラの手配、事前ガイダンスを実施します。'],['受入れ・定着支援','配属後も10項目支援と定期面談で長期定着・2号化をサポートします。']],
   faq:[['外食業はもう特定技能で採用できないのですか？','「海外からの新規呼び寄せ」と「他分野・留学からの切替」は2026年4月13日以降、原則停止です。ただし①外食業内での転職受入れ、②技能実習（給食製造など）からの移行、③特定技能2号への移行は引き続き可能です。御社の状況で使えるルートを無料で判定します。'],['今いる特定技能1号の在留期間の更新はできますか？','はい。更新申請は上限規制の対象外で、通常どおり審査されます。既存人材の継続雇用に影響はありません。'],['2号にすると何が変わりますか？','特定技能2号は在留期間の上限がなく（更新を続ければ実質的に長期就労が可能）、家族帯同も認められます。上限規制の影響も受けません。店舗管理の実務経験と2号試験が要件です。'],['協議会への加入は必要ですか？','必要です。外食業では受入れ開始後4ヶ月以内の「食品産業特定技能協議会」加入が義務で、未加入だと在留更新が不許可になるリスクがあります。加入手続きはBIGLIGHTが代行します。'],['対応エリアは？費用の目安は？','名古屋を拠点に全国の飲食店・給食施設に対応します。費用は人数・支援範囲により異なり、無料でお見積りします。まずは無料相談をご利用ください。']]},
+ // 2026-10-16 ngành mới — trục chính トラック. Nguồn: 国交省「特定技能制度における自動車運送業分野の制度概要」(2026-01), 運用方針 令和8年1月23日閣議決定, 日本海事協会.
+ {slug:'unso',en:'Transportation',ja:'自動車運送業',photo:'../field-unso.jpg',isNew:true,
+  newLabel:'2024年に特定技能の対象に追加',
+  newText:'トラックドライバーの採用を中心にご支援します。評価試験の合格者のご紹介から、外免切替の伴走、特定技能1号への変更、乗務開始後の定着まで。',
+  lead:'ドライバー不足を、<br>特定技能で補う。',
+  desc:'2024年に特定技能の対象となった自動車運送業。BIGLIGHTはトラックドライバーを中心に、評価試験合格者のご紹介から、在留資格「特定活動」での入国、外免切替の伴走、特定技能1号への変更、乗務開始後の定着まで、名古屋の登録支援機関としてワンストップでご支援します。',
+  stats:[['2.21','万人','自動車運送業分野の5年間の受入れ見込数（2024〜2028年度）'],['34','%','対策をとらない場合の2030年度の輸送力不足（試算）'],['4,448','人','評価試験の累計合格者（うちトラック3,676人）']],
+  src1:'出典：「自動車運送業分野における特定技能の在留資格に係る制度の運用に関する方針」（令和8年1月23日閣議決定）／国土交通省「国土交通白書2024」／日本海事協会 自動車運送業分野特定技能1号評価試験 実施状況（2026年1月末時点）',
+  issuesH:'運送の現場が直面する4つの課題',issuesP:'荷物は増え、運ぶ人は減っています。2024年問題で一人あたりの乗務時間も短くなり、人手の確保は待ったなしの経営課題です。',
+  issues:[['輸送力の不足','2030年度に輸送力が約34%不足する試算','対策なしの場合、2024年度も約14%不足'],['ドライバーの高齢化','就業者の49.8%が50歳以上','30歳未満はわずか10.4%'],['2024年問題','2024年4月から時間外労働の上限（年960時間）が適用','一人で運べる距離・時間が減少'],['外国人材の受入れが始動','評価試験の合格者は累計4,448人','受入れ見込数2.21万人に対し、受入れはまだ始まったばかり']],
+  src2:'出典：国土交通省「国土交通白書2024」（持続可能な物流の実現に向けた検討会 最終取りまとめ）／国土交通省 関東運輸局資料（令和5年度）／日本海事協会',
+  whyP:'自動車運送業の特定技能は、日本の運転免許を入国後に取得できる仕組みになっています。試験に合格した人材を、免許取得から乗務まで計画的に育てられます。',
+  why:[['試験合格済みの人材','評価試験＋日本語試験に合格','運転の知識・法令・安全の基礎を確認済み'],['免許は日本で取得','入国後、最長6か月の「特定活動」で外免切替','取得後に特定技能1号へ変更'],['合格者が増えている','評価試験の累計合格者は4,448人','うち約8割がトラック区分'],['いま動けば先行できる','受入れ見込数2.21万人に対し受入れは始まったばかり','早く始めた企業から人材を確保']],
+  workH:'自動車運送業の<br>対象業務（3区分）',workP:'「トラック」「タクシー」「バス」の3つの業務区分があります。BIGLIGHTはトラックを主力に、タクシー・バスもご相談に応じて対応します。',
+  work:[{h:'トラック（主力）',p:'事業用トラックの運転と、荷物の積み降ろしなどの付随業務。第一種運転免許で乗務できます。',items:['運行業務（運転）','荷役業務（積込み・荷降ろし）','乗務前後の点呼・日常点検','運転日報の記録']},{h:'タクシー・バス',p:'旅客の運送と、乗客への接遇。第二種運転免許の取得と新任運転者研修の修了が必要です。',items:['運行業務（運転）','接遇業務（乗客対応）','乗務前後の点呼・日常点検','運転日報の記録']},{h:'対象外・注意点',items:['派遣での受入れ（直接雇用のみ）','国際運転免許だけでの乗務','特定技能2号・育成就労（設けられていません）'],off:true}],
+  req:[['トラック（特定技能1号）','「自動車運送業分野特定技能1号評価試験（トラック）」＋ 日本語試験（JFT-Basic または JLPT N4以上）に合格。日本の第一種運転免許が必要で、入国後は在留資格「特定活動」（最長6か月・更新不可）の間に外免切替を行います。'],['タクシー・バス（特定技能1号）','各区分の評価試験 ＋ 日本語 JLPT N3以上（日本語サポーターが同乗する場合などはN4相当で可）。第二種運転免許の取得と新任運転者研修の修了が必要で、準備期間の「特定活動」は最長1年・更新不可です。'],['受入れ企業の要件','道路運送法に基づく自動車運送事業者であること、国土交通省の「自動車運送業分野特定技能協議会」の構成員になること、「働きやすい職場認証制度」の認証（トラックは「Gマーク」でも可）を取得していることなどが必要です。'],['特定技能2号','自動車運送業分野には、2026年10月時点で特定技能2号は設けられていません。在留期間は特定技能1号として通算最長5年です。']],
+  rulesLbl:'Transport Rules',rulesH:'自動車運送業だけの<br>「特別ルール」',rulesP:'免許・認証・研修など、他の分野にはない要件があります。準備に時間がかかるものもあるため、早めの確認が大切です。',
+  rules:[['① 協議会の構成員になる','必須','国土交通省が設置する「自動車運送業分野特定技能協議会」に加入します。加入の確認には約1か月かかります。支援を委託する登録支援機関も構成員であることが条件です。'],['② 働きやすい職場認証（Gマーク）','必須','「働きやすい職場認証制度」の認証を取得していること。トラック運送事業者は、「Gマーク」（安全性優良事業所）の認定でも要件を満たします。'],['③ 日本の運転免許','必須','国際運転免許だけでは乗務できません。トラックは第一種、タクシー・バスは第二種の免許が必要です。外免切替は2025年10月から知識確認が厳しくなっています。'],['④ 直接雇用のみ','必須','派遣での受入れは認められていません。受入れ企業が直接雇用し、日本人と同等以上の報酬とします。'],['⑤ 新任運転者研修','タクシー・バス','タクシー・バスでは、乗務の前に法令・接遇・地理・安全に関する新任運転者研修を修了する必要があります。'],['⑥ 日本語の研修','','乗務開始までの準備期間に、日本語の研修も行います。タクシー・バスでN4相当の人材を受け入れる場合は、日本語サポーターの同乗が条件になります。']],
+  roadH:'乗務開始までの<br>道のり',roadP:'入国後、日本の運転免許を取るまでは在留資格「特定活動」で準備します。この期間は更新できないため、逆算した計画が欠かせません。',
+  road:[{h:'トラック',s:'特定活動 最長6か月',steps:[['採用・雇用契約',''],['評価試験・日本語試験に合格',''],['「特定活動」で入国',''],['外免切替・日本語研修','最長6か月'],['特定技能1号へ変更',''],['乗務開始','']]},{h:'タクシー・バス',s:'特定活動 最長1年',steps:[['採用・雇用契約',''],['評価試験・日本語試験に合格',''],['「特定活動」で入国',''],['外免切替・第二種免許取得','約6か月'],['新任運転者研修',''],['特定技能1号へ変更',''],['乗務開始','']]}],
+  roadSrc:'出典：国土交通省「特定技能制度における自動車運送業分野の制度概要」。すでに日本の運転免許を持つ国内在住者は、特定活動を経ずに特定技能1号へ変更できる場合があります。',
+  careerLbl:'Step Up',careerH:'トラックドライバーの<br>ステップアップ',careerP:'特定技能1号の在留期間（通算最長5年）の中で、経験を積みながら運転できる車両を広げていけます。',
+  career:[['入社〜','普通免許','外免切替で取得','小型トラックで、配送・荷役の経験を積みます。'],['経験2年〜','中型免許','普通免許などの経験2年以上','中型トラックへ。運べる荷物と仕事の幅が広がります。'],['経験3年〜','大型免許','普通免許などの経験3年以上','大型トラックで長距離輸送も担える、中核のドライバーへ。']],
+  careerNote:'自動車運送業分野には、2026年10月時点で特定技能2号・育成就労は設けられていません。特定技能1号の在留は通算最長5年です。制度は改正されることがあるため、最新の情報は出入国在留管理庁・国土交通省の公表資料をご確認ください。',
+  flow:[['お問い合わせ','運ぶもの・車両・人数・時期を伺います。'],['受入れ要件の確認','協議会への加入、働きやすい職場認証（Gマーク）など、受入れの条件を確認します。'],['候補者のご紹介・面接','評価試験・日本語試験の合格者をご紹介し、オンライン等で面接を実施します。'],['内定・雇用契約','直接雇用で、日本人と同等以上の待遇の雇用契約を締結します。'],['「特定活動」の申請','免許を取るまでの準備期間の在留資格を申請します。書類作成は一括で代行します。'],['入国・免許の取得','住居や生活の立ち上げを支援し、外免切替と日本語研修に伴走します（トラックは最長6か月）。'],['特定技能1号へ変更','免許の取得後、特定技能1号への在留資格の変更を申請します。'],['乗務開始・定着支援','乗務開始後も、10項目の支援と定期面談で長く働ける環境を支えます。']],
+  faq:[['外国人に日本の運転免許は必要ですか？国際運転免許では働けませんか？','日本の運転免許が必要です。国際運転免許だけでは事業用の自動車に乗務できません。入国後、在留資格「特定活動」（トラックは最長6か月）の間に外免切替を行い、取得後に特定技能1号へ変更します。'],['タクシーやバスのドライバーも採用できますか？','採用できます。ただし第二種運転免許の取得と新任運転者研修が必要で、日本語はJLPT N3以上（日本語サポーターが同乗する場合などはN4相当で可）が求められ、準備期間も最長1年と長くなります。BIGLIGHTは要件がより明確なトラックから始めることをおすすめしています。'],['「働きやすい職場認証」を持っていません。受け入れられますか？','トラック運送事業者は「Gマーク」（安全性優良事業所）の認定でも要件を満たします。どちらもない場合は、先に認証の取得が必要です。取得までの進め方もご相談ください。'],['採用決定から乗務開始まで、どのくらいかかりますか？','トラックの場合、選考・在留資格の手続きに数か月、入国後の免許取得に最長6か月を見込み、合計でおおむね半年〜1年程度が目安です。国内在住で日本の免許をすでに持つ方は、さらに短くなる場合があります。'],['5年たったらどうなりますか？','2026年10月時点で、自動車運送業分野には特定技能2号が設けられていないため、特定技能1号の通算5年が上限です。制度の改正状況を見ながら、在留期限が近づいた段階で取りうる選択肢をご案内します。'],['対応エリアは？費用の目安は？','名古屋を拠点に全国の運送会社に対応します。費用は人数・支援範囲により異なり、無料でお見積りします。まずは無料相談をご利用ください。']]},
 ];
-const n2 = k => String(k+1).padStart(2,'0');
+const n2 =k => String(k+1).padStart(2,'0');
 const card4 = list => `<div class="flow f4">${list.map(([h,a,b],k)=>`<div><b>${n2(k)}</b><h3>${h}</h3><p>${a}<br>${b}</p></div>`).join('')}</div>`;
 const blkHead = (lbl,h,p) => `<div class="lbl">${lbl}</div><div class="two" style="margin-top:24px"><h2 style="font-size:36px">${h}</h2><div class="txt"><p>${p}</p></div></div>`;
 function fieldPage(f,i){ const r='../../../'; const prev=FIELDS[(i+FIELDS.length-1)%FIELDS.length], next=FIELDS[(i+1)%FIELDS.length];
@@ -2164,10 +2223,14 @@ ${f.routes?`<section class="blk"><div class="wrap">${blkHead('3 Routes',f.routes
   <h2 class="en long">Requirements<small class="ja-sub">取得要件</small></h2>
   <dl class="dl">${f.req.map(([t,d])=>`<div><dt>${t}</dt><dd>${d}</dd></div>`).join('')}</dl>
 </div></section>
-${f.rules?`<section class="blk"><div class="wrap">${blkHead('Construction Rules',f.rulesH,f.rulesP)}
+${f.rules?`<section class="blk"><div class="wrap">${blkHead(f.rulesLbl||'Construction Rules',f.rulesH,f.rulesP)}
   <div class="frules">${f.rules.map(([h,tag,p])=>`<div><h3>${h}${tag?`<span class="tg">${tag}</span>`:''}</h3><p>${p}</p></div>`).join('')}</div></div></section>`:''}
-<section class="blk"><div class="wrap">${blkHead('Career Path','育成就労 → 特定技能1号 → 2号','段階的にスキルを高めながら、長期的に活躍できる仕組みです。')}
+${f.road?`<section class="blk"><div class="wrap">${blkHead('Roadmap',f.roadH,f.roadP)}
+  <div class="froad">${f.road.map(l=>`<div class="ln"><div class="rh"><h3>${l.h}</h3><small>${l.s}</small></div><ol>${l.steps.map(([t,d],k)=>`<li class="${k===l.steps.length-1?'end':''}"><b>${k===l.steps.length-1?'GOAL':'STEP '+n2(k)}</b><span>${t}</span>${d?`<small>${d}</small>`:''}</li>`).join('')}</ol></div>`).join('')}</div>
+  ${f.roadSrc?`<p class="src">${f.roadSrc}</p>`:''}</div></section>`:''}
+<section class="blk"><div class="wrap">${blkHead(f.careerLbl||'Career Path',f.careerH||'育成就労 → 特定技能1号 → 2号',f.careerP||'段階的にスキルを高めながら、長期的に活躍できる仕組みです。')}
   <div class="fcareer">${f.career.map(([term,h,s,p])=>`<div><small>${term}</small><h3>${h}</h3><b>${s}</b><p>${p}</p></div>`).join('<i>→</i>')}</div>
+  ${f.careerNote?`<p class="fnote">${f.careerNote}</p>`:''}
 </div></section>
 <section class="blk"><div class="wrap">${blkHead('Our Support','BIGLIGHTの支援内容','法定の義務的支援10項目を含め、採用から定着までワンストップで代行します。')}
   <div class="sup10">${SUP10.map((t,k)=>`<div><b>${n2(k)}</b><span>${t}</span></div>`).join('')}</div>
