@@ -127,11 +127,10 @@ body.menu-open{overflow:hidden}
 /* hero (Guidable式 — 実測: h766 / title 80px lh104 ls8 y203 / lead 20px y451 / dots y531 / scroll x80) */
 .hero{position:relative;height:766px;padding:0 80px;overflow:hidden}
 .hero .tx{position:absolute;left:80px;top:170px;z-index:2}
-.hero h1{font-size:68px;line-height:92px;letter-spacing:6px;font-weight:700;color:var(--ink);white-space:nowrap}
-.hero .sub{font-family:var(--en);font-weight:500;letter-spacing:.8px;color:#6b7280;font-size:20px;margin-top:40px;text-transform:uppercase}
+.hero h1{font-size:80px;line-height:1.3;letter-spacing:.03em;font-weight:700;color:var(--ink);white-space:nowrap;-webkit-font-smoothing:auto;-moz-osx-font-smoothing:auto}
+.hero .sub{font-family:var(--en);font-weight:500;letter-spacing:.8px;color:#a5a5a5;-webkit-font-smoothing:auto;font-size:20px;margin-top:40px;text-transform:uppercase}
 .hero .dots{margin-top:40px;gap:40px}
-.hero .dots i{width:10px;height:10px;cursor:pointer;opacity:.25;transition:opacity .3s;animation:none!important}
-.hero .dots i.on{opacity:1}
+.hero .dots i{width:10px;height:10px;animation:none!important}
 /* khung ảnh: cao 766 + nghiêng 263 như Guidable; 10-12 CEO cho nới ngang: 3 dải lộ 370 (inner 1373 = bề ngang ảnh). JS đặt --hx = max(sát chữ, ảnh chạm mép phải màn), --dx giữ slide thiết bị đúng chỗ Guidable */
 .hero .vis{position:absolute;left:var(--hx,calc(100% - 990px * var(--gs,1)));top:0;width:1373px;height:766px;z-index:1;transform:scale(var(--gs,1));transform-origin:0 0}
 .hero .sl{position:absolute;inset:0}
@@ -1086,8 +1085,8 @@ a.telk{color:inherit;text-decoration:none}
 @media (max-width:860px){.crow{grid-template-columns:1fr 40px;gap:14px;padding:30px 0}.crow .cno,.crow .ct,.crow .ck{grid-column:1}.crow .circ40{grid-column:2;grid-row:1/4}.crow .ct{font-size:17px}.people{margin-top:60px;gap:10px}.people .ptrack img{width:240px;height:160px}}
 /* responsive */
 @media (max-width:1740px) and (min-width:861px){
-  .hero h1{font-size:clamp(48px,4.9vw,68px);line-height:1.35;letter-spacing:.09em}
-  .hero .sub{font-size:clamp(15px,1.55vw,20px)}
+  .hero h1{font-size:min(80px,5.556vw);line-height:1.3;letter-spacing:.03em}
+  .hero .sub{font-size:min(20px,1.389vw)}
 }
 @media (max-width:1100px){
   .sec-head{grid-template-columns:260px 1fr}
@@ -1104,7 +1103,7 @@ a.telk{color:inherit;text-decoration:none}
   /* ảnh hero điện thoại/iPad dọc: khung 1373×766 thu theo w/1120 (cao hơn ~23%), cắt bớt 130px mép trái + phần mép phải (CEO 10-12: ảnh dài ra) */
   .hero{height:auto;padding:28px 20px 0;overflow:hidden}
   .hero .tx{position:static}
-  .hero h1{white-space:nowrap;font-size:min(9.6vw,58px);line-height:1.32;letter-spacing:.08em}
+  .hero h1{white-space:nowrap;font-size:min(10.9vw,58px);line-height:1.3;letter-spacing:.03em}
   .hero .sub{font-size:min(3.3vw,16px);margin-top:16px}
   .hero .dots{margin-top:22px;gap:30px}
   .hero .vis{position:relative;left:auto;top:auto;width:1373px;height:766px;margin:24px 0 0 calc(-20px - 130px * var(--hs,.35));transform:scale(var(--hs,.42));transform-origin:0 0;margin-bottom:calc(766px * (var(--hs,.42) - 1))}
@@ -1203,11 +1202,10 @@ const js = `
     [].forEach.call(tabs,function(t){t.addEventListener('click',function(){sel(t.id,true);});});
     var fromHash=function(){if(location.hash==='#request')sel('t-dl');};fromHash();addEventListener('hashchange',fromHash);}
   /* hero slider */
-  var hs=document.querySelectorAll('.hero .sl'),hd=document.querySelectorAll('.hero .dots i');
-  if(hs.length){var hc=0,ht;function hgo(n){var old=hs[hc];old.classList.remove('on');old.classList.add('out');hd[hc].classList.remove('on');hc=(n+hs.length)%hs.length;var nw=hs[hc];hd[hc].classList.add('on');setTimeout(function(){old.classList.remove('out');nw.classList.add('on');},1450);}
+  var hs=document.querySelectorAll('.hero .sl');
+  if(hs.length){var hc=0,ht;function hgo(n){var old=hs[hc];old.classList.remove('on');old.classList.add('out');hc=(n+hs.length)%hs.length;var nw=hs[hc];setTimeout(function(){old.classList.remove('out');nw.classList.add('on');},1450);}
     /* lần đầu: ảnh vào lúc 3.4s như Guidable */
     hs[0].classList.remove('on');setTimeout(function(){hs[0].classList.add('on');},matchMedia('(prefers-reduced-motion: reduce)').matches?0:2700);
-    hd.forEach(function(d,i){d.addEventListener('click',function(){hgo(i);clearInterval(ht);ht=setInterval(function(){hgo(hc+1);},4200);});});
     if(!matchMedia('(prefers-reduced-motion: reduce)').matches) setTimeout(function(){ht=setInterval(function(){hgo(hc+1);},4200);},2700);}
   /* v8: parallax ảnh khi cuộn */
   var pars=[].slice.call(document.querySelectorAll('.cul .ph-col img, .pic .main img, .slant .s img, .msg-photo'));
@@ -1396,7 +1394,7 @@ function home(){ const r='./'; return page({root:r,home:true,title:'BIGLIGHT株�
   <div class="tx">
     <h1>日本の成長を、<br>もっと<br>グローバルに。</h1>
     <p class="sub">Powering Japan’s Growth, Globally.</p>
-    <div class="dots"><i class="on"></i><i></i><i></i></div>
+    <div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   </div>
   <div class="vis">
     ${heroSlide('<img class="mt" src="'+r+'img/hero-meeting5.jpg" width="1600" height="892" alt="経営計画を共有するBIGLIGHTの社内会議">', true)}
@@ -1407,8 +1405,9 @@ function home(){ const r='./'; return page({root:r,home:true,title:'BIGLIGHT株�
   <script>(function(){var d=document.documentElement;function f(){var w=d.clientWidth;d.style.setProperty('--hs',Math.min(1,w/1120));
   /* PC: như Guidable — cỡ thật từ 1440px, hẹp hơn thì thu theo w/1440 */
   var g=w>860?Math.min(1,w/1440):1;d.style.setProperty('--gs',g.toFixed(4));
+  /* 10-17: đo từng chữ, 、。 chỉ tính nửa trái (phần có nét) */
   /* 10-12: khung nới sang trái tới sát chữ (mép chéo cách chữ 28px) để thấy nhiều người hơn; thiết bị dời +174 nên vẫn đúng chỗ Guidable */
-  if(w>860){var hero=document.querySelector('.hero'),top=hero.getBoundingClientRect().top,L=w-1374*g;[].forEach.call(document.querySelectorAll('.hero h1,.hero .sub'),function(e){var r=document.createRange();r.selectNodeContents(e);[].forEach.call(r.getClientRects(),function(q){var y=q.top+q.height/2-top;L=Math.max(L,q.right+28-263*g+.3433*y);});});d.style.setProperty('--hx',L.toFixed(0)+'px');d.style.setProperty('--dx',Math.min(400,(w-816*g-L)/g).toFixed(0)+'px');}}
+  if(w>860){var hero=document.querySelector('.hero'),top=hero.getBoundingClientRect().top,L=w-1374*g;var tw=document.createTreeWalker(document.querySelector('.hero h1'),NodeFilter.SHOW_TEXT),r=document.createRange(),n,k,q,y;function e(q,x){y=q.top+q.height/2-top;L=Math.max(L,x+28-263*g+.3433*y);}while(n=tw.nextNode())for(k=0;k<n.length;k++){r.setStart(n,k);r.setEnd(n,k+1);q=r.getBoundingClientRect();if(q.width)e(q,/[、。]/.test(n.data[k])?q.left+q.width*.5:q.right);}r.selectNodeContents(document.querySelector('.hero .sub'));[].forEach.call(r.getClientRects(),function(q){e(q,q.right);});d.style.setProperty('--hx',L.toFixed(0)+'px');d.style.setProperty('--dx',Math.min(400,(w-816*g-L)/g).toFixed(0)+'px');}}
   f();addEventListener('resize',f);if(document.fonts)document.fonts.ready.then(f);})();</script>
 </section>
 
