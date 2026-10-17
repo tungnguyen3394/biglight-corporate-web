@@ -1677,7 +1677,7 @@ function recruit(){ const r='../'; return page({root:r,title:'採用情報｜BIG
 ${pageHead('Recruit','採用情報')}
 <section><div class="wrap lead-end">
   <p class="lead28">日本と世界をつなぐ仕事を、<br>一緒に。</p>
-  <p class="lead16">ベトナム・インドネシア・ミャンマー・ネパールなど、さまざまな国の人材と企業をつなぐ仕事を、BIGLIGHTで。若く、国際的なチームで成長できる環境です。法人営業・ルート営業・外国人管理支援スタッフを募集しています。</p>
+  <p class="lead16">ベトナム・インドネシア・ミャンマー・ネパールなど、さまざまな国の人材と企業をつなぐ仕事を、BIGLIGHTで。若く、国際的なチームで成長できる環境です。法人営業・ルート営業・外国人管理支援スタッフを募集しています。<br><b>国籍不問。日本・ベトナムに加え、インドネシア・ネパールなど、さまざまな国籍の方を歓迎します。</b></p>
   <div style="margin-top:40px;display:flex;gap:20px;flex-wrap:wrap">${pill('募集要項を見る','#req')}${pill('先輩の声を見る','#voice')}</div>
 </div></section>
 
@@ -1720,6 +1720,7 @@ ${pageHead('Recruit','採用情報')}
     <div><dt>受動喫煙対策</dt><dd>屋内禁煙</dd></div>
     <div><dt>給与</dt><dd>月給 210,000〜350,000円（経験・能力により決定）<br>年2回の賞与あり</dd></div>
     <div><dt>各種手当</dt><dd><ul><li>住宅手当：月20,000円</li><li>交通費全額支給（実費）</li><li>会社支給：ノートパソコン、携帯電話</li></ul></dd></div>
+    <div><dt>募集対象</dt><dd>国籍不問<br>日本・ベトナム・インドネシア・ネパール・ミャンマーなど、さまざまな国籍の方を歓迎します。母国語（インドネシア語・ネパール語など）を活かして働きたい方も大歓迎です。</dd></div>
     <div><dt>応募条件</dt><dd><ul><li>Google Workspace（Docs, Sheets, Forms など）が使用できる方</li><li>責任感があり、チームワークを大切にできる方</li><li>外国籍の方：日本語N2以上、日本の専門学校または大学卒業（同等レベル可）</li></ul></dd></div>
     <div><dt>福利厚生</dt><dd><ul><li>社会保険・雇用保険・労災保険完備</li><li>昇進・キャリアアップのチャンス</li></ul></dd></div>
     <div><dt>応募方法</dt><dd>お電話またはお問い合わせフォームよりご連絡ください。担当者が対応いたします。<br><a class="telk" href="tel:0529087944"><b style="font-family:var(--en);font-size:20px;letter-spacing:.04em">052-908-7944</b></a><br><small style="display:block;margin-top:10px;font-size:13px;color:var(--grey)">ご応募にあたりご提供いただいた個人情報は、<a href="${r}privacy/index.html" style="color:var(--accent);text-decoration:underline">プライバシーポリシー</a>に基づき、採用選考の目的にのみ利用します。</small></dd></div>
