@@ -2451,7 +2451,7 @@ function privacy(){ const r='../'; const src=fs.readFileSync(path.join(__dirname
     .replace(/<h2>(\d+)\. /g, (m,n)=>'<h2>'+(+n>=7?+n+1:+n)+'. ')
     .replace('<h2>8. 個人情報の開示', '<h2>8. 個人情報の開示')
     .replace(/(<h2>8\. 個人情報の開示)/, FOREIGN_SEC+'\n      $1')
-    .replace(/改定日：\d{4}年\d{1,2}月\d{1,2}日/, '改定日：2026年10月16日');
+    .replace(/改定日：\d{4}年\d{1,2}月\d{1,2}日/, '改定日：2026年10月20日');
   if(!body.includes('pv-foreign')||!body.includes('pv-safe')) throw new Error('privacy: không thêm được mục 安全管理 / 外国');
   if(!body.includes('pv-ext')) throw new Error('privacy: không thay được mục 8 (Cookie)');
   return page({root:r,title:'プライバシーポリシー｜BIGLIGHT株式会社',desc:'BIGLIGHT株式会社の個人情報保護方針（プライバシーポリシー）です。',body:`
