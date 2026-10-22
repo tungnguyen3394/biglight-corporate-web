@@ -10,7 +10,7 @@ const ORG = {
   url: 'https://biglight.jp/',
   logo: 'https://biglight.jp/img/logo.png',
   image: 'https://biglight.jp/img/ogp.jpg',
-  sameAs: ['https://www.facebook.com/biglight0812/', 'https://www.instagram.com/biglight0812/'],
+  sameAs: ['https://www.facebook.com/biglight0812/', 'https://www.instagram.com/biglight_0812/', 'https://www.threads.com/@biglight_0812', 'https://x.com/biglight_jp'],
   telephone: '+81-52-908-7944',
   faxNumber: '+81-52-908-7267',
   foundingDate: '2021-08-12',

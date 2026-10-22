@@ -34,13 +34,15 @@ for (const [s,d] of Object.entries(copies)) {
 // Địa chỉ mạng xã hội. Để trống = nút đó KHÔNG hiện (tránh link chết). X: https://x.com/<tên>, WhatsApp: https://wa.me/<số quốc tế không dấu +>
 const SNS = [
   { k:'fb', name:'Facebook',  url:'https://www.facebook.com/biglight0812/' },
-  { k:'ig', name:'Instagram', url:'https://www.instagram.com/biglight0812/' },
-  { k:'x',  name:'X',         url:'https://x.com/biglight_jp' },
+  { k:'ig', name:'Instagram', url:'https://www.instagram.com/biglight_0812/' },
+  { k:'th', name:'Threads',   url:'https://www.threads.com/@biglight_0812' },
+  { k:'x', name:'X',         url:'https://x.com/biglight_jp' },
   { k:'wa', name:'WhatsApp',  url:'https://wa.me/message/SUQMJ5KHTSQVA1' },
 ];
 const SNS_ICON = {
   fb:'<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="16" fill="#1877F2"/><path fill="#fff" d="M22.2 20.6l.7-4.6h-4.4v-3c0-1.3.6-2.5 2.6-2.5h2V6.6s-1.8-.3-3.6-.3c-3.6 0-6 2.2-6 6.2V16h-4v4.6h4V32a16 16 0 0 0 5 0V20.6z"/></svg>',
   ig:'<svg viewBox="0 0 32 32" aria-hidden="true"><defs><radialGradient id="igg" cx="30%" cy="107%" r="150%"><stop offset="0" stop-color="#fdf497"/><stop offset=".05" stop-color="#fdf497"/><stop offset=".45" stop-color="#fd5949"/><stop offset=".6" stop-color="#d6249f"/><stop offset=".9" stop-color="#285AEB"/></radialGradient></defs><rect width="32" height="32" rx="8" fill="url(#igg)"/><rect x="7" y="7" width="18" height="18" rx="5.5" fill="none" stroke="#fff" stroke-width="2.2"/><circle cx="16" cy="16" r="4.4" fill="none" stroke="#fff" stroke-width="2.2"/><circle cx="21.4" cy="10.6" r="1.4" fill="#fff"/></svg>',
+  th:'<svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#000"/><path fill="#fff" transform="translate(7 7) scale(.75)" d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg>',
   x:'<svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#000"/><path fill="#fff" d="M18.2 14.6 25.5 6h-1.7l-6.4 7.4L12.3 6H6.5l7.7 11.2L6.5 26h1.7l6.8-7.8 5.4 7.8h5.8zm-2.4 2.7-.8-1.1L8.9 7.3h2.7l5 7.1.8 1.1 6.5 9.2h-2.7z"/></svg>',
   wa:'<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="16" fill="#25D366"/><path fill="#fff" d="M16 6.4a9.6 9.6 0 0 0-8.3 14.4L6.4 25.6l4.9-1.3A9.6 9.6 0 1 0 16 6.4zm0 17.5a7.9 7.9 0 0 1-4-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A7.9 7.9 0 1 1 16 23.9zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg>',
 };
@@ -896,7 +898,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 .ft .sns a svg{width:28px;height:28px;flex:none;display:block}
 .ft .sns a span{font-family:var(--en);font-size:15px;font-weight:700;letter-spacing:.02em}
 .ft .sns a:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(11,42,102,.10)}
-.ft .sns .sn-fb:hover{border-color:#1877F2}.ft .sns .sn-ig:hover{border-color:#d6249f}.ft .sns .sn-x:hover{border-color:#000}.ft .sns .sn-wa:hover{border-color:#25D366}
+.ft .sns .sn-fb:hover{border-color:#1877F2}.ft .sns .sn-ig:hover{border-color:#d6249f}.ft .sns .sn-th:hover{border-color:#000}.ft .sns .sn-x:hover{border-color:#000}.ft .sns .sn-wa:hover{border-color:#25D366}
 .ft .fnavl a{font-family:var(--en);font-size:13px;font-weight:700;letter-spacing:.1em}
 .ft .fnavl a:hover{color:var(--accent)}
 .ft .bot{border-top:1px solid var(--line);margin-top:26px;padding-top:18px;display:flex;justify-content:space-between;align-items:center;gap:12px 28px;flex-wrap:wrap;font-size:12px}
