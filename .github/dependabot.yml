@@ -1,0 +1,11 @@
+# 2026-10-24: chỉ PR vá bảo mật (open-pull-requests-limit: 0). npm = puppeteer-core (công cụ chụp, không chạy trên web).
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule: { interval: weekly }
+    open-pull-requests-limit: 0
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: { interval: weekly }
+    open-pull-requests-limit: 0
