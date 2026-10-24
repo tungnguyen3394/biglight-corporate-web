@@ -2360,6 +2360,7 @@ const COOKIE_SEC = `<h2>8. Cookie・外部送信について</h2>
           <tr><td>広告・マーケティング</td><td>Google マップ（Google LLC）</td><td>IPアドレス、ブラウザの種類、閲覧ページのURL、Google社のCookie</td><td>所在地の地図の表示</td></tr>
         </tbody>
       </table></div>
+      <p>営業メールのリンクから来た訪問について、参照番号・見たページ・滞在時間を当社のシステムに記録します（Cookie は使いません）。</p>
       <p>同意の内容はお客様のブラウザ（保存期間1年）に、閲覧した記事の情報はブラウザのタブを閉じるまでの間に限り保存します。各外部サービスにおける情報の取扱いは、各社のプライバシーポリシーをご確認ください。</p>`;
 /* 2026-10-12: サイト利用規約（コーポレートサイト用。JOB・Academy の利用規約とは別物） */
 function terms(){ const r='../'; return page({root:r,title:'サイトご利用にあたって（利用規約）｜BIGLIGHT株式会社',desc:'BIGLIGHT株式会社のウェブサイトをご利用いただく際の利用条件（著作権・免責事項・リンク・禁止事項など）です。',body:`
@@ -2453,7 +2454,7 @@ function privacy(){ const r='../'; const src=fs.readFileSync(path.join(__dirname
     .replace(/<h2>(\d+)\. /g, (m,n)=>'<h2>'+(+n>=7?+n+1:+n)+'. ')
     .replace('<h2>8. 個人情報の開示', '<h2>8. 個人情報の開示')
     .replace(/(<h2>8\. 個人情報の開示)/, FOREIGN_SEC+'\n      $1')
-    .replace(/改定日：\d{4}年\d{1,2}月\d{1,2}日/, '改定日：2026年10月20日');
+    .replace(/改定日：\d{4}年\d{1,2}月\d{1,2}日/, '改定日：2026年10月25日');   // 2026-10-25: 営業メールのリンクから来た訪問の記録（8. の 1 行）
   if(!body.includes('pv-foreign')||!body.includes('pv-safe')) throw new Error('privacy: không thêm được mục 安全管理 / 外国');
   if(!body.includes('pv-ext')) throw new Error('privacy: không thay được mục 8 (Cookie)');
   return page({root:r,title:'プライバシーポリシー｜BIGLIGHT株式会社',desc:'BIGLIGHT株式会社の個人情報保護方針（プライバシーポリシー）です。',body:`

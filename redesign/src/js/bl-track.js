@@ -42,17 +42,45 @@ var BLT=(function(){
   }
   function withUtm(o){var t=utm();for(var k in t)o[k]=t[k];return o;}
   if(isArticle)later(function(){store('bl_src',path);post(withUtm({e:'view',p:path}));});
-  /* フォーム営業のリンク（?bl=BL-XXXXXX）から来たら、どの会社が開いたかを CRM に知らせる（2026-10-07）。
-     番号だけを送り、すぐにアドレス欄から消す（共有・ブックマークに残さない） */
-  try{
-    var qs=new URLSearchParams(location.search), bl=(qs.get('bl')||'').toUpperCase();
-    if(/^BL-[A-Z0-9]{6}$/.test(bl)){
-      var fb=JSON.stringify({r:bl,p:path}), FAPI='https://api-crm.biglight.jp/formbot/c';
-      later(function(){if(!(navigator.sendBeacon&&navigator.sendBeacon(FAPI,fb)))fetch(FAPI,{method:'POST',body:fb,keepalive:true,mode:'no-cors'}).catch(function(){});});
-      qs.delete('bl'); var rest=qs.toString();
-      history.replaceState(history.state,'',path+(rest?'?'+rest:'')+location.hash);
+  /* フォーム営業のリンク（?bl=BL-XXXXXX）から来た訪問（2026-10-07・2026-10-25 改）。
+     ・同意を待たずに すぐ送る（送るのは 参照番号・パス・見えていた時間・動かした %・操作の有無・webdriver の印だけ。Cookie・保存領域は使わない・第三者へは送らない）。
+     ・番号は すぐアドレス欄から消す（共有・ブックマークに残さない）。同じ訪問の 次のページへは 押した内部リンクに bl（と blk=p）を付けて渡すだけ。
+     ・k: open = 開いた ／ page = 同じ訪問の次のページ ／ dwell = 隠れる・離れるとき（ms はその間に見えていた分だけ）。
+     ・配信停止のページ（/optout/）は 送らない（止めに来た人を「見ています」と数えない）。 */
+  (function(){
+    var FAPI='https://api-crm.biglight.jp/formbot/c', ref='', kind='open';
+    try{
+      var qs=new URLSearchParams(location.search), b=(qs.get('bl')||'').toUpperCase();
+      if(/^BL-[A-Z0-9]{6}$/.test(b)){
+        ref=b; if(qs.get('blk')==='p') kind='page';
+        qs.delete('bl'); qs.delete('blk'); var rest=qs.toString();
+        history.replaceState(history.state,'',path+(rest?'?'+rest:'')+location.hash);
+      }
+    }catch(e){}
+    if(!ref||/^\/optout(\/|$)/.test(path)) return;
+    function beat(o){o.r=ref;o.p=path;try{var s=JSON.stringify(o);if(navigator.sendBeacon&&navigator.sendBeacon(FAPI,s))return;fetch(FAPI,{method:'POST',body:s,keepalive:true,mode:'no-cors'}).catch(function(){});}catch(e){}}
+    var wd=navigator.webdriver===true?1:0;
+    beat({k:kind,wd:wd});
+    /* 滞在: 見えている間だけ数える。隠れる・離れるたびに その間の分（差分）を送る */
+    var since=document.visibilityState==='hidden'?0:Date.now(), sc=0, ia=0;
+    function scroll(){try{var h=document.documentElement,room=Math.max(h.scrollHeight,document.body?document.body.scrollHeight:0)-window.innerHeight;if(room>0){var p=Math.round(Math.min(1,Math.max(0,(window.scrollY||h.scrollTop||0)/room))*100);if(p>sc)sc=p;}}catch(e){}}
+    window.addEventListener('scroll',scroll,{passive:true});
+    ['pointerdown','keydown','touchstart','mousemove'].forEach(function(t){window.addEventListener(t,function(){ia=1;},{passive:true,once:true});});
+    function flush(){if(!since)return;var ms=Date.now()-since;since=0;beat({k:'dwell',ms:ms,sc:sc,ia:ia,wd:wd});}
+    document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')flush();else if(!since)since=Date.now();});
+    window.addEventListener('pagehide',flush);
+    /* 同じ訪問の次のページ: 押した内部リンクにだけ bl を付ける（同じページの #・ファイル・よそのサイトは付けない） */
+    function tag(e){
+      var a=e.target&&e.target.closest?e.target.closest('a[href]'):null;if(!a)return;
+      var u;try{u=new URL(a.getAttribute('href'),location.href);}catch(x){return;}
+      if(u.origin!==location.origin||!/^https?:$/.test(u.protocol))return;
+      if(u.pathname===location.pathname&&u.search===location.search&&u.hash)return;
+      if(/\.(pdf|zip|jpe?g|png|webp|gif|svg|xlsx?|docx?|pptx?|csv)$/i.test(u.pathname)||/^\/optout(\/|$)/.test(u.pathname)||u.searchParams.has('bl'))return;
+      u.searchParams.set('bl',ref);u.searchParams.set('blk','p');
+      a.setAttribute('href',u.pathname+u.search+u.hash);
     }
-  }catch(e){}
+    document.addEventListener('click',tag,true);document.addEventListener('auxclick',tag,true);
+  })();
   /* 押したボタンの名前。問い合わせ・資料・電話・LINE・求人・記事内の CTA だけを数える（ほかのリンクは数えない） */
   function ctaLabel(el){
     var href=el.getAttribute('href')||'';
