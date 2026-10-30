@@ -324,7 +324,7 @@ module.exports = function profile({ page, pageHead, aboutTabs, pill, AICHI_SDGS 
   const js = `<script>(function(){var st=document.querySelector('.cp-stack');if(!st)return;function fit(){var w=st.clientWidth;if(!w)return;st.style.setProperty('--cp-s',Math.min(1,w/1200));}fit();addEventListener('resize',fit);if(window.ResizeObserver)new ResizeObserver(fit).observe(st);})();</script>`;
 
   return page({ root: r, title: '会社案内｜BIGLIGHT株式会社', desc: 'BIGLIGHT株式会社の会社案内。', body: `
-${pageHead('We are', '私たちについて', aboutTabs(r, 'profile'))}
+${pageHead('We are', '私たちについて', aboutTabs(r, 'company'))}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap&text=NguyenThanhTung%20">
 ${css}
 <section class="cp"><div class="wrap">
