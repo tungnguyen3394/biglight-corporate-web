@@ -73,6 +73,8 @@ const JOBS = {
     qualifications: '日本語能力試験 N2以上、大学卒業', directApply: false,
   },
 };
+// Trang không công khai trên Google / sitemap (chỉ vào bằng nút trong trang): 会社案内 (CEO 2026-10-30)
+const NOINDEX = new Set(['about/profile/']);
 const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const strip = (h) => h.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 
@@ -142,7 +144,7 @@ module.exports = function seo(pages, { OUT, SITE, ARTICLES, WEBP = {} }) {
       `<meta name="format-detection" content="telephone=no">`,
       `<script type="application/ld+json">${ld.replace(/</g, '\\u003c')}</script>`,
     ].join('\n');
-    html = html.replace('<!--SEO-->', head);
+    html = html.replace('<!--SEO-->', (NOINDEX.has(dir) ? '<meta name="robots" content="noindex">\n' : '') + head);
 
     // 4) ảnh ngoài màn hình đầu: lazy-load + decode async (ảnh hero giữ tải ngay)
     const heroEnd = html.indexOf('</section>', html.indexOf('<section class="hero">'));
@@ -150,7 +152,7 @@ module.exports = function seo(pages, { OUT, SITE, ARTICLES, WEBP = {} }) {
 
     fs.mkdirSync(path.dirname(path.join(OUT, f)), { recursive: true });
     fs.writeFileSync(path.join(OUT, f), html);
-    urls.push({ loc: url, pri: dir === '' ? '1.0' : (segs.length === 1 ? '0.8' : '0.6'), lastmod: art ? (art.mod > art.date ? art.mod : art.date).replace(/\./g, '-') : '' });
+    if (!NOINDEX.has(dir)) urls.push({ loc: url, pri: dir === '' ? '1.0' : (segs.length === 1 ? '0.8' : '0.6'), lastmod: art ? (art.mod > art.date ? art.mod : art.date).replace(/\./g, '-') : '' });
   }
 
   // 5) sitemap + robots (bản chính thức; bản xem trước bị chặn bằng X-Robots-Tag ở Caddy)
