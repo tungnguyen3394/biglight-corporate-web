@@ -14,7 +14,7 @@ module.exports = function profile({ page, pageHead, aboutTabs, pill, AICHI_SDGS 
   const sheets = [
     // 01 表紙 — 3 dải xiên của hero trang chủ, màu phẳng thay ảnh
     sheet(1, 'cp-cover', `
-      <img class="cp-wm" src="${r}img/wordmark.png" alt="BIGLIGHT" width="1014" height="175">
+      <div class="cp-logo"><img src="${r}img/mark.png" alt="" width="1014" height="971"><img class="cp-lw" src="${r}img/wordmark.png" alt="BIGLIGHT株式会社" width="1014" height="175"></div>
       <div class="cp-big">外国人材の採用を、<br>紹介から定着まで。</div>
       <div class="cp-sub">BIGLIGHT株式会社 会社案内</div>
       ${dots}
@@ -151,7 +151,7 @@ module.exports = function profile({ page, pageHead, aboutTabs, pill, AICHI_SDGS 
 
     // 09 お問い合わせ
     sheet(9, '', `
-      <img class="cp-wm2" src="${r}img/wordmark.png" alt="BIGLIGHT" width="1014" height="175">
+      <div class="cp-logo cp-logo-s"><img src="${r}img/mark.png" alt="" width="1014" height="971"><img class="cp-lw" src="${r}img/wordmark.png" alt="BIGLIGHT株式会社" width="1014" height="175"></div>
       <div class="cp-cbox"><div><div class="cp-en cp-c50">Contact</div><div class="cp-jl">お問い合わせ・無料相談</div><p class="cp-ds">採用人数・職種・時期が未定でも構いません。まずはお気軽にご相談ください。</p></div><span class="cp-circ">→</span></div>
       <div class="cp-ctel">
         <div>
@@ -194,8 +194,12 @@ module.exports = function profile({ page, pageHead, aboutTabs, pill, AICHI_SDGS 
 .cp-pn{position:absolute;left:72px;right:72px;bottom:26px;display:flex;justify-content:space-between;align-items:center;font:500 10.5px/1 Roboto,sans-serif;letter-spacing:.16em;color:var(--cp-grey)}
 .cp-no{font:500 11px/2.4 Roboto,sans-serif;letter-spacing:.14em;color:var(--cp-grey)}
 /* 01 */
-.cp-wm{height:36px;width:auto;position:relative;z-index:1}
-.cp-big{font-size:54px;font-weight:700;letter-spacing:.04em;line-height:1.55;margin-top:150px;position:relative;z-index:1}
+/* logo = biểu tượng + chữ, cùng tỉ lệ với header web (44 : 15) */
+.cp-logo{display:flex;align-items:center;gap:16px;position:relative;z-index:1}
+.cp-logo img{height:80px;width:auto}
+.cp-logo img.cp-lw{height:27px}
+.cp-logo-s{gap:12px}.cp-logo-s img{height:52px}.cp-logo-s img.cp-lw{height:18px}
+.cp-big{font-size:54px;font-weight:700;letter-spacing:.04em;line-height:1.55;margin-top:104px;position:relative;z-index:1}
 .cp-sub{font-size:15px;color:var(--cp-grey);margin:18px 0 30px;letter-spacing:.08em}
 .cp-cover>.cp-dots{gap:24px}.cp-cover>.cp-dots i{width:9px;height:9px}
 .cp-lic{position:absolute;left:72px;right:540px;bottom:64px;border-top:1px solid var(--cp-line);padding-top:22px;font-size:12.5px;line-height:1.9;color:var(--cp-ink2);letter-spacing:.04em}
@@ -287,7 +291,6 @@ module.exports = function profile({ page, pageHead, aboutTabs, pill, AICHI_SDGS 
 .cp-two p{font-size:13px;line-height:1.9;color:var(--cp-ink2);margin-top:4px}
 .cp-two span{display:block;font:500 12px/1.6 Roboto,sans-serif;letter-spacing:.06em;color:var(--cp-navy);margin-top:6px}
 /* 09 */
-.cp-wm2{height:30px;width:auto}
 .cp-cbox{border:1px solid var(--cp-ink);padding:48px 56px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;margin-top:36px}
 .cp-cbox .cp-ds{margin-top:10px}
 .cp-circ{width:44px;height:44px;border-radius:50%;background:var(--cp-navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px}
