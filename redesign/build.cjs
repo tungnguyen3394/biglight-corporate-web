@@ -15,7 +15,7 @@ const copies = {
   'img/desk-academy.jpg':'img/desk-academy.jpg','img/desk-job.jpg':'img/desk-job.jpg','img/shot-portal-916.jpg':'img/shot-portal.jpg','img/shot-academy.jpg':'img/shot-academy.jpg','img/shot-job.jpg':'img/shot-job.jpg',
   'badges/apple-ja.svg':'img/badge-appstore.svg','badges/google-ja.png':'img/badge-googleplay.png',
 };
-Object.assign(copies,{'img/logo-s.webp':'img/logo-s.webp','img/hero-meeting5.jpg':'img/hero-meeting5.jpg','img/recruit-team.jpg':'img/recruit-team.jpg','img/svc-ssw2.jpg':'img/svc-ssw2.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/field-unso.jpg':'img/field-unso.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','img/aichi-sdgs-partners.jpg':'img/aichi-sdgs-partners.jpg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
+Object.assign(copies,{'img/logo-s.webp':'img/logo-s.webp','img/hero-meeting5.jpg':'img/hero-meeting5.jpg','img/recruit-team.jpg':'img/recruit-team.jpg','img/svc-ssw2.jpg':'img/svc-ssw2.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/field-unso.jpg':'img/field-unso.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','img/aichi-sdgs-partners.jpg':'img/aichi-sdgs-partners.jpg','img/qr-contact.svg':'img/qr-contact.svg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
 fs.mkdirSync(path.join(OUT,'img/sdg'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/sdg')).filter(f=>f.endsWith('.png')))fs.copyFileSync(path.join(__dirname,'src/img/sdg',f),path.join(OUT,'img/sdg',f));
 fs.mkdirSync(path.join(OUT,'img/people'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/people')).filter(f=>f.endsWith('.webp')))fs.copyFileSync(path.join(__dirname,'src/img/people',f),path.join(OUT,'img/people',f));
 { let out='';const N=34,S=80;const A=t=>330+110*Math.sin(t*Math.PI*1.9+0.2)-210*t, B=t=>330+110*Math.sin(t*Math.PI*1.9+2.9)-210*t+70*Math.sin(t*Math.PI);
@@ -1281,6 +1281,7 @@ function page({root, title, desc, body, active, home}) {
           <a href="${r}about/message/index.html">Message</a>
           <a href="${r}about/strength/index.html">Strength</a>
           <a href="${r}about/company/index.html">Company</a>
+          <a href="${r}about/profile/index.html">Profile</a>
         </div></div>
       </div>
       <a href="${r}service/index.html">SERVICE</a>
@@ -1292,7 +1293,7 @@ function page({root, title, desc, body, active, home}) {
     <button class="burger" type="button" aria-label="MENU（メニューを開く）" aria-expanded="false" aria-controls="mnav"><span class="sq"><i></i><i></i><i></i><i></i></span><span class="mt">MENU</span></button>
   </header>
   <div class="mnav" id="mnav">
-    <details><summary><b>ABOUT</b><small>私たちについて</small><i></i></summary><div class="sub"><a href="${r}about/index.html">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a></div></details>
+    <details><summary><b>ABOUT</b><small>私たちについて</small><i></i></summary><div class="sub"><a href="${r}about/index.html">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/profile/index.html">Profile</a></div></details>
     <details><summary><b>SERVICE</b><small>事業内容</small><i></i></summary><div class="sub"><a href="${r}service/index.html">Overview</a><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}case/index.html">Case</a></div></details>
     <a class="mi" href="${r}product/index.html"><b>PRODUCT</b><small>アプリ</small></a>
     <a class="mi" href="${r}news/index.html"><b>NEWS</b><small>お知らせ</small></a>
@@ -1306,7 +1307,7 @@ function page({root, title, desc, body, active, home}) {
       <div class="fb"><a class="logo" href="${r}index.html"><img src="${r}img/logo-s.webp" alt="" width="44" height="44"><img class="wm" src="${r}img/wordmark.png" alt="BIGLIGHT"></a>
         <p class="addr">〒462-0007 愛知県名古屋市北区如意一丁目112 A<span class="tel">　TEL <a class="telk" href="tel:0529087944">052-908-7944</a>　FAX 052-908-7267</span></p>
         ${snsHtml()}${glbHtml()}${AICHI_SDGS.on?`<a class="sdgp" href="${AICHI_SDGS.url}"><img src="${r}img/aichi-sdgs-partners.jpg" alt="${AICHI_SDGS.alt}" width="1195" height="219" loading="lazy"></a>`:''}</div>
-      <nav class="fsite" aria-label="サイトマップ"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}service/field/unso/index.html">Transportation</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a><a href="${r}recruit/hcmc/index.html">Ho Chi Minh</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}contact/index.html#request">Request</a></div></nav>
+      <nav class="fsite" aria-label="サイトマップ"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/profile/index.html">Profile</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}service/field/unso/index.html">Transportation</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a><a href="${r}recruit/hcmc/index.html">Ho Chi Minh</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}contact/index.html#request">Request</a></div></nav>
       <div class="fmap"><div class="fmap-ph"><p>地図を表示すると、Google社のCookieが使用される場合があります。</p><button type="button" class="fmap-load">地図を表示</button></div><iframe data-src="https://www.google.com/maps?q=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA&hl=ja&z=16&output=embed" title="BIGLIGHT株式会社の地図（愛知県名古屋市北区如意一丁目112 A）" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="https://www.google.com/maps/search/?api=1&query=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA">Google マップで開く →</a></div>
     </div>
     <div class="bot">
@@ -1363,6 +1364,7 @@ const aboutTabs = (r, on) => `<div class="tabs">
   <a href="${r}about/message/index.html" class="${on==='message'?'on':''}">MESSAGE <span class="ch">›</span></a>
   <a href="${r}about/strength/index.html" class="${on==='strength'?'on':''}">STRENGTH <span class="ch">›</span></a>
   <a href="${r}about/company/index.html" class="${on==='company'?'on':''}">COMPANY <span class="ch">›</span></a>
+  <a href="${r}about/profile/index.html" class="${on==='profile'?'on':''}">PROFILE <span class="ch">›</span></a>
   <a href="${r}about/sdgs/index.html" class="${on==='sdgs'?'on':''}">SDGS <span class="ch">›</span></a>
 </div>`;
 
@@ -1540,6 +1542,11 @@ ${pageHead('We are','私たちについて',aboutTabs(r,'company'))}
     <div><dt>2026.9</dt><dd>BIGLIGHT ポータル／アカデミー／JOB のアプリ提供を開始（App Store・Google Play）</dd></div>
     ${AICHI_SDGS.on?`<div><dt>2026.10</dt><dd>愛知県SDGs登録制度「あいちSDGsパートナーズ」に登録</dd></div>`:''}
   </dl>
+</div></section>
+<section class="blk"><div class="wrap side" style="margin-top:0">
+  <h2 class="en">Profile</h2>
+  <div><p class="lead16">会社概要・事業内容・ご相談の流れ・対応分野を、1冊の会社案内（A4横・9ページ）にまとめています。</p>
+  <div style="margin-top:32px;display:flex;gap:20px;flex-wrap:wrap">${pill('会社案内を見る', r+'about/profile/index.html')}${pill('PDFをダウンロード', '/assets/biglight-company-profile.pdf')}</div></div>
 </div></section>
 `});}
 
@@ -2535,6 +2542,7 @@ const pages = {
   'about/index.html': about(),
   'about/message/index.html': message(),
   'about/company/index.html': company(),
+  'about/profile/index.html': require('./profile.cjs')({ page, pageHead, aboutTabs, pill, AICHI_SDGS }),
   'about/sdgs/index.html': sdgs(),
   'service/index.html': serviceTop(),
   'service/tokutei-ginou/index.html': tokutei(),
