@@ -1544,7 +1544,7 @@ ${pageHead('We are','私たちについて',aboutTabs(r,'company'))}
 <section class="blk"><div class="wrap side" style="margin-top:0">
   <h2 class="en">Profile</h2>
   <div><p class="lead16">会社概要・事業内容・ご相談の流れ・対応分野を、1冊の会社案内（A4横・9ページ）にまとめています。</p>
-  <div style="margin-top:32px;display:flex;gap:20px;flex-wrap:wrap">${pill('会社案内を見る', r+'about/profile/index.html')}${pill('PDFをダウンロード', '/assets/biglight-company-profile.pdf')}</div></div>
+  <div style="margin-top:32px;display:flex;gap:20px;flex-wrap:wrap">${pill('会社案内を見る', r+'about/profile/index.html')}${pill('PDFをダウンロード', PDF_URL)}</div></div>
 </div></section>
 `});}
 
@@ -2535,12 +2535,14 @@ function optout(){ const r='../'; return page({root:r,title:'配信停止｜BIGL
 })();
 </script>`});}
 
+/* 2026-10-30 会社案内 PDF: nginx cho cache 30 ngày → URL mang mã băm của profile.cjs, đổi nội dung là URL mới (trình duyệt không dùng bản cũ) */
+const PDF_URL = '/assets/biglight-company-profile.pdf?v=' + require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'profile.cjs'))).digest('hex').slice(0,8);
 const pages = {
   'index.html': home(),
   'about/index.html': about(),
   'about/message/index.html': message(),
   'about/company/index.html': company(),
-  'about/profile/index.html': require('./profile.cjs')({ page, pageHead, aboutTabs, pill, AICHI_SDGS }),
+  'about/profile/index.html': require('./profile.cjs')({ page, pageHead, aboutTabs, pill, AICHI_SDGS, PDF_URL }),
   'about/sdgs/index.html': sdgs(),
   'service/index.html': serviceTop(),
   'service/tokutei-ginou/index.html': tokutei(),

@@ -2,9 +2,9 @@
 // Một nguồn, hai hình thức: trang web này + PDF /assets/biglight-company-profile.pdf (deploy-new.yml in trang này bằng Chrome).
 // CSS chỉ dùng lớp cp-… để không đụng lớp chung của site (.en .dots .pill .num …).
 // Không ghi 従業員数, không ghi 保証 (CEO: chi phí / bảo hành nằm ở tài liệu gửi riêng).
-module.exports = function profile({ page, pageHead, aboutTabs, pill, AICHI_SDGS }) {
+module.exports = function profile({ page, pageHead, aboutTabs, pill, AICHI_SDGS, PDF_URL }) {
   const r = '../../';
-  const PDF = '/assets/biglight-company-profile.pdf';
+  const PDF = PDF_URL || '/assets/biglight-company-profile.pdf';
   const dots = '<span class="cp-dots"><i></i><i></i><i></i><i></i></span>';
   const pn = (n, t) => `<div class="cp-pn"><span>${String(n).padStart(2, '0')}</span>${dots}<span>${t}</span></div>`;
   const head = (en, ja, lead) => `<div class="cp-head"><div><h2 class="cp-en">${en}</h2><div class="cp-jl">${ja}</div></div><div class="cp-lead">${lead}</div></div>`;
