@@ -1541,11 +1541,6 @@ ${pageHead('We are','私たちについて',aboutTabs(r,'company'))}
     ${AICHI_SDGS.on?`<div><dt>2026.10</dt><dd>愛知県SDGs登録制度「あいちSDGsパートナーズ」に登録</dd></div>`:''}
   </dl>
 </div></section>
-<section class="blk"><div class="wrap side" style="margin-top:0">
-  <h2 class="en">Profile</h2>
-  <div><p class="lead16">会社概要・事業内容・ご相談の流れ・対応分野を、1冊の会社案内（A4横・9ページ）にまとめています。</p>
-  <div style="margin-top:32px;display:flex;gap:20px;flex-wrap:wrap">${pill('会社案内を見る', r+'about/profile/index.html')}${pill('PDFをダウンロード', PDF_URL)}</div></div>
-</div></section>
 `});}
 
 // SDGs — nội dung theo 取組方針・分野別取組 (CEO gửi 2026-10-10). Icon: 国連広報センター (src/img/sdg/SOURCE.txt)
