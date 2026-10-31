@@ -91,6 +91,15 @@ jobs:
           echo "PDF: $sz bytes"
           [ "$sz" -gt 200000 ] || { echo "::error::PDF 特定技能ガイド quá nhỏ ($sz bytes)"; exit 1; }
 
+      - name: Ảnh bìa tài liệu cho 資料請求 (trang 1 của PDF)
+        if: github.event_name != 'schedule' || steps.news.outputs.changed == '1'
+        run: |
+          command -v pdftoppm >/dev/null || sudo apt-get install -y -q poppler-utils
+          for x in "company-profile profile" "tokutei-guide guide"; do set -- $x
+            pdftoppm -jpeg -jpegopt quality=85 -f 1 -l 1 -scale-to-x 600 -scale-to-y -1 -singlefile "redesign/dist/assets/biglight-$1.pdf" "redesign/dist/img/material-$2"
+          done
+          ls -la redesign/dist/img/material-*.jpg
+
       - name: Kiểm bản build (link nội bộ, title/description/canonical, h1)
         if: github.event_name != 'schedule' || steps.news.outputs.changed == '1'
         run: |

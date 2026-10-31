@@ -409,6 +409,27 @@ html.js .hero .scrl{opacity:0;animation:pagein 1.2s 2.7s ease forwards}
 .ctype button.on{border-color:var(--accent);background:#f3f6fc;box-shadow:inset 0 0 0 1px var(--accent)}
 .ctype+*{margin-top:0}
 #p-cf .form,#p-dl .form,#p-cf.form{margin-top:48px}
+.form.mtr{display:block;margin-top:48px}
+.mtr-h{font-size:18px;font-weight:700;letter-spacing:.04em;margin:0 0 18px}
+.mtr-list{display:grid;gap:14px}
+.form .mtc{position:relative;font-weight:400;letter-spacing:0;display:grid;grid-template-columns:150px 1fr 26px;gap:24px;align-items:center;padding:14px 22px 14px 14px;border:1px solid #e0e0e0;border-radius:10px;cursor:pointer;background:#fff;transition:border-color .15s,background .15s;margin:0}
+.form .mtc:hover{border-color:#0b3d91}
+.form .mtc input{position:absolute;opacity:0;width:1px;height:1px;padding:0;border:0}
+.mtc:focus-within{outline:2px solid #1e6fd6;outline-offset:2px}
+.mtc-im{display:flex;align-items:center;justify-content:center;aspect-ratio:297/210;border:1px solid #e0e0e0;border-radius:4px;overflow:hidden;background:#f5f6f8}
+.mtc-im img{width:100%;height:100%;object-fit:cover;display:block}.mtc-im i{font:700 34px/1 Roboto,sans-serif;color:#9a9a9a}
+.mtc-tx{display:grid;gap:4px;min-width:0}.mtc-tx b{font-size:18px;letter-spacing:.04em}.mtc-tx span{font-size:14px;color:#444}.mtc-tx small{font-size:12.5px;color:#737373}
+.mtc-tx em{font-style:normal;justify-self:start;font-size:12px;font-weight:700;color:#c47d00;background:#fff5e0;border-radius:12px;padding:3px 10px}
+.mtc-ck{width:26px;height:26px;border:1.5px solid #bdbdbd;border-radius:6px;display:block;position:relative}
+.form .mtc.on{border-color:#0b3d91;background:#eaf1fb}.mtc.on .mtc-ck{background:#0b3d91;border-color:#0b3d91}
+.mtc.on .mtc-ck:after{content:"";position:absolute;left:8px;top:3px;width:6px;height:12px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.form .mtc small{color:#737373;margin-left:0;font-weight:400}.mtr-g label{margin-top:18px}
+.mtr-form{margin-top:44px}.mtr-sel{font-size:14px;color:#0b3d91;font-weight:700;margin:-8px 0 22px}
+.mtr-g{display:grid;grid-template-columns:1fr 1fr;gap:6px 40px}.mtr-g label small.opt{color:#737373}
+.form .mtr-done{grid-column:auto;text-align:left}.mtr-links{display:grid;gap:12px;margin-top:22px}
+.mtr-lk{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:16px 20px;border:1px solid #e0e0e0;border-radius:10px}.mtr-lk b{flex:1 1 180px;font-size:16px}
+.mtr-lk a{font-size:14px;font-weight:700;color:#fff;background:#0b3d91;border-radius:18px;padding:7px 18px;text-decoration:none}.mtr-lk a+a{background:#fff;color:#0b3d91;box-shadow:inset 0 0 0 1px #0b3d91}
+@media (max-width:700px){.form .mtc{grid-template-columns:96px 1fr 24px;gap:14px;padding:10px 14px 10px 10px}.mtc-tx b{font-size:16px}.mtc-tx span{font-size:13px}.mtr-g{grid-template-columns:1fr}}
 @media (max-width:860px){.ctype{grid-template-columns:1fr 1fr;gap:10px;margin-top:36px}.ctype button{padding:14px 14px;line-height:1.5}.ctype button b{font-size:14px;line-height:1.5}.ctype button small{font-size:11px;line-height:1.5;margin-top:4px}}
 .form{display:grid;grid-template-columns:270px 1fr;gap:40px;margin-top:80px}
 .form .info{font-size:14px;line-height:2;color:var(--ink2)}
@@ -1866,7 +1887,7 @@ ${pageHead('Contact','お問い合わせ・資料請求')}
 <section><div class="wrap">
   <div class="ctype" role="tablist" aria-label="ご用件を選択">
     <button type="button" role="tab" id="t-cf" aria-controls="p-cf" aria-selected="true" class="on"><b>お問い合わせ・無料相談</b><small>採用のご相談・ご質問はこちら</small></button>
-    <button type="button" role="tab" id="t-dl" aria-controls="p-dl" aria-selected="false"><b>資料請求</b><small>会社資料をメールでお送りします</small></button>
+    <button type="button" role="tab" id="t-dl" aria-controls="p-dl" aria-selected="false"><b>資料請求</b><small>資料を選んで、すぐにご覧いただけます</small></button>
   </div>
 </div></section>
 <section id="p-cf" role="tabpanel" aria-labelledby="t-cf"><div class="wrap form">
@@ -1883,19 +1904,27 @@ ${pageHead('Contact','お問い合わせ・資料請求')}
   </form>
   <div class="dldone" id="cf-done" hidden><b>送信ありがとうございました。</b><p>担当者より2営業日以内にご連絡いたします。お急ぎの場合はお電話（052-908-7944）でご連絡ください。</p></div>
 </div></section>
-<section id="p-dl" role="tabpanel" aria-labelledby="t-dl" hidden><div class="wrap form">
-  <div class="info"><b>会社資料</b>無料<br>サービス内容・料金体系・支援の流れ・導入事例をまとめた資料です。<br>ご請求いただいた内容を確認のうえ、担当者よりメールで資料をお送りし、ご連絡いたします。<br><br>お電話でのご相談<br>052-908-7944（平日 9:00–18:00）</div>
-  <form id="dlf" novalidate><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
-    <label for="dl-co">会社名<small>必須</small></label><div class="fld" data-err="入力してください"><input id="dl-co" name="company" type="text" autocomplete="organization" placeholder="株式会社〇〇" required></div>
-    <label for="dl-nm">お名前<small>必須</small></label><div class="fld" data-err="入力してください"><input id="dl-nm" name="name" type="text" autocomplete="name" placeholder="山田 太郎" required></div>
-    <label for="dl-em">メールアドレス<small>必須</small></label><div class="fld" data-err="正しいメールアドレスを入力してください"><input id="dl-em" name="email" type="email" autocomplete="email" placeholder="example@company.co.jp" required></div>
-    <label for="dl-tel">電話番号<small>必須</small></label><div class="fld" data-err="入力してください"><input id="dl-tel" name="tel" type="tel" autocomplete="tel" placeholder="052-000-0000" required></div>
-    <label>ご興味のある内容</label><div class="checks">${DL_IN.map(x=>`<label class="ck"><input type="checkbox" name="interest" value="${x}"><span>${x}</span></label>`).join('')}</div>
-    <label for="dl-note">ご質問・ご要望</label><div class="fld" data-err="入力してください"><textarea id="dl-note" name="note" placeholder="気になる点があればご記入ください"></textarea></div>
-    <div class="send"><button class="pill" type="submit" style="cursor:pointer">資料を請求する<span class="circ">→</span></button></div>
-    <p class="note">送信いただいた個人情報は<a href="${r}privacy/index.html">プライバシーポリシー</a>に基づき取り扱います。</p>
+<section id="p-dl" role="tabpanel" aria-labelledby="t-dl" hidden><div class="wrap form mtr">
+  <form id="dlf" class="in" novalidate><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+    <h2 class="mtr-h">ご希望の資料を選んでください</h2>
+    <div class="mtr-list">${MATERIALS.filter(m=>m.live).map(m=>`<label class="mtc"><input type="checkbox" name="item" value="${m.id}" data-name="${m.name}">
+      <span class="mtc-im">${m.img?`<img src="${r}img/${m.img}?v=${m.ver().split('?v=')[1]}" alt="" width="300" height="212">`:'<i>¥</i>'}</span>
+      <span class="mtc-tx"><b>${m.name}</b><span>${m.desc}</span>${m.tag?`<em>${m.tag}</em>`:`<small>${m.meta}</small>`}</span>
+      <span class="mtc-ck" aria-hidden="true"></span></label>`).join('')}</div>
+    <div class="mtr-form" id="dlf-more" hidden>
+      <h2 class="mtr-h">お送り先</h2><p class="mtr-sel" id="dlf-sel"></p>
+      <div class="mtr-g">
+        <div><label for="dl-co">会社名<small>必須</small></label><div class="fld" data-err="入力してください"><input id="dl-co" name="company" type="text" autocomplete="organization" placeholder="株式会社〇〇" required></div></div>
+        <div><label for="dl-nm">お名前<small>必須</small></label><div class="fld" data-err="入力してください"><input id="dl-nm" name="name" type="text" autocomplete="name" placeholder="山田 太郎" required></div></div>
+        <div><label for="dl-em">メールアドレス<small>必須</small></label><div class="fld" data-err="正しいメールアドレスを入力してください"><input id="dl-em" name="email" type="email" autocomplete="email" placeholder="example@company.co.jp" required></div></div>
+        <div><label for="dl-tel">電話番号<small class="opt">任意</small></label><div class="fld"><input id="dl-tel" name="tel" type="tel" autocomplete="tel" placeholder="052-000-0000"></div></div>
+      </div>
+      <div class="send"><button class="pill" type="submit" style="cursor:pointer">資料を受け取る<span class="circ">→</span></button></div>
+      <p class="note">送信いただいた個人情報は<a href="${r}privacy/index.html">プライバシーポリシー</a>に基づき取り扱います。</p>
+    </div>
   </form>
-  <div class="dldone" id="dl-done" hidden><b>資料のご請求ありがとうございました。</b><p>ご入力いただいたメールアドレスに受付確認メールをお送りしました。内容を確認のうえ、担当者より2営業日以内に資料をお送りし、ご連絡いたします。お急ぎの場合はお電話（052-908-7944）でご連絡ください。</p></div></section>
+  <div class="dldone mtr-done" id="dl-done" hidden><b>ありがとうございました。</b><p id="dl-msg"></p><div id="dl-links" class="mtr-links"></div></div>
+</div></section>
 `});}
 
 // ---------- SERVICE DETAIL (v7) ----------
@@ -2462,7 +2491,13 @@ ${pageHead('Privacy Policy','プライバシーポリシー')}
 <section><div class="wrap"><div class="pv">${body}</div></div></section>
 `});}
 
-const DL_IN=['外国人材の採用を検討している','特定技能について知りたい','技人国（エンジニア・専門職）について','定着・生活支援について','まずは資料を見たい（情報収集）','その他'];
+/* 2026-11-01 資料請求: danh sách tài liệu ở /contact/ tab 2. Thêm tài liệu = thêm 1 dòng. img = bìa, deploy-new.yml sinh từ trang 1 PDF.
+   live:false = chưa hiện cho khách. 特定技能ガイド: đổi live:true sau khi 行政書士 duyệt (CRM đã nhận sẵn id 'guide'). manual = nhân viên gửi, không tự tạo link. */
+const MATERIALS=[
+  {id:'profile',name:'会社案内',desc:'会社概要・サービス・ご相談の流れ',meta:'A4横 9ページ　Web／PDF',img:'material-profile.jpg',ver:()=>PDF_URL,live:true},
+  {id:'guide',name:'特定技能ガイド',desc:'制度・採用の流れ・支援を図でわかりやすく',meta:'A4横 24ページ　Web／PDF',img:'material-guide.jpg',ver:()=>GUIDE_PDF_URL,live:false},
+  {id:'price',name:'料金のご案内',desc:'業種・人数に合わせて費用をシミュレーション',tag:'担当者からお送り',manual:true,live:true},
+];
 
 
 
