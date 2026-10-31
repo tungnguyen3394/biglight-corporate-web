@@ -162,19 +162,36 @@ var BLF=(function(){
         .catch(function(er){btn.disabled=false;btn.innerHTML=old;cg.reset();
           alert((er&&er.msg&&er.msg!=='failed'?er.msg+'\n':'')+(er&&er.code==='turnstile'?'':'送信に失敗しました。お手数ですが、お電話（052-908-7944）でもご連絡ください。'));});
     });}
-  /* 資料請求（2026-10-10 CEO）: PDF はその場で渡さない。/api/inquiry（種別「資料請求」）へ送る
-     → 担当者に通知メール・お客様に受付の自動返信が届き、担当者から資料を送って連絡する。 */
+  /* 資料請求（2026-11-01 CEO）: 資料を選ぶ → CRM がその場でリンクを作ってメールも送る → 画面に出す。
+     担当者への通知と履歴は 今までどおり /api/inquiry。CRM が止まっていても 請求は 失われない（担当者から送る）。 */
   var df=document.getElementById('dlf');
-  if(df){var dg=BLF.mount(df,df.querySelector('.send')),dbtn=df.querySelector('button[type=submit]');
+  if(df){var dg=BLF.mount(df,df.querySelector('.send')),dbtn=df.querySelector('button[type=submit]'),CRM='https://api-crm.biglight.jp/',ft='',more=document.getElementById('dlf-more');
+    df.classList.remove('fx');df.classList.add('in');   // ẩn trong tab lúc tải: không chờ hiệu ứng cuộn, kẻo mở tab ra thấy trắng
+    var picked=function(){return [].slice.call(df.querySelectorAll('input[name=item]:checked'));};
+    var getFt=function(){return fetch(CRM+'materials/config',{cache:'no-store'}).then(function(r){return r.json();}).then(function(j){ft=j.ft||'';}).catch(function(){});};
+    getFt();
+    df.addEventListener('change',function(e){if(e.target.name!=='item')return;e.target.closest('.mtc').classList.toggle('on',e.target.checked);
+      var p=picked();more.hidden=!p.length;document.getElementById('dlf-sel').textContent=p.map(function(c){return c.getAttribute('data-name');}).join('・');});
+    var admin=function(v,g,kind,names){var msg='【資料請求】'+names.join('・');var src=BLT.src();if(src)msg+='\n\n――\n参照した記事: https://biglight.jp'+src;
+      return fetch(API+'inquiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({company:v.company||'',name:v.name||'',email:v.email||'',tel:v.tel||'未入力',kind:kind,message:msg,website:v.website||'',ft:g.ft,turnstile:g.turnstile})}).then(function(r){return r.ok;}).catch(function(){return false;});};
+    var finish=function(links,mailed,price){var box=document.getElementById('dl-links'),m=document.getElementById('dl-msg');
+      links.forEach(function(l){var d=document.createElement('div');d.className='mtr-lk';var b=document.createElement('b');b.textContent=l.label;d.appendChild(b);
+        [['Webで見る',l.url],['PDF',l.pdfUrl]].forEach(function(x){var a=document.createElement('a');a.textContent=x[0];a.href=x[1];a.target='_blank';a.rel='noopener';d.appendChild(a);});box.appendChild(d);});
+      m.textContent=(links.length?(mailed?'下記からご覧いただけます。同じリンクをメールでもお送りしました。':'下記からご覧いただけます。'):'内容を確認のうえ、担当者より2営業日以内に資料をお送りします。')+(links.length&&price?'料金のご案内は、担当者より別途お送りします。':'');
+      BLT.conv('download');var dn=document.getElementById('dl-done');dn.classList.remove('fx');dn.classList.add('in');done(df,dn);};
     df.addEventListener('submit',function(e){e.preventDefault();if(!check(df)||dbtn.disabled)return;
-      var v=vals(df),g=dg.fields(),interest=[];[].forEach.call(df.querySelectorAll('input[name=interest]:checked'),function(c){interest.push(c.value);});
-      var msg='【資料請求】会社資料の送付を希望します。'+(interest.length?'\n【ご興味のある内容】'+interest.join('／'):'')+(v.note?'\n【ご質問・ご要望】\n'+v.note:'');
-      var src=BLT.src();if(src)msg+='\n\n――\n参照した記事: https://biglight.jp'+src;
-      var old=dbtn.innerHTML;dbtn.disabled=true;[].forEach.call(dbtn.querySelectorAll('.tx span'),function(x){x.textContent='送信中…';});
-      fetch(API+'inquiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({company:v.company||'',name:v.name||'',email:v.email||'',tel:v.tel||'',kind:'資料請求',message:msg,website:v.website||'',ft:g.ft,turnstile:g.turnstile})})
-        .then(function(r){return r.json().catch(function(){return {};}).then(function(j){if(!r.ok){var er=new Error(j.error||'failed');er.code=j.code;er.msg=j.error;throw er;}return j;});})
-        .then(function(){BLT.conv('download');done(df,document.getElementById('dl-done'));})
-        .catch(function(er){dbtn.disabled=false;dbtn.innerHTML=old;dg.reset();
-          alert((er&&er.msg&&er.msg!=='failed'?er.msg+'\n':'')+(er&&er.code==='turnstile'?'':'送信に失敗しました。お手数ですが、お電話（052-908-7944）でもご連絡ください。'));});
+      var p=picked();if(!p.length)return;
+      var v=vals(df),g=dg.fields(),names=p.map(function(c){return c.getAttribute('data-name');}),all=p.map(function(c){return c.value;}),items=all.filter(function(x){return x!=='price';}),price=all.indexOf('price')>=0;
+      var old=dbtn.innerHTML;dbtn.disabled=true;dbtn.firstChild.nodeValue='送信中…';
+      var fail=function(msg){dbtn.disabled=false;dbtn.innerHTML=old;dg.reset();getFt();alert(msg);};
+      fetch(CRM+'materials/request',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({company:v.company||'',name:v.name||'',email:v.email||'',tel:v.tel||'',items:items,price:price,website:v.website||'',ft:ft})})
+        .then(function(r){return r.json().catch(function(){return {};}).then(function(j){return {s:r.status,j:j};});})
+        .then(function(x){
+          if(x.s===200){admin(v,g,x.j.mailed?'資料請求（自動送付）':'資料請求',names).then(function(ok){
+            if(!(x.j.links||[]).length&&!ok)return fail('送信に失敗しました。お手数ですが、お電話（052-908-7944）でもご連絡ください。');
+            finish(x.j.links||[],x.j.mailed,price);});return;}
+          if(x.s===400||x.s===429)return fail(x.j.error||'送信に失敗しました。');
+          throw new Error('crm');})
+        .catch(function(){admin(v,g,'資料請求',names).then(function(ok){if(ok)finish([],false,false);else fail('送信に失敗しました。お手数ですが、お電話（052-908-7944）でもご連絡ください。');});});
     });}
 })();
