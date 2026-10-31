@@ -81,6 +81,16 @@ jobs:
           echo "PDF: $sz bytes"
           [ "$sz" -gt 300000 ] || { echo "::error::PDF 会社案内 quá nhỏ ($sz bytes)"; exit 1; }
 
+      - name: PDF 特定技能ガイド（/assets/biglight-tokutei-guide.pdf）
+        if: github.event_name != 'schedule' || steps.news.outputs.changed == '1'
+        run: |
+          CH=$(command -v google-chrome || command -v chromium || command -v chromium-browser)
+          "$CH" --headless=new --no-sandbox --disable-gpu --no-pdf-header-footer --virtual-time-budget=20000 \
+            --print-to-pdf=redesign/dist/assets/biglight-tokutei-guide.pdf "file://$PWD/redesign/dist/guide/tokutei-ginou/index.html"
+          sz=$(stat -c%s redesign/dist/assets/biglight-tokutei-guide.pdf)
+          echo "PDF: $sz bytes"
+          [ "$sz" -gt 200000 ] || { echo "::error::PDF 特定技能ガイド quá nhỏ ($sz bytes)"; exit 1; }
+
       - name: Kiểm bản build (link nội bộ, title/description/canonical, h1)
         if: github.event_name != 'schedule' || steps.news.outputs.changed == '1'
         run: |
