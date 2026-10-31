@@ -73,8 +73,8 @@ const JOBS = {
     qualifications: '日本語能力試験 N2以上、大学卒業', directApply: false,
   },
 };
-// Trang không công khai trên Google / sitemap (chỉ vào bằng nút trong trang): 会社案内 (CEO 2026-10-30)
-const NOINDEX = new Set(['about/profile/']);
+// Trang không công khai trên Google / sitemap (chỉ vào bằng nút trong trang): 会社案内 (CEO 2026-10-30), 特定技能ガイド (2026-11-01)
+const NOINDEX = new Set(['about/profile/', 'guide/tokutei-ginou/']);
 const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const strip = (h) => h.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 

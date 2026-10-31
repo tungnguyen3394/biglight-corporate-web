@@ -2532,12 +2532,15 @@ function optout(){ const r='../'; return page({root:r,title:'配信停止｜BIGL
 
 /* 2026-10-30 会社案内 PDF: nginx cho cache 30 ngày → URL mang mã băm của profile.cjs, đổi nội dung là URL mới (trình duyệt không dùng bản cũ) */
 const PDF_URL = '/assets/biglight-company-profile.pdf?v=' + require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'profile.cjs'))).digest('hex').slice(0,8);
+/* 2026-11-01 特定技能ガイド PDF: cùng quy tắc ?v= như 会社案内 */
+const GUIDE_PDF_URL = '/assets/biglight-tokutei-guide.pdf?v=' + require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'guide.cjs'))).digest('hex').slice(0,8);
 const pages = {
   'index.html': home(),
   'about/index.html': about(),
   'about/message/index.html': message(),
   'about/company/index.html': company(),
   'about/profile/index.html': require('./profile.cjs')({ page, pageHead, aboutTabs, pill, AICHI_SDGS, PDF_URL }),
+  'guide/tokutei-ginou/index.html': require('./guide.cjs')({ page, pageHead, pill, PDF_URL: GUIDE_PDF_URL }),
   'about/sdgs/index.html': sdgs(),
   'service/index.html': serviceTop(),
   'service/tokutei-ginou/index.html': tokutei(),
