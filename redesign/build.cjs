@@ -299,6 +299,12 @@ html.js .hero .scrl{opacity:0;animation:pagein 1.2s 2.7s ease forwards}
 
 /* contact box (c-buttonSquare) */
 .cbox-wrap{padding:60px 0 0}
+.cbox2{display:grid;grid-template-columns:1fr 1fr;gap:20px}.cbox2 .cbox{padding:52px 44px 48px;min-height:190px}
+.dcta-wrap{padding:60px 0 0}.dcta{display:grid;grid-template-columns:220px 1fr auto;gap:32px;align-items:center;padding:22px 36px 22px 22px;background:#f3f6fc;border-radius:16px;color:inherit;text-decoration:none;transition:background .25s}
+.dcta:hover{background:#eaf1fb}.dcta img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:4px;background:#fff}
+.dcta-k{font-size:12.5px;font-weight:700;letter-spacing:.1em;color:var(--accent)}.dcta b{display:block;font-size:22px;letter-spacing:.04em;margin-top:4px}.dcta p{font-size:14px;color:var(--ink2);margin:6px 0 0;line-height:1.8}
+.dcta .circ{width:40px;height:40px;border-radius:50%;background:var(--gold);color:var(--accent-d);display:inline-flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;flex:none}
+@media (max-width:860px){.cbox2{grid-template-columns:1fr;gap:12px}.dcta{grid-template-columns:96px 1fr;gap:16px;padding:14px}.dcta .circ{display:none}.dcta b{font-size:17px}.dcta p{font-size:13px}}
 .cbox{display:flex;align-items:center;justify-content:space-between;gap:32px;border:1px solid var(--line);border-radius:16px;padding:60px 70px 56px;min-height:218px;background:#fff;transition:background .25s}
 .cbox:hover{background:#fcfcfc}
 .cbox .en{font-size:50px;line-height:1;letter-spacing:.1em}
@@ -1370,13 +1376,25 @@ const numBand = () => `
 </div></div></section>`;
 const contactBox = (r) => `
 <section class="cbox-wrap"><div class="wrap">
-  <a class="cbox" href="${r}contact/index.html">
-    <div><div class="en">Contact</div><div class="ja-lb">お問い合わせ</div></div>
-    <span class="circ">→</span>
-  </a>
+  <div class="cbox2">
+    <a class="cbox" href="${r}contact/index.html">
+      <div><div class="en">Contact</div><div class="ja-lb">お問い合わせ</div></div>
+      <span class="circ">→</span>
+    </a>
+    <a class="cbox" href="${r}contact/index.html#request">
+      <div><div class="en">Request</div><div class="ja-lb">資料請求</div></div>
+      <span class="circ">→</span>
+    </a>
+  </div>
   <p class="ctel">お電話でのご相談　<a class="telk" href="tel:0529087944"><b>052-908-7944</b></a>　平日 9:00–18:00　FAX 052-908-7267</p>
 </div></section>`;
-
+/* 2026-11-01 lối vào 資料請求 từ trang dịch vụ: ?doc=<id> chọn sẵn tài liệu (bl-track.js) */
+const docCta = (r, doc, img, name, desc) => `
+<section class="dcta-wrap"><div class="wrap"><a class="dcta" href="${r}contact/?doc=${doc}#request">
+  <img src="${r}img/${img}" alt="" width="300" height="212" loading="lazy">
+  <div><div class="dcta-k">無料で受け取る</div><b>${name}</b><p>${desc}</p></div>
+  <span class="circ">→</span>
+</a></div></section>`;
 const pageHead = (en, ja, tabs='') => `
 <section class="ph"><div class="wrap">
   <h1 class="phh"><span class="en">${en}</span><span class="ja-lb">${ja}</span></h1>${dots}${tabs}
@@ -2077,6 +2095,7 @@ ${pageHead('Specified Skilled Worker','特定技能 採用支援',serviceTabs(r,
   ${fieldTiles(r,FIELDS)}
 </div></section>
 ${faqSec(FAQ_TG)}
+${docCta(r,'guide','material-guide.jpg?v='+GUIDE_PDF_URL.split('?v=')[1],'特定技能ガイド','制度・採用の流れ・支援を、図でわかりやすくまとめました。')}
 ${contactBox(r)}
 `});}
 
@@ -2285,6 +2304,7 @@ ${faqSec(f.faq)}
 <section class="blk"><div class="wrap">
   <div class="fnav"><a href="${r}service/field/${prev.slug}/index.html"><span class="ar">←</span><div><small>PREV</small>${prev.ja}</div></a><a href="${r}service/index.html#fields" class="all">対応分野一覧</a><a href="${r}service/field/${next.slug}/index.html" class="nx"><div><small>NEXT</small>${next.ja}</div><span class="ar">→</span></a></div>
 </div></section>
+${docCta(r,'field-'+f.slug,'material-field-'+f.slug+'.jpg?v='+SHIRYO_V,SHIRYO.FIELDS.find(x=>x.slug===f.slug).name+'ガイド','この分野の仕事・条件・受入れの流れをまとめました。')}
 ${contactBox(r)}
 `});}
 
