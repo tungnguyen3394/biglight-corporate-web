@@ -424,6 +424,9 @@ html.js .hero .scrl{opacity:0;animation:pagein 1.2s 2.7s ease forwards}
 .form .mtc.on{border-color:#0b3d91;background:#eaf1fb}.mtc.on .mtc-ck{background:#0b3d91;border-color:#0b3d91}
 .mtc.on .mtc-ck:after{content:"";position:absolute;left:8px;top:3px;width:6px;height:12px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
 .form .mtc small{color:#737373;margin-left:0;font-weight:400}.mtr-g label{margin-top:18px}
+.mtf{display:flex;flex-wrap:wrap;gap:10px;padding:4px 14px 8px}.mtf p{width:100%;margin:0;font-size:14px;font-weight:700;color:#0b3d91}
+.form .mtf label{margin:0;font-weight:700;font-size:15px;letter-spacing:0;cursor:pointer}.form .mtf input{position:absolute;opacity:0;width:1px;height:1px;padding:0;border:0}
+.mtf span{display:block;padding:9px 16px;border:1px solid #bdbdbd;border-radius:20px;background:#fff}.mtf input:checked+span{background:#0b3d91;border-color:#0b3d91;color:#fff}.mtf input:focus-visible+span{outline:2px solid #1e6fd6;outline-offset:2px}
 .mtr-form{margin-top:44px}.mtr-sel{font-size:14px;color:#0b3d91;font-weight:700;margin:-8px 0 22px}
 .mtr-g{display:grid;grid-template-columns:1fr 1fr;gap:6px 40px}.mtr-g label small.opt{color:#737373}
 .form .mtr-done{grid-column:auto;text-align:left}.mtr-links{display:grid;gap:12px;margin-top:22px}
@@ -1907,10 +1910,10 @@ ${pageHead('Contact','お問い合わせ・資料請求')}
 <section id="p-dl" role="tabpanel" aria-labelledby="t-dl" hidden><div class="wrap form mtr">
   <form id="dlf" class="in" novalidate><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
     <h2 class="mtr-h">ご希望の資料を選んでください</h2>
-    <div class="mtr-list">${MATERIALS.filter(m=>m.live).map(m=>`<label class="mtc"><input type="checkbox" name="item" value="${m.id}" data-name="${m.name}">
+    <div class="mtr-list">${MATERIALS.filter(m=>m.live).map(m=>`<label class="mtc"><input type="checkbox" name="${m.group?'grp':'item'}" value="${m.id}" data-name="${m.name}">
       <span class="mtc-im">${m.img?`<img src="${r}img/${m.img}?v=${m.ver().split('?v=')[1]}" alt="" width="300" height="212">`:'<i>¥</i>'}</span>
       <span class="mtc-tx"><b>${m.name}</b><span>${m.desc}</span>${m.tag?`<em>${m.tag}</em>`:`<small>${m.meta}</small>`}</span>
-      <span class="mtc-ck" aria-hidden="true"></span></label>`).join('')}</div>
+      <span class="mtc-ck" aria-hidden="true"></span></label>${m.group?`<div class="mtf" id="dlf-fields" hidden><p>分野を選んでください（複数可）</p>${SHIRYO.FIELDS.map(f=>`<label><input type="checkbox" name="item" value="field-${f.slug}" data-name="${f.name}ガイド"><span>${f.name.replace('分野','')}</span></label>`).join('')}</div>`:''}`).join('')}</div>
     <div class="mtr-form" id="dlf-more" hidden>
       <h2 class="mtr-h">お送り先</h2><p class="mtr-sel" id="dlf-sel"></p>
       <div class="mtr-g">
@@ -2498,6 +2501,7 @@ const MATERIALS=[
   {id:'guide',name:'特定技能ガイド',desc:'制度・採用の流れ・支援を図でわかりやすく',meta:'A4横 24ページ　Web／PDF',img:'material-guide.jpg',ver:()=>GUIDE_PDF_URL,url:'/guide/tokutei-ginou/',live:true},
   {id:'checklist',name:'受入れ準備チェックリスト',desc:'印刷して、順番に確認するだけ',meta:'A4横 7ページ　Web／PDF',img:'material-checklist.jpg',ver:()=>CHECK_PDF_URL,url:'/guide/checklist/',live:true},
   {id:'schedule',name:'採用スケジュール表',desc:'相談から入社まで、いつ・誰が・何をするか',meta:'A4横 6ページ　Web／PDF',img:'material-schedule.jpg',ver:()=>SCHED_PDF_URL,url:'/guide/schedule/',live:true},
+  {id:'field',name:'分野別ガイド',desc:'分野ごとの仕事・条件・流れ',meta:'A4横 各6ページ　Web／PDF',img:'material-field-kensetsu.jpg',ver:()=>FIELD_PDF('kensetsu'),live:true,group:true},
   {id:'price',name:'料金のご案内',desc:'業種・人数に合わせて費用をシミュレーション',tag:'担当者からお送り',manual:true,live:false},
 ];
 
@@ -2573,6 +2577,7 @@ const PDF_URL = '/assets/biglight-company-profile.pdf?v=' + require('crypto').cr
 const GUIDE_PDF_URL = '/assets/biglight-tokutei-guide.pdf?v=' + require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'guide.cjs'))).digest('hex').slice(0,8);
 const SHIRYO_V = require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'shiryo.cjs'))).digest('hex').slice(0,8);
 const CHECK_PDF_URL = '/assets/biglight-checklist.pdf?v=' + SHIRYO_V, SCHED_PDF_URL = '/assets/biglight-schedule.pdf?v=' + SHIRYO_V;
+const SHIRYO = require('./shiryo.cjs'), FIELD_PDF = (f) => `/assets/biglight-field-${f}.pdf?v=` + SHIRYO_V;
 const pages = {
   'index.html': home(),
   'about/index.html': about(),
@@ -2604,9 +2609,10 @@ NEWS.forEach(n=>{pages['news/'+n.slug+'/index.html']=article(n.slug);});
 pages['404.html']=page({root:'/',title:'ページが見つかりません｜BIGLIGHT株式会社',desc:'お探しのページは見つかりませんでした。',body:`
 <section class="ph"><div class="wrap"><h1 class="phh"><span class="en">404</span><span class="ja-lb">ページが見つかりません</span></h1>${dots}</div></section>
 <section><div class="wrap lead-end"><p class="lead16">お探しのページは移動または削除された可能性があります。</p><div style="margin-top:40px;display:flex;gap:20px;flex-wrap:wrap">${pill('トップページへ','/index.html')}${pill('お問い合わせ','/contact/index.html')}</div></div></section>`});
+SHIRYO.FIELDS.forEach(f=>{pages[`guide/field/${f.slug}/index.html`]=SHIRYO.field({ page, pageHead, pill, PDF_URL: FIELD_PDF(f.slug) }, f);});
 const nPages=require('./seo.cjs')(pages,{OUT,SITE,ARTICLES,WEBP});
 /* 2026-11-01: admin.biglight.jp đọc danh sách này (資料一覧) để xem trực tiếp, kể cả tài liệu chưa hiện ở /contact/ */
-fs.writeFileSync(path.join(OUT,'materials.json'), JSON.stringify(MATERIALS.filter(m=>!m.manual).map(m=>({id:m.id,name:m.name,desc:m.desc,meta:m.meta,live:!!m.live,url:SITE.replace(/\/$/,'')+m.url,pdf:SITE.replace(/\/$/,'')+m.ver(),thumb:SITE.replace(/\/$/,'')+'/img/'+m.img+'?v='+m.ver().split('?v=')[1]}))));
+fs.writeFileSync(path.join(OUT,'materials.json'), JSON.stringify(MATERIALS.filter(m=>!m.manual&&!m.group).concat(SHIRYO.FIELDS.map(f=>({id:'field-'+f.slug,name:f.name+'ガイド',desc:f.sum,meta:'A4横 6ページ　Web／PDF',img:`material-field-${f.slug}.jpg`,url:`/guide/field/${f.slug}/`,ver:()=>FIELD_PDF(f.slug),live:true}))).map(m=>({id:m.id,name:m.name,desc:m.desc,meta:m.meta,live:!!m.live,url:SITE.replace(/\/$/,'')+m.url,pdf:SITE.replace(/\/$/,'')+m.ver(),thumb:SITE.replace(/\/$/,'')+'/img/'+m.img+'?v='+m.ver().split('?v=')[1]}))));
 console.log('pages',nPages);
 /* ảnh tạm (差し替え予定) */
 function phSvg(en,ja,hue){ let lines='';for(let i=0;i<34;i++){const dy=i*9;lines+='<path d="M-50 '+(520+dy)+' C 250 '+(330+dy)+', 520 '+(660+dy)+', 800 '+(470+dy)+' S 1100 '+(260+dy)+', 1260 '+(360+dy)+'" fill="none" stroke="hsl('+hue+',55%,'+(48+i)+'%)" stroke-width="1.2" opacity=".55"/>';}
