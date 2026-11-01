@@ -1910,10 +1910,10 @@ ${pageHead('Contact','お問い合わせ・資料請求')}
 <section id="p-dl" role="tabpanel" aria-labelledby="t-dl" hidden><div class="wrap form mtr">
   <form id="dlf" class="in" novalidate><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
     <h2 class="mtr-h">ご希望の資料を選んでください</h2>
-    <div class="mtr-list">${MATERIALS.filter(m=>m.live).map(m=>`<label class="mtc"><input type="checkbox" name="${m.group?'grp':'item'}" value="${m.id}" data-name="${m.name}">
+    <div class="mtr-list">${MATERIALS.filter(m=>m.live).map(m=>`<label class="mtc"><input type="checkbox" name="${m.group?'grp':'item'}" value="${m.id}" data-name="${m.name}"${m.group?' data-sub="dlf-fields"':''}>
       <span class="mtc-im">${m.img?`<img src="${r}img/${m.img}?v=${m.ver().split('?v=')[1]}" alt="" width="300" height="212">`:'<i>¥</i>'}</span>
       <span class="mtc-tx"><b>${m.name}</b><span>${m.desc}</span>${m.tag?`<em>${m.tag}</em>`:`<small>${m.meta}</small>`}</span>
-      <span class="mtc-ck" aria-hidden="true"></span></label>${m.group?`<div class="mtf" id="dlf-fields" hidden><p>分野を選んでください（複数可）</p>${SHIRYO.FIELDS.map(f=>`<label><input type="checkbox" name="item" value="field-${f.slug}" data-name="${f.name}ガイド"><span>${f.name.replace('分野','')}</span></label>`).join('')}</div>`:''}`).join('')}</div>
+      <span class="mtc-ck" aria-hidden="true"></span></label>${m.id==='price'?'<div class="mtf" id="dlf-prices" hidden><p>業種を選んでください（複数可）</p></div>':''}${m.group?`<div class="mtf" id="dlf-fields" hidden><p>分野を選んでください（複数可）</p>${SHIRYO.FIELDS.map(f=>`<label><input type="checkbox" name="item" value="field-${f.slug}" data-name="${f.name}ガイド"><span>${f.name.replace('分野','')}</span></label>`).join('')}</div>`:''}`).join('')}</div>
     <div class="mtr-form" id="dlf-more" hidden>
       <h2 class="mtr-h">お送り先</h2><p class="mtr-sel" id="dlf-sel"></p>
       <div class="mtr-g">
@@ -2502,7 +2502,7 @@ const MATERIALS=[
   {id:'checklist',name:'受入れ準備チェックリスト',desc:'印刷して、順番に確認するだけ',meta:'A4横 7ページ　Web／PDF',img:'material-checklist.jpg',ver:()=>CHECK_PDF_URL,url:'/guide/checklist/',live:true},
   {id:'schedule',name:'採用スケジュール表',desc:'相談から入社まで、いつ・誰が・何をするか',meta:'A4横 6ページ　Web／PDF',img:'material-schedule.jpg',ver:()=>SCHED_PDF_URL,url:'/guide/schedule/',live:true},
   {id:'field',name:'分野別ガイド',desc:'分野ごとの仕事・条件・流れ',meta:'A4横 各6ページ　Web／PDF',img:'material-field-kensetsu.jpg',ver:()=>FIELD_PDF('kensetsu'),live:true,group:true},
-  {id:'price',name:'料金のご案内',desc:'業種・人数に合わせて費用をシミュレーション',tag:'担当者からお送り',manual:true,live:false},
+  {id:'price',name:'料金シミュレーション',desc:'業種を選び、人数を入れると 費用がわかります',meta:'Web　30日間ご覧いただけます',manual:true,live:true},
 ];
 
 

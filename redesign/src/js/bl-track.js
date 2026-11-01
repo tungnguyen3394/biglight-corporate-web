@@ -168,16 +168,20 @@ var BLF=(function(){
   if(df){var dg=BLF.mount(df,df.querySelector('.send')),dbtn=df.querySelector('button[type=submit]'),CRM='https://api-crm.biglight.jp/',ft='',more=document.getElementById('dlf-more');
     df.classList.remove('fx');df.classList.add('in');   // ẩn trong tab lúc tải: không chờ hiệu ứng cuộn, kẻo mở tab ra thấy trắng
     var picked=function(){return [].slice.call(df.querySelectorAll('input[name=item]:checked'));};
-    var getFt=function(){return fetch(CRM+'materials/config',{cache:'no-store'}).then(function(r){return r.json();}).then(function(j){ft=j.ft||'';}).catch(function(){});};
+    var getFt=function(){return fetch(CRM+'materials/config',{cache:'no-store'}).then(function(r){return r.json();}).then(function(j){ft=j.ft||'';
+      /* 基準表に 金額が ある 業種だけ 自動で 料金リンク。無ければ 今までどおり 担当者から */
+      var pc=df.querySelector('input[value=price]'),box=document.getElementById('dlf-prices');if(pc&&box&&j.prices&&j.prices.length&&pc.name==='item'&&!box.querySelector('input')){pc.name='grp';pc.setAttribute('data-sub','dlf-prices');
+        j.prices.forEach(function(x){var l=document.createElement('label'),i=document.createElement('input'),s=document.createElement('span');i.type='checkbox';i.name='item';i.value='price:'+x.id;i.setAttribute('data-name','料金シミュレーション（'+x.name+'）');s.textContent=x.name;l.appendChild(i);l.appendChild(s);box.appendChild(l);});}
+    }).catch(function(){});};
     getFt();
     df.addEventListener('change',function(e){var t=e.target;if(t.name!=='item'&&t.name!=='grp')return;var cd=t.closest('.mtc');if(cd)cd.classList.toggle('on',t.checked);
-      if(t.name==='grp'){var fs=document.getElementById('dlf-fields');fs.hidden=!t.checked;if(!t.checked)[].forEach.call(fs.querySelectorAll('input'),function(c){c.checked=false;});}
+      if(t.name==='grp'){var fs=document.getElementById(t.getAttribute('data-sub'));fs.hidden=!t.checked;if(!t.checked)[].forEach.call(fs.querySelectorAll('input'),function(c){c.checked=false;});}
       var p=picked();more.hidden=!p.length;document.getElementById('dlf-sel').textContent=p.map(function(c){return c.getAttribute('data-name');}).join('・');});
     var admin=function(v,g,kind,names){var msg='【資料請求】'+names.join('・');var src=BLT.src();if(src)msg+='\n\n――\n参照した記事: https://biglight.jp'+src;
       return fetch(API+'inquiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({company:v.company||'',name:v.name||'',email:v.email||'',tel:v.tel||'未入力',kind:kind,message:msg,website:v.website||'',ft:g.ft,turnstile:g.turnstile})}).then(function(r){return r.ok;}).catch(function(){return false;});};
     var finish=function(links,mailed,price){var box=document.getElementById('dl-links'),m=document.getElementById('dl-msg');
       links.forEach(function(l){var d=document.createElement('div');d.className='mtr-lk';var b=document.createElement('b');b.textContent=l.label;d.appendChild(b);
-        [['Webで見る',l.url],['PDF',l.pdfUrl]].forEach(function(x){var a=document.createElement('a');a.textContent=x[0];a.href=x[1];a.target='_blank';a.rel='noopener';d.appendChild(a);});box.appendChild(d);});
+        [['Webで見る',l.url],['PDF',l.pdfUrl]].forEach(function(x){if(!x[1])return;var a=document.createElement('a');a.textContent=x[0];a.href=x[1];a.target='_blank';a.rel='noopener';d.appendChild(a);});box.appendChild(d);});
       m.textContent=(links.length?(mailed?'下記からご覧いただけます。同じリンクをメールでもお送りしました。':'下記からご覧いただけます。'):'内容を確認のうえ、担当者より2営業日以内に資料をお送りします。')+(links.length&&price?'料金のご案内は、担当者より別途お送りします。':'');
       BLT.conv('download');var dn=document.getElementById('dl-done');dn.classList.remove('fx');dn.classList.add('in');done(df,dn);};
     df.addEventListener('submit',function(e){e.preventDefault();if(!check(df)||dbtn.disabled)return;
