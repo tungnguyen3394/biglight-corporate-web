@@ -185,7 +185,7 @@ var BLF=(function(){
     var finish=function(links,mailed,price){var box=document.getElementById('dl-links'),m=document.getElementById('dl-msg');
       links.forEach(function(l){var d=document.createElement('div');d.className='mtr-lk';var b=document.createElement('b');b.textContent=l.label;d.appendChild(b);
         [['Webで見る',l.url],['PDF',l.pdfUrl]].forEach(function(x){if(!x[1])return;var a=document.createElement('a');a.textContent=x[0];a.href=x[1];a.target='_blank';a.rel='noopener';d.appendChild(a);});box.appendChild(d);});
-      m.textContent=(links.length?(mailed?'下記からご覧いただけます。同じリンクをメールでもお送りしました。':'下記からご覧いただけます。'):'内容を確認のうえ、担当者より2営業日以内に資料をお送りします。')+(links.length&&price?'料金のご案内は、担当者より別途お送りします。':'');
+      m.textContent=(links.length?(mailed?'下記からご覧いただけます。同じリンクをメールでもお送りしました。':'下記からご覧いただけます。'):'内容を確認のうえ、担当者より3営業日以内に資料をお送りします。')+(links.length&&price?'料金のご案内は、担当者より別途お送りします。':'');
       BLT.conv('download');var dn=document.getElementById('dl-done');dn.classList.remove('fx');dn.classList.add('in');done(df,dn);};
     df.addEventListener('submit',function(e){e.preventDefault();if(!check(df)||dbtn.disabled)return;
       var p=picked();if(!p.length)return;

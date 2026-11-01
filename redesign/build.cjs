@@ -1923,7 +1923,7 @@ ${pageHead('Contact','お問い合わせ・資料請求')}
     <div class="send"><button class="pill" type="submit" style="cursor:pointer">送信する<span class="circ">→</span></button></div>
     <p class="note">送信いただいた個人情報は<a href="${r}privacy/index.html">プライバシーポリシー</a>に基づき取り扱います。</p>
   </form>
-  <div class="dldone" id="cf-done" hidden><b>送信ありがとうございました。</b><p>担当者より2営業日以内にご連絡いたします。お急ぎの場合はお電話（052-908-7944）でご連絡ください。</p></div>
+  <div class="dldone" id="cf-done" hidden><b>送信ありがとうございました。</b><p>担当者より3営業日以内にご連絡いたします。お急ぎの場合はお電話（052-908-7944）でご連絡ください。</p></div>
 </div></section>
 <section id="p-dl" role="tabpanel" aria-labelledby="t-dl" hidden><div class="wrap form mtr">
   <form id="dlf" class="in" novalidate><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
