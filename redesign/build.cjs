@@ -2501,7 +2501,7 @@ const MATERIALS=[
   {id:'guide',name:'特定技能ガイド',desc:'制度・採用の流れ・支援を図でわかりやすく',meta:'A4横 24ページ　Web／PDF',img:'material-guide.jpg',ver:()=>GUIDE_PDF_URL,url:'/guide/tokutei-ginou/',live:true},
   {id:'preparation',name:'受入れ準備ガイド',desc:'チェックリストと、入社までのスケジュール',meta:'A4横 10ページ　Web／PDF',img:'material-preparation.jpg',ver:()=>PREP_PDF_URL,url:'/guide/preparation/',live:true},
   {id:'field',name:'分野別ガイド',desc:'分野ごとの仕事・条件・流れ',meta:'A4横 各6ページ　Web／PDF',img:'material-field-kensetsu.jpg',ver:()=>FIELD_PDF('kensetsu'),live:true,group:true},
-  {id:'price',name:'料金シミュレーション',desc:'業種を選び、人数を入れると 費用がわかります',meta:'Web　30日間ご覧いただけます',manual:true,live:true},
+  {id:'price',name:'料金シミュレーション',desc:'業種を選び、人数を入れると 費用がわかります',meta:'Web　30日間ご覧いただけます',manual:true,live:false},
 ];
 
 
