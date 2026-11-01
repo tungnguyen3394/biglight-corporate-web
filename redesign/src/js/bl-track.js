@@ -170,7 +170,8 @@ var BLF=(function(){
     var picked=function(){return [].slice.call(df.querySelectorAll('input[name=item]:checked'));};
     var getFt=function(){return fetch(CRM+'materials/config',{cache:'no-store'}).then(function(r){return r.json();}).then(function(j){ft=j.ft||'';}).catch(function(){});};
     getFt();
-    df.addEventListener('change',function(e){if(e.target.name!=='item')return;e.target.closest('.mtc').classList.toggle('on',e.target.checked);
+    df.addEventListener('change',function(e){var t=e.target;if(t.name!=='item'&&t.name!=='grp')return;var cd=t.closest('.mtc');if(cd)cd.classList.toggle('on',t.checked);
+      if(t.name==='grp'){var fs=document.getElementById('dlf-fields');fs.hidden=!t.checked;if(!t.checked)[].forEach.call(fs.querySelectorAll('input'),function(c){c.checked=false;});}
       var p=picked();more.hidden=!p.length;document.getElementById('dlf-sel').textContent=p.map(function(c){return c.getAttribute('data-name');}).join('・');});
     var admin=function(v,g,kind,names){var msg='【資料請求】'+names.join('・');var src=BLT.src();if(src)msg+='\n\n――\n参照した記事: https://biglight.jp'+src;
       return fetch(API+'inquiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({company:v.company||'',name:v.name||'',email:v.email||'',tel:v.tel||'未入力',kind:kind,message:msg,website:v.website||'',ft:g.ft,turnstile:g.turnstile})}).then(function(r){return r.ok;}).catch(function(){return false;});};

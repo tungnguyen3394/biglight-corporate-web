@@ -95,9 +95,9 @@ jobs:
         if: github.event_name != 'schedule' || steps.news.outputs.changed == '1'
         run: |
           CH=$(command -v google-chrome || command -v chromium || command -v chromium-browser)
-          for d in checklist schedule; do
+          for d in checklist schedule field-kensetsu field-kogyo field-inshoku field-gaishoku field-unso; do
             "$CH" --headless=new --no-sandbox --disable-gpu --no-pdf-header-footer --virtual-time-budget=20000 \
-              --print-to-pdf=redesign/dist/assets/biglight-$d.pdf "file://$PWD/redesign/dist/guide/$d/index.html"
+              --print-to-pdf=redesign/dist/assets/biglight-$d.pdf "file://$PWD/redesign/dist/guide/${d/field-/field/}/index.html"
             sz=$(stat -c%s redesign/dist/assets/biglight-$d.pdf); echo "$d PDF: $sz bytes"
             [ "$sz" -gt 100000 ] || { echo "::error::PDF $d quá nhỏ ($sz bytes)"; exit 1; }
           done
@@ -106,7 +106,7 @@ jobs:
         if: github.event_name != 'schedule' || steps.news.outputs.changed == '1'
         run: |
           command -v pdftoppm >/dev/null || sudo apt-get install -y -q poppler-utils
-          for x in "company-profile profile" "tokutei-guide guide" "checklist checklist" "schedule schedule"; do set -- $x
+          for x in "company-profile profile" "tokutei-guide guide" "checklist checklist" "schedule schedule" "field-kensetsu field-kensetsu" "field-kogyo field-kogyo" "field-inshoku field-inshoku" "field-gaishoku field-gaishoku" "field-unso field-unso"; do set -- $x
             pdftoppm -jpeg -jpegopt quality=85 -f 1 -l 1 -scale-to-x 600 -scale-to-y -1 -singlefile "redesign/dist/assets/biglight-$1.pdf" "redesign/dist/img/material-$2"
           done
           ls -la redesign/dist/img/material-*.jpg
