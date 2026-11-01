@@ -1,4 +1,4 @@
-// 受入れ準備チェックリスト /guide/checklist/ + 採用スケジュール表 /guide/schedule/ (CEO 2026-11-01): A4 ngang, cùng khung guide.cjs (lớp tg-…), ít chữ.
+// 受入れ準備ガイド /guide/preparation/ + 分野別ガイド /guide/field/ (CEO 2026-11-01): A4 ngang, cùng khung guide.cjs (lớp tg-…), ít chữ.
 // Một nguồn, hai hình thức: trang web + PDF (deploy-new.yml in bằng Chrome). noindex, không menu, chỉ gửi bằng link. Không ghi số tiền.
 // Quy định theo 運用要領 令和8年10月. Thời gian 国内 1〜3か月・海外 3〜6か月 = cùng con số FAQ trên web, là mốc tham khảo của BIGLIGHT.
 const { TG_CSS, TG_JS } = require('./guide.cjs');
@@ -56,11 +56,23 @@ ${TG_JS}` });
 
 const items = (a) => `<ul class="sy-ck">${a.map(([t, n]) => `<li><i></i><span><b>${t}</b>${n ? `<small>${n}</small>` : ''}</span></li>`).join('')}</ul>`;
 
-exports.checklist = (o) => {
+const lane = (cols, tpl) => `<div class="sy-lane" style="grid-template-columns:86px repeat(${cols},1fr)">${tpl}</div>`;
+const heads = (a) => '<span></span>' + a.map(x => `<div class="h">${x}</div>`).join('');
+const cells = (lb, a, c) => `<div class="l">${lb}</div>` + a.map(x => x ? `<div class="c ${c || ''}">${x}</div>` : '<div class="c e">—</div>').join('');
+
+/* 受入れ準備ガイド (CEO 2026-11-01): gộp チェックリスト + スケジュール表 thành 1 tài liệu 10 trang. Link cũ: nginx 301, CRM kind cũ trỏ sang đây. */
+exports.prep = (o) => {
   const S = sheetsOf();
-  const pg = (q, a, body) => S.sheet('', `<h2 class="tg-q tg-q0">${q}</h2><p class="tg-a">${a}</p><div class="tg-body">${body}</div>${S.foot('受入れ準備チェックリスト')}`);
-  return wrap(o, 'Checklist', '受入れ準備チェックリスト', '受入れ準備チェックリスト', '特定技能の外国人を受け入れる前に確認する項目のチェックリスト。', o.PDF_URL, [
-    cover(S, '受入れ準備<br>チェックリスト', '印刷して、順番にチェックするだけ。', 'PREPARATION CHECKLIST'),
+  const pg = (q, a, body) => S.sheet('', `<h2 class="tg-q tg-q0">${q}</h2><p class="tg-a">${a}</p><div class="tg-body">${body}</div>${S.foot('受入れ準備ガイド')}`);
+  return wrap(o, 'Preparation', '受入れ準備ガイド', '受入れ準備ガイド', '特定技能の受入れ準備のチェックリストと、入社までのスケジュール。', o.PDF_URL, [
+    cover(S, '受入れ準備ガイド', '何を、いつまでに。印刷して、順番に確認するだけ。', 'PREPARATION GUIDE'),
+    pg('入社まで、どのくらいかかる？', '国内にいる人か、海外にいる人かで変わります。', `
+      <div class="sy-bars">
+        <div class="sy-sc"><span></span><span>1か月</span><span>2か月</span><span>3か月</span><span>4か月</span><span>5か月</span><span>6か月</span></div>
+        <div class="sy-row"><b>国内の人</b><div class="sy-tr"><i class="s" style="left:0;width:16.67%">1か月〜</i><i class="m" style="left:16.67%;width:33.33%">3か月</i></div></div>
+        <div class="sy-row"><b>海外の人</b><div class="sy-tr"><i class="s" style="left:0;width:50%">3か月〜</i><i class="m" style="left:50%;width:50%">6か月</i></div></div>
+      </div>
+      <p class="tg-note">※一般的な目安です。職種、在留資格の状況、審査の期間によって異なります。</p>`),
     pg('1. 受け入れできる会社か', '当てはまる項目にチェックしてください。', items([
       ['仕事が特定技能の業務区分に当てはまる', '分野ごとに業務区分があります'],
       ['報酬は同じ業務の日本人と同等以上', ''],
@@ -101,36 +113,6 @@ exports.checklist = (o) => {
       ['分野: 分野ごとの書類', '協議会への加入も確認します'],
       ['協力確認書を市区町村へ提出', '初めての申請の前に。事業所と住居地それぞれの市区町村へ'],
     ])),
-    pg('5. 入社してから', '受入れ後も、続けて確認します。', items([
-      ['定期面談を3か月に1回以上行っている', '本人と上司それぞれに'],
-      ['定期届出の時期を予定に入れた', '毎年4月1日〜5月31日に前年度分を提出'],
-      ['変更があれば14日以内に届け出る', '契約・支援計画・委託の変更や終了'],
-      ['在留期限を管理している', '期限の前に更新を申請します'],
-      ['給与を契約どおり支払っている', ''],
-      ['相談窓口を本人に伝えている', '本人が理解できる言語で'],
-      ['日本語を学ぶ機会を案内している', ''],
-      ['2号を目指すか、本人と話している', '11分野で2号に進めます'],
-    ])),
-    contact(S, `本資料は${AS_OF}の制度をもとにした一般的なご案内です。分野ごとの要件や最新の情報は、出入国在留管理庁・分野所管省庁の公表資料をご確認ください。<br>参考：出入国在留管理庁「特定技能外国人受入れに関する運用要領」（令和8年10月）`),
-  ]);
-};
-
-const lane = (cols, tpl) => `<div class="sy-lane" style="grid-template-columns:86px repeat(${cols},1fr)">${tpl}</div>`;
-const heads = (a) => '<span></span>' + a.map(x => `<div class="h">${x}</div>`).join('');
-const cells = (lb, a, c) => `<div class="l">${lb}</div>` + a.map(x => x ? `<div class="c ${c || ''}">${x}</div>` : '<div class="c e">—</div>').join('');
-
-exports.schedule = (o) => {
-  const S = sheetsOf();
-  const pg = (q, a, body) => S.sheet('', `<h2 class="tg-q tg-q0">${q}</h2><p class="tg-a">${a}</p><div class="tg-body">${body}</div>${S.foot('採用スケジュール表')}`);
-  return wrap(o, 'Schedule', '採用スケジュール表', '採用スケジュール表', '特定技能の採用から入社までのスケジュールの目安。', o.PDF_URL, [
-    cover(S, '採用スケジュール表', '相談から入社まで、いつ、誰が、何をするか。', 'HIRING SCHEDULE'),
-    pg('入社まで、どのくらいかかる？', '国内にいる人か、海外にいる人かで変わります。', `
-      <div class="sy-bars">
-        <div class="sy-sc"><span></span><span>1か月</span><span>2か月</span><span>3か月</span><span>4か月</span><span>5か月</span><span>6か月</span></div>
-        <div class="sy-row"><b>国内の人</b><div class="sy-tr"><i class="s" style="left:0;width:16.67%">1か月〜</i><i class="m" style="left:16.67%;width:33.33%">3か月</i></div></div>
-        <div class="sy-row"><b>海外の人</b><div class="sy-tr"><i class="s" style="left:0;width:50%">3か月〜</i><i class="m" style="left:50%;width:50%">6か月</i></div></div>
-      </div>
-      <p class="tg-note">※一般的な目安です。職種、在留資格の状況、審査の期間によって異なります。</p>`),
     pg('国内の人を採用するとき', '誰が何をするかを、順番に並べました。', lane(6,
       heads(['ご相談', '募集・面接', '雇用契約', '入社の準備', '在留資格<br>変更の申請', '入社'])
       + cells('会社', ['条件を決める', '面接する', '契約を結ぶ', '支援計画・<br>書類の準備', '会社の書類を<br>用意する', '受け入れる'])
@@ -151,7 +133,7 @@ exports.schedule = (o) => {
         <div class="tg-cr"><b>在留期限</b><div class="tg-gt"><em style="grid-column:1/13">在留カードの期限を確認し、期限の前に更新を申請</em></div></div>
       </div>
       <p class="tg-note">※定期面談の月は一例です。3か月に1回以上、本人と上司それぞれに行います。</p>`),
-    contact(S, `本資料は${AS_OF}の制度をもとにした一般的なご案内です。期間は目安であり、審査の結果や期間を保証するものではありません。<br>参考：出入国在留管理庁「外国人労働者に関する制度概要」（令和8年9月29日更新）`),
+    contact(S, `本資料は${AS_OF}の制度をもとにした一般的なご案内です。期間は目安であり、審査の結果や期間を保証するものではありません。分野ごとの要件や最新の情報は、出入国在留管理庁・分野所管省庁の公表資料をご確認ください。<br>参考：出入国在留管理庁「特定技能外国人受入れに関する運用要領」（令和8年10月）、「外国人労働者に関する制度概要」（令和8年9月29日更新）`),
   ]);
 };
 

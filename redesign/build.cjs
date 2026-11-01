@@ -2499,8 +2499,7 @@ ${pageHead('Privacy Policy','プライバシーポリシー')}
 const MATERIALS=[
   {id:'profile',name:'会社案内',desc:'会社概要・サービス・ご相談の流れ',meta:'A4横 9ページ　Web／PDF',img:'material-profile.jpg',ver:()=>PDF_URL,url:'/about/profile/',live:true},
   {id:'guide',name:'特定技能ガイド',desc:'制度・採用の流れ・支援を図でわかりやすく',meta:'A4横 24ページ　Web／PDF',img:'material-guide.jpg',ver:()=>GUIDE_PDF_URL,url:'/guide/tokutei-ginou/',live:true},
-  {id:'checklist',name:'受入れ準備チェックリスト',desc:'印刷して、順番に確認するだけ',meta:'A4横 7ページ　Web／PDF',img:'material-checklist.jpg',ver:()=>CHECK_PDF_URL,url:'/guide/checklist/',live:true},
-  {id:'schedule',name:'採用スケジュール表',desc:'相談から入社まで、いつ・誰が・何をするか',meta:'A4横 6ページ　Web／PDF',img:'material-schedule.jpg',ver:()=>SCHED_PDF_URL,url:'/guide/schedule/',live:true},
+  {id:'preparation',name:'受入れ準備ガイド',desc:'チェックリストと、入社までのスケジュール',meta:'A4横 10ページ　Web／PDF',img:'material-preparation.jpg',ver:()=>PREP_PDF_URL,url:'/guide/preparation/',live:true},
   {id:'field',name:'分野別ガイド',desc:'分野ごとの仕事・条件・流れ',meta:'A4横 各6ページ　Web／PDF',img:'material-field-kensetsu.jpg',ver:()=>FIELD_PDF('kensetsu'),live:true,group:true},
   {id:'price',name:'料金シミュレーション',desc:'業種を選び、人数を入れると 費用がわかります',meta:'Web　30日間ご覧いただけます',manual:true,live:true},
 ];
@@ -2576,7 +2575,7 @@ const PDF_URL = '/assets/biglight-company-profile.pdf?v=' + require('crypto').cr
 /* 2026-11-01 特定技能ガイド PDF: cùng quy tắc ?v= như 会社案内 */
 const GUIDE_PDF_URL = '/assets/biglight-tokutei-guide.pdf?v=' + require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'guide.cjs'))).digest('hex').slice(0,8);
 const SHIRYO_V = require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'shiryo.cjs'))).digest('hex').slice(0,8);
-const CHECK_PDF_URL = '/assets/biglight-checklist.pdf?v=' + SHIRYO_V, SCHED_PDF_URL = '/assets/biglight-schedule.pdf?v=' + SHIRYO_V;
+const PREP_PDF_URL = '/assets/biglight-preparation.pdf?v=' + SHIRYO_V;
 const SHIRYO = require('./shiryo.cjs'), FIELD_PDF = (f) => `/assets/biglight-field-${f}.pdf?v=` + SHIRYO_V;
 const pages = {
   'index.html': home(),
@@ -2585,8 +2584,7 @@ const pages = {
   'about/company/index.html': company(),
   'about/profile/index.html': require('./profile.cjs')({ page, pageHead, aboutTabs, pill, AICHI_SDGS, PDF_URL }),
   'guide/tokutei-ginou/index.html': require('./guide.cjs')({ page, pageHead, pill, PDF_URL: GUIDE_PDF_URL }),
-  'guide/checklist/index.html': require('./shiryo.cjs').checklist({ page, pageHead, pill, PDF_URL: CHECK_PDF_URL }),
-  'guide/schedule/index.html': require('./shiryo.cjs').schedule({ page, pageHead, pill, PDF_URL: SCHED_PDF_URL }),
+  'guide/preparation/index.html': require('./shiryo.cjs').prep({ page, pageHead, pill, PDF_URL: PREP_PDF_URL }),
   'about/sdgs/index.html': sdgs(),
   'service/index.html': serviceTop(),
   'service/tokutei-ginou/index.html': tokutei(),
