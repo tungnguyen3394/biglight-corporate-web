@@ -91,11 +91,22 @@ jobs:
           echo "PDF: $sz bytes"
           [ "$sz" -gt 200000 ] || { echo "::error::PDF 特定技能ガイド quá nhỏ ($sz bytes)"; exit 1; }
 
+      - name: PDF チェックリスト・スケジュール表
+        if: github.event_name != 'schedule' || steps.news.outputs.changed == '1'
+        run: |
+          CH=$(command -v google-chrome || command -v chromium || command -v chromium-browser)
+          for d in checklist schedule; do
+            "$CH" --headless=new --no-sandbox --disable-gpu --no-pdf-header-footer --virtual-time-budget=20000 \
+              --print-to-pdf=redesign/dist/assets/biglight-$d.pdf "file://$PWD/redesign/dist/guide/$d/index.html"
+            sz=$(stat -c%s redesign/dist/assets/biglight-$d.pdf); echo "$d PDF: $sz bytes"
+            [ "$sz" -gt 100000 ] || { echo "::error::PDF $d quá nhỏ ($sz bytes)"; exit 1; }
+          done
+
       - name: Ảnh bìa tài liệu cho 資料請求 (trang 1 của PDF)
         if: github.event_name != 'schedule' || steps.news.outputs.changed == '1'
         run: |
           command -v pdftoppm >/dev/null || sudo apt-get install -y -q poppler-utils
-          for x in "company-profile profile" "tokutei-guide guide"; do set -- $x
+          for x in "company-profile profile" "tokutei-guide guide" "checklist checklist" "schedule schedule"; do set -- $x
             pdftoppm -jpeg -jpegopt quality=85 -f 1 -l 1 -scale-to-x 600 -scale-to-y -1 -singlefile "redesign/dist/assets/biglight-$1.pdf" "redesign/dist/img/material-$2"
           done
           ls -la redesign/dist/img/material-*.jpg
