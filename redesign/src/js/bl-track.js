@@ -182,10 +182,9 @@ var BLF=(function(){
     var dm=/[?&]doc=([a-z-]{2,30})/.exec(location.search);if(dm){var pre=df.querySelector('input[value="'+dm[1]+'"]');if(pre){var gp=pre.closest('.mtf')?df.querySelector('input[data-sub="'+pre.closest('.mtf').id+'"]'):null;if(gp&&!gp.checked)gp.click();if(!pre.checked)pre.click();}}
     var admin=function(v,g,kind,names){var msg='【資料請求】'+names.join('・');var src=BLT.src();if(src)msg+='\n\n――\n参照した記事: https://biglight.jp'+src;
       return fetch(API+'inquiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({company:v.company||'',name:v.name||'',email:v.email||'',tel:v.tel||'未入力',kind:kind,message:msg,website:v.website||'',ft:g.ft,turnstile:g.turnstile})}).then(function(r){return r.ok;}).catch(function(){return false;});};
-    var finish=function(links,mailed,price){var box=document.getElementById('dl-links'),m=document.getElementById('dl-msg');
-      links.forEach(function(l){var d=document.createElement('div');d.className='mtr-lk';var b=document.createElement('b');b.textContent=l.label;d.appendChild(b);
-        [['Webで見る',l.url],['PDF',l.pdfUrl]].forEach(function(x){if(!x[1])return;var a=document.createElement('a');a.textContent=x[0];a.href=x[1];a.target='_blank';a.rel='noopener';d.appendChild(a);});box.appendChild(d);});
-      m.textContent=(links.length?(mailed?'下記からご覧いただけます。同じリンクをメールでもお送りしました。':'下記からご覧いただけます。'):'内容を確認のうえ、担当者より3営業日以内に資料をお送りします。')+(links.length&&price?'料金のご案内は、担当者より別途お送りします。':'');
+    /* 2026-11-01 CEO: 資料はメールだけでお渡しする。画面にリンクは出さない */
+    var finish=function(links,mailed,price){var m=document.getElementById('dl-msg');
+      m.textContent=(links.length&&mailed?'ご入力のメールアドレスに資料をお送りしました。メールが届かない場合は、迷惑メールフォルダもご確認ください。':'内容を確認のうえ、担当者より3営業日以内に資料をお送りします。')+(links.length&&price?'料金のご案内は、担当者より別途お送りします。':'');
       BLT.conv('download');var dn=document.getElementById('dl-done');dn.classList.remove('fx');dn.classList.add('in');done(df,dn);};
     df.addEventListener('submit',function(e){e.preventDefault();if(!check(df)||dbtn.disabled)return;
       var p=picked();if(!p.length)return;
@@ -203,3 +202,8 @@ var BLF=(function(){
         .catch(function(){admin(v,g,'資料請求',names).then(function(ok){if(ok)finish([],false,false);else fail('送信に失敗しました。お手数ですが、お電話（052-908-7944）でもご連絡ください。');});});
     });}
 })();
+
+/* 会社概要のメールアドレス（2026-11-02）: HTML に アドレスを 書かない。人の 操作が あってから 組み立てる（ボットの 自動収集 対策）。動かないときは お問い合わせフォームの リンクのまま */
+(function(){var a=document.querySelector('.bmail');if(!a)return;var rev=function(x){return x.split('').reverse().join('');};
+  var ev=['pointermove','touchstart','scroll','keydown'],on=function(){ev.forEach(function(e){removeEventListener(e,on,true);});var m=rev(a.getAttribute('data-u'))+String.fromCharCode(64)+rev(a.getAttribute('data-d'));a.textContent=m;a.href='mai'+'lto:'+m;};
+  ev.forEach(function(e){addEventListener(e,on,{capture:true,passive:true});});})();

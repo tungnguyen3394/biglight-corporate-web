@@ -433,6 +433,7 @@ html.js .hero .scrl{opacity:0;animation:pagein 1.2s 2.7s ease forwards}
 .mtf{display:flex;flex-wrap:wrap;gap:10px;padding:4px 14px 8px}.mtf p{width:100%;margin:0;font-size:14px;font-weight:700;color:#0b3d91}
 .form .mtf label{margin:0;font-weight:700;font-size:15px;letter-spacing:0;cursor:pointer}.form .mtf input{position:absolute;opacity:0;width:1px;height:1px;padding:0;border:0}
 .mtf span{display:block;padding:9px 16px;border:1px solid #bdbdbd;border-radius:20px;background:#fff}.mtf input:checked+span{background:#0b3d91;border-color:#0b3d91;color:#fff}.mtf input:focus-visible+span{outline:2px solid #1e6fd6;outline-offset:2px}
+.bmail-n{display:block;font-size:12px;color:var(--grey);margin-top:2px}
 .mtr-form{margin-top:44px}.mtr-sel{font-size:14px;color:#0b3d91;font-weight:700;margin:-8px 0 22px}
 .mtr-g{display:grid;grid-template-columns:1fr 1fr;gap:6px 40px}.mtr-g label small.opt{color:#737373}
 .form .mtr-done{grid-column:auto;text-align:left}.mtr-links{display:grid;gap:12px;margin-top:22px}
@@ -1562,6 +1563,7 @@ ${pageHead('We are','私たちについて',aboutTabs(r,'company'))}
     <div><dt>代表取締役</dt><dd>グエン・タン・トゥン</dd></div>
     <div><dt>所在地</dt><dd>〒462-0007<br>愛知県名古屋市北区如意一丁目112 A</dd></div>
     <div><dt>電話番号</dt><dd><a class="telk" href="tel:0529087944">052-908-7944</a>（FAX 052-908-7267）</dd></div>
+    <div><dt>メール</dt><dd><a class="bmail" data-u="ofni" data-d="pj.thgilgib" href="${r}contact/index.html">お問い合わせフォーム</a><small class="bmail-n">営業・勧誘を目的としたご連絡はご遠慮ください</small></dd></div>
     <div><dt>設立年月日</dt><dd>2021年8月12日</dd></div>
     <div><dt>資本金</dt><dd>5,000,000円</dd></div>
     <div><dt>事業内容</dt><dd>特定技能外国人支援事業<br>外国人高度人材紹介事業<br>支援アプリの導入・提供（BIGLIGHT ポータル／アカデミー／JOB）</dd></div>
@@ -1944,7 +1946,7 @@ ${pageHead('Contact','お問い合わせ・資料請求')}
       <p class="note">送信いただいた個人情報は<a href="${r}privacy/index.html">プライバシーポリシー</a>に基づき取り扱います。</p>
     </div>
   </form>
-  <div class="dldone mtr-done" id="dl-done" hidden><b>ありがとうございました。</b><p id="dl-msg"></p><div id="dl-links" class="mtr-links"></div></div>
+  <div class="dldone mtr-done" id="dl-done" hidden><b>資料のご請求ありがとうございました。</b><p id="dl-msg"></p></div>
 </div></section>
 `});}
 
