@@ -88,6 +88,7 @@ var BLT=(function(){
     if(/^tel:/i.test(href))return '電話';
     if(/line\.me|lin\.ee/i.test(href))return 'LINE';
     if(/job\.biglight\.jp/i.test(href))return '求人を見る';
+    if(/#request/.test(href))return '資料請求';
     if(/\/contact\/?(#|$)/.test(href)||el.classList.contains('cta')||el.classList.contains('macc-cta'))return '無料相談';
     if(el.classList.contains('ncta-btn'))return (el.textContent||'').trim().slice(0,40)||'記事の CTA';
     return '';
@@ -177,6 +178,8 @@ var BLF=(function(){
     df.addEventListener('change',function(e){var t=e.target;if(t.name!=='item'&&t.name!=='grp')return;var cd=t.closest('.mtc');if(cd)cd.classList.toggle('on',t.checked);
       if(t.name==='grp'){var fs=document.getElementById(t.getAttribute('data-sub'));fs.hidden=!t.checked;if(!t.checked)[].forEach.call(fs.querySelectorAll('input'),function(c){c.checked=false;});}
       var p=picked();more.hidden=!p.length;document.getElementById('dlf-sel').textContent=p.map(function(c){return c.getAttribute('data-name');}).join('・');});
+    /* ?doc=<id>: từ trang dịch vụ, chọn sẵn tài liệu */
+    var dm=/[?&]doc=([a-z-]{2,30})/.exec(location.search);if(dm){var pre=df.querySelector('input[value="'+dm[1]+'"]');if(pre){var gp=pre.closest('.mtf')?df.querySelector('input[data-sub="'+pre.closest('.mtf').id+'"]'):null;if(gp&&!gp.checked)gp.click();if(!pre.checked)pre.click();}}
     var admin=function(v,g,kind,names){var msg='【資料請求】'+names.join('・');var src=BLT.src();if(src)msg+='\n\n――\n参照した記事: https://biglight.jp'+src;
       return fetch(API+'inquiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({company:v.company||'',name:v.name||'',email:v.email||'',tel:v.tel||'未入力',kind:kind,message:msg,website:v.website||'',ft:g.ft,turnstile:g.turnstile})}).then(function(r){return r.ok;}).catch(function(){return false;});};
     var finish=function(links,mailed,price){var box=document.getElementById('dl-links'),m=document.getElementById('dl-msg');
