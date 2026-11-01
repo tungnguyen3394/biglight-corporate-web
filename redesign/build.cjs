@@ -2492,11 +2492,11 @@ ${pageHead('Privacy Policy','プライバシーポリシー')}
 `});}
 
 /* 2026-11-01 資料請求: danh sách tài liệu ở /contact/ tab 2. Thêm tài liệu = thêm 1 dòng. img = bìa, deploy-new.yml sinh từ trang 1 PDF.
-   live:false = chưa hiện cho khách. 特定技能ガイド: đổi live:true sau khi 行政書士 duyệt (CRM đã nhận sẵn id 'guide'). manual = nhân viên gửi, không tự tạo link. */
+   live:false = chưa hiện cho khách. CEO 11-01: hiện 特定技能ガイド, ẩn 料金. manual = nhân viên gửi, không tự tạo link. */
 const MATERIALS=[
   {id:'profile',name:'会社案内',desc:'会社概要・サービス・ご相談の流れ',meta:'A4横 9ページ　Web／PDF',img:'material-profile.jpg',ver:()=>PDF_URL,live:true},
-  {id:'guide',name:'特定技能ガイド',desc:'制度・採用の流れ・支援を図でわかりやすく',meta:'A4横 24ページ　Web／PDF',img:'material-guide.jpg',ver:()=>GUIDE_PDF_URL,live:false},
-  {id:'price',name:'料金のご案内',desc:'業種・人数に合わせて費用をシミュレーション',tag:'担当者からお送り',manual:true,live:true},
+  {id:'guide',name:'特定技能ガイド',desc:'制度・採用の流れ・支援を図でわかりやすく',meta:'A4横 24ページ　Web／PDF',img:'material-guide.jpg',ver:()=>GUIDE_PDF_URL,live:true},
+  {id:'price',name:'料金のご案内',desc:'業種・人数に合わせて費用をシミュレーション',tag:'担当者からお送り',manual:true,live:false},
 ];
 
 
