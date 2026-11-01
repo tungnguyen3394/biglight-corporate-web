@@ -2494,8 +2494,10 @@ ${pageHead('Privacy Policy','プライバシーポリシー')}
 /* 2026-11-01 資料請求: danh sách tài liệu ở /contact/ tab 2. Thêm tài liệu = thêm 1 dòng. img = bìa, deploy-new.yml sinh từ trang 1 PDF.
    live:false = chưa hiện cho khách. CEO 11-01: hiện 特定技能ガイド, ẩn 料金. manual = nhân viên gửi, không tự tạo link. */
 const MATERIALS=[
-  {id:'profile',name:'会社案内',desc:'会社概要・サービス・ご相談の流れ',meta:'A4横 9ページ　Web／PDF',img:'material-profile.jpg',ver:()=>PDF_URL,live:true},
-  {id:'guide',name:'特定技能ガイド',desc:'制度・採用の流れ・支援を図でわかりやすく',meta:'A4横 24ページ　Web／PDF',img:'material-guide.jpg',ver:()=>GUIDE_PDF_URL,live:true},
+  {id:'profile',name:'会社案内',desc:'会社概要・サービス・ご相談の流れ',meta:'A4横 9ページ　Web／PDF',img:'material-profile.jpg',ver:()=>PDF_URL,url:'/about/profile/',live:true},
+  {id:'guide',name:'特定技能ガイド',desc:'制度・採用の流れ・支援を図でわかりやすく',meta:'A4横 24ページ　Web／PDF',img:'material-guide.jpg',ver:()=>GUIDE_PDF_URL,url:'/guide/tokutei-ginou/',live:true},
+  {id:'checklist',name:'受入れ準備チェックリスト',desc:'印刷して、順番に確認するだけ',meta:'A4横 7ページ　Web／PDF',img:'material-checklist.jpg',ver:()=>CHECK_PDF_URL,url:'/guide/checklist/',live:true},
+  {id:'schedule',name:'採用スケジュール表',desc:'相談から入社まで、いつ・誰が・何をするか',meta:'A4横 6ページ　Web／PDF',img:'material-schedule.jpg',ver:()=>SCHED_PDF_URL,url:'/guide/schedule/',live:true},
   {id:'price',name:'料金のご案内',desc:'業種・人数に合わせて費用をシミュレーション',tag:'担当者からお送り',manual:true,live:false},
 ];
 
@@ -2569,6 +2571,8 @@ function optout(){ const r='../'; return page({root:r,title:'配信停止｜BIGL
 const PDF_URL = '/assets/biglight-company-profile.pdf?v=' + require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'profile.cjs'))).digest('hex').slice(0,8);
 /* 2026-11-01 特定技能ガイド PDF: cùng quy tắc ?v= như 会社案内 */
 const GUIDE_PDF_URL = '/assets/biglight-tokutei-guide.pdf?v=' + require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'guide.cjs'))).digest('hex').slice(0,8);
+const SHIRYO_V = require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'shiryo.cjs'))).digest('hex').slice(0,8);
+const CHECK_PDF_URL = '/assets/biglight-checklist.pdf?v=' + SHIRYO_V, SCHED_PDF_URL = '/assets/biglight-schedule.pdf?v=' + SHIRYO_V;
 const pages = {
   'index.html': home(),
   'about/index.html': about(),
@@ -2576,6 +2580,8 @@ const pages = {
   'about/company/index.html': company(),
   'about/profile/index.html': require('./profile.cjs')({ page, pageHead, aboutTabs, pill, AICHI_SDGS, PDF_URL }),
   'guide/tokutei-ginou/index.html': require('./guide.cjs')({ page, pageHead, pill, PDF_URL: GUIDE_PDF_URL }),
+  'guide/checklist/index.html': require('./shiryo.cjs').checklist({ page, pageHead, pill, PDF_URL: CHECK_PDF_URL }),
+  'guide/schedule/index.html': require('./shiryo.cjs').schedule({ page, pageHead, pill, PDF_URL: SCHED_PDF_URL }),
   'about/sdgs/index.html': sdgs(),
   'service/index.html': serviceTop(),
   'service/tokutei-ginou/index.html': tokutei(),
@@ -2599,6 +2605,8 @@ pages['404.html']=page({root:'/',title:'ページが見つかりません｜BIGL
 <section class="ph"><div class="wrap"><h1 class="phh"><span class="en">404</span><span class="ja-lb">ページが見つかりません</span></h1>${dots}</div></section>
 <section><div class="wrap lead-end"><p class="lead16">お探しのページは移動または削除された可能性があります。</p><div style="margin-top:40px;display:flex;gap:20px;flex-wrap:wrap">${pill('トップページへ','/index.html')}${pill('お問い合わせ','/contact/index.html')}</div></div></section>`});
 const nPages=require('./seo.cjs')(pages,{OUT,SITE,ARTICLES,WEBP});
+/* 2026-11-01: admin.biglight.jp đọc danh sách này (資料一覧) để xem trực tiếp, kể cả tài liệu chưa hiện ở /contact/ */
+fs.writeFileSync(path.join(OUT,'materials.json'), JSON.stringify(MATERIALS.filter(m=>!m.manual).map(m=>({id:m.id,name:m.name,desc:m.desc,meta:m.meta,live:!!m.live,url:SITE.replace(/\/$/,'')+m.url,pdf:SITE.replace(/\/$/,'')+m.ver(),thumb:SITE.replace(/\/$/,'')+'/img/'+m.img+'?v='+m.ver().split('?v=')[1]}))));
 console.log('pages',nPages);
 /* ảnh tạm (差し替え予定) */
 function phSvg(en,ja,hue){ let lines='';for(let i=0;i<34;i++){const dy=i*9;lines+='<path d="M-50 '+(520+dy)+' C 250 '+(330+dy)+', 520 '+(660+dy)+', 800 '+(470+dy)+' S 1100 '+(260+dy)+', 1260 '+(360+dy)+'" fill="none" stroke="hsl('+hue+',55%,'+(48+i)+'%)" stroke-width="1.2" opacity=".55"/>';}
