@@ -1,0 +1,77 @@
+{
+  "_comment": "物流人材（自動車運送業・物流倉庫）の制度データ。ここを直すと /logistics/ と 分野ページの「制度の現在地」が全部変わる（build.cjs が読む）。status: 確定 | 調整中 | 予定。verified_at = 出典を最後に確認した日。",
+  "updated": "2026-11-03",
+  "fields": {
+    "unso": { "name": "自動車運送業", "en": "Transportation", "short": "ドライバー", "url": "service/field/unso/" },
+    "soko": { "name": "物流倉庫", "en": "Logistics Warehouse", "short": "倉庫スタッフ", "url": "service/field/soko/" }
+  },
+  "sources": {
+    "mlit-soko": { "name": "国土交通省「物流倉庫分野における特定技能・育成就労外国人の受入れ」", "url": "https://www.mlit.go.jp/seisakutokatsu/freight/warehousing_ssw.html", "watch": "html" },
+    "houshin-soko": { "name": "分野別運用方針（物流倉庫分野）令和8年1月23日閣議決定", "url": "https://www.mlit.go.jp/seisakutokatsu/freight/content/002016484.pdf", "watch": "pdf" },
+    "gaiyo-soko": { "name": "国土交通省「物流倉庫分野の上乗せ基準（概要）」", "url": "https://www.mlit.go.jp/seisakutokatsu/freight/content/002027344.pdf", "watch": "pdf" },
+    "yoryo-soko": { "name": "運用要領別冊「物流倉庫分野の基準について」令和8年9月18日公表", "url": "https://www.mlit.go.jp/seisakutokatsu/freight/content/002023331.pdf", "watch": "pdf" },
+    "shiken-soko": { "name": "物流倉庫分野特定技能（1号）評価試験実施要領 令和8年10月26日", "url": "https://www.mlit.go.jp/seisakutokatsu/freight/content/002027389.pdf", "watch": "pdf" },
+    "classnk": { "name": "日本海事協会 特定技能試験ポータル（お知らせ）", "url": "https://sswt-portal.classnk.or.jp/news/30", "watch": "" },
+    "classnk-top": { "name": "日本海事協会 特定技能試験ポータル", "url": "https://sswt-portal.classnk.or.jp/", "watch": "" },
+    "mlit-unso": { "name": "国土交通省「自動車運送業分野における特定技能外国人の受入れ」", "url": "https://www.mlit.go.jp/jidosha/jidosha_tk1_000038.html", "watch": "html" },
+    "houshin-unso": { "name": "自動車運送業分野における特定技能の制度の運用に関する方針（令和8年1月23日閣議決定）", "url": "https://www.mlit.go.jp/jidosha/content/001984769.pdf", "watch": "pdf" },
+    "qa-unso": { "name": "国土交通省「自動車運送業分野 特定技能 Q&A」", "url": "https://www.mlit.go.jp/jidosha/content/002004573.pdf", "watch": "pdf" },
+    "isa-ssw": { "name": "出入国在留管理庁「特定技能制度」", "url": "https://www.moj.go.jp/isa/policies/ssw/nyuukokukanri01_00127.html", "watch": "" },
+    "isa-stats": { "name": "出入国在留管理庁「特定技能在留外国人数の公表」", "url": "https://www.moj.go.jp/isa/policies/ssw/nyuukokukanri07_00215.html", "watch": "" }
+  },
+  "facts": [
+    { "field": "soko", "key": "added", "group": "overview", "item": "特定技能への追加", "value": "2026年1月23日 閣議決定（特定技能1号・育成就労）", "status": "確定", "source": "houshin-soko", "verified_at": "2026-11-03" },
+    { "field": "unso", "key": "added", "group": "overview", "item": "特定技能への追加", "value": "2024年3月29日 閣議決定（特定技能1号）", "status": "確定", "source": "mlit-unso", "verified_at": "2026-11-03" },
+    { "field": "soko", "key": "mikomi", "group": "overview", "item": "受入れ見込数", "value": "1万1,400人（特定技能1号・2026〜2028年度の3年間）", "status": "確定", "source": "houshin-soko", "verified_at": "2026-11-03", "note": "育成就労は別枠で6,900人（2027〜2028年度）" },
+    { "field": "unso", "key": "mikomi", "group": "overview", "item": "受入れ見込数", "value": "2万2,100人（特定技能1号・2024〜2028年度の5年間）", "status": "確定", "source": "houshin-unso", "verified_at": "2026-11-03" },
+    { "field": "soko", "key": "start", "group": "overview", "item": "受入れ開始", "value": "2027年度の見込み（評価試験の合格者が出てから）", "status": "予定", "source": "mlit-soko", "verified_at": "2026-11-03" },
+    { "field": "unso", "key": "start", "group": "overview", "item": "受入れ開始", "value": "受入れ中（評価試験は2024年12月から実施）", "status": "確定", "source": "mlit-unso", "verified_at": "2026-11-03" },
+    { "field": "soko", "key": "work", "group": "overview", "item": "対象業務", "value": "物流倉庫内の倉庫作業（入出庫・保管・検品・ピッキング・流通加工など）", "status": "確定", "source": "yoryo-soko", "verified_at": "2026-11-03", "note": "包装されていない食品に直接触れる業務は不可" },
+    { "field": "unso", "key": "work", "group": "overview", "item": "対象業務", "value": "トラック・タクシー・バスの運転と付随業務（3区分）", "status": "確定", "source": "mlit-unso", "verified_at": "2026-11-03" },
+    { "field": "soko", "key": "skill", "group": "worker", "item": "技能試験", "value": "物流倉庫分野特定技能1号評価試験（日本海事協会）", "status": "確定", "source": "shiken-soko", "verified_at": "2026-11-03" },
+    { "field": "unso", "key": "skill", "group": "worker", "item": "技能試験", "value": "自動車運送業分野特定技能1号評価試験（トラック／タクシー／バス、日本海事協会）", "status": "確定", "source": "mlit-unso", "verified_at": "2026-11-03" },
+    { "field": "soko", "key": "jp", "group": "worker", "item": "日本語要件", "value": "A2.2相当以上（JFT-Basic または JLPT N4以上）", "status": "確定", "source": "yoryo-soko", "verified_at": "2026-11-03" },
+    { "field": "unso", "key": "jp", "group": "worker", "item": "日本語要件", "value": "トラック：N4相当以上／タクシー・バス：原則 N3以上", "status": "確定", "source": "mlit-unso", "verified_at": "2026-11-03" },
+    { "field": "soko", "key": "license", "group": "worker", "item": "免許・資格", "value": "特定の免許は不要（フォークリフト等は別途技能講習）", "status": "確定", "source": "yoryo-soko", "verified_at": "2026-11-03" },
+    { "field": "unso", "key": "license", "group": "worker", "item": "免許・資格", "value": "日本の運転免許が必要（入国後に「特定活動」最長6か月で外免切替）", "status": "確定", "source": "mlit-unso", "verified_at": "2026-11-03" },
+    { "field": "soko", "key": "exam", "group": "process", "item": "試験の状況", "value": "実施要領 公表（2026年10月26日）。出張試験方式の申込受付が始まり、CBT方式は準備中", "status": "調整中", "source": "classnk", "verified_at": "2026-11-03" },
+    { "field": "unso", "key": "exam", "group": "process", "item": "試験の状況", "value": "実施中（国内・国外、CBT）。累計合格者 4,448人（2026年1月末）", "status": "確定", "source": "classnk-top", "verified_at": "2026-11-03" },
+    { "field": "soko", "key": "kyogikai", "group": "process", "item": "協議会", "value": "設置に向けて調整中（2026年10月時点）。在留諸申請の前に加入が必要", "status": "調整中", "source": "mlit-soko", "verified_at": "2026-11-03" },
+    { "field": "unso", "key": "kyogikai", "group": "process", "item": "協議会", "value": "自動車運送業分野特定技能協議会（設置済み）。加入の確認に約1か月", "status": "確定", "source": "mlit-unso", "verified_at": "2026-11-03" },
+    { "field": "soko", "key": "ikusei", "group": "overview", "item": "育成就労・2号", "value": "育成就労あり（2027年4月〜）／特定技能2号なし", "status": "確定", "source": "mlit-soko", "verified_at": "2026-11-03" },
+    { "field": "unso", "key": "ikusei", "group": "overview", "item": "育成就労・2号", "value": "育成就労なし／特定技能2号なし（1号の通算最長5年）", "status": "確定", "source": "qa-unso", "verified_at": "2026-11-03" },
+
+    { "field": "soko", "key": "c-type", "group": "company", "item": "事業者の類型（いずれか）", "value": "A 倉庫業者／B 倉庫業者から倉庫作業を受託する会社／C 一般・特定貨物自動車運送事業者（自社占有の倉庫 または 有償で引き受ける倉庫作業）", "status": "確定", "source": "gaiyo-soko", "verified_at": "2026-11-03" },
+    { "field": "soko", "key": "c-place", "group": "company", "item": "就業の場所", "value": "営業倉庫登録がされた倉庫（運送事業者は自社車両・庸車が出入りする自社占有の倉庫）", "status": "確定", "source": "gaiyo-soko", "verified_at": "2026-11-03" },
+    { "field": "soko", "key": "c-wms", "group": "company", "item": "倉庫管理システム（WMS）", "value": "入庫・在庫・出庫管理の機能を持つ情報システムを利活用していること（自社所有でなくても可）", "status": "確定", "source": "yoryo-soko", "verified_at": "2026-11-03" },
+    { "field": "soko", "key": "c-wms2", "group": "company", "item": "機能拡充の機器・システム", "value": "WMSと連携して機能が広がる機器・システムを継続して利活用し、協議会加入から1年以内に報告", "status": "確定", "source": "gaiyo-soko", "verified_at": "2026-11-03" },
+    { "field": "soko", "key": "c-kyogikai", "group": "company", "item": "分野別協議会", "value": "構成員になり、協議が調った措置を講じ、国交省の調査・指導に協力（登録支援機関も構成員であること）", "status": "確定", "source": "yoryo-soko", "verified_at": "2026-11-03" },
+    { "field": "soko", "key": "c-haken", "group": "company", "item": "雇用形態", "value": "直接雇用のみ（労働者派遣は不可）", "status": "確定", "source": "gaiyo-soko", "verified_at": "2026-11-03" },
+    { "field": "soko", "key": "c-cert", "group": "company", "item": "実務経験証明書", "value": "雇用していた外国人の求めに応じ、実務経験を証明する書面を交付すること", "status": "確定", "source": "gaiyo-soko", "verified_at": "2026-11-03" },
+    { "field": "soko", "key": "c-b", "group": "company", "item": "類型Bのみ：雇用継続協定書", "value": "委託元の倉庫業者と協力して就労支援を行う協定書を作成", "status": "確定", "source": "gaiyo-soko", "verified_at": "2026-11-03" },
+
+    { "field": "unso", "key": "c-type", "group": "company", "item": "事業者の要件", "value": "道路運送法・貨物自動車運送事業法に基づく自動車運送事業者であること", "status": "確定", "source": "mlit-unso", "verified_at": "2026-11-03" },
+    { "field": "unso", "key": "c-cert", "group": "company", "item": "働きやすい職場認証", "value": "「働きやすい職場認証制度」の認証（トラックはGマークでも可）", "status": "確定", "source": "mlit-unso", "verified_at": "2026-11-03" },
+    { "field": "unso", "key": "c-kyogikai", "group": "company", "item": "分野別協議会", "value": "自動車運送業分野特定技能協議会の構成員になる（登録支援機関も構成員であること）", "status": "確定", "source": "mlit-unso", "verified_at": "2026-11-03" },
+    { "field": "unso", "key": "c-haken", "group": "company", "item": "雇用形態", "value": "直接雇用のみ（労働者派遣は不可）", "status": "確定", "source": "qa-unso", "verified_at": "2026-11-03" },
+    { "field": "unso", "key": "c-training", "group": "company", "item": "研修", "value": "タクシー・バスは新任運転者研修。乗務開始までの準備期間に日本語研修も実施", "status": "確定", "source": "mlit-unso", "verified_at": "2026-11-03" }
+  ],
+  "timeline": {
+    "soko": [
+      { "label": "閣議決定（分野追加）", "date": "2026年1月23日", "status": "確定", "source": "houshin-soko" },
+      { "label": "上乗せ基準告示 公布", "date": "2026年6月26日", "status": "確定", "source": "mlit-soko" },
+      { "label": "運用要領別冊 公表", "date": "2026年9月18日", "status": "確定", "source": "yoryo-soko" },
+      { "label": "試験実施要領 公表", "date": "2026年10月26日", "status": "確定", "source": "shiken-soko" },
+      { "label": "評価試験 開始", "date": "出張試験の申込受付中・CBTは準備中", "status": "調整中", "source": "classnk" },
+      { "label": "協議会 設置", "date": "設置に向けて調整中", "status": "調整中", "source": "mlit-soko" },
+      { "label": "受入れ開始", "date": "2027年度の見込み", "status": "予定", "source": "mlit-soko" }
+    ],
+    "unso": [
+      { "label": "閣議決定（分野追加）", "date": "2024年3月29日", "status": "確定", "source": "mlit-unso" },
+      { "label": "評価試験 開始", "date": "2024年12月16日〜", "status": "確定", "source": "qa-unso" },
+      { "label": "協議会 設置", "date": "設置済み（加入受付中）", "status": "確定", "source": "mlit-unso" },
+      { "label": "受入れ見込数の見直し", "date": "2026年1月23日 閣議決定（2万2,100人）", "status": "確定", "source": "houshin-unso" },
+      { "label": "受入れ", "date": "受入れ中", "status": "確定", "source": "mlit-unso" }
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+# 2026-11-03 物流人材: mỗi tuần tải các trang nguồn trong redesign/facts.json, so mã băm với lần trước.
+# Đổi → mở GitHub Issue (người phụ trách nhận mail từ GitHub) + ghi redesign/watch.json vào nhánh redesign. KHÔNG tự sửa nội dung web.
+# Thử thông báo: Actions → 制度の出典を見張る → Run workflow → test = true (coi như mọi nguồn đổi).
+name: 制度の出典を見張る（物流人材）
+on:
+  schedule:
+    - cron: '0 0 * * 1'   # thứ Hai 09:00 JST
+  workflow_dispatch:
+    inputs:
+      test:
+        description: 'test: coi như mọi nguồn đã đổi (để thử Issue)'
+        type: boolean
+        default: false
+permissions:
+  contents: write
+  issues: write
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: redesign }
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Tải nguồn và so mã băm
+        id: w
+        run: node redesign/watch-sources.cjs --write ${{ inputs.test && '--test' || '' }}
+      - name: Mở Issue cho người phụ trách
+        if: steps.w.outputs.changed == '1'
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          t="物流人材ページの出典に変更（$(date -u -d '+9 hours' +%Y-%m-%d)）${{ inputs.test && '【テスト】' || '' }}"
+          gh issue create --title "$t" --body-file redesign/watch-report.md --label "制度の出典" --assignee "${{ github.repository_owner }}" || gh issue create --title "$t" --body-file redesign/watch-report.md
+      - name: Lưu mã băm mới (redesign/watch.json)
+        if: ${{ !inputs.test }}
+        run: |
+          git config user.name "biglight-watch" && git config user.email "noreply@biglight.jp"
+          git add redesign/watch.json
+          git diff --cached --quiet || { git commit -m "watch: 出典の確認 $(date -u -d '+9 hours' +%Y-%m-%d)"; git push origin HEAD:redesign; }

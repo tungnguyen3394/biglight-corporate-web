@@ -29,7 +29,7 @@ const WEBSITE = { '@type': 'WebSite', '@id': 'https://biglight.jp/#website', url
 const CRUMB = {
   about: '私たちについて', message: '代表メッセージ', company: '会社概要', profile: '会社案内', sdgs: 'SDGsへの取り組み', strength: '選ばれる理由',
   service: '事業内容', 'tokutei-ginou': '特定技能 採用支援', engineer: '技人国 人材紹介', field: '対応分野',
-  kogyo: '工業製品製造業', kensetsu: '建設業', inshoku: '飲食料品製造業', gaishoku: '外食業', unso: '自動車運送業',
+  kogyo: '工業製品製造業', kensetsu: '建設業', inshoku: '飲食料品製造業', gaishoku: '外食業', unso: '自動車運送業', soko: '物流倉庫', logistics: '物流人材（運送・倉庫）', check: '受入れ診断',
   product: 'アプリ', news: 'お知らせ', recruit: '採用情報', hcmc: 'ホーチミン拠点 採用スタッフ', contact: 'お問い合わせ', download: '資料ダウンロード', case: '導入事例',
 };
 
@@ -50,6 +50,9 @@ const META = {
   'service/': ['事業内容｜特定技能・技人国の外国人材紹介｜BIGLIGHT株式会社', '名古屋の登録支援機関BIGLIGHTの事業内容。特定技能外国人の採用支援と、技術・人文知識・国際業務（技人国）の人材紹介を、完全成功報酬でご提供します。'],
   'service/tokutei-ginou/': ['特定技能の採用支援・登録支援機関｜BIGLIGHT株式会社（名古屋）', '特定技能とは？1号・2号の違いや技能実習・育成就労との制度比較から、採用、在留資格の手続き、義務的支援10項目の代行まで。名古屋の登録支援機関BIGLIGHTが一貫してご支援します。'],
   'service/field/unso/': ['自動車運送業（トラックドライバー）の特定技能採用｜BIGLIGHT株式会社（名古屋）', '特定技能「自動車運送業」でトラックドライバーを採用。評価試験・日本語の要件、外免切替と「特定活動」の期間、協議会・働きやすい職場認証などの受入れ要件から乗務開始まで、名古屋の登録支援機関BIGLIGHTが解説・支援します。'],
+  'service/field/soko/': ['物流倉庫（倉庫スタッフ）の特定技能採用｜BIGLIGHT株式会社（名古屋）', '2026年1月に特定技能の対象となった「物流倉庫」分野。対象業務、受入れ企業の3つの類型（倉庫業者・倉庫作業会社・貨物自動車運送事業者）、倉庫管理システムや協議会などの要件、試験と受入れ開始の見込みを、名古屋の登録支援機関BIGLIGHTが出典つきで解説します。'],
+  'logistics/': ['物流人材（自動車運送業・物流倉庫）の特定技能採用｜BIGLIGHT株式会社', 'トラックドライバーと倉庫スタッフを特定技能で採用するための制度比較。受入れ見込数・日本語要件・試験・協議会の状況を国の公表資料から確認日つきでまとめ、受入れ企業の条件チェックリストと受入れ診断をご用意しています。'],
+  'logistics/check/': ['受入れ可能か診断｜特定技能のドライバー・倉庫スタッフ｜BIGLIGHT株式会社', '8つの質問に答えるだけで、特定技能の自動車運送業・物流倉庫分野で外国人材を受け入れられるかを診断。直接雇用、認証、倉庫管理システム、協議会など会社側の条件を確認し、結果からそのまま無料相談できます。'],
   'service/engineer/': ['技人国（技術・人文知識・国際業務）の人材紹介｜BIGLIGHT株式会社', '技術・人文知識・国際業務（技人国）ビザの要件・在留期間・特定技能との違いを解説。エンジニア、機械設計、通訳・翻訳、貿易事務などの専門人材を完全成功報酬でご紹介します。'],
   'case/': ['導入事例｜特定技能の採用・定着支援の事例｜BIGLIGHT株式会社', '愛知県の溶接・鉄骨加工会社、東京都の内装仕上げ工事会社など、特定技能外国人の採用から定着までをBIGLIGHTがご支援した企業様の事例と、ご担当者様の声をご紹介します。'],
   'product/': ['アプリ（BIGLIGHT ポータル・アカデミー・JOB）｜BIGLIGHT株式会社', '企業と外国人材の手続き・連絡をひとつにまとめる「BIGLIGHT ポータル」、特定技能試験対策の「アカデミー」、特定技能専門の求人サイト「JOB」。App Store・Google Playで配信中です。'],
@@ -74,11 +77,12 @@ const JOBS = {
   },
 };
 // Trang không công khai trên Google / sitemap (chỉ vào bằng nút trong trang): 会社案内 (CEO 2026-10-30), 特定技能ガイド (2026-11-01)
-const NOINDEX = new Set(['about/profile/', 'guide/tokutei-ginou/', 'guide/preparation/', ...['kensetsu', 'kogyo', 'inshoku', 'gaishoku', 'unso'].map(f => `guide/field/${f}/`)]);
+const NOINDEX = new Set(['about/profile/', 'guide/tokutei-ginou/', 'guide/preparation/', ...['kensetsu', 'kogyo', 'inshoku', 'gaishoku', 'unso', 'soko'].map(f => `guide/field/${f}/`)]);
 const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const strip = (h) => h.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 
-module.exports = function seo(pages, { OUT, SITE, ARTICLES, WEBP = {} }) {
+// DATED: trang có「最終更新日」(facts.json) → dateModified trong JSON-LD + lastmod trong sitemap
+module.exports = function seo(pages, { OUT, SITE, ARTICLES, WEBP = {}, DATED = {} }) {
   const webp = (x) => { for (const [a, b] of Object.entries(WEBP)) x = x.split(a).join(b); return x; };
   const ver = {};
   for (const f of ['css/site.css', 'js/site.js']) { const p = path.join(OUT, f); const c = webp(fs.readFileSync(p, 'utf8')); fs.writeFileSync(p, c); ver[f] = require('crypto').createHash('md5').update(c).digest('hex').slice(0, 8); }
@@ -110,6 +114,7 @@ module.exports = function seo(pages, { OUT, SITE, ARTICLES, WEBP = {} }) {
     const graph = [ORG, WEBSITE];
     const segs = dir.split('/').filter(Boolean);
     const page = { '@type': art ? 'Article' : 'WebPage', '@id': url + '#page', url, name: title, description: desc, inLanguage: 'ja', isPartOf: { '@id': 'https://biglight.jp/#website' }, publisher: { '@id': 'https://biglight.jp/#org' } };
+    if (!art && DATED[dir]) Object.assign(page, { dateModified: DATED[dir], datePublished: '2026-11-03' });
     if (art) Object.assign(page, { headline: art.title, image: ogImg, datePublished: art.date.replace(/\./g, '-'), dateModified: (art.mod > art.date ? art.mod : art.date).replace(/\./g, '-'), author: { '@type': 'Organization', name: 'BIGLIGHT編集部' }, mainEntityOfPage: url });
     graph.push(page);
     if (segs.length) {
@@ -152,7 +157,7 @@ module.exports = function seo(pages, { OUT, SITE, ARTICLES, WEBP = {} }) {
 
     fs.mkdirSync(path.dirname(path.join(OUT, f)), { recursive: true });
     fs.writeFileSync(path.join(OUT, f), html);
-    if (!NOINDEX.has(dir)) urls.push({ loc: url, pri: dir === '' ? '1.0' : (segs.length === 1 ? '0.8' : '0.6'), lastmod: art ? (art.mod > art.date ? art.mod : art.date).replace(/\./g, '-') : '' });
+    if (!NOINDEX.has(dir)) urls.push({ loc: url, pri: dir === '' ? '1.0' : (segs.length === 1 ? '0.8' : '0.6'), lastmod: art ? (art.mod > art.date ? art.mod : art.date).replace(/\./g, '-') : (DATED[dir] || '') });
   }
 
   // 5) sitemap + robots (bản chính thức; bản xem trước bị chặn bằng X-Robots-Tag ở Caddy)
