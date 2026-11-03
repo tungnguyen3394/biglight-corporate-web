@@ -11,3 +11,9 @@
 3. /news/ đọc từ admin.biglight.jp (hiện chỉ có 2 bài mẫu theo template mới).
 4. Trang privacy / optout / faq (chép từ bản cũ).
 5. Thay biglight.jp: đổi nhãn Caddy, bỏ noindex, gửi sitemap lên Google Search Console.
+
+## 物流人材（自動車運送業・物流倉庫）— 2026-11-03
+- Trang: `/logistics/`（まとめ・比較・タイムライン・条件・FAQ・出典）, `/logistics/check/`（受入れ診断 → お問い合わせ）, `/service/field/soko/`（物流倉庫, khuôn fieldPage), `/service/field/unso/` (có thêm khối「制度の現在地」), `/guide/field/soko/` (PDF).
+- **Số liệu, trạng thái (確定/調整中/予定), nguồn, ngày kiểm tra = `redesign/facts.json`**. Sửa file này rồi push nhánh `redesign` → mọi trang tự đổi (bảng so sánh, timeline, checklist, 最終更新日, dateModified, sitemap lastmod). Chữ dẫn dắt/FAQ ở `redesign/logistics.cjs`; nội dung ngành ở `FIELDS` (build.cjs) + `SHIRYO.FIELDS` (shiryo.cjs).
+- Theo dõi nguồn: `.github/workflows/watch-sources.yml` (thứ Hai 09:00 JST, cũng phải có trên `main` vì GitHub chỉ chạy lịch ở nhánh mặc định) chạy `redesign/watch-sources.cjs` → đổi thì mở GitHub Issue (mail từ GitHub) + ghi `redesign/watch.json`. Thử: Run workflow với test = true. Không tự sửa web.
+- Form 診断 gửi `/api/inquiry` (admin) kind「無料相談（物流人材・受入れ診断）」, câu trả lời nằm trong 内容. 資料請求 ガイド 倉庫 cần CRM `field-soko` (DOC_KINDS) + sales chip.

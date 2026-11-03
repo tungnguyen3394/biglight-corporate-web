@@ -15,7 +15,7 @@ const copies = {
   'img/desk-academy.jpg':'img/desk-academy.jpg','img/desk-job.jpg':'img/desk-job.jpg','img/shot-portal-916.jpg':'img/shot-portal.jpg','img/shot-academy.jpg':'img/shot-academy.jpg','img/shot-job.jpg':'img/shot-job.jpg',
   'badges/apple-ja.svg':'img/badge-appstore.svg','badges/google-ja.png':'img/badge-googleplay.png',
 };
-Object.assign(copies,{'img/logo-s.webp':'img/logo-s.webp','img/hero-meeting5.jpg':'img/hero-meeting5.jpg','img/recruit-team.jpg':'img/recruit-team.jpg','img/svc-ssw2.jpg':'img/svc-ssw2.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/field-unso.jpg':'img/field-unso.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','img/aichi-sdgs-partners.jpg':'img/aichi-sdgs-partners.jpg','img/qr-contact.svg':'img/qr-contact.svg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
+Object.assign(copies,{'img/logo-s.webp':'img/logo-s.webp','img/hero-meeting5.jpg':'img/hero-meeting5.jpg','img/recruit-team.jpg':'img/recruit-team.jpg','img/svc-ssw2.jpg':'img/svc-ssw2.jpg','img/engineer-cad.jpg':'img/engineer-cad.jpg','img/field-kogyo.jpg':'img/field-kogyo.jpg','img/field-kensetsu.jpg':'img/field-kensetsu.jpg','img/field-inshoku.jpg':'img/field-inshoku.jpg','img/field-gaishoku.jpg':'img/field-gaishoku.jpg','img/field-unso.jpg':'img/field-unso.jpg','img/field-soko.jpg':'img/field-soko.jpg','img/case-welding.jpg':'img/case-welding.jpg','img/og-image.jpg':'img/og-image.jpg','img/ogp.jpg':'img/ogp.jpg','img/aichi-sdgs-partners.jpg':'img/aichi-sdgs-partners.jpg','img/qr-contact.svg':'img/qr-contact.svg','favicon.ico':'favicon.ico','apple-touch-icon.png':'apple-touch-icon.png','icon-96.png':'icon-96.png'});
 fs.mkdirSync(path.join(OUT,'img/sdg'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/sdg')).filter(f=>f.endsWith('.png')))fs.copyFileSync(path.join(__dirname,'src/img/sdg',f),path.join(OUT,'img/sdg',f));
 fs.mkdirSync(path.join(OUT,'img/people'),{recursive:true});for(const f of fs.readdirSync(path.join(__dirname,'src/img/people')).filter(f=>f.endsWith('.webp')))fs.copyFileSync(path.join(__dirname,'src/img/people',f),path.join(OUT,'img/people',f));
 { let out='';const N=34,S=80;const A=t=>330+110*Math.sin(t*Math.PI*1.9+0.2)-210*t, B=t=>330+110*Math.sin(t*Math.PI*1.9+2.9)-210*t+70*Math.sin(t*Math.PI);
@@ -1337,7 +1337,7 @@ function page({root, title, desc, body, active, home}) {
       <div class="fb"><a class="logo" href="${r}index.html"><img src="${r}img/logo-s.webp" alt="" width="44" height="44"><img class="wm" src="${r}img/wordmark.png" alt="BIGLIGHT"></a>
         <p class="addr">〒462-0007 愛知県名古屋市北区如意一丁目112 A<span class="tel">　TEL <a class="telk" href="tel:0529087944">052-908-7944</a>　FAX 052-908-7267</span></p>
         ${snsHtml()}${glbHtml()}${AICHI_SDGS.on?`<a class="sdgp" href="${AICHI_SDGS.url}"><img src="${r}img/aichi-sdgs-partners.jpg" alt="${AICHI_SDGS.alt}" width="1195" height="219" loading="lazy"></a>`:''}</div>
-      <nav class="fsite" aria-label="サイトマップ"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}service/field/unso/index.html">Transportation</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a><a href="${r}recruit/hcmc/index.html">Ho Chi Minh</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}contact/index.html#request">Request</a></div></nav>
+      <nav class="fsite" aria-label="サイトマップ"><div><a class="h" href="${r}about/index.html">ABOUT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}about/index.html#mission">Mission</a><a href="${r}about/message/index.html">Message</a><a href="${r}about/strength/index.html">Strength</a><a href="${r}about/company/index.html">Company</a><a href="${r}about/sdgs/index.html">SDGs</a></div><div><a class="h" href="${r}service/index.html">SERVICE</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}service/tokutei-ginou/index.html">Specified Skilled Worker</a><a href="${r}service/engineer/index.html">Engineer</a><a href="${r}service/field/kogyo/index.html">Manufacturing</a><a href="${r}service/field/kensetsu/index.html">Construction</a><a href="${r}service/field/inshoku/index.html">Food Manufacturing</a><a href="${r}service/field/gaishoku/index.html">Food Service</a><a href="${r}service/field/unso/index.html">Transportation</a><a href="${r}service/field/soko/index.html">Logistics Warehouse</a><a href="${r}logistics/index.html">Logistics</a><a href="${r}case/index.html">Case</a></div><div><a class="h" href="${r}product/index.html">PRODUCT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}product/index.html#portal">Portal</a><a href="${r}product/index.html#academy">Academy</a><a href="${r}product/index.html#job">JOB</a></div><div><a class="h" href="${r}news/index.html">NEWS</a></div><div><a class="h" href="${r}recruit/index.html">RECRUIT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}recruit/index.html#culture">Culture</a><a href="${r}recruit/index.html#voice">Interview</a><a href="${r}recruit/index.html#req">Requirements</a><a href="${r}recruit/hcmc/index.html">Ho Chi Minh</a></div><div><a class="h" href="${r}contact/index.html">CONTACT</a><button class="tg" type="button" aria-label="開く" aria-expanded="false"></button><a href="${r}contact/index.html">Contact</a><a href="${r}contact/index.html#request">Request</a></div></nav>
       <div class="fmap"><div class="fmap-ph"><p>地図を表示すると、Google社のCookieが使用される場合があります。</p><button type="button" class="fmap-load">地図を表示</button></div><iframe data-src="https://www.google.com/maps?q=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA&hl=ja&z=16&output=embed" title="BIGLIGHT株式会社の地図（愛知県名古屋市北区如意一丁目112 A）" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="https://www.google.com/maps/search/?api=1&query=BIGLIGHT%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8C%97%E5%8C%BA">Google マップで開く →</a></div>
     </div>
     <div class="bot">
@@ -1969,8 +1969,9 @@ const FAQ_TG = [
   ['技能実習と特定技能の違いは何ですか？','<p>技能実習は、外国人が日本で技能や知識を学ぶことを目的とした制度です。一方、特定技能は人手不足分野において即戦力となる外国人材を受け入れるための制度です。</p><p>また、現在は技能実習制度に代わる新制度として「育成就労制度」が創設され、育成就労から特定技能へとステップアップできる仕組みへ移行しています。</p><div class="fpath"><span>育成就労（最大3年）</span><i>→</i><span>特定技能1号（最大5年）</span><i>→</i><span class="hl">特定技能2号（更新制限なし）</span></div><p>特定技能2号へ移行した場合は、長期的な就労が可能となり、配偶者や子どもの帯同も認められます。</p><p>企業様にとっては、長期的な人材育成と安定した人材確保につながる制度です。</p>'],
   ['特定技能外国人を採用するにはどのくらい時間がかかりますか？','国内在住者の場合は約1～3ヶ月、海外からの採用の場合は約3～6ヶ月が一般的です。職種や在留資格の状況によって異なります。'],
   ['日本語能力はどの程度ありますか？','特定技能外国人は、日本語試験および技能試験に合格した人材です。日常業務に必要なコミュニケーション能力を有しています。'],
-  ['どのような業種で採用できますか？','製造業、建設業、食品製造業、外食業、自動車運送業など、特定技能制度で認められている19分野で採用が可能です。'],
+  ['どのような業種で採用できますか？','製造業、建設業、食品製造業、外食業、自動車運送業、物流倉庫など、特定技能制度で認められている19分野で採用が可能です。'],
   ['トラックなどのドライバーも特定技能で採用できますか？','はい。2024年に「自動車運送業」が特定技能の対象に加わり、トラック・タクシー・バスのドライバーを採用できるようになりました。日本の運転免許の取得や受入れ企業の認証など、他の分野にはない要件があります。BIGLIGHTはトラックドライバーの採用を中心にご支援しています。<a href="../field/unso/index.html">自動車運送業の詳細はこちら</a>'],
+  ['倉庫スタッフも特定技能で採用できますか？','2026年1月に「物流倉庫」が特定技能の対象に加わりました。上乗せ基準や試験の実施要領まで公表され、受入れは2027年度の見込みです。倉庫業者のほか、貨物自動車運送事業者も自社の倉庫で受け入れられます。<a href="../field/soko/index.html">物流倉庫の詳細はこちら</a>　<a href="../../logistics/index.html">運送・倉庫のまとめ</a>'],
   ['特定技能外国人は何年間働くことができますか？','特定技能1号は最長5年間就労可能です。さらに要件を満たした場合は特定技能2号へ移行することができます。'],
   ['特定技能2号になるとどうなりますか？','在留期間の更新回数に制限がなくなり、長期的な就労が可能となります。また、配偶者や子どもの帯同も認められています。'],
   ['採用後の生活サポートは必要ですか？','はい。特定技能外国人を受け入れる企業には支援義務があります。BIGLIGHTでは生活支援や各種手続きもサポートしております。'],
@@ -1993,7 +1994,7 @@ const faqSec = (list) => `<section class="blk faq-sec" id="faq"><div class="wrap
   ${faq(list)}
 </div></section>`;
 
-function serviceTop(){ const r='../'; return page({root:r,title:'事業内容｜BIGLIGHT株式会社',desc:'特定技能 採用支援・技人国 人材紹介。製造・建設・食品・外食の4分野を中心に、自動車運送業（トラック）にも対応。',body:`
+function serviceTop(){ const r='../'; return page({root:r,title:'事業内容｜BIGLIGHT株式会社',desc:'特定技能 採用支援・技人国 人材紹介。製造・建設・食品・外食の4分野を中心に、自動車運送業（トラック）・物流倉庫にも対応。',body:`
 ${pageHead('Service','事業内容',serviceTabs(r,'overview'))}
 <section><div class="wrap lead-end">
   <p class="lead28">採用から定着まで、ワンストップで。<br>完全成功報酬でご支援します。</p>
@@ -2019,7 +2020,7 @@ ${pageHead('Service','事業内容',serviceTabs(r,'overview'))}
 </div></section>
 <section class="blk" id="fields"><div class="wrap">
   <div class="lbl">Fields</div>
-  <div class="two" style="margin-top:24px"><h2 style="font-size:40px">BIGLIGHTが強い、<br>4つの主力分野</h2><div class="txt"><p>分野ごとに、現場の課題・対象業務・取得要件・支援内容をまとめています。新たに自動車運送業（トラックドライバー）の採用支援も始めました。その他の分野もお気軽にご相談ください。</p></div></div>
+  <div class="two" style="margin-top:24px"><h2 style="font-size:40px">BIGLIGHTが強い、<br>4つの主力分野</h2><div class="txt"><p>分野ごとに、現場の課題・対象業務・取得要件・支援内容をまとめています。新たに自動車運送業（トラックドライバー）と物流倉庫（倉庫スタッフ）の採用支援も始めました。その他の分野もお気軽にご相談ください。</p></div></div>
   ${fieldTiles(r,FIELDS)}
 </div></section>
 <section class="blk"><div class="wrap">
@@ -2093,7 +2094,7 @@ ${pageHead('Specified Skilled Worker','特定技能 採用支援',serviceTabs(r,
 </div></section>
 <section class="blk" id="fields"><div class="wrap">
   <div class="lbl">Fields</div>
-  <div class="two" style="margin-top:24px"><h2 style="font-size:40px">主力分野</h2><div class="txt"><p>BIGLIGHTが強い4つの分野と、新たに対応を始めた自動車運送業です。分野を選ぶと、課題・対象業務・取得要件をご覧いただけます。その他の分野もご相談ください。</p></div></div>
+  <div class="two" style="margin-top:24px"><h2 style="font-size:40px">主力分野</h2><div class="txt"><p>BIGLIGHTが強い4つの分野と、新たに対応を始めた自動車運送業・物流倉庫です。分野を選ぶと、課題・対象業務・取得要件をご覧いただけます。その他の分野もご相談ください。</p></div></div>
   ${fieldTiles(r,FIELDS)}
 </div></section>
 ${faqSec(FAQ_TG)}
@@ -2258,6 +2259,32 @@ const FIELDS = [
   careerNote:'自動車運送業分野には、2026年10月時点で特定技能2号・育成就労は設けられていません。特定技能1号の在留は通算最長5年です。制度は改正されることがあるため、最新の情報は出入国在留管理庁・国土交通省の公表資料をご確認ください。',
   flow:[['お問い合わせ','運ぶもの・車両・人数・時期を伺います。'],['受入れ要件の確認','協議会への加入、働きやすい職場認証（Gマーク）など、受入れの条件を確認します。'],['候補者のご紹介・面接','評価試験・日本語試験の合格者をご紹介し、オンライン等で面接を実施します。'],['内定・雇用契約','直接雇用で、日本人と同等以上の待遇の雇用契約を締結します。'],['「特定活動」の申請','免許を取るまでの準備期間の在留資格を申請します。書類作成は一括で代行します。'],['入国・免許の取得','住居や生活の立ち上げを支援し、外免切替と日本語研修に伴走します（トラックは最長6か月）。'],['特定技能1号へ変更','免許の取得後、特定技能1号への在留資格の変更を申請します。'],['乗務開始・定着支援','乗務開始後も、10項目の支援と定期面談で長く働ける環境を支えます。']],
   faq:[['外国人に日本の運転免許は必要ですか？国際運転免許では働けませんか？','日本の運転免許が必要です。国際運転免許だけでは事業用の自動車に乗務できません。入国後、在留資格「特定活動」（トラックは最長6か月）の間に外免切替を行い、取得後に特定技能1号へ変更します。'],['タクシーやバスのドライバーも採用できますか？','採用できます。ただし第二種運転免許の取得と新任運転者研修が必要で、日本語はJLPT N3以上（日本語サポーターが同乗する場合などはN4相当で可）が求められ、準備期間も最長1年と長くなります。BIGLIGHTは要件がより明確なトラックから始めることをおすすめしています。'],['「働きやすい職場認証」を持っていません。受け入れられますか？','トラック運送事業者は「Gマーク」（安全性優良事業所）の認定でも要件を満たします。どちらもない場合は、先に認証の取得が必要です。取得までの進め方もご相談ください。'],['採用決定から乗務開始まで、どのくらいかかりますか？','トラックの場合、選考・在留資格の手続きに数か月、入国後の免許取得に最長6か月を見込み、合計でおおむね半年〜1年程度が目安です。国内在住で日本の免許をすでに持つ方は、さらに短くなる場合があります。'],['5年たったらどうなりますか？','2026年10月時点で、自動車運送業分野には特定技能2号が設けられていないため、特定技能1号の通算5年が上限です。制度の改正状況を見ながら、在留期限が近づいた段階で取りうる選択肢をご案内します。'],['対応エリアは？費用の目安は？','名古屋を拠点に全国の運送会社に対応します。費用は人数・支援範囲により異なり、無料でお見積りします。まずは無料相談をご利用ください。']]},
+ // 2026-11-03 ngành mới 物流倉庫 (閣議決定 2026-01-23, 受入れ 2027年度見込み). Số liệu/điều kiện: redesign/facts.json (khối「制度の現在地」) + 運用方針・上乗せ基準概要・運用要領別冊.
+ {slug:'soko',en:'Logistics Warehouse',ja:'物流倉庫',photo:'../field-soko.jpg',isNew:true,
+  newLabel:'2026年に特定技能の対象に追加（受入れは2027年度の見込み）',
+  newText:'倉庫スタッフの採用を、受入れ開始に向けていまから準備します。受入れ企業の類型・倉庫管理システム・協議会の確認から、試験合格者の確保、入社後の定着まで。',
+  lead:'倉庫の人手不足に、<br>次の一手を。',
+  desc:'2026年1月に特定技能の対象となった物流倉庫分野。入出庫・保管・ピッキングなどの倉庫作業に、試験に合格した外国人材を受け入れられるようになります。評価試験と協議会の準備が国で進んでおり、受入れは2027年度の見込みです。名古屋の登録支援機関BIGLIGHTが、要件の確認から候補者の確保、入社後の定着までをご支援します。',
+  stats:[['1.14','万人','物流倉庫分野の受入れ見込数（特定技能1号・2026〜2028年度の3年間）'],['5.51','万人','2028年度に見込まれる物流倉庫分野の人手不足（対策をとらない場合）'],['2.54','倍','物流倉庫分野の求人数／応募人数（ハローワーク経由・2024年）']],
+  src1:'出典：「物流倉庫分野における特定技能の在留資格に係る制度の運用に関する方針及び育成就労に係る制度の運用に関する方針」（令和8年1月23日閣議決定）',
+  issuesH:'物流倉庫の現場が直面する4つの課題',issuesP:'ECの拡大で荷物は増え続け、倉庫で働く人は足りていません。生産性向上と国内人材の確保を進めても、なお不足が残る見込みです。',
+  issues:[['人手不足が常態化','2024年時点の不足は約1万9,000人','求人数は応募数の2.54倍'],['一人あたりの負担増','従業員1人あたりの所管面積は633㎡→674㎡（2019→2023年度）','省力化が追いつかない現場も'],['2028年度に5.5万人不足','生産性向上・女性/高齢者の起用でも1.8万人の不足が残る試算','外国人材が「最後の一手」に'],['制度の受入れ準備が進む','上乗せ基準・運用要領・試験要領まで公表','2027年度の受入れ開始に向け、いまが準備期']],
+  src2:'出典：「物流倉庫分野における特定技能の在留資格に係る制度の運用に関する方針」（令和8年1月23日閣議決定）／国土交通省「物流倉庫分野における特定技能・育成就労外国人の受入れ」',
+  whyH:'Why Now',whyP:'受入れ開始は2027年度の見込みですが、協議会への加入や倉庫管理システムの確認など、会社側の準備には時間がかかります。先に整えた企業から、合格者を迎えられます。',
+  why:[['試験に合格した即戦力','評価試験＋日本語試験に合格','保管・荷役・流通加工・安全衛生の基礎を確認済み'],['運送会社も受け入れられる','貨物自動車運送事業者は類型Cの受入れ機関','自社の倉庫でドライバーと倉庫スタッフをまとめて採用'],['育成就労から育てる道も','2027年4月から育成就労（最長3年）が開始','特定技能1号へつながる人材の入口に'],['準備した企業から先行','協議会・WMS・直接雇用の条件を先に整備','受入れ開始と同時に動き出せる']],
+  workH:'物流倉庫分野の<br>対象業務',workP:'物流倉庫において、倉庫内で行われる貨物の入出庫・保管その他の倉庫作業が対象です。運送に伴う荷役として引き受けている作業は対象外です。',
+  work:[{h:'主な業務',p:'倉庫作業の中心となる業務です。倉庫管理システム（WMS）を使った作業が前提になります。',items:['入出庫貨物の受渡し・検品','貨物の移動（フォークリフト等）','保管庫への格納','ピッキング','流通加工','在庫管理（WMSへの入力）']},{h:'関連業務（付随的に可）',p:'日本人の倉庫スタッフが通常行う関連業務には、付随的に従事できます。',items:['事務所への連絡・報告','作業場所の整理整頓・清掃','台風等への備え','安全衛生・教育訓練の会議']},{h:'対象外・注意点',items:['包装されていない食品に直接触れる業務','運送に伴う荷役として引き受けている作業','営業倉庫登録のない倉庫での作業','派遣での受入れ（直接雇用のみ）'],off:true}],
+  req:[['特定技能1号（倉庫スタッフ）','「物流倉庫分野特定技能1号評価試験」（日本海事協会）＋ 日本語試験（JFT-Basic A2.2 または JLPT N4以上）に合格。技能実習2号を良好に修了した方は日本語試験が免除され、修得した技能に関連性があれば技能試験も免除されます。在留期間は通算最長5年。'],['育成就労（2027年4月〜）','日本語はA1相当（JLPT N5等）の合格または日本語講習の受講から。最長3年の育成を経て、特定技能1号評価試験に合格すれば特定技能へ移行できます。'],['受入れ企業の要件','倉庫業者・倉庫作業の受託会社・貨物自動車運送事業者のいずれかで、営業倉庫登録のある倉庫で就業させること。倉庫管理システムの利活用、分野別協議会への加入、直接雇用などの上乗せ基準があります（下の「特別ルール」参照）。'],['特定技能2号','物流倉庫分野には、2026年11月時点で特定技能2号は設けられていません。在留期間は特定技能1号として通算最長5年です。']],
+  rulesLbl:'Warehouse Rules',rulesH:'物流倉庫分野だけの<br>「上乗せ基準」',rulesP:'倉庫管理システムの利活用や事業者の類型など、他の分野にはない要件があります。協議会への報告義務もあるため、早めの確認が大切です。',
+  rules:[['① 受入れ企業の類型（A・B・C）','必須','A：倉庫業の登録を受けた倉庫業者。B：倉庫業者が営業に使う倉庫で、委託を受けて倉庫作業を行う会社。C：一般・特定貨物自動車運送事業者（自社が占有する倉庫、または運送に関連して有償で引き受ける倉庫作業）。いずれかに当てはまる必要があります。'],['② 営業倉庫登録のある倉庫','必須','就業場所は、倉庫業法の営業倉庫登録がされた倉庫です。運送事業者の場合は、自社車両や自社手配の庸車が出入りする自社占有の倉庫が対象です。'],['③ 倉庫管理システム（WMS）の利活用','必須','入庫管理・在庫管理・出庫管理の機能を持つ情報システムを利活用していること。さらに、WMSと連携して機能が広がる機器・システムを継続して使い、協議会に加入した日から1年以内にその状況を報告します。'],['④ 分野別協議会への加入','必須','国土交通省が設置する協議会の構成員になり、在留諸申請の前に加入します。支援を委託する登録支援機関も構成員であることが条件です。協議会は2026年10月時点で設置に向けて調整中です。'],['⑤ 直接雇用のみ','必須','労働者派遣での受入れは認められていません。受入れ企業が直接雇用し、日本人と同等以上の報酬とします。'],['⑥ 実務経験証明書の発行','必須','雇用していた外国人材から求めがあれば、実務経験を証明する書面を交付します。類型Bの会社は、委託元の倉庫業者と協力して就労支援を行う「雇用継続協定書」も作成します。']],
+  roadH:'受入れ開始までの<br>道のり',roadP:'受入れは2027年度の見込みです。試験の合格者が出るまでの間に、会社側の要件を整え、候補者の確保を進めます。',
+  road:[{h:'倉庫スタッフ',s:'いま準備 → 2027年度に入社',steps:[['要件の確認','類型・倉庫・WMS'],['協議会に加入','設置後'],['候補者の確保','試験合格者'],['雇用契約・在留資格申請',''],['入国・受入れ準備',''],['入社・定着支援','2027年度']]}],
+  roadSrc:'出典：国土交通省「物流倉庫分野における特定技能・育成就労外国人の受入れ」／運用要領別冊（令和8年9月18日公表）。試験・協議会の最新状況は、このページの「制度の現在地」をご覧ください。',
+  careerLbl:'Career Path',careerH:'育成就労 → 特定技能1号',careerP:'2027年4月に始まる育成就労から特定技能1号へ、段階的にスキルを高めていけます。',
+  career:[['最長3年','育成就労','2027年4月〜','日本語A1相当から。現場で技能と日本語を学び、特定技能1号評価試験をめざします。'],['最長5年','特定技能1号','試験合格の即戦力','入出庫・保管・ピッキング・流通加工を一人で担う中核スタッフへ。'],['—','特定技能2号','現時点では対象外','物流倉庫分野に2号は設けられていません。制度改正があれば更新します。']],
+  careerNote:'物流倉庫分野には、2026年11月時点で特定技能2号は設けられていません。特定技能1号の在留は通算最長5年です。制度は改正されることがあるため、最新の情報は出入国在留管理庁・国土交通省の公表資料をご確認ください。',
+  flow:[['お問い合わせ','倉庫の種類・業務・人数・時期を伺います。'],['受入れ要件の確認','事業者の類型、営業倉庫登録、倉庫管理システム、直接雇用の条件を確認します。'],['協議会への加入','協議会の設置後、在留諸申請の前に加入します。手続きは一緒に進めます。'],['候補者のご紹介・面接','評価試験・日本語試験の合格者をご紹介し、オンライン等で面接を実施します。'],['内定・雇用契約','直接雇用で、日本人と同等以上の待遇の雇用契約を締結します。'],['在留資格の申請','在留資格認定証明書の交付申請などの書類作成を一括で代行します。'],['入社・定着支援','住居や生活の立ち上げを支援し、10項目の支援と定期面談で長く働ける環境を支えます。']],
+  faq:[['物流倉庫分野は、いつから採用できますか？','2026年1月に特定技能の対象となり、上乗せ基準・運用要領・試験の実施要領まで公表されています。評価試験の合格者が出てからの受入れになるため、入社は2027年度の見込みです。協議会は国が設置に向けて調整中です。'],['運送会社ですが、自社の倉庫で受け入れられますか？','受け入れられます。一般・特定貨物自動車運送事業者は、自社が占有する倉庫での倉庫作業、または運送に関連して有償で引き受けている倉庫作業について、受入れ機関（類型C）になれます。運送に伴う荷役として行う作業は対象外なので、業務の切り分けを一緒に整理します。'],['倉庫管理システム（WMS）がないと受け入れられませんか？','入庫・在庫・出庫を管理する情報システムの「利活用」が要件です。自社で所有していなくても、就業する事業所で使える状態であれば問題ありません。あわせて、WMSと連携して機能が広がる機器・システムを継続して使い、協議会加入から1年以内に報告する必要があります。'],['荷主企業の自社倉庫でも受け入れられますか？','就業場所は営業倉庫登録のある倉庫に限られ、受入れ機関も倉庫業者・倉庫作業の受託会社・貨物自動車運送事業者のいずれかです。営業倉庫登録のない自社倉庫は、現在の基準では対象になりません。'],['フォークリフトの運転は任せられますか？','貨物の移動は対象業務に含まれます。フォークリフトの運転には、日本人と同じく技能講習（最大荷重1トン以上）などの資格が必要です。入社後の資格取得もご相談ください。'],['対応エリアは？費用の目安は？','名古屋を拠点に全国の物流倉庫に対応します。費用は人数・支援範囲により異なり、無料でお見積りします。まずは無料相談をご利用ください。']]},
 ];
 const n2 =k => String(k+1).padStart(2,'0');
 const card4 = list => `<div class="flow f4">${list.map(([h,a,b],k)=>`<div><b>${n2(k)}</b><h3>${h}</h3><p>${a}<br>${b}</p></div>`).join('')}</div>`;
@@ -2287,6 +2314,7 @@ ${f.routes?`<section class="blk"><div class="wrap">${blkHead('3 Routes',f.routes
   <h2 class="en long">Requirements<small class="ja-sub">取得要件</small></h2>
   <dl class="dl">${f.req.map(([t,d])=>`<div><dt>${t}</dt><dd>${d}</dd></div>`).join('')}</dl>
 </div></section>
+${LOGI.factsBlock(r,f.slug)}
 ${f.rules?`<section class="blk"><div class="wrap">${blkHead(f.rulesLbl||'Construction Rules',f.rulesH,f.rulesP)}
   <div class="frules">${f.rules.map(([h,tag,p])=>`<div><h3>${h}${tag?`<span class="tg">${tag}</span>`:''}</h3><p>${p}</p></div>`).join('')}</div></div></section>`:''}
 ${f.road?`<section class="blk"><div class="wrap">${blkHead('Roadmap',f.roadH,f.roadP)}
@@ -2599,6 +2627,7 @@ const GUIDE_PDF_URL = '/assets/biglight-tokutei-guide.pdf?v=' + require('crypto'
 const SHIRYO_V = require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'shiryo.cjs'))).digest('hex').slice(0,8);
 const PREP_PDF_URL = '/assets/biglight-preparation.pdf?v=' + SHIRYO_V;
 const SHIRYO = require('./shiryo.cjs'), FIELD_PDF = (f) => `/assets/biglight-field-${f}.pdf?v=` + SHIRYO_V;
+const LOGI = require('./logistics.cjs');  // 2026-11-03 物流人材: facts.json → /logistics/, /logistics/check/, 分野ページの「制度の現在地」
 const pages = {
   'index.html': home(),
   'about/index.html': about(),
@@ -2624,13 +2653,16 @@ const pages = {
   'optout/index.html': optout(),
 };
 FIELDS.forEach((f,i)=>{pages['service/field/'+f.slug+'/index.html']=fieldPage(f,i);});
+const LOGI_O = { page, pageHead, pill, contactBox, docCta, faqSec, fieldImg, FIELDS, SHIRYO_V };
+pages['logistics/index.html']=LOGI.hub(LOGI_O);
+pages['logistics/check/index.html']=LOGI.check(LOGI_O);
 NEWS.forEach(n=>{pages['news/'+n.slug+'/index.html']=article(n.slug);});
 
 pages['404.html']=page({root:'/',title:'ページが見つかりません｜BIGLIGHT株式会社',desc:'お探しのページは見つかりませんでした。',body:`
 <section class="ph"><div class="wrap"><h1 class="phh"><span class="en">404</span><span class="ja-lb">ページが見つかりません</span></h1>${dots}</div></section>
 <section><div class="wrap lead-end"><p class="lead16">お探しのページは移動または削除された可能性があります。</p><div style="margin-top:40px;display:flex;gap:20px;flex-wrap:wrap">${pill('トップページへ','/index.html')}${pill('お問い合わせ','/contact/index.html')}</div></div></section>`});
 SHIRYO.FIELDS.forEach(f=>{pages[`guide/field/${f.slug}/index.html`]=SHIRYO.field({ page, pageHead, pill, PDF_URL: FIELD_PDF(f.slug) }, f);});
-const nPages=require('./seo.cjs')(pages,{OUT,SITE,ARTICLES,WEBP});
+const nPages=require('./seo.cjs')(pages,{OUT,SITE,ARTICLES,WEBP,DATED:{'logistics/':LOGI.FACTS.updated,'logistics/check/':LOGI.FACTS.updated,'service/field/unso/':LOGI.FACTS.updated,'service/field/soko/':LOGI.FACTS.updated}});
 /* 2026-11-01: admin.biglight.jp đọc danh sách này (資料一覧) để xem trực tiếp, kể cả tài liệu chưa hiện ở /contact/ */
 fs.writeFileSync(path.join(OUT,'materials.json'), JSON.stringify(MATERIALS.filter(m=>!m.manual&&!m.group).concat(SHIRYO.FIELDS.map(f=>({id:'field-'+f.slug,name:f.name+'ガイド',desc:f.sum,meta:'A4横 6ページ　Web／PDF',img:`material-field-${f.slug}.jpg`,url:`/guide/field/${f.slug}/`,ver:()=>FIELD_PDF(f.slug),live:true}))).map(m=>({id:m.id,name:m.name,desc:m.desc,meta:m.meta,live:!!m.live,url:SITE.replace(/\/$/,'')+m.url,pdf:SITE.replace(/\/$/,'')+m.ver(),thumb:SITE.replace(/\/$/,'')+'/img/'+m.img+'?v='+m.ver().split('?v=')[1]}))));
 console.log('pages',nPages);
