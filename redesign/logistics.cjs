@@ -95,7 +95,7 @@ ${CSS}
 </div></section>
 ${o.faqSec(FAQ)}
 <section class="blk" style="padding-top:0"><div class="wrap">${srcBlock(fs2)}</div></section>
-${o.docCta(r, 'field-unso', 'material-field-unso.jpg?v=' + o.SHIRYO_V, '自動車運送業分野ガイド・物流倉庫分野ガイド', '分野ごとの仕事・条件・受入れの流れをまとめた資料です。資料請求で分野を選べます。')}
+${o.docCta(r, 'logistics', 'material-logistics.jpg?v=' + o.LOGI_PDF_URL.split('?v=')[1], '物流人材ガイド（自動車運送業・物流倉庫）', '2分野の比較、制度の現在地、受入れ企業の条件、乗務・受入れまでの道のり、FAQをA4横17ページにまとめました。')}
 ${o.contactBox(r)}
 ` }); };
 
