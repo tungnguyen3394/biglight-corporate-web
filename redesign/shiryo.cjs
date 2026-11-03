@@ -195,3 +195,79 @@ exports.field = (o, f) => {
   r = '../../';
   return out;
 };
+
+/* ===== 物流人材ガイド（自動車運送業・物流倉庫）2026-11-03: 資料請求用、A4横 15ページ。数値・状況・出典は facts.json（Web の /logistics/ と同じ）。
+   金額は書かない。行政書士の確認前。 */
+exports.logistics = (o) => {
+  r = '../../';
+  const F = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, 'facts.json'), 'utf8'));
+  const fact = (f, k) => F.facts.find((x) => x.field === f && x.key === k) || { value: '—', status: '' };
+  const comp = (f) => F.facts.filter((x) => x.field === f && x.group === 'company');
+  const st = (s) => s ? `<i class="lg-b ${s === '確定' ? 'ok' : s === '調整中' ? 'mid' : 'plan'}">${s}</i>` : '';
+  const ymd = (d) => d.replace(/-/g, '/');
+  const T = '物流人材ガイド', S = sheetsOf();
+  const pg = (q, a, body) => S.sheet('', `<h2 class="tg-q tg-q0">${q}</h2><p class="tg-a">${a}</p><div class="tg-body">${body}</div>${S.foot(T)}`);
+  const sec = (n, en, ja, sub) => S.sheet('', `<div class="lg-sec"><span>${n}</span><b>${ja}</b><em>${en}</em><p>${sub}</p></div>${dots}${S.foot(T)}`);
+  const tile = (x, c) => `<div class="sy-tile ${c || ''}"><b>${x[0]}</b><span>${x[1]}</span></div>`;
+  const ck = (list) => `<div class="lg-ck">${list.map((x) => `<div><i></i><span><b>${x.item}${st(x.status)}</b><small>${x.value}</small></span></div>`).join('')}</div>`;
+  const tl = (f) => { const t = F.timeline[f]; return `<div class="lg-tl" style="grid-template-columns:repeat(${t.length},1fr)">${t.map((x) => `<div class="${x.status === '確定' ? 'on' : ''}"><b>${x.label}</b><span>${x.date}</span>${st(x.status)}</div>`).join('')}</div>`; };
+  const ROWS = [['mikomi', '受入れ見込数'], ['start', '受入れ'], ['work', '対象業務'], ['skill', '技能試験'], ['jp', '日本語'], ['license', '免許・資格'], ['kyogikai', '協議会'], ['ikusei', '育成就労・2号']];
+  const CSS2 = `<style>
+.lg-b{display:inline-block;font-style:normal;font-size:12px;font-weight:700;border-radius:64px;padding:1px 10px;margin-left:8px;vertical-align:2px;white-space:nowrap}
+.lg-b.ok{background:var(--tn);color:var(--navy)}.lg-b.mid{background:#fff3dc;color:#8a5a00}.lg-b.plan{background:#eee;color:#555}
+.lg-sec{margin-top:150px}.lg-sec span{font:700 120px/1 Roboto,sans-serif;color:var(--tn)}.lg-sec b{display:block;font-size:56px;letter-spacing:.06em;margin-top:-30px}.lg-sec em{display:block;font:700 16px Roboto,sans-serif;letter-spacing:.2em;color:var(--gold-d);margin-top:12px}.lg-sec p{font-size:20px;color:var(--ink2);margin-top:28px!important;max-width:820px}
+.lg-sum li{font-size:22px;font-weight:700;line-height:1.7;padding:20px 0 20px 56px;border-bottom:1px solid var(--ln);position:relative}.lg-sum li::before{content:attr(data-n);position:absolute;left:0;top:20px;width:38px;height:38px;border-radius:50%;background:var(--navy);color:#fff;font:700 16px/38px Roboto,sans-serif;text-align:center}
+.lg-cmp{display:grid;grid-template-columns:150px 1fr 1fr;font-size:14.5px;line-height:1.5}.lg-cmp>div{padding:9px 14px;border-bottom:1px solid var(--ln);display:flex;align-items:center}
+.lg-cmp .h{background:var(--navy);color:#fff;font-weight:700;font-size:18px;justify-content:center;border-radius:8px 8px 0 0;border:0;margin:0 4px}.lg-cmp .l{font-weight:700;color:var(--ink2)}.lg-cmp>div:nth-child(6n+4),.lg-cmp>div:nth-child(6n+5),.lg-cmp>div:nth-child(6n+6){background:#fafbfc}
+.lg-tl{display:grid;gap:8px;margin-top:6px}.lg-tl>div{background:#f5f6f8;border-radius:10px;padding:16px 14px;min-height:190px;display:flex;flex-direction:column;gap:8px}.lg-tl>div.on{background:var(--tn)}.lg-tl b{font-size:15.5px;line-height:1.45;color:var(--navy)}.lg-tl span{font-size:14px;line-height:1.5;color:var(--ink2);flex:1}.lg-tl .lg-b{margin:0;align-self:flex-start}
+.lg-tlh{font-weight:700;font-size:18px;margin:18px 0 8px}.lg-tlh:first-child{margin-top:0}
+.lg-ck{display:grid;grid-template-columns:1fr 1fr;gap:0 40px}.lg-ck>div{display:grid;grid-template-columns:30px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid var(--ln)}.lg-ck>div>i{width:26px;height:26px;border:2px solid var(--navy);border-radius:5px;margin-top:3px}.lg-ck b{display:block;font-size:17.5px;line-height:1.5}.lg-ck small{display:block;font-size:14px;color:var(--ink2);line-height:1.6;margin-top:3px}
+.lg-abc{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.lg-abc>div{border-radius:12px;background:var(--tn);padding:24px 22px;min-height:330px}.lg-abc em{font:700 64px/1 Roboto,sans-serif;color:var(--navy)}.lg-abc b{display:block;font-size:21px;margin-top:14px;line-height:1.45}.lg-abc p{font-size:15px;color:var(--ink2);margin-top:12px!important;line-height:1.7}.lg-abc u{display:block;text-decoration:none;font-size:14px;font-weight:700;color:var(--navy);border-top:1px solid #c9d8ee;margin-top:14px;padding-top:12px}
+.lg-faq{display:grid;grid-template-columns:1fr 1fr;gap:14px 28px}.lg-faq>div{border-top:2px solid var(--navy);padding-top:12px}.lg-faq b{display:block;font-size:17px;line-height:1.5}.lg-faq b::before{content:"Q ";color:var(--gold-d);font-family:Roboto,sans-serif}.lg-faq p{font-size:14px;line-height:1.7;color:var(--ink2);margin-top:6px!important}
+.lg-src li{display:grid;grid-template-columns:1fr 150px;gap:16px;font-size:14.5px;padding:10px 0;border-bottom:1px solid var(--ln);line-height:1.5}.lg-src li span{color:var(--grey);font-size:13px;text-align:right}.lg-src li small{display:block;color:var(--grey);font-size:12px;word-break:break-all}
+.lg-sup{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:18px}.lg-sup span{background:#f5f6f8;border-radius:8px;font-size:14.5px;font-weight:700;text-align:center;padding:14px 6px;line-height:1.4}.lg-sup span b{display:block;font:700 13px Roboto,sans-serif;color:var(--gold-d)}
+</style>`;
+  const usedSrc = []; for (const x of F.facts.concat(F.timeline.unso, F.timeline.soko)) if (x.source && !usedSrc.includes(x.source)) usedSrc.push(x.source);
+  const SUP = ['事前ガイダンス', '出入国時の送迎', '住居の確保', '生活オリエンテーション', '公的手続の同行', '日本語学習の機会', '相談・苦情対応', '日本人との交流', '転職支援', '定期面談'];
+  const out = wrap(o, 'Logistics Guide', T + '（自動車運送業・物流倉庫）', T + '（自動車運送業・物流倉庫）', 'ドライバーと倉庫スタッフを特定技能で採用するためのガイド。', o.PDF_URL, [
+    CSS2 + cover(S, '物流人材ガイド', 'ドライバーと倉庫スタッフを、特定技能で。<br>自動車運送業・物流倉庫の 2分野', 'LOGISTICS GUIDE'),
+    pg('このガイドでわかること', '物流の現場を支える 2つの分野を、1冊にまとめました。', `<ul class="lg-sum">
+      <li data-n="1">トラックなどの「ドライバー」は 自動車運送業分野、「倉庫スタッフ」は 物流倉庫分野で採用できます。</li>
+      <li data-n="2">自動車運送業は 受入れ中。物流倉庫は 2026年1月に対象となり、2027年度の受入れに向けて 国が準備しています。</li>
+      <li data-n="3">どちらも 直接雇用・日本語 N4相当以上・分野別協議会への加入が条件。運送会社は 倉庫スタッフも受け入れられます。</li></ul>
+      <div class="tg-nums tg-nums3" style="margin-top:44px"><div><div class="tg-num">2.21<small>万人</small></div><i></i><p>自動車運送業の受入れ見込数<br>（2024〜2028年度）</p></div><div><div class="tg-num">1.14<small>万人</small></div><i></i><p>物流倉庫の受入れ見込数<br>（特定技能1号・2026〜2028年度）</p></div><div><div class="tg-num">2027<small>年度</small></div><i></i><p>物流倉庫の受入れ開始の見込み</p></div></div>`),
+    pg('2つの分野をくらべる', `数値と状況は 国の公表資料から。状況は ${st('確定')} 公表済み、${st('調整中')} 国が準備中、${st('予定')} 見込みです。`, `<div class="lg-cmp"><div></div><div class="h">自動車運送業（ドライバー）</div><div class="h">物流倉庫（倉庫スタッフ）</div>${ROWS.map(([k, l]) => { const a = fact('unso', k), b = fact('soko', k); return `<div class="l">${l}</div><div>${a.value}${st(a.status)}</div><div>${b.value}${st(b.status)}</div>`; }).join('')}</div>`),
+    pg('制度の現在地', `閣議決定から受入れまでの節目です（${ymd(F.updated)} 時点）。`, `<p class="lg-tlh">自動車運送業</p>${tl('unso')}<p class="lg-tlh">物流倉庫</p>${tl('soko')}`),
+    sec('01', 'TRANSPORTATION', '自動車運送業<br>（ドライバー）', 'トラック・タクシー・バスの 3区分。日本の運転免許を 入国後に取得して 乗務します。BIGLIGHTは トラックドライバーを中心にご支援します。'),
+    pg('どんな人を採用できる？', '試験と日本語に加えて、日本の運転免許が必要です。', `<div class="sy-tiles" style="grid-template-columns:repeat(3,1fr)">${[['技能', '自動車運送業分野 評価試験', 'トラック／タクシー／バス'], ['日本語', 'トラック: N4相当以上', 'タクシー・バス: 原則 N3以上'], ['免許', '日本の運転免許', 'トラック 第一種／タクシー・バス 第二種']].map((w) => `<div class="sy-tile" style="min-height:300px;text-align:center;align-items:center"><span style="margin:0 0 12px;font-weight:700;color:var(--gold-d);font-size:17px">${w[0]}</span><b>${w[1]}</b><span>${w[2]}</span></div>`).join('')}</div>
+      <div class="sy-tiles" style="grid-template-columns:repeat(2,1fr);margin-top:14px">${tile(['国際運転免許だけでは 乗務できません', '入国後に 外免切替で 日本の免許を取ります'], 'n')}${tile(['国内在住で 日本の免許がある方', '特定活動を経ずに 1号へ変更できる場合があります'], 'k')}</div>`),
+    pg('会社に必要なこと', '当てはまる項目に チェックしてください。', ck(comp('unso')) + `<div class="sy-tiles" style="grid-template-columns:repeat(2,1fr);margin-top:22px">${tile(['特定技能2号・育成就労は ありません', '在留は 1号の通算 最長5年です'], 'n')}${tile(['協議会の加入確認に 約1か月', '支援を委託する登録支援機関も 構成員であること'])}</div>`),
+    pg('乗務までの道のり', '入国後、免許を取るまでは 在留資格「特定活動」で準備します。更新できないので 逆算が大切です。', `<p class="lg-tlh">トラック（特定活動 最長6か月）</p><div class="sy-flow" style="grid-template-columns:repeat(6,1fr)">${['採用・雇用契約', '評価試験・<br>日本語に合格', '「特定活動」で<br>入国', '外免切替・<br>日本語研修', '特定技能1号へ<br>変更', '乗務開始'].map((x, i) => `<div class="${i === 3 ? 'on' : ''}" style="min-height:170px">${x}</div>`).join('')}</div>
+      <p class="lg-tlh">タクシー・バス（特定活動 最長1年）</p><div class="sy-flow" style="grid-template-columns:repeat(6,1fr)">${['採用・雇用契約', '評価試験・<br>日本語に合格', '「特定活動」で<br>入国', '第二種免許の<br>取得', '新任運転者<br>研修', '1号へ変更・<br>乗務開始'].map((x, i) => `<div class="${i === 3 || i === 4 ? 'on' : ''}" style="min-height:170px">${x}</div>`).join('')}</div>
+      <p class="tg-note">※特定活動の期間は、特定技能1号の通算5年に含みません。採用決定から乗務まで、トラックで おおむね半年〜1年が目安です。</p>`),
+    sec('02', 'LOGISTICS WAREHOUSE', '物流倉庫<br>（倉庫スタッフ）', '倉庫内の入出庫・保管・ピッキング・流通加工。2026年1月に特定技能の対象となり、受入れは 2027年度の見込みです。いまが 準備の時期です。'),
+    pg('どんな仕事で受け入れられる？', '物流倉庫の中で行う 倉庫作業が対象です。', `<div class="sy-chips" style="--c:3;--h:118px;--f:22px">${['入出庫の受渡し・検品', '貨物の移動', '保管庫への格納', 'ピッキング', '流通加工', '在庫管理（WMS）'].map((w) => `<span>${w}</span>`).join('')}</div>
+      <div class="sy-tiles" style="grid-template-columns:repeat(3,1fr);margin-top:14px">${tile(['包装されていない食品に 直接触れる業務', '対象外です'], 'n')}${tile(['運送に伴う荷役として 引き受けている作業', '倉庫作業料金を 受け取る作業が対象'], 'n')}${tile(['技能試験と日本語', '物流倉庫分野 評価試験 ＋ N4相当以上'])}</div>`),
+    pg('受け入れられる会社（3つの類型）', 'いずれかに当てはまり、営業倉庫登録のある倉庫で働いてもらいます。', `<div class="lg-abc">
+      <div><em>A</em><b>倉庫業者</b><p>倉庫業法の登録を受け、倉庫作業を自ら行う会社。</p><u>就業場所: 自社が占有する営業倉庫</u></div>
+      <div><em>B</em><b>倉庫作業の受託会社</b><p>倉庫業者の委託を受けて、倉庫作業を行う会社。委託元と「雇用継続協定書」を作ります。</p><u>就業場所: 委託元の営業倉庫</u></div>
+      <div><em>C</em><b>貨物自動車運送事業者</b><p>一般・特定貨物自動車運送事業の許可を受けた会社。ドライバーと倉庫スタッフを 同じ会社で採用できます。</p><u>就業場所: 自社占有の倉庫、または有償で引き受ける倉庫作業</u></div></div>
+      <p class="tg-note">※荷主企業の自社倉庫や、営業倉庫登録のない倉庫は、現在の基準では対象になりません。</p>`),
+    pg('会社に必要なこと（上乗せ基準）', '当てはまる項目に チェックしてください。', ck(comp('soko'))),
+    pg('いまから準備できること', '試験の合格者が出る前に、会社側を整えておくと 受入れ開始と同時に動けます。', `<div class="sy-flow" style="grid-template-columns:repeat(6,1fr)">${['類型・倉庫の<br>確認', 'WMSの<br>利活用を確認', '協議会に加入<br>（設置後）', '試験合格者の<br>確保', '雇用契約・<br>在留資格申請', '入社・定着<br>（2027年度）'].map((x, i) => `<div class="${i < 3 ? 'on' : ''}" style="min-height:200px">${x}</div>`).join('')}</div>
+      <div class="sy-tiles" style="grid-template-columns:repeat(3,1fr);margin-top:18px">${tile(['育成就労（2027年4月〜）', '日本語 A1相当から、最長3年で 1号へ'], 'k')}${tile(['特定技能2号は ありません', '1号の通算 最長5年'])}${tile(['機器・システムの報告', '協議会加入から 1年以内'])}</div>`),
+    pg('ドライバー＋倉庫スタッフを、ひとつの窓口で', '分野ごとに制度は違いますが、採用と支援の窓口は ひとつにまとめられます。', `<div class="sy-tiles" style="grid-template-columns:repeat(3,1fr)">${tile(['運送会社は 倉庫も採用できる', '類型C。自社占有の倉庫・有償の倉庫作業が対象'], 'k')}${tile(['順番は「いま運送、次に倉庫」', 'ドライバーは受入れ中。倉庫は 2027年度に向けて準備'])}${tile(['支援は 同じ10項目', '登録支援機関BIGLIGHTが まとめて担います'])}</div>
+      <p class="lg-tlh" style="margin-top:30px">BIGLIGHTの支援（義務的支援10項目）</p><div class="lg-sup">${SUP.map((x, i) => `<span><b>${String(i + 1).padStart(2, '0')}</b>${x}</span>`).join('')}</div>`),
+    pg('よくある質問', 'ご相談の多い質問です。', `<div class="lg-faq">${[
+      ['物流倉庫は いつから採用できますか？', '評価試験の合格者が出てからの受入れで、2027年度の見込みです。協議会も国が設置に向けて調整中です。'],
+      ['WMSがないと 受け入れられませんか？', '入庫・在庫・出庫を管理するシステムの「利活用」が要件です。自社所有でなくても、事業所で使えれば構いません。'],
+      ['派遣で 受け入れられますか？', '両分野とも 派遣は認められていません。直接雇用で、日本人と同等以上の報酬とします。'],
+      ['ドライバーは すぐ乗務できますか？', '海外からの方は 入国後に免許を取るため、トラックで最長6か月の準備期間があります。'],
+      ['フォークリフトは 任せられますか？', '貨物の移動は対象業務です。運転には 日本人と同じく 技能講習などの資格が必要です。'],
+      ['5年たったら どうなりますか？', '両分野とも 2号はなく、1号の通算5年が上限です。改正があれば 選択肢をご案内します。'],
+    ].map(([q, a]) => `<div><b>${q}</b><p>${a}</p></div>`).join('')}</div>`),
+    pg('出典', `国の公表資料をもとに作成しています（最終確認 ${ymd(F.updated)}）。最新の内容は 各省庁の資料でご確認ください。`, `<ul class="lg-src">${usedSrc.map((k) => { const s = F.sources[k]; const v = F.facts.filter((x) => x.source === k).map((x) => x.verified_at).sort().pop() || F.updated; return `<li><div>${s.name}<small>${s.url}</small></div><span>確認日 ${ymd(v)}</span></li>`; }).join('')}</ul>`),
+    contact(S, `本資料は${AS_OF}の制度をもとにした一般的なご案内です。物流倉庫分野は 受入れ開始前のため、試験・協議会の状況は変わることがあります。最新の情報は、出入国在留管理庁・国土交通省の公表資料をご確認ください。<br>参考：各分野の運用方針（令和8年1月23日閣議決定）、物流倉庫分野 運用要領別冊（令和8年9月18日）・上乗せ基準の概要・評価試験実施要領（令和8年10月26日）`),
+  ]);
+  return out;
+};

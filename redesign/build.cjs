@@ -2550,6 +2550,7 @@ const MATERIALS=[
   {id:'profile',name:'会社案内',desc:'会社概要・サービス・ご相談の流れ',meta:'A4横 9ページ　Web／PDF',img:'material-profile.jpg',ver:()=>PDF_URL,url:'/about/profile/',live:true},
   {id:'guide',name:'特定技能ガイド',desc:'制度・採用の流れ・支援を図でわかりやすく',meta:'A4横 24ページ　Web／PDF',img:'material-guide.jpg',ver:()=>GUIDE_PDF_URL,url:'/guide/tokutei-ginou/',live:true},
   {id:'preparation',name:'受入れ準備ガイド',desc:'チェックリストと、入社までのスケジュール',meta:'A4横 10ページ　Web／PDF',img:'material-preparation.jpg',ver:()=>PREP_PDF_URL,url:'/guide/preparation/',live:true},
+  {id:'logistics',name:'物流人材ガイド',desc:'ドライバーと倉庫スタッフ。自動車運送業・物流倉庫の制度と受入れ条件',meta:'A4横 17ページ　Web／PDF',img:'material-logistics.jpg',ver:()=>LOGI_PDF_URL,url:'/guide/logistics/',live:true},
   {id:'field',name:'分野別ガイド',desc:'分野ごとの仕事・条件・流れ',meta:'A4横 各6ページ　Web／PDF',img:'material-field-kensetsu.jpg',ver:()=>FIELD_PDF('kensetsu'),live:true,group:true},
   {id:'price',name:'料金シミュレーション',desc:'業種を選び、人数を入れると 費用がわかります',meta:'Web　30日間ご覧いただけます',manual:true,live:false},
 ];
@@ -2626,6 +2627,7 @@ const PDF_URL = '/assets/biglight-company-profile.pdf?v=' + require('crypto').cr
 const GUIDE_PDF_URL = '/assets/biglight-tokutei-guide.pdf?v=' + require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'guide.cjs'))).digest('hex').slice(0,8);
 const SHIRYO_V = require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'shiryo.cjs'))).digest('hex').slice(0,8);
 const PREP_PDF_URL = '/assets/biglight-preparation.pdf?v=' + SHIRYO_V;
+const LOGI_PDF_URL = '/assets/biglight-logistics.pdf?v=' + require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'shiryo.cjs'))+fs.readFileSync(path.join(__dirname,'facts.json'))).digest('hex').slice(0,8);
 const SHIRYO = require('./shiryo.cjs'), FIELD_PDF = (f) => `/assets/biglight-field-${f}.pdf?v=` + SHIRYO_V;
 const LOGI = require('./logistics.cjs');  // 2026-11-03 物流人材: facts.json → /logistics/, /logistics/check/, 分野ページの「制度の現在地」
 const pages = {
@@ -2653,9 +2655,10 @@ const pages = {
   'optout/index.html': optout(),
 };
 FIELDS.forEach((f,i)=>{pages['service/field/'+f.slug+'/index.html']=fieldPage(f,i);});
-const LOGI_O = { page, pageHead, pill, contactBox, docCta, faqSec, fieldImg, FIELDS, SHIRYO_V };
+const LOGI_O = { page, pageHead, pill, contactBox, docCta, faqSec, fieldImg, FIELDS, SHIRYO_V, LOGI_PDF_URL };
 pages['logistics/index.html']=LOGI.hub(LOGI_O);
 pages['logistics/check/index.html']=LOGI.check(LOGI_O);
+pages['guide/logistics/index.html']=SHIRYO.logistics({ page, pageHead, pill, PDF_URL: LOGI_PDF_URL });
 NEWS.forEach(n=>{pages['news/'+n.slug+'/index.html']=article(n.slug);});
 
 pages['404.html']=page({root:'/',title:'ページが見つかりません｜BIGLIGHT株式会社',desc:'お探しのページは見つかりませんでした。',body:`
