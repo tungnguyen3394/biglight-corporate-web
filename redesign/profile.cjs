@@ -154,18 +154,18 @@ module.exports = function profile({ page, pageHead, aboutTabs, pill, AICHI_SDGS,
           <div class="cp-sec" style="margin-top:26px">所在地</div>${hbars(BL.prefs.slice(0, 5).map(([l, v], i) => [l, v, i < 3 ? '' : 'mu']), { unit: '社', lw: '150px', vw: '70px', bh: '16px', fs: '14.5px', vs: '16px' })}</div>
       </div>
       <div class="cp-nums cp-nums-s"><div><div class="cp-num">${BL.active}<small>名</small></div><i></i><p>いま支援している人材</p></div><div><div class="cp-num">${BL.companies}<small>社</small></div><i></i><p>受入れ中の企業さま</p></div><div><div class="cp-num">${BL.nat.length}<small>か国</small></div><i></i><p>人材の国籍</p></div><div><div class="cp-num">${BL.prefs.length}<small>都府県</small></div><i></i><p>企業さまの所在地</p></div></div>
-      <p class="cp-note">※BIGLIGHTの支援記録より（${BL.asOf}）。在籍＝特定技能等で就労中の方。</p>${pn(no, 'DATA')}`),
+      <p class="cp-note">※BIGLIGHTの支援記録より（${BL.asOf}）。在籍＝特定技能等で就労中の方。設立からの累計は 人材紹介 500名以上・取引企業 80社以上（2026年6月時点）。</p>${pn(no, 'DATA')}`),
 
     // 11 数字 + 選ばれる理由
     sheet(N(), '', `
       ${head('Strength', '数字で見るBIGLIGHT・選ばれる理由', '名古屋・東海エリアを中心に、<br>全国の企業様をご支援しています。')}
       <div class="cp-nums">
         <div><div class="cp-num">2021</div><i></i><p>設立</p></div>
-        <div><div class="cp-num">500<small>+</small></div><i></i><p>人材紹介実績（名）</p></div>
-        <div><div class="cp-num">80<small>+</small></div><i></i><p>取引企業（社）</p></div>
-        <div><div class="cp-num">19<small>分野</small></div><i></i><p>特定技能 対応分野</p></div>
+        <div><div class="cp-num">500<small>+</small></div><i></i><p>人材紹介実績（名・累計）</p></div>
+        <div><div class="cp-num">80<small>+</small></div><i></i><p>取引企業（社・累計）</p></div>
+        <div><div class="cp-num">${BL.active}<small>名</small></div><i></i><p>いま支援している人材</p></div>
       </div>
-      <div class="cp-note">※人材紹介実績・取引企業数は2026年6月時点</div>
+      <div class="cp-note">※500名・80社は設立からの累計（2026年6月時点）。${BL.active}名・${BL.companies}社は現在の在籍・受入れ（${BL.asOf}）。</div>
       <div class="cp-rs">
         <div><div class="cp-no">01</div><div class="cp-t">高精度マッチング<small>MATCHING</small></div><div class="cp-d">経験豊富なチームが、企業のニーズと人材を丁寧にマッチングします。<b>経験豊富な専任チーム ／ 自社プラットフォームの母集団 ／ スキル・人柄まで見極め</b></div></div>
         <div><div class="cp-no">02</div><div class="cp-t">完全成功報酬<small>SUCCESS FEE</small></div><div class="cp-d">採用が決まるまで費用はかかりません。採用計画の段階から安心してご相談いただけます。<b>初期費用・着手金なし ／ 採用成功時のみのお支払い ／ 採用前のご相談は無料</b></div></div>
@@ -179,7 +179,7 @@ module.exports = function profile({ page, pageHead, aboutTabs, pill, AICHI_SDGS,
     sheet(N(), '', `
       ${head('Case', '導入事例', '食品の製造から、外食の店舗まで。')}
       <div class="cp-cases">${caseMini(CASES.inshoku, '03')}${caseMini(CASES.gaishoku, '04')}</div>
-      <p class="cp-note">※人数はBIGLIGHTの支援記録より（${BL.asOf}）。「これまでの受入れ」は入社予定の方を含みます。</p>${pn(no, 'CASE')}`),
+      <p class="cp-note">※人数はBIGLIGHTの支援記録より（${BL.asOf}）。「これまでの受入れ」は入社予定の方を含みます。社名は各企業さまのご了承を得て掲載しています。</p>${pn(no, 'CASE')}`),
 
     // 14 流れ + 期間
     sheet(N(), '', `

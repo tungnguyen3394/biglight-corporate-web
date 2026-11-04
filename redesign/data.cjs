@@ -12,7 +12,7 @@ const BL = {
 };
 
 // 事例: số người = CRM, không trùng người. 累計 gồm cả người đã có ngày vào sắp tới.
-// NHC: CRM ghi 取引停止 (2026-11-04) → chỉ ghi số đã giới thiệu, không ghi "đang hỗ trợ".
+// NHC: CRM ghi 取引停止 (2026-11-04) → chỉ ghi số đã giới thiệu, không ghi "đang hỗ trợ". CEO 2026-11-04: 4 công ty đều đồng ý đăng tên, giữ NHC.
 const CASES = {
   kensetsu: { name: '株式会社古屋鉄筋', area: '岐阜県瑞穂市', field: '建設分野', work: '土木（鉄筋）', since: '2024年2月', total: 9, active: 6, nat: 'ベトナム', two: 1,
     pts: ['2024年2月から受入れを開始。毎年 続けて採用', '現在6名が在籍。全員ベトナム出身', '1名が 特定技能2号 へ進みました'] },
@@ -106,7 +106,7 @@ const caseBody = (c) => `<div class="dx-case">
       ${c.two ? `<div><b>${c.two}<small>名</small></b><span>特定技能2号へ</span></div>` : ''}
     </div></div>
   <div><div class="dx-h">POINT</div><div class="dx-cp">${c.pts.map((t, i) => `<div><i>${i + 1}</i>${t}</div>`).join('')}</div>
-    <p class="dx-cf">※人数はBIGLIGHTの支援記録より（${BL.asOf}）。</p></div>
+    <p class="dx-cf">※人数はBIGLIGHTの支援記録より（${BL.asOf}）。社名は企業さまのご了承を得て掲載しています。</p></div>
 </div>`;
 
 module.exports = { BL, CASES, GOV, DX_CSS, hbars, vbars, donut, kpis, src, table, caseBody, fmt };

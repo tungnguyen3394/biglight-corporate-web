@@ -536,11 +536,11 @@ module.exports = function guide({ page, pageHead, pill, PDF_URL }) {
         <div><span class="tg-c">4</span><b>長く働く</b><em>定期面談<br>日本語学習アプリ</em></div>
       </div>
       <div class="tg-nums tg-nums3">
-        <div><div class="tg-num">19<small>分野</small></div><i></i><p>特定技能 対応分野</p></div>
-        <div><div class="tg-num">500<small>+</small></div><i></i><p>人材紹介実績（名）</p></div>
-        <div><div class="tg-num">80<small>+</small></div><i></i><p>取引企業（社）</p></div>
+        <div><div class="tg-num">500<small>+</small></div><i></i><p>人材紹介実績（名・累計）</p></div>
+        <div><div class="tg-num">80<small>+</small></div><i></i><p>取引企業（社・累計）</p></div>
+        <div><div class="tg-num">${D.BL.active}<small>名</small></div><i></i><p>いま支援している人材</p></div>
       </div>
-      <p class="tg-note">※人材紹介実績・取引企業数は2026年6月時点。有料職業紹介事業 23-ユ-302414／登録支援機関 21登-006596</p>
+      <p class="tg-note">※累計は2026年6月時点、支援中の人数は${D.BL.asOf}。有料職業紹介事業 23-ユ-302414／登録支援機関 21登-006596</p>
       ${foot('特定技能ガイド')}`),
 
     // お問い合わせ
