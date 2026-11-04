@@ -106,7 +106,7 @@ const caseBody = (c) => `<div class="dx-case">
       ${c.two ? `<div><b>${c.two}<small>名</small></b><span>特定技能2号へ</span></div>` : ''}
     </div></div>
   <div><div class="dx-h">POINT</div><div class="dx-cp">${c.pts.map((t, i) => `<div><i>${i + 1}</i>${t}</div>`).join('')}</div>
-    <p class="dx-cf">※人数はBIGLIGHTの支援記録より（${BL.asOf}）。社名は企業さまのご了承を得て掲載しています。</p></div>
+    <p class="dx-cf">※人数はBIGLIGHTの支援記録より（${BL.asOf}）。</p></div>
 </div>`;
 
 module.exports = { BL, CASES, GOV, DX_CSS, hbars, vbars, donut, kpis, src, table, caseBody, fmt };
