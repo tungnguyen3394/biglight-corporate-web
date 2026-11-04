@@ -163,6 +163,13 @@ const TG_CSS = `<style>
 .tg-ctel{display:grid;grid-template-columns:1fr 300px;gap:40px;margin-top:36px;align-items:center}.tg-tel{font:700 52px/1 Roboto,sans-serif}.tg-ctel p{font-size:15px;color:var(--ink2);line-height:2;margin-top:12px!important}
 .tg-qr{display:grid;grid-template-columns:132px 1fr;gap:16px;align-items:center}.tg-qr img{width:132px;height:132px}.tg-qr p{margin:0!important;font-size:12.5px}.tg-qr p b{display:block;color:var(--navy);font:500 11px/1.6 Roboto,sans-serif;letter-spacing:.1em}
 .tg-src{position:absolute;left:72px;right:72px;bottom:58px;border-top:1px solid var(--ln);padding-top:14px;font-size:12px;line-height:1.8;color:var(--grey)}
+.fx-jp{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.fx-jp>div{background:#f3f5f8;border-radius:12px;padding:30px 26px;min-height:380px;display:flex;flex-direction:column}.fx-jp .on{background:var(--tn)}
+.fx-jp em{font-size:15px;font-weight:700;color:var(--gold-d)}.fx-jp b{font-size:34px;color:var(--navy);margin-top:12px}.fx-jp span{font-size:16px;color:var(--ink2);margin-top:12px;line-height:1.6}.fx-jp p{margin-top:auto!important;font-size:17px;font-weight:700;line-height:1.6;border-top:1px solid rgba(0,0,0,.08);padding-top:16px}
+.fx-90{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.fx-90>div{background:#f3f5f8;border-radius:12px;padding:30px 24px;min-height:520px}.fx-90 .on{background:var(--tn)}.fx-90 b{display:block;font-size:28px;color:var(--navy);padding-bottom:14px;border-bottom:3px solid var(--gold)}.fx-90 li{font-size:18.5px;padding:16px 0;border-bottom:1px solid rgba(0,0,0,.08);line-height:1.5}
+.fx-ik{display:grid;grid-template-columns:1fr 60px 1fr;align-items:center}.fx-ik>span{text-align:center;font-size:40px;color:var(--navy);font-weight:700}.fx-ik>div{background:#f3f5f8;border-radius:12px;padding:32px 34px;min-height:440px}.fx-ik .on{background:var(--tn)}.fx-ik em{font-size:15px;font-weight:700;color:var(--gold-d)}.fx-ik b{display:block;font-size:32px;color:var(--navy);margin:8px 0 14px}.fx-ik li{font-size:19px;padding:13px 0;border-bottom:1px solid rgba(0,0,0,.08)}
+.lg-src0 li{display:flex;justify-content:space-between;gap:24px;padding:17px 0;border-bottom:1px solid var(--ln);font-size:18px}.lg-src0 em{color:var(--grey);font-size:15px;white-space:nowrap}
+.tg-pg .dx-tb{font-size:18.5px}.tg-pg .dx-tb td,.tg-pg .dx-tb th{padding:17px 14px}.tg-pg .dx-tb th{font-size:15px}
+.tg-pg .dx-2 .dx-dn{grid-template-columns:210px 1fr;gap:20px}.tg-pg .dx-2 .dx-dn svg{width:210px;height:210px}.tg-pg .dx-2 .dx-lg>div{font-size:15px;gap:10px}.tg-pg .dx-2 .dx-lg b{font-size:17px}
 @media (max-width:700px){.tg-root0{padding:32px 0 80px}.tg-stack{gap:16px}}
 @media print{
   @page{size:A4 landscape;margin:0}
@@ -189,6 +196,9 @@ module.exports = function guide({ page, pageHead, pill, PDF_URL }) {
   const rail = (i) => i < 0 ? '' : `<div class="tg-rail">${STEPS.map((s, k) => `<span class="${k === i ? 'on' : ''}">${s}</span>`).join('')}</div>`;
   // Trang chuẩn: thanh 5 bước + câu hỏi + 1 dòng trả lời + sơ đồ
   const pg = (i, q, a, body) => sheet('', `${rail(i)}<h2 class="tg-q">${q}</h2>${a ? `<p class="tg-a">${a}</p>` : ''}<div class="tg-body">${body}</div>${foot('特定技能ガイド')}`);
+  const D = require('./data.cjs'), G = D.GOV, SS = G.ssw;
+  const yy = (l) => l.replace(/^R/, '令和').replace('.6末', '年6月末');
+  const FLD = ['飲食料品製造業', '介護', '工業製品製造業', '建設', '外食業', '農業', 'ビルクリーニング', '造船・舶用工業', '自動車整備', '漁業'];
   const faq = (items) => `<div class="tg-faq">${items.map(([q, a]) => `<div><div class="tg-fq"><b>Q</b>${q}</div><div class="tg-fa"><b>A</b>${a}</div></div>`).join('')}</div>`;
 
   const sheets = [
@@ -223,13 +233,32 @@ module.exports = function guide({ page, pageHead, pill, PDF_URL }) {
         <div><div class="tg-num">19<small>分野</small></div><i></i><p>受け入れできる分野</p></div>
         <div><div class="tg-num">5<small>年</small></div><i></i><p>1号で働ける通算期間</p></div>
         <div><div class="tg-num">10<small>項目</small></div><i></i><p>会社が行う支援</p></div>
-        <div><div class="tg-num">44.4<small>万人</small></div><i></i><p>日本で働く特定技能の人数</p></div>
+        <div><div class="tg-num">${(SS.total / 10000).toFixed(1)}<small>万人</small></div><i></i><p>日本で働く特定技能の人数</p></div>
       </div>
       <div class="tg-flow5">
         <div><b>知る</b></div><div><b>確かめる</b></div><div><b>採用する</b></div><div><b>受け入れる</b></div><div class="on"><b>長く働く</b></div>
       </div>
       <p class="tg-note">※1号の通算期間は、相当の理由があると認められる場合は6年まで。人数は令和8年6月末・速報値（1号＋2号）。</p>
       ${foot('特定技能ガイド')}`),
+
+    // 2026-11-04 数字（入管庁 R8.6末・速報値）
+    pg(0, '数字で見る特定技能', `特定技能で働く人は <b>${D.fmt(SS.total)}人</b>。この5年で約9倍になりました。`, `
+      <div class="dx-2" style="grid-template-columns:1.5fr 1fr"><div><div class="dx-h">在留者数の推移（1号＋2号）</div>${D.vbars(SS.trend.map(([l, v], i, a) => [yy(l.replace('年末', '年末')), v, i === a.length - 1 ? 'on' : '']), { h: 330, unit: '人' })}</div>
+      <div>${D.kpis([[D.fmt(SS.t1), '人', '特定技能1号'], [D.fmt(SS.t2), '人', '特定技能2号（半年で2.3倍）']], 1)}</div></div>
+      ${D.src(SS.src)}`),
+    pg(0, 'どの分野・どの国の人が多い？', '飲食料品製造業・介護・工業製品製造業・建設が上位です。国籍はベトナムが最も多くなっています。', `
+      <div class="dx-2"><div><div class="dx-h">分野別（1号・上位10分野）</div>${D.hbars(FLD.map((k, i) => [k, SS.byField1[k], i ? '' : 'on']), { unit: '人', lw: '170px', vw: '100px', bh: '20px', fs: '15px', vs: '16px' })}</div>
+      <div><div class="dx-h">国籍別（1号）</div>${D.donut(SS.nat, [D.fmt(SS.t1), '人（1号）'], { top: 5, unit: '人' })}</div></div>
+      ${D.src(SS.src)}`),
+    pg(0, '東海で働く特定技能', `愛知県は都道府県別で <b>全国1位</b>。東海3県で約5.3万人が働いています。`, `
+      <div class="dx-2"><div><div class="dx-h">都道府県別 上位5（1号＋2号）</div>${D.hbars(SS.pref.top5.map(([l, v], i) => [l, v, i ? '' : 'on']), { unit: '人', lw: '110px', vw: '100px' })}
+        <div class="dx-h" style="margin-top:30px">東海3県（1号＋2号）</div>${D.hbars(Object.entries(SS.pref.tokai).map(([k, v]) => [k, v[0] + v[1]]), { unit: '人', lw: '110px', vw: '100px' })}</div>
+      <div><div class="dx-h">BIGLIGHTが支援している人の国籍</div>${D.donut(D.BL.nat, [D.fmt(D.BL.active), '名が在籍'], { unit: '名' })}<p class="tg-note">BIGLIGHTの支援記録より（${D.BL.asOf}）。受入れ企業 ${D.BL.companies}社。</p></div></div>
+      ${D.src(SS.src + '（都道府県は住居地）')}`),
+    pg(0, '受入れには上限がある', `分野ごとに、国が「受入れ見込数」を決めています。上限に近い分野は 早めの準備が必要です。`, `
+      ${D.table(['分野', '1号の受入れ見込数', '1号の在留者（令和8年7月末）', '見込数に対する割合'], ['外食業', '飲食料品製造業', '建設', '介護', '農業', '工業製品製造業', '自動車運送業'].map((k) => [k, D.fmt(SS.cap.t1[k]) + '人', D.fmt(SS.jul.t1[k]) + '人', (SS.jul.t1[k] / SS.cap.t1[k] * 100).toFixed(1) + '%']), [1, 2, 3])}
+      <p class="tg-note">※外食業は、令和8年4月13日から在留資格認定証明書の交付が停止されています（転職・更新は通常どおり審査）。見込数は令和11年3月末まで、合計 ${D.fmt(SS.cap.t1['合計'])}人。</p>
+      ${D.src(`${SS.cap.src}、出入国在留管理庁 在留者数（令和8年7月末・速報値）、${G.gaishokuStop.src}`)}`),
 
     // 1 制度
     pg(0, '特定技能って、どんな制度？', '1号で働き、試験を経て2号へ。段階的に長く働ける制度です。', `
@@ -291,6 +320,16 @@ module.exports = function guide({ page, pageHead, pill, PDF_URL }) {
       </div>
       <div class="tg-res tg-res2">技能実習2号を良好に修了した人は、試験が免除されます。</div>
       <p class="tg-note">※介護、自動車運送業（タクシー・バス）、鉄道（運輸係員）は別途要件があります。</p>`),
+
+    // 日本語の目安
+    pg(1, '日本語は、どのくらい話せる？', '1号は「基本的な日本語がわかる」レベル。2号はもう一段上です。', `
+      <div class="fx-jp">
+        <div><em>特定技能1号</em><b>A2.2相当以上</b><span>JFT-Basic（国際交流基金日本語基礎テスト）<br>または JLPT N4以上</span><p>基本的な日本語を理解することができる（N4の目安）</p></div>
+        <div class="on"><em>特定技能2号（令和9年4月から）</em><b>B1相当以上</b><span>JLPT N3以上 など</span><p>日常的な場面で使われる日本語を、ある程度理解することができる（N3の目安）</p></div>
+        <div><em>タクシー・バス運転者</em><b>原則 B1相当以上</b><span>JLPT N3以上 など</span><p>お客さまと話す仕事のため、1号でも高いレベルが求められます</p></div>
+      </div>
+      <div class="tg-res tg-res2">会話の力は、面接（オンラインも可）で確かめるのがいちばんです。</div>
+      <p class="tg-note">※介護は、別に「介護日本語評価試験」があります。レベルの説明は日本語能力試験（JLPT）の公式の目安によります。</p>`),
 
     // 6 会社
     pg(1, '会社に求められる基準は？', '4つの柱と、分野の協議会への加入が土台です。', `
@@ -432,6 +471,22 @@ module.exports = function guide({ page, pageHead, pill, PDF_URL }) {
         <div class="d"><b>みらい</b><em>2号という目標</em></div>
       </div>`),
 
+    pg(4, '最初の3か月が、いちばん大切', '入社してすぐの時期に、不安や行き違いが起きやすくなります。', `
+      <div class="fx-90">
+        <div><b>入社の日</b><ul><li>職場の案内・あいさつ</li><li>安全のルールを母国語で</li><li>相談できる人を決めて伝える</li></ul></div>
+        <div><b>1週間</b><ul><li>仕事の手順を写真や見本で</li><li>給与・休み・寮のルールを確認</li><li>困っていることを聞く</li></ul></div>
+        <div><b>1か月</b><ul><li>初めての給与明細を一緒に確認</li><li>日本語の学習を始める</li><li>職場の人と食事など交流を</li></ul></div>
+        <div class="on"><b>3か月</b><ul><li>1回目の定期面談</li><li>本人と上司、それぞれに</li><li>次の目標を決める</li></ul></div>
+      </div>`),
+    pg(4, 'これから変わること（育成就労）', '令和9年4月、技能実習に代わって「育成就労」が始まります。特定技能1号へ続く入口になります。', `
+      <div class="fx-ik">
+        <div><em>令和9年4月から</em><b>育成就労</b><ul><li>3年間で、特定技能1号の水準まで育てる</li><li>一定の条件で、本人の意向による転籍も可能</li><li>監理支援機関がサポート</li><li>受入れ見込数 ${D.fmt(SS.cap.ikusei['合計'])}人（令和11年3月末まで）</li></ul></div>
+        <span>→</span>
+        <div class="on"><em>そのあと</em><b>特定技能1号 → 2号</b><ul><li>試験などで1号へ</li><li>1号は通算5年まで</li><li>2号は更新の上限なし</li><li>2号の日本語は B1相当以上（令和9年4月から）</li></ul></div>
+      </div>
+      <p class="tg-note">※いま技能実習で受け入れている会社は、移行の時期と手続きを早めに確認しておきましょう。</p>
+      ${D.src(`${SS.cap.src}、出入国在留管理庁「育成就労制度」`)}`),
+
     // FAQ
     pg(-1, 'よくある質問 1', '', faq([
       ['パートやアルバイトで雇えますか？', 'いいえ。フルタイムのみです（原則 週5日以上・年217日以上、週30時間以上）。'],
@@ -449,6 +504,26 @@ module.exports = function guide({ page, pageHead, pill, PDF_URL }) {
       ['途中で退職したら？', '雇用契約の終了を14日以内に届け出ます。'],
       ['育成就労とは？', '令和9年4月に始まる制度です。技能を育て、特定技能1号へつなぎます。'],
     ])),
+
+    pg(-1, '用語の早わかり', 'このガイドに出てくる言葉です。', D.table(['用語', '意味'], [
+      ['分野・業務区分', '特定技能で働ける産業（19分野）と、その中の仕事の種類'],
+      ['在留資格認定証明書', '海外にいる人を呼ぶときに、入国前に取る証明書'],
+      ['在留資格変更許可', '日本にいる人が、特定技能に切り替えるときの許可'],
+      ['登録支援機関', '会社から委託を受けて、1号の支援を行う機関'],
+      ['1号特定技能外国人支援計画', '支援10項目をどう行うかを書いた計画。申請に必要'],
+      ['協議会', '分野ごとの関係者の会。受入れ企業は加入が必要'],
+      ['定期届出・随時届出', '年1回の報告と、変更があったときに14日以内に出す届出'],
+      ['育成就労', '令和9年4月に始まる制度。技能実習に代わり、1号へつなぐ'],
+    ])),
+    pg(-1, '出典', '国の公表資料をもとに作成しています。最新の内容は、各省庁のホームページでご確認ください。', `<ul class="lg-src0">${[
+      ['出入国在留管理庁「外国人労働者に関する制度概要」', '令和8年9月29日更新'],
+      ['出入国在留管理庁「特定技能外国人受入れに関する運用要領」', '令和8年10月'],
+      [SS.src, SS.asOf],
+      [SS.cap.src, '令和8年1月23日'],
+      [G.gaishokuStop.src, '令和8年3月27日・4月13日'],
+      ['国際交流基金・日本国際教育支援協会「日本語能力試験 N1〜N5 認定の目安」', ''],
+      ['BIGLIGHTの支援記録（国籍・在籍者数）', D.BL.asOf],
+    ].map(([a, b]) => `<li><span>${a}</span><em>${b}</em></li>`).join('')}</ul>`),
 
     // BIGLIGHT
     sheet('', `
@@ -486,7 +561,7 @@ module.exports = function guide({ page, pageHead, pill, PDF_URL }) {
 
   return page({ root: r, title: '特定技能ガイド｜BIGLIGHT株式会社', desc: 'はじめて特定技能の外国人を採用する企業のご担当者さま向けガイド。', body: `
 ${pageHead('Guide', '特定技能ガイド')}
-${TG_CSS}
+${TG_CSS}${require('./data.cjs').DX_CSS}
 <section class="tg-root0"><div class="wrap">
   <div class="tg-bar">${pill('PDFをダウンロード', PDF_URL)}</div>
   <div class="tg-stack">${sheets.join('\n')}</div>

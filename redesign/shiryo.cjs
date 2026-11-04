@@ -27,7 +27,20 @@ const CSS = `<style>
 .sy-chips{display:grid;grid-template-columns:repeat(var(--c),1fr);gap:12px}.sy-chips span{background:var(--tn);color:var(--navy);border-radius:10px;height:var(--h);display:flex;align-items:center;justify-content:center;text-align:center;padding:6px;font-size:var(--f);font-weight:700}.sy-chips span.on{background:var(--navy);color:#fff}
 .sy-flow{display:grid;gap:0;margin-top:6px}.sy-flow div{background:var(--tn);color:var(--navy);min-height:260px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:17px;font-weight:700;line-height:1.45;padding:8px 20px 8px 24px;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 50%,calc(100% - 18px) 100%,0 100%,18px 50%)}
 .sy-flow div:first-child{clip-path:polygon(0 0,calc(100% - 18px) 0,100% 50%,calc(100% - 18px) 100%,0 100%)}.sy-flow div.on{background:var(--navy);color:#fff}
-</style>`;
+.fx-up{display:grid;grid-template-columns:repeat(4,1fr);gap:0}.fx-up>div{background:var(--tn);padding:34px 30px 34px 40px;min-height:300px;clip-path:polygon(0 0,calc(100% - 22px) 0,100% 50%,calc(100% - 22px) 100%,0 100%,22px 50%)}.fx-up>div:first-child{clip-path:polygon(0 0,calc(100% - 22px) 0,100% 50%,calc(100% - 22px) 100%,0 100%)}.fx-up .on{background:var(--navy);color:#fff}.fx-up b{display:block;font-size:26px}.fx-up span{display:block;font-size:17px;margin-top:14px;line-height:1.6}
+.fx-form{display:grid;grid-template-columns:1fr 1fr;gap:0 44px}.fx-form>div{display:grid;grid-template-columns:230px 1fr;align-items:end;height:84px;border-bottom:1px solid var(--ink)}.fx-form b{font-size:18px;padding-bottom:12px}
+.fx-pt{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.fx-pt>div{background:var(--tn);border-radius:12px;padding:34px 30px;min-height:470px}.fx-pt b{display:block;font-size:26px;color:var(--navy);margin-top:20px;line-height:1.4}.fx-pt p{font-size:18px;color:var(--ink2);margin-top:14px!important;line-height:1.75}
+.fx-toc{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:28px;font-size:15px}.fx-toc span{font-weight:700;color:var(--navy);margin-right:8px}.fx-toc em{background:#f3f5f8;border-radius:16px;padding:7px 14px;font-weight:700;color:var(--ink2)}
+.fx-sp{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.fx-sp>div{background:var(--tn);border-radius:12px;padding:30px 24px;min-height:500px;position:relative}.fx-sp>div:not(:last-child):after{content:"→";position:absolute;right:-13px;top:50%;font-weight:700;color:var(--navy);z-index:1}.fx-sp b{display:block;font-size:22px;color:var(--navy);margin-top:22px;line-height:1.4}.fx-sp p{font-size:17px;color:var(--ink2);margin-top:12px!important;line-height:1.75}
+.fx-tm{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}.fx-tm>div{display:flex;justify-content:space-between;align-items:center;background:#f3f5f8;border-radius:10px;padding:22px 28px}.fx-tm b{font-size:19px}.fx-tm span{font:700 30px/1 Roboto,"Noto Sans JP",sans-serif;color:var(--navy)}
+.fx-st{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.fx-st>div{border-radius:12px;padding:30px 22px;min-height:360px;display:flex;flex-direction:column;gap:10px}.fx-st .x{background:#fdf0ec}.fx-st .o{background:var(--tn)}.fx-st b{font-size:22px;line-height:1.4}.fx-st span{font-size:15px;color:var(--ink2)}.fx-st em{margin-top:auto;font-size:21px;font-weight:700;line-height:1.5}.fx-st .x em{color:#c0392b}.fx-st .o em{color:var(--navy)}
+.fx-faq>div{min-height:190px}.fx-faq .tg-fq{font-size:19px}.fx-faq .tg-fa{font-size:17px}
+.tg-pg .dx-tb{font-size:18.5px}.tg-pg .dx-tb td,.tg-pg .dx-tb th{padding:20px 14px}.tg-pg .dx-tb th{font-size:15px}
+.tg-pg .dx-dn{grid-template-columns:250px 1fr;gap:26px}.tg-pg .dx-dn svg{width:250px;height:250px}.tg-pg .dx-lg>div{font-size:16px}
+.tg-pg .dx-case{grid-template-columns:450px 1fr}
+.fx-ex .dx-tb td,.fx-ex .dx-tb th{padding:12px 14px}.fx-ex .dx-tb th:empty{display:none}.fx-ex thead tr:has(th:empty){display:none}
+.tg-pg .dx-2 .dx-dn{grid-template-columns:210px 1fr;gap:20px}.tg-pg .dx-2 .dx-dn svg{width:210px;height:210px}.tg-pg .dx-2 .dx-lg>div{font-size:15px;grid-template-columns:16px 1fr auto;gap:10px}.tg-pg .dx-2 .dx-lg b{font-size:17px}
+</style>${require('./data.cjs').DX_CSS}`;
 
 function sheetsOf() { let no = 0; return {
   sheet: (cls, inner) => { no += 1; const id = String(no).padStart(2, '0'); return `<div class="tg-sh" id="p${id}"><div class="tg-pg${cls ? ' ' + cls : ''}">${inner}</div></div>`; },
@@ -124,6 +137,60 @@ exports.prep = (o) => {
       + cells('本人', ['', '試験・面接', '条件を確認', 'ガイダンス・<br>健康診断', '査証を申請して<br>入国', '住民登録など'])
       + cells('BIGLIGHT', ['制度の説明', '人材のご紹介', '条件の確認', '手続きの<br>サポート', '空港の送迎', '生活オリエン<br>テーション'], 'b'))
       + '<p class="tg-note">※国によって、本国側の手続きが必要です。</p>'),
+    // 2026-11-04 追加: 住まい・入社の週・生活オリエン・職場・最初の1か月・面談・届出・更新・離職・記入シート
+    pg('5. 住まいの準備', '入国・入社の前に、住む場所を決めておきます。', items([
+      ['住む場所を決めた', '社宅・寮を用意するか、本人が借りる部屋探しを手伝います'],
+      ['居室の広さを確認した', '1人あたり 7.5㎡以上（寝室）が目安です'],
+      ['家賃などの本人負担を決めた', '実費に相当する、適正な額にします'],
+      ['連帯保証人・緊急連絡先を決めた', '本人が借りる場合、会社などが保証人になる支援をします'],
+      ['電気・ガス・水道・ネットの手続きを決めた', '入居の日から使えるように'],
+      ['家具・寝具・家電を確認した', '最低限の生活用品'],
+      ['ごみの出し方・近所のルールを用意した', '自治体の外国語版のごみカレンダーがあれば印刷'],
+      ['通勤の方法を決めた', '自転車・バスなど。交通ルールの説明も'],
+    ])),
+    pg('6. 入社の週にすること', '入社の前後1〜2週間で、生活の手続きを済ませます。', lane(5,
+      heads(['空港・到着', '住民登録', '銀行・携帯', '社会保険', '仕事の開始'])
+      + cells('期限', ['海外の場合', '住む場所が決まって14日以内', '給与の振込みまでに', '入社の日から', ''])
+      + cells('会社', ['送迎の手配', '同行を手配', '同行を手配', '加入の手続き', '安全教育・職場の案内'])
+      + cells('BIGLIGHT', ['空港へ送迎', '役所に同行', '開設・契約に同行', 'マイナンバーなどの説明', '生活オリエン<br>テーション'], 'b'))
+      + '<p class="tg-note">※住民登録は、住居地を定めた日から14日以内に市区町村へ届け出ます（住民基本台帳法）。</p>'),
+    pg('7. 生活オリエンテーションの内容', '1号の人には、日本の生活のルールを 本人がわかる言語で説明します（8時間以上）。', `<div class="sy-chips" style="--c:4;--h:150px;--f:20px">${['お金・銀行・税金', '病院・保険', '交通ルール', 'ごみ・近所のルール', '地震・台風などの災害', '困ったときの相談先', '入管・労働の法律', '届出・手続き'].map((w) => `<span>${w}</span>`).join('')}</div>
+      <div class="tg-res tg-res2" style="margin-top:28px">BIGLIGHTに支援を委託している場合は、BIGLIGHTが母国語で行います。</div>`),
+    pg('8. 職場の準備', '本人より先に、職場の準備をしておくと 立ち上がりが早くなります。', items([
+      ['受入れの理由と予定を、職場に伝えた', '人数・入社日・担当する仕事'],
+      ['教える担当者（相談相手）を決めた', '同じ職場の先輩など'],
+      ['作業の手順を、写真や見本で用意した', '文字だけの手順書より伝わります'],
+      ['安全のルールを、母国語かやさしい日本語で用意した', '危険な場所・保護具・合図'],
+      ['「やさしい日本語」で話すことを共有した', '短く、はっきり、1文に1つのこと'],
+      ['休み・残業・給与のルールを説明する準備をした', '雇用条件書と同じ内容で'],
+      ['ロッカー・作業服・道具を用意した', ''],
+      ['宗教・食事などの配慮を確認した', '本人に聞いておきます'],
+    ])),
+    pg('9. 定期面談', '3か月に1回以上、本人と、本人を監督する人の それぞれと面談します。', `<div class="fx-pt" style="grid-template-columns:repeat(3,1fr)">
+      <div><span class="tg-c">1</span><b>本人と</b><p>仕事・生活・人間関係で困っていることはないか。給与や労働時間に問題はないか。</p></div>
+      <div><span class="tg-c">2</span><b>上司・監督者と</b><p>仕事の様子、職場での問題、法令に反することが起きていないか。</p></div>
+      <div><span class="tg-c">3</span><b>記録と報告</b><p>面談の内容を記録します。法令違反を知ったときは、関係機関に通報します。</p></div></div>
+      <p class="tg-note">※本人との面談は、本人が十分に理解できる言語で行います。支援を委託している場合は、BIGLIGHTが行います。</p>`),
+    pg('10. 届出の一覧', '変更があったときは14日以内。年に1回は定期届出です。', lane(4,
+      heads(['いつ', '何を', '期限', '誰が'])
+      + cells('随時', ['雇用契約を<br>変更・終了・新たに結んだ', '支援計画・支援委託<br>を変更・終了した', '受入れが<br>難しくなった', '不正行為を<br>知った'])
+      + cells('期限', ['14日以内', '14日以内', '14日以内', '14日以内'])
+      + cells('定期', ['受入れ・活動・支援の状況', '年1回（前年度分）', '4月1日〜5月31日', '会社（委託時は連名）'], 'b'))
+      + '<p class="tg-note">※届出は、出入国在留管理庁の電子届出システムでも出せます。届出をしない・虚偽の届出は罰則の対象です。</p>'),
+    pg('11. 在留期間の更新', '在留カードの期限を、会社でも管理しておきましょう。', `<div class="fx-up">
+      <div><b>3か月前</b><span>更新の申請ができるようになります</span></div><div><b>2か月前</b><span>書類をそろえて申請</span></div><div><b>審査</b><span>結果が出るまで、元の期限から最長2か月は在留できます（特例期間）</span></div><div class="on"><b>新しい在留カード</b><span>会社で写しを保管</span></div></div>
+      <div class="tg-res tg-res2" style="margin-top:28px">BIGLIGHTのアプリでは、在留期限が近づくと 企業さま・本人にお知らせします。</div>
+      <p class="tg-note">※1号の在留期間は、通算5年まで（相当の理由がある場合は6年まで）。</p>`),
+    pg('12. 退職・転職のとき', '会社の都合でも、本人の希望でも、手続きは同じように必要です。', items([
+      ['雇用契約の終了を届け出た', '14日以内に、出入国在留管理庁へ'],
+      ['会社都合の場合: 転職先探しを支援した', '1号の支援10項目の1つです'],
+      ['ハローワークへ離職の届出をした', '外国人雇用状況の届出'],
+      ['社会保険・住民税の手続きをした', ''],
+      ['寮・社宅の退去日を決めた', ''],
+      ['帰国する場合: 帰国費用を確認した', '本人が払えないときは会社が負担します'],
+      ['最後の給与の支払日を伝えた', ''],
+      ['退職証明書を渡した（求めがあれば）', '転職先での手続きに使います'],
+    ])),
     pg('入社してからの1年', '毎年くり返す予定を、1枚で確認できます。', `
       <div class="tg-cal">
         <div class="tg-ms"><i></i><span>4月</span><span>5月</span><span>6月</span><span>7月</span><span>8月</span><span>9月</span><span>10月</span><span>11月</span><span>12月</span><span>1月</span><span>2月</span><span>3月</span></div>
@@ -133,6 +200,8 @@ exports.prep = (o) => {
         <div class="tg-cr"><b>在留期限</b><div class="tg-gt"><em style="grid-column:1/13">在留カードの期限を確認し、期限の前に更新を申請</em></div></div>
       </div>
       <p class="tg-note">※定期面談の月は一例です。3か月に1回以上、本人と上司それぞれに行います。</p>`),
+    pg('受入れ情報シート（記入用）', '1人に1枚。印刷して、受入れの記録に使ってください。', `<div class="fx-form">${['氏名', '国籍', '在留カード番号', '在留期限', '分野・業務区分', '入社日', '住所（寮）', '社内の相談担当', '支援の担当（登録支援機関）', '定期面談の予定月', '次の定期届出', '緊急連絡先'].map((l) => `<div><b>${l}</b><u></u></div>`).join('')}</div>`),
+
     contact(S, `本資料は${AS_OF}の制度をもとにした一般的なご案内です。期間は目安であり、審査の結果や期間を保証するものではありません。分野ごとの要件や最新の情報は、出入国在留管理庁・分野所管省庁の公表資料をご確認ください。<br>参考：出入国在留管理庁「特定技能外国人受入れに関する運用要領」（令和8年10月）、「外国人労働者に関する制度概要」（令和8年9月29日更新）`),
   ]);
 };
@@ -179,22 +248,115 @@ exports.FIELDS = [
     ng: [['包装されていない食品に直接触れる業務', '対象外です'], ['運送に伴う荷役として引き受けている作業', '倉庫作業料金を収受する作業が対象です']],
     flow: ['ご相談', '類型・倉庫・WMSの確認', '協議会に加入', '募集・面接', '雇用契約', '在留資格申請', '入社・定着'], flowOn: [1, 2], note: '※評価試験の合格者が出てからの受入れになるため、入社は 2027年度の見込みです。' },
 ];
+/* 2026-11-04 (CEO: tài liệu mỏng → dày): 6 → ~16 trang. Thêm: điểm chính, số liệu 入管庁 (data.cjs GOV), 国籍, 求人倍率・賃金, 業務の例, 試験,
+   協議会・登録法人の手続き, 必要書類, 事例 (tên thật, CRM), FAQ, 出典. Không ghi số tiền BIGLIGHT; phí thi/hội phí chỉ ghi tên khoản. */
+const FX = {
+  kensetsu: {
+    pts: [['受入計画の認定', '受入れ前に、国土交通大臣の「建設特定技能受入計画」の認定が必要です。'], ['JAC と CCUS', '建設技能人材機構（JAC）への加入と、建設キャリアアップシステムの登録が必要です。'], ['人数枠と月給制', '1号の人数は常勤職員の数まで。報酬は月給制で、昇給も契約に明記します。']],
+    tasks: [['土木', '型枠施工、鉄筋施工、とび、コンクリート圧送、建設機械施工、トンネル推進 など'], ['建築', '型枠施工、鉄筋施工、とび、左官、建築大工、内装仕上げ、屋根ふき、タイル張り など'], ['ライフライン・設備', '電気通信、配管、建築板金、保温保冷、電気工事 など'], ['関連する業務', '同じ現場で日本人も行う、資材の運搬・片付け・清掃など（主な業務と合わせて）']],
+    steps: [['JACに加入', '正会員の建設業者団体に入るか、JACの賛助会員になります。'], ['CCUSに登録', '会社（事業者）と本人（技能者）を、建設キャリアアップシステムに登録します。'], ['受入計画を申請', '外国人就労管理システムからオンラインで申請し、国土交通大臣の認定を受けます。'], ['入国後の講習・巡回', '受入れ後の講習や、適正就労監理機関による巡回訪問に対応します。']],
+    docs: ['建設特定技能受入計画の認定証（写し）', '建設業の許可証（写し）', 'JACの会員であることの証明', '建設キャリアアップシステムの登録の確認書類', '分野の誓約書（分野所定の様式）'],
+    faq: [['何人まで受け入れられますか？', '1号の総数は、常勤職員（技能実習生と1号は除く）の数までです。'], ['技能実習を修了した人は？', '技能実習2号を良好に修了した人は、技能試験と日本語試験が免除されます。'], ['給与はどう決めますか？', '同じ技能の日本人と同等以上で、月給制です。技能に応じた昇給も契約に書きます。'], ['転職してきた人を採用するときは？', '同じ業務区分なら可能です。受入れる会社として、新しく受入計画の認定を受けます。'], ['日給制・時給制でもいいですか？', 'いいえ。季節や天候で収入が変わらないよう、月給制が求められます。'], ['2号になるには？', '班長などとしての実務経験と、2号の試験（または技能検定1級）への合格が必要です。']],
+  },
+  kogyo: {
+    pts: [['事業所で判断', '会社全体ではなく、働く事業所が対象の業種かどうかで判断します。'], ['登録法人（JAIM）', '在留資格を申請する前に、工業製品製造技能人材機構（JAIM）に加入します。'], ['17の業務区分', '機械金属加工・電気電子機器組立て・金属表面処理の3区分は、2号まで進めます。']],
+    tasks: [['機械金属加工', '溶接、鋳造、鍛造、機械加工、仕上げ、プレス、金属塗装、機械検査、機械保全 など'], ['電気電子機器組立て', '電子機器組立て、電気機器組立て、プリント配線板製造 など'], ['金属表面処理', 'めっき、アルミニウム陽極酸化処理 など'], ['その他の14区分', '紙器・段ボール、コンクリート製品、印刷・製本、縫製、ゴム製品、家具など、区分ごとの作業']],
+    steps: [['事業所の業種を確認', '日本標準産業分類で、対象の業種に当たる事業所かを確認します。'], ['製造の実績を確認', '直近1年間に、対象業種の製造品出荷額などがあることを確認します。'], ['JAIMに加入', '在留資格の申請の前に、登録法人の会員になります。'], ['行動規範を守る', '登録法人の行動規範に沿って受け入れ、国内人材の確保などにも取り組みます。']],
+    docs: ['JAIM（登録法人）の会員であることの証明', '事業所が対象業種であることがわかる資料', '製造品出荷額などがわかる資料', '分野の誓約書（分野所定の様式）'],
+    faq: [['溶接の仕事で受け入れられますか？', 'はい。機械金属加工の業務区分に入ります。2号まで進めます。'], ['本社と工場で業種が違います', '本人が働く事業所の業種で判断します。'], ['技能実習を修了した人は？', '業務区分に対応する職種・作業で2号を良好に修了していれば、試験が免除されます。'], ['検品や運搬もしてもらえますか？', '同じ職場の日本人も行う関連業務なら可能です。主な業務は試験で確かめた作業です。'], ['派遣で受け入れられますか？', 'いいえ。直接雇用のみです。'], ['2号になるには？', '3つの業務区分で、実務経験3年・ビジネス・キャリア検定3級・日本語N3 などと、2号の試験への合格が必要です。']],
+  },
+  inshoku: {
+    pts: [['製造小売も対象', '工場だけでなく、パン・菓子・惣菜など、製造して販売する店も対象です。'], ['食品産業特定技能協議会', '在留資格を申請する前に、協議会に加入します。'], ['2号まで進める', '工程の管理などの実務経験と試験で、2号に進めます。']],
+    tasks: [['飲食料品製造業', '原料の処理、加熱、殺菌、成形、乾燥などの製造・加工の工程、安全衛生'], ['水産加工業', '魚介類の処理、塩蔵、乾燥、くん製、冷凍など。水産加工食品の製造'], ['関連する業務', '原料の受入れ、製品の運搬・梱包、清掃など（主な業務と合わせて）'], ['対象外', '酒類、塩、医薬品、香料の製造。飲食料品の卸売、スーパーでの販売']],
+    steps: [['事業所の業種を確認', '日本標準産業分類で、飲食料品の製造業に当たるかを確認します。'], ['協議会に加入', '農林水産省の食品産業特定技能協議会に、在留資格の申請の前に入ります。'], ['キャリアアップの計画', '雇用契約の前に、本人へ書面で説明します。'], ['調査・指導への協力', '農林水産省や協議会の調査・指導に協力します。']],
+    docs: ['食品産業特定技能協議会の構成員であることの証明', '事業所が対象業種であることがわかる資料', 'キャリアアップの計画を説明した書面', '分野の誓約書（分野所定の様式）'],
+    faq: [['スーパーの惣菜部門は対象ですか？', '製造を行う部門は対象です。売り場での販売の仕事は対象外です。'], ['水産加工もできますか？', 'はい。業務区分「水産加工業」で受け入れます。'], ['技能実習を修了した人は？', '対応する職種・作業で2号を良好に修了していれば、試験が免除されます。'], ['夜勤やシフト勤務はできますか？', '日本人と同じ条件であれば可能です。'], ['派遣で受け入れられますか？', 'いいえ。直接雇用のみです。請負で付随業務だけをすることも対象外です。'], ['2号になるには？', '複数の作業員を指導しながら工程を管理する実務経験2年と、2号の試験・日本語N3への合格が必要です。']],
+  },
+  gaishoku: {
+    pts: [['海外からの受入れは停止中', '受入れの上限に近づいたため、令和8年4月13日から新規の認定証明書は交付されていません。'], ['いま採用できる人', '外食業の特定技能1号で働いている人の転職は、これまでどおり審査されます。'], ['更新は通常どおり', 'すでに雇用している人の在留期間の更新は、通常どおり審査されます。']],
+    tasks: [['飲食物調理', '食材の仕込み、加熱・非加熱の調理、調味など'], ['接客', '注文を受ける、配膳、会計など'], ['店舗管理', '店舗の運営、従業員のシフト管理、衛生管理など'], ['関連する業務', '原材料の買出し、清掃、宅配など（主な業務と合わせて）']],
+    steps: [['店舗の業態を確認', '飲食サービス業（店内飲食・持ち帰り・配達・給食など）に当たるかを確認します。'], ['協議会に加入', '食品産業特定技能協議会に、在留資格の申請の前に入ります。'], ['キャリアアップの計画', '雇用契約の前に、本人へ書面で説明します。'], ['接待をさせない', '風俗営業の店舗での就労は、原則としてできません。']],
+    docs: ['食品産業特定技能協議会の構成員であることの証明', '店舗が飲食サービス業であることがわかる資料', 'キャリアアップの計画を説明した書面', '分野の誓約書（分野所定の様式）'],
+    faq: [['いま、海外から採用できますか？', '令和8年4月13日以降の在留資格認定証明書の申請は不交付です。1号の試験も止まっています。'], ['留学生を外食業で採用できますか？', '外食業1号への変更は、原則として不許可となっています（一部に例外があります）。'], ['他の店から転職する人は？', '外食業の特定技能1号で働いている人の転職は、通常どおり審査されます。'], ['いま働いている人の更新は？', '通常どおり審査されます。'], ['ホテルのレストランは対象ですか？', 'はい。宿泊施設の飲食部門や、病院の給食部門も対象です。'], ['これから先は？', '令和9年4月から育成就労が始まります。外食業の受入れ見込数は5,300人です。']],
+  },
+  unso: {
+    pts: [['日本の運転免許', '1号として働くには、日本の運転免許が必要です。準備の期間は「特定活動」で在留します。'], ['会社の認証', '運転者職場環境良好度認証（トラックは安全性優良事業所の認定でも可）が必要です。'], ['1号のみ', '自動車運送業に2号はありません。通算5年までです。']],
+    tasks: [['トラック運転者', '貨物の運送、荷積み・荷下ろし、点検など'], ['タクシー運転者', '旅客の運送、運賃の収受、車両の点検など'], ['バス運転者', '旅客の運送、乗客の案内、車両の点検など'], ['関連する業務', '洗車・清掃、配車の補助など（運転が主）']],
+    steps: [['認証を確認', '運転者職場環境良好度認証などを受けているか確認します。'], ['協議会に加入', '自動車運送業分野特定技能協議会の構成員になります。'], ['特定活動で準備', '入国後、免許の取得や研修のため「特定活動」で在留します。'], ['研修・乗務', 'タクシー・バスは新任運転者研修を修了して乗務します。']],
+    docs: ['協議会の構成員であることの証明', '運転者職場環境良好度認証など（写し）', '一般貨物自動車運送事業などの許可の写し', '日本の運転免許証（写し）', '分野の誓約書（分野所定の様式）'],
+    faq: [['外国の免許で運転できますか？', '1号の活動には日本の免許が必要です。外免切替などで取得します。'], ['タクシー・バスの日本語は？', '原則 B1相当以上（JLPT N3以上など）です。'], ['特定活動の期間は？', 'トラックは最長6か月、タクシー・バスは最長1年です。1号の通算5年には含みません。'], ['技能実習から移れますか？', '自動車運送業に対応する技能実習の職種はありません。試験に合格して受け入れます。'], ['倉庫の仕事もしてもらえますか？', '倉庫作業は別の分野（物流倉庫）です。関連業務の範囲を超える場合は対象外です。'], ['2号はありますか？', 'ありません。'], ],
+  },
+  soko: {
+    pts: [['受入れは2027年度の見込み', '評価試験の合格者が出てからの受入れになります。いまは会社側の準備の時期です。'], ['3つの類型', '倉庫業者・倉庫作業の受託会社・貨物自動車運送事業者のいずれかです。'], ['WMS の利活用', '入庫・在庫・出庫を管理するシステムを使っていることが求められます。']],
+    tasks: [['入出庫', '荷の受渡し、検品、仕分け'], ['保管', '貨物の移動、保管庫への格納、在庫管理（WMS）'], ['ピッキング・流通加工', 'ピッキング、梱包、値札付け、セット組み など'], ['関連する業務', '倉庫内の清掃、資材の整理など（主な業務と合わせて）']],
+    steps: [['類型と倉庫を確認', '営業倉庫の登録がある倉庫か、運送事業者の自社占有の倉庫かを確認します。'], ['WMS を確認', '倉庫管理システムの利活用を確認します。'], ['協議会に加入', '協議会の設置後、在留諸申請の前に加入します（設置は調整中）。'], ['機器・システムの報告', '協議会への加入から1年以内に報告します。']],
+    docs: ['協議会の構成員であることの証明（設置後）', '営業倉庫の登録などがわかる資料', 'WMSの利活用がわかる資料', '分野の誓約書（分野所定の様式）'],
+    faq: [['いつから受け入れられますか？', '評価試験の合格者が出てからで、2027年度の見込みです。'], ['派遣で受け入れられますか？', 'いいえ。直接雇用のみです。'], ['運送会社でも受け入れられますか？', 'はい。自社で占有する倉庫での、有償の倉庫作業が対象です。'], ['技能実習から移れますか？', '関連のある職種なら、技能試験が免除される場合があります。日本語は免除されます。'], ['2号はありますか？', 'ありません。育成就労の対象分野でもあります。'], ['いま何を準備すればいい？', '類型・倉庫・WMSの確認と、協議会の設置を待っての加入準備です。']],
+  },
+};
+exports.FX = FX;
+const D = require('./data.cjs');
+const G = D.GOV;
+const yy = (l) => l.replace(/^R/, '令和').replace('.6末', '年6月末');
+
 exports.field = (o, f) => {
   r = '../../../';
-  const S = sheetsOf(), T = f.name + 'ガイド';
+  const S = sheetsOf(), T = f.name + 'ガイド', X = FX[f.slug] || {}, N = G.field[f.slug] || {}, C = D.CASES[f.slug];
+  const EX = (G.exam || {})[f.slug], LB = (G.labor || {})[f.slug];
   const pg = (q, a, body) => S.sheet('', `<h2 class="tg-q tg-q0">${q}</h2><p class="tg-a">${a}</p><div class="tg-body">${body}</div>${S.foot(T)}`);
   const tile = (x, c) => `<div class="sy-tile ${c || ''}"><b>${x[0]}</b><span>${x[1]}</span></div>`;
-  const out = wrap(o, 'Field Guide', T, T, `${f.name}で特定技能の外国人を受け入れるときのガイド。`, o.PDF_URL, [
-    cover(S, `${f.name}<br>ガイド`, f.sum, f.en + ' FIELD GUIDE'),
-    pg('どんな仕事で受け入れられる？', f.two, `<div class="sy-chips" style="${f.work.length > 6 ? '--c:4;--h:92px;--f:17px' : `--c:${f.work.length};--h:380px;--f:28px`}">${f.work.map(w => `<span class="${f.workOn.includes(w) ? 'on' : ''}">${w}</span>`).join('')}</div>`),
-    pg('どんな人を採用できる？', '分野共通の条件に加えて、次の3つを確認します。', `<div class="sy-tiles" style="grid-template-columns:repeat(3,1fr)">${f.who.map(w => `<div class="sy-tile" style="min-height:430px;text-align:center;align-items:center"><span style="margin:0 0 12px;font-weight:700;color:var(--gold-d);font-size:17px">${w[0]}</span><b>${w[1]}</b><span>${w[2]}</span></div>`).join('')}</div>`),
-    pg('会社に必要なことは？', 'この分野ならではの基準です。', `<div class="sy-tiles" style="grid-template-columns:repeat(3,1fr)">${f.co.map(x => tile(x)).join('')}</div><div class="sy-tiles" style="grid-template-columns:repeat(2,1fr);margin-top:14px">${f.ng.map(x => tile(x, 'n')).join('')}</div>`),
-    pg('受入れまでの流れは？', '色の濃いところが、この分野で特に大事な手続きです。', `<div class="sy-flow" style="grid-template-columns:repeat(${f.flow.length},1fr)">${f.flow.map((x, i) => `<div class="${f.flowOn.includes(i) ? 'on' : ''}">${x}</div>`).join('')}</div><p class="tg-note" style="font-size:15px;margin-top:22px!important">${f.note}</p>`),
-    contact(S, `本資料は${AS_OF}の制度をもとにした一般的なご案内です。要件の詳細は、出入国在留管理庁・分野所管省庁の公表資料をご確認ください。<br>参考：出入国在留管理庁「特定の分野に係る特定技能外国人受入れに関する運用要領」、「外国人労働者に関する制度概要」（令和8年9月29日更新）`),
-  ]);
+  const pages = [];
+  pages.push(cover(S, `${f.name}<br>ガイド`, f.sum, f.en + ' FIELD GUIDE'));
+  if (X.pts) pages.push(pg(`${f.name}の受入れ、3つのポイント`, 'はじめに押さえておきたいことです。', `<div class="fx-pt">${X.pts.map(([h, t], i) => `<div><span class="tg-c">${i + 1}</span><b>${h}</b><p>${t}</p></div>`).join('')}</div>
+    <div class="fx-toc"><span>このガイドの内容</span><em>数字で見る</em><em>仕事と人</em><em>試験</em><em>会社の基準と手続き</em><em>流れと書類</em>${C ? '<em>事例</em>' : ''}<em>よくある質問</em></div>`));
+  if (N.t1 > 0) {
+    const ful = N.cap ? (N.jul / N.cap * 100) : null;
+    pages.push(pg(`数字で見る ${f.name}`, `特定技能で働く人は、${f.name}で <b>${D.fmt(N.t1 + (N.t2 || 0))}人</b>（${G.ssw.asOf}）。`, `
+      ${D.kpis([[D.fmt(N.t1), '人', '特定技能1号'], [N.t2 != null ? D.fmt(N.t2) : '—', N.t2 != null ? '人' : '', N.t2 != null ? '特定技能2号' : '2号はありません'], [D.fmt(N.cap), '人', `1号の受入れ見込数（${G.ssw.cap.period}）`], [ful ? ful.toFixed(1) : '—', '%', `見込数に対する在留者（${G.ssw.jul.asOf}）`]])}
+      <div class="dx-2" style="margin-top:30px"><div><div class="dx-h">1号の在留者数の推移</div>${D.vbars(N.hist.filter((h) => h[1] != null).map((h, i, a) => [yy(h[0]), h[1], i === a.length - 1 ? 'on' : '']), { h: 250, unit: '人' })}</div>
+      <div><div class="dx-h">東海3県で働く1号・2号</div>${D.hbars(Object.entries(N.tokai).map(([k, v]) => [k, (v[0] || 0) + (v[1] || 0)]), { unit: '人', lw: '90px', vw: '100px' })}<p class="tg-note">住居地による集計です。</p></div></div>
+      ${D.src(`${G.ssw.src}、${G.ssw.cap.src}、同 令和8年7月末の在留者数`)}`));
+    if (N.nat) pages.push(pg('どの国の人が働いている？', `${f.name}の1号は、<b>${N.nat[0][0]}</b>出身の人が最も多くなっています。`, `
+      <div class="dx-2"><div>${D.donut(N.nat, [D.fmt(N.t1), '人（1号）'], { pct: false, unit: '人' })}</div>
+      <div><div class="dx-h">BIGLIGHTが支援している人の国籍（全分野）</div>${D.hbars(D.BL.nat.map(([l, v], i) => [l, v, i ? 'mu' : '']), { unit: '名', lw: '120px', vw: '80px' })}<p class="tg-note">BIGLIGHTの支援記録より（${D.BL.asOf}）。在籍 ${D.BL.active}名。</p></div></div>
+      ${D.src(`${G.ssw.src}（上位5か国。「その他」は表示していません）`)}`));
+  }
+  if (!(N.t1 > 0) && N.cap) pages.push(pg('どのくらい受け入れる見込み？', `${f.name}は 令和8年1月に追加された新しい分野です。国が受入れの見込数を決めています。`, `
+    ${D.kpis([[D.fmt(N.cap), '人', `特定技能1号の受入れ見込数（${G.ssw.cap.period}）`], [N.ikusei ? D.fmt(N.ikusei) : '—', N.ikusei ? '人' : '', '育成就労の受入れ見込数（令和9年4月から）'], ['0', '人', `いま在留している1号（${G.ssw.asOf}）`]], 3)}
+    <div class="dx-2" style="margin-top:34px"><div><div class="dx-h">BIGLIGHTが支援している人の国籍（全分野）</div>${D.hbars(D.BL.nat.map(([l, v], i) => [l, v, i ? 'mu' : '']), { unit: '名', lw: '120px', vw: '80px' })}<p class="tg-note">BIGLIGHTの支援記録より（${D.BL.asOf}）。</p></div>
+    <div><div class="dx-h">特定技能1号の国籍（全分野・上位5）</div>${D.hbars(G.ssw.nat.slice(0, 5).map(([l, v], i) => [l, v, i ? '' : 'on']), { unit: '人', lw: '120px', vw: '110px' })}</div></div>
+    ${D.src(`${G.ssw.cap.src}、${G.ssw.src}`)}`));
+  if (f.slug === 'gaishoku') pages.push(pg('いま、外食業で起きていること', '1号の在留者が受入れ見込数（上限）の5万人に近づき、新しい受入れが止まっています。', `
+    <div class="fx-st">
+      <div class="x"><b>海外から呼ぶ</b><span>在留資格認定証明書</span><em>令和8年4月13日以降の申請は 不交付</em></div>
+      <div class="x"><b>国内の人が1号へ変わる</b><span>留学生など</span><em>原則 不許可（一部に例外）</em></div>
+      <div class="x"><b>1号の技能試験</b><span>国内・海外</span><em>令和8年3月27日から 実施停止</em></div>
+      <div class="o"><b>外食業1号の人の転職</b><span>他の店から</span><em>通常どおり審査</em></div>
+      <div class="o"><b>在留期間の更新</b><span>いま働いている人</span><em>通常どおり審査</em></div>
+    </div>
+    <p class="tg-note">※例外：技能実習（医療・福祉施設給食製造作業）の修了者、すでに外食業の特定活動（1号移行準備）の許可を受けている人など。状況によっては特定活動への変更を案内される場合があります。最新の状況は出入国在留管理庁の発表をご確認ください。</p>
+    ${D.src(G.gaishokuStop.src)}`));
+  if (LB) pages.push(pg('人手不足と、給与の目安', LB.lead, `
+    <div class="dx-2"><div><div class="dx-h">有効求人倍率（${LB.ratioAsOf}）</div>${D.hbars(LB.ratio.map(([l, v, c]) => [l, v, c]), { unit: '倍', dec: 2, lw: '250px', vw: '80px', fs: '15.5px' })}<p class="tg-note">1人の求職者に、何件の求人があるかを示します。</p></div>
+    <div><div class="dx-h">平均の給与（${LB.wageAsOf}）</div>${D.table(['職種・在留資格', '所定内給与（月）'], LB.wage.map(([l, v]) => [l, v]), [1])}<p class="tg-note">特定技能の報酬は、同じ仕事をする日本人と同等以上にします。<br>${LB.mw}</p></div></div>
+    ${D.src(LB.src)}`));
+  pages.push(pg('どんな仕事で受け入れられる？', f.two, `<div class="sy-chips" style="${f.work.length > 6 ? '--c:4;--h:92px;--f:17px' : `--c:${f.work.length};--h:380px;--f:28px`}">${f.work.map(w => `<span class="${f.workOn.includes(w) ? 'on' : ''}">${w}</span>`).join('')}</div>`));
+  if (X.tasks) pages.push(pg('仕事の内容を、もう少し詳しく', '主な業務に加えて、同じ職場の日本人も行う関連業務をしてもらえます。', D.table(['区分', '主な作業の例'], X.tasks)));
+  pages.push(pg('どんな人を採用できる？', '分野共通の条件に加えて、次の3つを確認します。', `<div class="sy-tiles" style="grid-template-columns:repeat(3,1fr)">${f.who.map(w => `<div class="sy-tile" style="min-height:430px;text-align:center;align-items:center"><span style="margin:0 0 12px;font-weight:700;color:var(--gold-d);font-size:17px">${w[0]}</span><b>${w[1]}</b><span>${w[2]}</span></div>`).join('')}</div>`));
+  if (EX) pages.push(pg('技能の試験は、どんな試験？', EX.lead, `<div class="fx-ex">${D.table(['', ''], EX.rows)}${EX.pass ? `<div class="dx-h" style="margin-top:26px">合格の状況</div>${D.table(EX.pass.head, EX.pass.rows, EX.pass.num || [])}` : ''}</div>${D.src(EX.src)}`));
+  pages.push(pg('会社に必要なことは？', 'この分野ならではの基準です。', `<div class="sy-tiles" style="grid-template-columns:repeat(3,1fr)">${f.co.map(x => tile(x)).join('')}</div><div class="sy-tiles" style="grid-template-columns:repeat(2,1fr);margin-top:14px">${f.ng.map(x => tile(x, 'n')).join('')}</div>`));
+  if (X.steps) pages.push(pg('分野の手続き、何をする？', '在留資格の申請とは別に、分野ごとの手続きがあります。', `<div class="fx-sp">${X.steps.map(([h, t], i) => `<div><span class="tg-c">${i + 1}</span><b>${h}</b><p>${t}</p></div>`).join('')}</div><p class="tg-note">※加入・認定の費用（会費など）は、団体・制度ごとに定められています。</p>`));
+  pages.push(pg('受入れまでの流れは？', '色の濃いところが、この分野で特に大事な手続きです。', `<div class="sy-flow" style="grid-template-columns:repeat(${f.flow.length},1fr)">${f.flow.map((x, i) => `<div class="${f.flowOn.includes(i) ? 'on' : ''}">${x}</div>`).join('')}</div><p class="tg-note" style="font-size:15px;margin-top:22px!important">${f.note}</p>
+    <div class="fx-tm"><div><b>日本国内にいる人</b><span>1〜3か月</span></div><div><b>海外にいる人</b><span>3〜6か月</span></div></div><p class="tg-note">※入社までのBIGLIGHTの目安です。分野の手続きや審査の状況で前後します。</p>`));
+  if (X.docs) pages.push(pg('分野ならではの書類', '共通の書類に加えて、次の書類を用意します。', `${items(X.docs.map((d) => [d, '']))}<p class="tg-note">※共通の書類（申請書・雇用契約・支援計画・会社の資料など）は「受入れ準備ガイド」をご覧ください。最新の様式は出入国在留管理庁のホームページで確認できます。</p>`));
+  if (C) pages.push(pg('BIGLIGHTの事例', `${C.area}の${C.name}さま。${C.field}での受入れです。`, D.caseBody(C)));
+  if (X.faq) pages.push(pg('よくある質問', `${f.name}で、ご相談の多い質問です。`, `<div class="tg-faq fx-faq">${X.faq.map(([q, a]) => `<div><div class="tg-fq"><b>Q</b>${q}</div><div class="tg-fa"><b>A</b>${a}</div></div>`).join('')}</div>`));
+  pages.push(contact(S, `本資料は${AS_OF}の制度をもとにした一般的なご案内です。要件の詳細は、出入国在留管理庁・分野所管省庁の公表資料をご確認ください。<br>参考：出入国在留管理庁「特定の分野に係る特定技能外国人受入れに関する運用要領」、「外国人労働者に関する制度概要」（令和8年9月29日更新）、「特定技能在留外国人数」（${G.ssw.asOf}）`));
+  const out = wrap(o, 'Field Guide', T, T, `${f.name}で特定技能の外国人を受け入れるときのガイド。`, o.PDF_URL, pages);
   r = '../../';
   return out;
 };
+exports.fieldPages = (f) => (exports.field({ page: (x) => x.body, pageHead: () => '', pill: () => '', PDF_URL: '' }, f).match(/class="tg-sh"/g) || []).length;
 
 /* ===== 物流人材ガイド（自動車運送業・物流倉庫）2026-11-03: 資料請求用、A4横 15ページ。数値・状況・出典は facts.json（Web の /logistics/ と同じ）。
    金額は書かない。行政書士の確認前。 */
