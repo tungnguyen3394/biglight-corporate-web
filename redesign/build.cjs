@@ -2547,11 +2547,11 @@ ${pageHead('Privacy Policy','プライバシーポリシー')}
 /* 2026-11-01 資料請求: danh sách tài liệu ở /contact/ tab 2. Thêm tài liệu = thêm 1 dòng. img = bìa, deploy-new.yml sinh từ trang 1 PDF.
    live:false = chưa hiện cho khách. CEO 11-01: hiện 特定技能ガイド, ẩn 料金. manual = nhân viên gửi, không tự tạo link. */
 const MATERIALS=[
-  {id:'profile',name:'会社案内',desc:'会社概要・サービス・ご相談の流れ',meta:'A4横 9ページ　Web／PDF',img:'material-profile.jpg',ver:()=>PDF_URL,url:'/about/profile/',live:true},
-  {id:'guide',name:'特定技能ガイド',desc:'制度・採用の流れ・支援を図でわかりやすく',meta:'A4横 24ページ　Web／PDF',img:'material-guide.jpg',ver:()=>GUIDE_PDF_URL,url:'/guide/tokutei-ginou/',live:true},
-  {id:'preparation',name:'受入れ準備ガイド',desc:'チェックリストと、入社までのスケジュール',meta:'A4横 10ページ　Web／PDF',img:'material-preparation.jpg',ver:()=>PREP_PDF_URL,url:'/guide/preparation/',live:true},
+  {id:'profile',name:'会社案内',desc:'会社概要・サービス・支援の体制・導入事例・ご相談の流れ',meta:'A4横 17ページ　Web／PDF',img:'material-profile.jpg',ver:()=>PDF_URL,url:'/about/profile/',live:true},
+  {id:'guide',name:'特定技能ガイド',desc:'制度・最新の数字・採用の流れ・支援を図でわかりやすく',meta:'A4横 33ページ　Web／PDF',img:'material-guide.jpg',ver:()=>GUIDE_PDF_URL,url:'/guide/tokutei-ginou/',live:true},
+  {id:'preparation',name:'受入れ準備ガイド',desc:'チェックリスト・住まい・入社の週・届出・記入シート',meta:'A4横 19ページ　Web／PDF',img:'material-preparation.jpg',ver:()=>PREP_PDF_URL,url:'/guide/preparation/',live:true},
   {id:'logistics',name:'物流人材ガイド',desc:'ドライバーと倉庫スタッフ。自動車運送業・物流倉庫の制度と受入れ条件',meta:'A4横 17ページ　Web／PDF',img:'material-logistics.jpg',ver:()=>LOGI_PDF_URL,url:'/guide/logistics/',live:true},
-  {id:'field',name:'分野別ガイド',desc:'分野ごとの仕事・条件・流れ',meta:'A4横 各6ページ　Web／PDF',img:'material-field-kensetsu.jpg',ver:()=>FIELD_PDF('kensetsu'),live:true,group:true},
+  {id:'field',name:'分野別ガイド',desc:'分野ごとの数字・仕事・試験・手続き・事例',meta:'A4横 各13〜17ページ　Web／PDF',img:'material-field-kensetsu.jpg',ver:()=>FIELD_PDF('kensetsu'),live:true,group:true},
   {id:'price',name:'料金シミュレーション',desc:'業種を選び、人数を入れると 費用がわかります',meta:'Web　30日間ご覧いただけます',manual:true,live:false},
 ];
 
@@ -2622,10 +2622,12 @@ function optout(){ const r='../'; return page({root:r,title:'配信停止｜BIGL
 </script>`});}
 
 /* 2026-10-30 会社案内 PDF: nginx cho cache 30 ngày → URL mang mã băm của profile.cjs, đổi nội dung là URL mới (trình duyệt không dùng bản cũ) */
-const PDF_URL = '/assets/biglight-company-profile.pdf?v=' + require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'profile.cjs'))).digest('hex').slice(0,8);
+// 2026-11-04: số liệu chung data.cjs + gov.json nằm trong mã ?v= của mọi PDF dùng chúng
+const DATA_SRC = fs.readFileSync(path.join(__dirname,'data.cjs')) + fs.readFileSync(path.join(__dirname,'gov.json'));
+const PDF_URL = '/assets/biglight-company-profile.pdf?v=' + require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'profile.cjs')) + DATA_SRC).digest('hex').slice(0,8);
 /* 2026-11-01 特定技能ガイド PDF: cùng quy tắc ?v= như 会社案内 */
-const GUIDE_PDF_URL = '/assets/biglight-tokutei-guide.pdf?v=' + require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'guide.cjs'))).digest('hex').slice(0,8);
-const SHIRYO_V = require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'shiryo.cjs'))).digest('hex').slice(0,8);
+const GUIDE_PDF_URL = '/assets/biglight-tokutei-guide.pdf?v=' + require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'guide.cjs')) + DATA_SRC).digest('hex').slice(0,8);
+const SHIRYO_V = require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'shiryo.cjs')) + DATA_SRC + fs.readFileSync(path.join(__dirname,'guide.cjs'))).digest('hex').slice(0,8);
 const PREP_PDF_URL = '/assets/biglight-preparation.pdf?v=' + SHIRYO_V;
 const LOGI_PDF_URL = '/assets/biglight-logistics.pdf?v=' + require('crypto').createHash('md5').update(fs.readFileSync(path.join(__dirname,'shiryo.cjs'))+fs.readFileSync(path.join(__dirname,'facts.json'))).digest('hex').slice(0,8);
 const SHIRYO = require('./shiryo.cjs'), FIELD_PDF = (f) => `/assets/biglight-field-${f}.pdf?v=` + SHIRYO_V;
@@ -2667,7 +2669,7 @@ pages['404.html']=page({root:'/',title:'ページが見つかりません｜BIGL
 SHIRYO.FIELDS.forEach(f=>{pages[`guide/field/${f.slug}/index.html`]=SHIRYO.field({ page, pageHead, pill, PDF_URL: FIELD_PDF(f.slug) }, f);});
 const nPages=require('./seo.cjs')(pages,{OUT,SITE,ARTICLES,WEBP,DATED:{'logistics/':LOGI.FACTS.updated,'logistics/check/':LOGI.FACTS.updated,'service/field/unso/':LOGI.FACTS.updated,'service/field/soko/':LOGI.FACTS.updated}});
 /* 2026-11-01: admin.biglight.jp đọc danh sách này (資料一覧) để xem trực tiếp, kể cả tài liệu chưa hiện ở /contact/ */
-fs.writeFileSync(path.join(OUT,'materials.json'), JSON.stringify(MATERIALS.filter(m=>!m.manual&&!m.group).concat(SHIRYO.FIELDS.map(f=>({id:'field-'+f.slug,name:f.name+'ガイド',desc:f.sum,meta:'A4横 6ページ　Web／PDF',img:`material-field-${f.slug}.jpg`,url:`/guide/field/${f.slug}/`,ver:()=>FIELD_PDF(f.slug),live:true}))).map(m=>({id:m.id,name:m.name,desc:m.desc,meta:m.meta,live:!!m.live,url:SITE.replace(/\/$/,'')+m.url,pdf:SITE.replace(/\/$/,'')+m.ver(),thumb:SITE.replace(/\/$/,'')+'/img/'+m.img+'?v='+m.ver().split('?v=')[1]}))));
+fs.writeFileSync(path.join(OUT,'materials.json'), JSON.stringify(MATERIALS.filter(m=>!m.manual&&!m.group).concat(SHIRYO.FIELDS.map(f=>({id:'field-'+f.slug,name:f.name+'ガイド',desc:f.sum,meta:`A4横 ${SHIRYO.fieldPages(f)}ページ　Web／PDF`,img:`material-field-${f.slug}.jpg`,url:`/guide/field/${f.slug}/`,ver:()=>FIELD_PDF(f.slug),live:true}))).map(m=>({id:m.id,name:m.name,desc:m.desc,meta:m.meta,live:!!m.live,url:SITE.replace(/\/$/,'')+m.url,pdf:SITE.replace(/\/$/,'')+m.ver(),thumb:SITE.replace(/\/$/,'')+'/img/'+m.img+'?v='+m.ver().split('?v=')[1]}))));
 console.log('pages',nPages);
 /* ảnh tạm (差し替え予定) */
 function phSvg(en,ja,hue){ let lines='';for(let i=0;i<34;i++){const dy=i*9;lines+='<path d="M-50 '+(520+dy)+' C 250 '+(330+dy)+', 520 '+(660+dy)+', 800 '+(470+dy)+' S 1100 '+(260+dy)+', 1260 '+(360+dy)+'" fill="none" stroke="hsl('+hue+',55%,'+(48+i)+'%)" stroke-width="1.2" opacity=".55"/>';}
