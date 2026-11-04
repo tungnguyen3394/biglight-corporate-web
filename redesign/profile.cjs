@@ -179,7 +179,7 @@ module.exports = function profile({ page, pageHead, aboutTabs, pill, AICHI_SDGS,
     sheet(N(), '', `
       ${head('Case', '導入事例', '食品の製造から、外食の店舗まで。')}
       <div class="cp-cases">${caseMini(CASES.inshoku, '03')}${caseMini(CASES.gaishoku, '04')}</div>
-      <p class="cp-note">※人数はBIGLIGHTの支援記録より（${BL.asOf}）。「これまでの受入れ」は入社予定の方を含みます。社名は各企業さまのご了承を得て掲載しています。</p>${pn(no, 'CASE')}`),
+      <p class="cp-note">※人数はBIGLIGHTの支援記録より（${BL.asOf}）。「これまでの受入れ」は入社予定の方を含みます。</p>${pn(no, 'CASE')}`),
 
     // 14 流れ + 期間
     sheet(N(), '', `
