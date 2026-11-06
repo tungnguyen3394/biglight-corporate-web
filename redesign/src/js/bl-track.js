@@ -161,7 +161,7 @@ var BLF=(function(){
         .then(function(r){return r.json().catch(function(){return {};}).then(function(j){if(!r.ok){var er=new Error(j.error||'failed');er.code=j.code;er.msg=j.error;throw er;}return j;});})
         .then(function(){BLT.conv('form');done(cf,document.getElementById('cf-done'));})
         .catch(function(er){btn.disabled=false;btn.innerHTML=old;cg.reset();
-          alert((er&&er.msg&&er.msg!=='failed'?er.msg+'\n':'')+(er&&er.code==='turnstile'?'':'送信に失敗しました。お手数ですが、お電話（052-908-7944）でもご連絡ください。'));});
+          alert((er&&er.msg&&er.msg!=='failed'?er.msg+'\n':'')+(er&&er.code==='turnstile'?'':'送信に失敗しました。お手数ですが、お電話（0120-300-832、通話無料）でもご連絡ください。'));});
     });}
   /* 資料請求（2026-11-01 CEO）: 資料を選ぶ → CRM がその場でリンクを作ってメールも送る → 画面に出す。
      担当者への通知と履歴は 今までどおり /api/inquiry。CRM が止まっていても 請求は 失われない（担当者から送る）。 */
@@ -195,11 +195,11 @@ var BLF=(function(){
         .then(function(r){return r.json().catch(function(){return {};}).then(function(j){return {s:r.status,j:j};});})
         .then(function(x){
           if(x.s===200){admin(v,g,x.j.mailed?'資料請求（自動送付）':'資料請求',names).then(function(ok){
-            if(!(x.j.links||[]).length&&!ok)return fail('送信に失敗しました。お手数ですが、お電話（052-908-7944）でもご連絡ください。');
+            if(!(x.j.links||[]).length&&!ok)return fail('送信に失敗しました。お手数ですが、お電話（0120-300-832、通話無料）でもご連絡ください。');
             finish(x.j.links||[],x.j.mailed,price);});return;}
           if(x.s===400||x.s===429)return fail(x.j.error||'送信に失敗しました。');
           throw new Error('crm');})
-        .catch(function(){admin(v,g,'資料請求',names).then(function(ok){if(ok)finish([],false,false);else fail('送信に失敗しました。お手数ですが、お電話（052-908-7944）でもご連絡ください。');});});
+        .catch(function(){admin(v,g,'資料請求',names).then(function(ok){if(ok)finish([],false,false);else fail('送信に失敗しました。お手数ですが、お電話（0120-300-832、通話無料）でもご連絡ください。');});});
     });}
 })();
 
