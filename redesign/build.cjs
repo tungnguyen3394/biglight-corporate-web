@@ -444,6 +444,14 @@ html.js .hero .scrl{opacity:0;animation:pagein 1.2s 2.7s ease forwards}
 .form{display:grid;grid-template-columns:270px 1fr;gap:40px;margin-top:80px}
 .form .info{font-size:14px;line-height:2;color:var(--ink2)}
 .form .info b{display:block;font-family:var(--en);font-size:28px;color:var(--ink);letter-spacing:.04em;text-transform:none}
+/* CONTACT: 新規のお客様向け フリーダイヤル 0120 を主番号に、052 は既存のお取引先向けに小さく（2026-11-06） */
+.form .info .tel0120{border:2px solid var(--accent);background:#f3f6fc;border-radius:12px;padding:16px 18px 14px;margin-bottom:18px;line-height:1.5}
+.form .info .tel0120 .lb{display:block;font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.04em}
+.form .info .tel0120 b{font-size:28px;line-height:1.3;letter-spacing:.02em;margin-top:2px}
+.form .info .tel0120 .hr{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:12px;color:var(--ink2)}
+.form .info .tel0120 em{font-style:normal;font-size:11px;font-weight:700;color:#fff;background:var(--accent);border-radius:4px;padding:2px 8px;letter-spacing:.06em;white-space:nowrap}
+.form .info .tel-sub{margin:16px 0;font-size:12px;color:var(--grey);line-height:1.8}
+.form .info .tel-sub b{display:inline;font-size:13px;color:var(--ink2);letter-spacing:.04em}
 .form label{display:block;font-size:14px;font-weight:700;letter-spacing:.06em;margin-top:34px}
 .form label small{color:var(--accent);margin-left:8px}
 .form input,.form textarea,.form select{width:100%;border:0;border-bottom:1px solid var(--ink);padding:12px 0;font:inherit;font-size:16px;background:transparent;border-radius:0;outline:none}
@@ -870,6 +878,20 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 /* Cookie同意バナー */
 .totop{bottom:calc(28px + var(--ckh,0px));transition:bottom .3s ease,opacity .3s,transform .3s}
 @media (max-width:860px){.totop{bottom:calc(16px + var(--ckh,0px))}}
+/* スマホ・iPad縦: 画面下に固定の 電話（0120 通話無料）＋ お問い合わせ の2ボタン（2026-11-06）。Cookieバナーの上に乗り、メニュー表示中は隠す */
+.mbar{display:none}
+@media (max-width:860px){
+  :root{--mbh:58px}
+  body{padding-bottom:calc(var(--mbh) + env(safe-area-inset-bottom,0px))}
+  .mbar{display:grid;grid-template-columns:1fr 1fr;position:fixed;left:0;right:0;bottom:var(--ckh,0px);z-index:48;background:#fff;box-shadow:0 -4px 16px rgba(11,61,145,.12);padding-bottom:env(safe-area-inset-bottom,0px);transition:bottom .3s ease,transform .3s ease}
+  .mbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:var(--mbh);text-decoration:none;line-height:1.25}
+  .mbar b{font-family:var(--en);font-size:18px;font-weight:700;letter-spacing:.03em}
+  .mbar span{font-size:10px;letter-spacing:.02em}
+  .mb-tel{background:var(--accent);color:#fff}.mb-tel span{color:#d7e2f7}
+  .mb-form{background:var(--gold);color:var(--accent-d)}.mb-form b{font-family:var(--jp);font-size:15px;letter-spacing:.06em}
+  body.menu-open .mbar{transform:translateY(calc(100% + 24px))}
+  .totop{bottom:calc(16px + var(--ckh,0px) + var(--mbh,0px))}
+}
 .ckb{position:fixed;left:0;right:0;bottom:0;z-index:90;background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 24px rgba(11,61,145,.08);transform:translateY(100%);transition:transform .3s ease;padding-bottom:env(safe-area-inset-bottom)}
 .ckb.on{transform:none}
 .ck-in{max-width:1180px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;gap:32px}
@@ -1345,6 +1367,7 @@ function page({root, title, desc, body, active, home}) {
       <p class="copy">Copyright © BIGLIGHT Co., Ltd. All Rights Reserved.</p>
     </div>
   </div></footer>
+  <div class="mbar"><a class="mb-tel telk" href="tel:0120300832"><b>0120-300-832</b><span>通話無料　平日 9:00–18:00</span></a><a class="mb-form" href="${r}contact/index.html"><b>お問い合わせ</b><span>フォーム・資料請求</span></a></div>
   <script src="${r}js/site.js?v=__JSV__" defer></script>`;
   return `<!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -1914,7 +1937,11 @@ ${pageHead('Contact','お問い合わせ・資料請求')}
   </div>
 </div></section>
 <section id="p-cf" role="tabpanel" aria-labelledby="t-cf"><div class="wrap form">
-  <div class="info"><a class="telk" href="tel:0529087944"><b>052-908-7944</b></a>平日 9:00–18:00　FAX 052-908-7267<br>採用人数・職種・時期が未定でも構いません。<br>登録支援機関として、制度の説明からお手伝いします。<br><br>〒462-0007<br>愛知県名古屋市北区如意一丁目112 A</div>
+  <div class="info">
+    <div class="tel0120"><span class="lb">採用のご相談・お問い合わせ</span><a class="telk" href="tel:0120300832"><b>0120-300-832</b></a><span class="hr"><em>通話無料</em>平日 9:00–18:00</span></div>
+    採用人数・職種・時期が未定でも構いません。<br>登録支援機関として、制度の説明からお手伝いします。
+    <p class="tel-sub">既にお取引のある企業様・その他のご連絡<br>TEL <a class="telk" href="tel:0529087944"><b>052-908-7944</b></a>　FAX <b>052-908-7267</b></p>
+    〒462-0007<br>愛知県名古屋市北区如意一丁目112 A</div>
   <form id="cf" novalidate><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
     <label for="cf-type">お問い合わせ種別<small>必須</small></label><select id="cf-type" name="type"><option>無料相談（採用について）</option><option>アプリについて</option><option>採用について（求職者の方）</option><option>その他</option></select>
     <label for="cf-co">会社名<small>必須</small></label><div class="fld" data-err="入力してください"><input id="cf-co" name="company" type="text" autocomplete="organization" placeholder="株式会社〇〇" required></div>
@@ -1925,7 +1952,7 @@ ${pageHead('Contact','お問い合わせ・資料請求')}
     <div class="send"><button class="pill" type="submit" style="cursor:pointer">送信する<span class="circ">→</span></button></div>
     <p class="note">送信いただいた個人情報は<a href="${r}privacy/index.html">プライバシーポリシー</a>に基づき取り扱います。</p>
   </form>
-  <div class="dldone" id="cf-done" hidden><b>送信ありがとうございました。</b><p>担当者より3営業日以内にご連絡いたします。お急ぎの場合はお電話（052-908-7944）でご連絡ください。</p></div>
+  <div class="dldone" id="cf-done" hidden><b>送信ありがとうございました。</b><p>担当者より3営業日以内にご連絡いたします。お急ぎの場合はお電話（0120-300-832、通話無料）でご連絡ください。</p></div>
 </div></section>
 <section id="p-dl" role="tabpanel" aria-labelledby="t-dl" hidden><div class="wrap form mtr">
   <form id="dlf" class="in" novalidate><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
