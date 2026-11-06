@@ -1410,7 +1410,6 @@ const contactBox = (r) => `
       <span class="circ">→</span>
     </a>
   </div>
-  <p class="ctel">お電話でのご相談　<a class="telk" href="tel:0529087944"><b>052-908-7944</b></a>　平日 9:00–18:00　FAX 052-908-7267</p>
 </div></section>`;
 /* 2026-11-01 lối vào 資料請求 từ trang dịch vụ: ?doc=<id> chọn sẵn tài liệu (bl-track.js) */
 const docCta = (r, doc, img, name, desc) => `
