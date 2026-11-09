@@ -3,56 +3,56 @@
   "url": "https://www.mlit.go.jp/seisakutokatsu/freight/warehousing_ssw.html",
   "hash": "fb3f6d4c1386cf50",
   "size": 14007,
-  "checked": "2026-11-03",
+  "checked": "2026-11-09",
   "changed": "2026-11-03"
  },
  "houshin-soko": {
   "url": "https://www.mlit.go.jp/seisakutokatsu/freight/content/002016484.pdf",
   "hash": "8e30a0edfd93e911",
   "size": 464418,
-  "checked": "2026-11-03",
+  "checked": "2026-11-09",
   "changed": "2026-11-03"
  },
  "gaiyo-soko": {
   "url": "https://www.mlit.go.jp/seisakutokatsu/freight/content/002027344.pdf",
   "hash": "db570e0ed899a182",
   "size": 252581,
-  "checked": "2026-11-03",
+  "checked": "2026-11-09",
   "changed": "2026-11-03"
  },
  "yoryo-soko": {
   "url": "https://www.mlit.go.jp/seisakutokatsu/freight/content/002023331.pdf",
   "hash": "416f8178bf48e1ea",
   "size": 216076,
-  "checked": "2026-11-03",
+  "checked": "2026-11-09",
   "changed": "2026-11-03"
  },
  "shiken-soko": {
   "url": "https://www.mlit.go.jp/seisakutokatsu/freight/content/002027389.pdf",
   "hash": "c2ececcddab9fde3",
   "size": 166155,
-  "checked": "2026-11-03",
+  "checked": "2026-11-09",
   "changed": "2026-11-03"
  },
  "mlit-unso": {
   "url": "https://www.mlit.go.jp/jidosha/jidosha_tk1_000038.html",
   "hash": "9ff7c268c16d8ecd",
   "size": 9513,
-  "checked": "2026-11-03",
+  "checked": "2026-11-09",
   "changed": "2026-11-03"
  },
  "houshin-unso": {
   "url": "https://www.mlit.go.jp/jidosha/content/001984769.pdf",
   "hash": "c6f970a6f9b9c74e",
   "size": 335265,
-  "checked": "2026-11-03",
+  "checked": "2026-11-09",
   "changed": "2026-11-03"
  },
  "qa-unso": {
   "url": "https://www.mlit.go.jp/jidosha/content/002004573.pdf",
   "hash": "4716804dbaafa1f8",
   "size": 88904,
-  "checked": "2026-11-03",
+  "checked": "2026-11-09",
   "changed": "2026-11-03"
  }
 }
