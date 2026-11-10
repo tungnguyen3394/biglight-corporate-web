@@ -7,7 +7,7 @@ for (const d of ['terms','antisocial','optout','css','js','img','about','about/m
 
 // ---------- assets ----------
 const copies = {
-  'img/logo-mark.png':'img/logo.png','img/wordmark.png':'img/wordmark.png','img/engineer.jpg':'img/engineer.jpg','img/desk-portal.jpg':'img/desk-portal.jpg','img/news-kokunai.jpg':'img/news-kokunai.jpg','img/news-renewal.jpg':'img/news-renewal.jpg','img/illu-culture-1.svg':'img/illu-culture-1.svg','img/illu-culture-2.svg':'img/illu-culture-2.svg','img/illu-culture-3.svg':'img/illu-culture-3.svg','img/illu-mission.svg':'img/illu-mission.svg','img/illu-vision.svg':'img/illu-vision.svg','img/mark-alpha.png':'img/mark.png','img/icon-portal.png':'img/icon-portal.png','img/icon-academy.png':'img/icon-academy.png','img/icon-job.png':'img/icon-job.png',
+  'img/logo-mark.png':'img/logo.png','img/wordmark.png':'img/wordmark.png','img/engineer.jpg':'img/engineer.jpg','img/desk-portal.jpg':'img/desk-portal.jpg','img/news-kokunai.jpg':'img/news-kokunai.jpg','img/news-renewal.jpg':'img/news-renewal.jpg','img/news-nhk-kojima.jpg':'img/news-nhk-kojima.jpg','img/illu-culture-1.svg':'img/illu-culture-1.svg','img/illu-culture-2.svg':'img/illu-culture-2.svg','img/illu-culture-3.svg':'img/illu-culture-3.svg','img/illu-mission.svg':'img/illu-mission.svg','img/illu-vision.svg':'img/illu-vision.svg','img/mark-alpha.png':'img/mark.png','img/icon-portal.png':'img/icon-portal.png','img/icon-academy.png':'img/icon-academy.png','img/icon-job.png':'img/icon-job.png',
   'img/recruit-1.jpg':'img/team.jpg','img/hero-team.jpg':'img/hero-team.jpg','img/ceo-full.jpg':'img/ceo.jpg',
   'img/hero-kensetsu.jpg':'img/svc-kensetsu.jpg','img/hero-gaishoku.jpg':'img/svc-gaishoku.jpg','img/hero-inshokuryohin.jpg':'img/svc-seizo.jpg',
   'img/staff-1.jpg':'img/staff-1.jpg','img/staff-2.jpg':'img/staff-2.jpg','img/staff-3.jpg':'img/staff-3.jpg',
@@ -1089,6 +1089,11 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 @media (max-width:860px){.row .nm .nm-en{font-size:22px}.svc h2 .nm-en{font-size:26px}}
 /* trang tin */
 .nitem .thumbs{display:none}
+.nitem.has-th{grid-template-columns:160px 1fr 40px}
+.nitem .th{display:block;aspect-ratio:1200/630;border-radius:8px;overflow:hidden;background:#f3f6fb}
+.nitem .th img{width:100%;height:100%;object-fit:cover;display:block}
+.nitem .pin{display:inline-flex;align-items:center;gap:4px;font-family:var(--jp);font-weight:700;color:var(--accent);margin-right:14px}
+@media (max-width:860px){.nitem.has-th{grid-template-columns:104px 1fr;gap:14px;align-items:start}.nitem.has-th .circ40{display:none}.nitem.has-th .tt{font-size:14px;line-height:1.75}}
 .art .thumb{aspect-ratio:1200/630}
 .art .body .ntoc{background:#f6f8fb;border-radius:10px;padding:22px 28px;margin:0 0 36px}
 .art .body .ntoc-h{font-weight:700;font-size:14px;letter-spacing:.08em;color:var(--accent);margin-bottom:8px}
@@ -1431,9 +1436,14 @@ const aboutTabs = (r, on) => `<div class="tabs">
   <a href="${r}about/sdgs/index.html" class="${on==='sdgs'?'on':''}">SDGS <span class="ch">›</span></a>
 </div>`;
 
-const NEWS = JSON.parse(fs.readFileSync(path.join(__dirname,'news.json'),'utf8'));
-const news = NEWS.map(n=>[n.date,n.cat,n.title,n.slug]);
-const nitem = ([d,c,t,slug],r='') => `<a class="nitem" data-cat="${c}" href="${slug?r+'news/'+slug+'/index.html':'https://biglight.jp/news/'}"><div><div class="tt">${t}</div><div class="mt">${d}<b>${c}</b></div></div>${circ()}</a>`;
+// news.json = bài admin.biglight.jp sinh (fetch-news.cjs ghi đè mỗi lần deploy); news-local.json = bài viết tay trong repo (pin:true → ghim lên đầu).
+const NEWS_LOCAL = JSON.parse(fs.readFileSync(path.join(__dirname,'news-local.json'),'utf8'));
+const NEWS = [...NEWS_LOCAL, ...JSON.parse(fs.readFileSync(path.join(__dirname,'news.json'),'utf8')).filter(n=>!NEWS_LOCAL.some(l=>l.slug===n.slug))]
+  .sort((x,y)=>(y.pin?1:0)-(x.pin?1:0) || (y.date>x.date?1:y.date<x.date?-1:0));
+const nimg = (img,r) => /^https?:\/\//.test(img) ? img : r+'img/'+img;
+const news = NEWS.map(n=>[n.date,n.cat,n.title,n.slug,n.img,!!n.pin]);
+const PIN = '<span class="pin"><svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path fill="currentColor" d="M16 3l5 5-3.2 1.1-3.3 3.3.6 4.6-1.4 1.4-3.6-3.6L5 20l-1-1 5.2-5.1-3.6-3.6L7 8.9l4.6.6 3.3-3.3z"/></svg>固定</span>';
+const nitem = ([d,c,t,slug,img,pin],r='',th=false) => `<a class="nitem${th&&img?' has-th':''}" data-cat="${c}" href="${slug?r+'news/'+slug+'/index.html':'https://biglight.jp/news/'}">${th&&img?`<span class="th"><img src="${nimg(img,r)}" alt="" loading="lazy" decoding="async" width="160" height="84"></span>`:''}<div><div class="tt">${t}</div><div class="mt">${pin?PIN:''}${d}<b>${c}</b></div></div>${circ()}</a>`;
 
 const products = (r) => `
 <div class="rows" style="margin-top:60px">
@@ -1504,7 +1514,7 @@ ${homeStats(r)}
 <div class="deco a"><i></i><i></i><i></i><i></i></div>
 <section class="sec bgw bgw-r news-home"><div class="wrap">
   <div class="sec-head"><div><h2 class="en">News</h2><div class="ja-lb">お知らせ</div></div>
-    <div><div class="nlist">${news.slice(0,3).map(n=>nitem(n,r)).join('')}</div>
+    <div><div class="nlist">${news.slice(0,3).map(n=>nitem(n,r,true)).join('')}</div>
     <div class="more-r"><a href="${r}news/index.html">ニュース一覧を見る <span class="ar">→</span></a></div></div></div>
 </div></section>
 
@@ -2591,7 +2601,7 @@ function article(slug){ const A=ARTICLES[slug]; const r='../../'; const others=n
   <div><div class="phh"><span class="en">News</span><span class="ja-lb">お知らせ</span></div>${dots}
     <div class="filters"><a href="${r}news/index.html">すべて</a><a class="${A.cat==='お知らせ'?'on':''}" href="${r}news/index.html#oshirase">お知らせ</a><a class="${A.cat==='HR Magazine'?'on':''}" href="${r}news/index.html#magazine">HR Magazine</a></div></div>
   <article class="art">
-    <div class="thumb"><img src="${A.img}" alt="${A.title}"></div>
+    <div class="thumb"><img src="${nimg(A.img,r)}" alt="${A.title}"></div>
     <h1 class="art-h">${A.title}</h1>
     <div class="meta">${A.date}<b>${A.cat}</b><span>${A.read}で読めます</span></div>
     <div class="body">${A.body}</div>
