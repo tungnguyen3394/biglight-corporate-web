@@ -7,7 +7,7 @@ for (const d of ['terms','antisocial','optout','css','js','img','about','about/m
 
 // ---------- assets ----------
 const copies = {
-  'img/logo-mark.png':'img/logo.png','img/wordmark.png':'img/wordmark.png','img/engineer.jpg':'img/engineer.jpg','img/desk-portal.jpg':'img/desk-portal.jpg','img/news-kokunai.jpg':'img/news-kokunai.jpg','img/news-renewal.jpg':'img/news-renewal.jpg','img/news-nhk-kojima.jpg':'img/news-nhk-kojima.jpg','img/illu-culture-1.svg':'img/illu-culture-1.svg','img/illu-culture-2.svg':'img/illu-culture-2.svg','img/illu-culture-3.svg':'img/illu-culture-3.svg','img/illu-mission.svg':'img/illu-mission.svg','img/illu-vision.svg':'img/illu-vision.svg','img/mark-alpha.png':'img/mark.png','img/icon-portal.png':'img/icon-portal.png','img/icon-academy.png':'img/icon-academy.png','img/icon-job.png':'img/icon-job.png',
+  'img/logo-mark.png':'img/logo.png','img/wordmark.png':'img/wordmark.png','img/engineer.jpg':'img/engineer.jpg','img/desk-portal.jpg':'img/desk-portal.jpg','img/news-kokunai.jpg':'img/news-kokunai.jpg','img/news-renewal.jpg':'img/news-renewal.jpg','img/news-nhk-kojima.jpg':'img/news-nhk-kojima.jpg','img/news-nhk-kojima-1.jpg':'img/news-nhk-kojima-1.jpg','img/news-nhk-kojima-2.jpg':'img/news-nhk-kojima-2.jpg','img/news-nhk-kojima-3.jpg':'img/news-nhk-kojima-3.jpg','img/news-nhk-kojima-4.jpg':'img/news-nhk-kojima-4.jpg','img/illu-culture-1.svg':'img/illu-culture-1.svg','img/illu-culture-2.svg':'img/illu-culture-2.svg','img/illu-culture-3.svg':'img/illu-culture-3.svg','img/illu-mission.svg':'img/illu-mission.svg','img/illu-vision.svg':'img/illu-vision.svg','img/mark-alpha.png':'img/mark.png','img/icon-portal.png':'img/icon-portal.png','img/icon-academy.png':'img/icon-academy.png','img/icon-job.png':'img/icon-job.png',
   'img/recruit-1.jpg':'img/team.jpg','img/hero-team.jpg':'img/hero-team.jpg','img/ceo-full.jpg':'img/ceo.jpg',
   'img/hero-kensetsu.jpg':'img/svc-kensetsu.jpg','img/hero-gaishoku.jpg':'img/svc-gaishoku.jpg','img/hero-inshokuryohin.jpg':'img/svc-seizo.jpg',
   'img/staff-1.jpg':'img/staff-1.jpg','img/staff-2.jpg':'img/staff-2.jpg','img/staff-3.jpg':'img/staff-3.jpg',
@@ -1089,6 +1089,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 @media (max-width:860px){.row .nm .nm-en{font-size:22px}.svc h2 .nm-en{font-size:26px}}
 /* trang tin */
 .nitem .thumbs{display:none}
+.art .body .nfig{margin:28px 0}.art .body .nfig img{width:100%;height:auto;display:block;border-radius:10px}.art .body .nfig figcaption{font-size:12px;color:var(--grey);margin-top:8px;line-height:1.7}
 .nitem.has-th{grid-template-columns:160px 1fr 40px}
 .nitem .th{display:block;aspect-ratio:1200/630;border-radius:8px;overflow:hidden;background:#f3f6fb}
 .nitem .th img{width:100%;height:100%;object-fit:cover;display:block}
