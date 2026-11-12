@@ -108,9 +108,13 @@ h1,h2,h3,h4,p{margin:0}
 .hd .burger .mt{font-family:var(--en);font-size:9px;font-weight:700;letter-spacing:.2em;color:var(--ink);line-height:1}
 body.menu-open .hd .burger .sq{gap:2px}
 body.menu-open .hd .burger .sq i{width:11px;height:11px}
-.mnav{position:fixed;inset:69px 0 0 0;background:#fff;z-index:49;padding:8px 24px 40px;overflow:auto;-webkit-overflow-scrolling:touch;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .3s,transform .3s,visibility .3s}
+.mnav{position:fixed;inset:0;background:#fff;z-index:49;padding:77px 24px 40px;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .3s,transform .3s,visibility .3s}
 body.menu-open .mnav{opacity:1;visibility:visible;transform:none}
 body.menu-open{overflow:hidden}
+/* メニュー表示中: ヘッダーとメニューを1枚に固定（iPhone でヘッダー部分を引っぱるとページが動き、すき間が出ていた 2026-11-12） */
+html.menu-lock,html.menu-lock body{overflow:hidden;overscroll-behavior:none}
+html.menu-lock body{position:fixed;left:0;right:0;width:100%}
+body.menu-open .hd{position:fixed;left:0;right:0;top:0;touch-action:none}
 .mnav .mi,.mnav summary{display:flex;align-items:baseline;gap:14px;padding:22px 4px;border-bottom:1px solid var(--line);cursor:pointer;list-style:none}
 .mnav summary::-webkit-details-marker{display:none}
 .mnav b{font-family:var(--en);font-size:17px;font-weight:700;letter-spacing:.12em;color:var(--ink)}
@@ -1284,7 +1288,7 @@ const js = `
     nf.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;e.preventDefault();fl(a.getAttribute('data-f'));history.replaceState(null,'',a.getAttribute('href')==='#'?location.pathname:a.getAttribute('href'));});
     var hh={'#oshirase':'お知らせ','#magazine':'HR Magazine'}[location.hash];if(hh)fl(hh);}
   [].forEach.call(document.querySelectorAll('.ft .fsite .tg'),function(t){t.addEventListener('click',function(){var o=t.parentNode.classList.toggle('open');t.setAttribute('aria-expanded',o);t.setAttribute('aria-label',o?'閉じる':'開く');});});
-  var b=document.querySelector('.burger'); if(b){var setM=function(o){document.body.classList.toggle('menu-open',o);b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'MENU（メニューを閉じる）':'MENU（メニューを開く）');};b.addEventListener('click',function(){setM(!document.body.classList.contains('menu-open'));});[].forEach.call(document.querySelectorAll('.mnav a'),function(a){a.addEventListener('click',function(){setM(false);});});document.addEventListener('keydown',function(e){if(e.key==='Escape')setM(false);});}
+  var b=document.querySelector('.burger'); if(b){var lockY=0,hd0=document.querySelector('.hd'),setM=function(o){var de=document.documentElement,bd=document.body;if(o&&!de.classList.contains('menu-lock')){lockY=window.scrollY||0;bd.style.top=(-lockY)+'px';de.classList.add('menu-lock');}else if(!o&&de.classList.contains('menu-lock')){de.classList.remove('menu-lock');bd.style.top='';window.scrollTo({top:lockY,left:0,behavior:'instant'});}bd.classList.toggle('menu-open',o);b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'MENU（メニューを閉じる）':'MENU（メニューを開く）');};b.addEventListener('click',function(){setM(!document.body.classList.contains('menu-open'));});[].forEach.call(document.querySelectorAll('.mnav a'),function(a){a.addEventListener('click',function(){setM(false);});});document.addEventListener('keydown',function(e){if(e.key==='Escape')setM(false);});if(hd0)hd0.addEventListener('touchmove',function(e){if(document.body.classList.contains('menu-open'))e.preventDefault();},{passive:false});}
   /* sóng kẻ mảnh (band) */
   /* dải ruy-băng xoắn: hai đường biên A,B cắt nhau, N đường nội suy ở giữa */
   document.querySelectorAll('svg.wave').forEach(function(svg){
