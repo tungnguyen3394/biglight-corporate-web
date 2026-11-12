@@ -887,8 +887,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
   .mbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:var(--mbh);text-decoration:none;line-height:1.25}
   .mbar b{font-family:var(--en);font-size:18px;font-weight:700;letter-spacing:.03em}
   .mbar span{font-size:10px;letter-spacing:.02em}
-  .mb-tel{background:var(--accent);color:#fff}.mb-tel span{color:#d7e2f7}
-  .mb-form{background:var(--gold);color:var(--accent-d)}.mb-form b{font-family:var(--jp);font-size:15px;letter-spacing:.06em}
+  .mbar a.mb-tel{background:var(--accent);color:#fff}.mbar .mb-tel b{color:#fff}.mbar .mb-tel span{color:#d7e2f7}
+  .mbar a.mb-form{background:var(--gold);color:var(--accent-d)}.mb-form b{font-family:var(--jp);font-size:15px;letter-spacing:.06em}
   body.menu-open .mbar{transform:translateY(calc(100% + 24px))}
   .totop{bottom:calc(16px + var(--ckh,0px) + var(--mbh,0px))}
 }
